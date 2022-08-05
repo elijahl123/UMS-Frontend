@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../services/routing/app-routing.module';
 import { AppComponent } from '../components/app.component';
 import { StoreModule } from '@ngrx/store';
+import { UmsUiModule } from '../components/ui/ums-ui.module';
+import { UmsFormsModule } from '../components/forms/ums-forms.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { StoreModule } from '@ngrx/store';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({}, {}),
+    UmsUiModule,
+    UmsFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
