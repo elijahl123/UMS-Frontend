@@ -1,0 +1,21 @@
+
+.accordion-item {
+  @apply flex flex-col;
+}
+
+.accordion-header {
+  @apply flex font-bold w-full items-center justify-between px-4 py-3 text-left text-brand-secondary cursor-pointer rounded-lg
+  hover:bg-brand-background-hover duration-100;
+}
+
+.accordion-header-open {
+  @apply rounded-b-none text-white bg-brand-accent hover:bg-brand-accent-hover;
+}
+
+.accordion-body {
+  @apply flex-col w-full p-4 ;
+}
+
+.accordion-body-inner {
+  @apply flex-col flex bg-white p-6 rounded-lg;
+}

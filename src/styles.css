@@ -2,3 +2,68 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*
+  to change the default h1 styles on tailwind
+
+  https://tailwindcss.com/docs/preflight#extending-preflight
+
+*/
+@layer base {
+  h1 {
+    @apply text-6xl;
+  }
+}
+
+@layer utilities {
+
+  .primary {
+    @apply bg-utility-primary text-white;
+  }
+
+  .secondary {
+    @apply bg-utility-secondary text-white;
+  }
+
+  .danger {
+    @apply bg-utility-danger text-white;
+  }
+
+  .info {
+    @apply bg-utility-info text-white;
+  }
+
+  .warning {
+    @apply bg-utility-warning text-white;
+  }
+
+  .success {
+    @apply bg-utility-success text-white;
+  }
+
+  .primary-muted {
+    @apply bg-utility-primary-muted text-utility-primary;
+  }
+
+  .secondary-muted {
+    @apply bg-utility-secondary-muted text-utility-secondary;
+  }
+
+  .danger-muted {
+    @apply bg-utility-danger-muted text-utility-danger;
+  }
+
+  .info-muted {
+    @apply bg-utility-info-muted text-utility-info;
+  }
+
+  .warning-muted {
+    @apply bg-utility-warning-muted text-utility-warning;
+  }
+
+  .success-muted {
+    @apply bg-utility-success-muted text-utility-success;
+  }
+}
+
+/*tailwind and own styles*/

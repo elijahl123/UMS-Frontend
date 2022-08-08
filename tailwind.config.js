@@ -1,7 +1,7 @@
 module.exports = {
-  content: ['./src/**/*.{html,js}'],
-  purge: [],
-  darkMode: 'media', // or 'media' or 'class'
+  content: [
+    'src/app/components/**/*.{html,ts,css}',
+  ],
   theme: {
     fontFamily: {
       sans: ['Poppins', 'sans-serif'],
@@ -9,26 +9,33 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
+      'black': '#000',
+      'white': '#fff',
       'brand': {
         'main': {
           DEFAULT: '#F8AD9D',
           'muted': 'rgba(248, 173, 157, 0.14)',
+          'hover': '#F7A08D'
         },
         'secondary': {
           DEFAULT: '#51727B',
           'muted': 'rgba(81, 114, 123, 0.14)',
+          'hover': '#49676F'
         },
         'accent': {
           DEFAULT: '#F4978E',
           'muted': 'rgba(244,151,142,0.14)',
+          'hover': '#F2877D'
         },
         'shade': {
           DEFAULT: '#F08080',
           'muted': 'rgba(240,128,128,0.14)',
+          'hover': '#EE6D6D'
         },
         'background': {
           DEFAULT: '#F5F5F5',
           'muted': 'rgba(245,245,245,0.14)',
+          'hover': '#EBEBEB',
         },
       },
       'utility': {

@@ -1,0 +1,7 @@
+<div class="alert {{ color }}" #alert>
+  <div class="alert-icon-wrapper">
+    <fa-icon [icon]="leftIcon"></fa-icon>
+  </div>
+  <span class="alert-message">{{ message }}</span>
+  <fa-icon [icon]="closeButton" (click)="onCloseButtonClick()" class="cursor-pointer"></fa-icon>
+</div>

@@ -6,6 +6,8 @@ import { AppComponent } from '../components/app.component';
 import { StoreModule } from '@ngrx/store';
 import { UmsUiModule } from '../components/ui/ums-ui.module';
 import { UmsFormsModule } from '../components/forms/ums-forms.module';
+import { reducers, metaReducers } from './store';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { UmsFormsModule } from '../components/forms/ums-forms.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
     UmsUiModule,
     UmsFormsModule
   ],

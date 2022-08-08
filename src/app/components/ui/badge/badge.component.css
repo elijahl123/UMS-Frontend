@@ -1,0 +1,11 @@
+.badge {
+  @apply px-2 py-1 text-xs rounded-md inline-flex flex-row items-center justify-center;
+}
+
+.badge-left-icon {
+  @apply pr-2;
+}
+
+.badge-right-icon {
+  @apply pl-2;
+}

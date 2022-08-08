@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccordionComponent } from './accordion/accordion.component';
-import { AlertsComponent } from './alerts/alerts.component';
+import { AlertComponent } from './alert/alert.component';
 import { BadgeComponent } from './badge/badge.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ButtonsComponent } from './buttons/buttons.component';
@@ -18,12 +18,14 @@ import { SpinnersComponent } from './spinners/spinners.component';
 import { ToastsComponent } from './toasts/toasts.component';
 import { AccordionItemComponent } from './accordion/accordion-item/accordion-item.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BreadcrumbItemComponent } from './breadcrumb/breadcrumb-item/breadcrumb-item.component';
 
 
 @NgModule({
   declarations: [
     AccordionComponent,
-    AlertsComponent,
+    AccordionItemComponent,
+    AlertComponent,
     BadgeComponent,
     BreadcrumbComponent,
     ButtonsComponent,
@@ -38,11 +40,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ProgressComponent,
     SpinnersComponent,
     ToastsComponent,
-    AccordionItemComponent
+    BreadcrumbItemComponent
   ],
   exports: [
     AccordionComponent,
-    AccordionItemComponent
+    AccordionItemComponent,
+    AlertComponent,
+    BadgeComponent
   ],
   imports: [
     CommonModule,

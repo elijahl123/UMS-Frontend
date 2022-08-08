@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'ui-badge',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./badge.component.css']
 })
 export class BadgeComponent implements OnInit {
+  @Input() color: string = 'primary';
+  @Input() text: string = 'Badge';
+  @Input() leftIcon: IconDefinition;
+  @Input() rightIcon: IconDefinition;
 
   constructor() { }
 
