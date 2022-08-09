@@ -1,0 +1,3 @@
+.breadcrumb {
+  @apply bg-brand-background p-4 rounded-lg grid grid-flow-col auto-cols-max gap-4;
+}

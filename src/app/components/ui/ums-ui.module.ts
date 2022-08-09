@@ -4,7 +4,7 @@ import { AccordionComponent } from './accordion/accordion.component';
 import { AlertComponent } from './alert/alert.component';
 import { BadgeComponent } from './badge/badge.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { ButtonsComponent } from './buttons/buttons.component';
+import { ButtonComponent } from './button/button.component';
 import { ButtonGroupComponent } from './button-group/button-group.component';
 import { CardComponent } from './card/card.component';
 import { CloseButtonComponent } from './close-button/close-button.component';
@@ -28,7 +28,7 @@ import { BreadcrumbItemComponent } from './breadcrumb/breadcrumb-item/breadcrumb
     AlertComponent,
     BadgeComponent,
     BreadcrumbComponent,
-    ButtonsComponent,
+    ButtonComponent,
     ButtonGroupComponent,
     CardComponent,
     CloseButtonComponent,
@@ -46,7 +46,11 @@ import { BreadcrumbItemComponent } from './breadcrumb/breadcrumb-item/breadcrumb
     AccordionComponent,
     AccordionItemComponent,
     AlertComponent,
-    BadgeComponent
+    BadgeComponent,
+    BreadcrumbComponent,
+    BreadcrumbItemComponent,
+    ButtonComponent,
+    ButtonGroupComponent
   ],
   imports: [
     CommonModule,

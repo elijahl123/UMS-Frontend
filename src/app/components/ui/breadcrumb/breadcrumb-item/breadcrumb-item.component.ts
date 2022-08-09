@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'ui-breadcrumb-item',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./breadcrumb-item.component.css']
 })
 export class BreadcrumbItemComponent implements OnInit {
+  @Input() leftIcon: IconDefinition;
+  @Input() text: string = "";
+  @Input() color: string = 'primary';
 
   constructor() { }
 

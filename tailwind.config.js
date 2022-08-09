@@ -1,6 +1,6 @@
 module.exports = {
   content: [
-    'src/app/components/**/*.{html,ts,css}',
+    './src/**/*.{html,ts}',
   ],
   theme: {
     fontFamily: {
@@ -42,26 +42,32 @@ module.exports = {
         'primary': {
           DEFAULT: '#2B478C',
           'muted': 'rgba(43,71,140,0.14)',
+          'hover': '#263F7D'
         },
         'secondary': {
           DEFAULT: '#5F585A',
           'muted': 'rgba(95,88,90,0.14)',
+          'hover': '#554E50'
         },
         'danger': {
           DEFAULT: '#EB5E55',
           'muted': 'rgba(235,94,85,0.14)',
+          'hover': '#EA5348'
         },
         'info': {
           DEFAULT: '#6C91C2',
           'muted': 'rgba(108,145,194,0.14)',
+          'hover': '#6189BD'
         },
         'warning': {
           DEFAULT: '#FEB95F',
           'muted': 'rgba(254,185,95,0.14)',
+          'hover': '#FEAF48'
         },
         'success': {
           DEFAULT: '#5C9962',
           'muted': 'rgba(92,153,98,0.14)',
+          'hover': '#73AB79'
         },
       },
       'rainbow': {
@@ -109,7 +115,11 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      dropShadow: {
+        DEFAULT: '-2px 2px 0px',
+      },
+    },
   },
   plugins: [],
 };

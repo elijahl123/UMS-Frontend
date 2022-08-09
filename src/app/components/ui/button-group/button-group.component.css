@@ -1,0 +1,3 @@
+.button-group {
+  @apply bg-brand-background inline-grid grid-flow-col rounded-lg overflow-auto;
+}

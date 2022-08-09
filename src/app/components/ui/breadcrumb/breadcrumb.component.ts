@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
+import { faFolder } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'ui-breadcrumb',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./breadcrumb.component.css']
 })
 export class BreadcrumbComponent implements OnInit {
+  @Input() mainIcon: IconDefinition = faFolder;
 
   constructor() { }
 
