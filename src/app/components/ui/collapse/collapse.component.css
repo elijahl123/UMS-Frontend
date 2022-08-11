@@ -1,0 +1,7 @@
+.collapse {
+  @apply grid gap-4;
+}
+
+.collapse-body {
+  @apply p-4 bg-brand-background rounded-lg;
+}

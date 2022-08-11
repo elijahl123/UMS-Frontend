@@ -1,26 +1,30 @@
-import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommonModule } from '@angular/common';
+import { BaseUiComponent } from '../../../core/components/ui/base.ui.component';
 
 @Component({
+  standalone: true,
+  imports: [
+    FontAwesomeModule,
+    CommonModule
+  ],
   selector: 'ui-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.css']
+  styleUrls: ['./button.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
-export class ButtonComponent implements OnInit {
-  @Input() color: string = 'primary';
+export class ButtonComponent extends BaseUiComponent implements OnInit {
   @Input('type') buttonType: string = 'button';
   @Input() text: string = 'Button';
   @Input() leftIcon: IconDefinition;
   @Input() rightIcon: IconDefinition;
-  @Input() rounded: string = 'lg';
 
-  constructor(private viewContainerRef: ViewContainerRef) {
+  constructor() {
+    super();
   }
 
   ngOnInit(): void {
-  }
-
-  getRoundedValue(): string {
-    return `rounded-${this.rounded}`;
   }
 }

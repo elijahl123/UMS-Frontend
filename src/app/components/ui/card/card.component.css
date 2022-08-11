@@ -1,0 +1,19 @@
+.card {
+  @apply bg-brand-background p-4 rounded-xl grid auto-rows-max gap-4;
+}
+
+.card-title {
+  @apply font-bold text-xl mb-2 text-inherit;
+}
+
+.card-text {
+  @apply mb-4 text-brand-secondary;
+}
+
+.card-footer {
+  @apply grid grid-flow-col gap-4 auto-cols-max;
+}
+
+.card-image {
+  @apply rounded-lg flex max-h-[100px] w-full object-contain bg-brand-background-hover;
+}

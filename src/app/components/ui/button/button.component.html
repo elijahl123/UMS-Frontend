@@ -1,4 +1,4 @@
-<button [type]="buttonType" [ngClass]="['btn', color, 'hover-enabled', getRoundedValue()]">
+<button [type]="buttonType" [ngClass]="['btn hover-enabled', class]">
   <fa-icon [icon]="leftIcon" *ngIf="leftIcon" [ngClass]="!!text ? 'button-left-icon' : 'button-left-icon !mr-0'"></fa-icon>
   <span class="button-text">{{ text }}</span>
   <fa-icon [icon]="rightIcon" class="button-right-icon" *ngIf="rightIcon"></fa-icon>

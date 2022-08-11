@@ -1,0 +1,12 @@
+.dropdown {
+  @apply flex flex-col items-start relative border-rainbow-red border-2;
+}
+
+.dropdown.open > ui-button > button {
+  @apply shadow;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.dropdown-body {
+  @apply bg-brand-background absolute bottom-0 translate-y-full;
+}

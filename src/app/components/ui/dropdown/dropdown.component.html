@@ -1,0 +1,6 @@
+<div [ngClass]="['dropdown', isOpen ? 'open' : '']">
+  <ng-content select="[head]"></ng-content>
+  <div [ngClass]="['dropdown-body', isOpen ? '' : 'hidden']">
+    <ng-content></ng-content>
+  </div>
+</div>

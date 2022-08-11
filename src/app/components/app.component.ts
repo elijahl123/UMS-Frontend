@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { faBook, faFolder, faHome } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit } from '@angular/core';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
@@ -7,7 +7,11 @@ import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  homeIcon: IconDefinition = faHome;
-  libraryIcon: IconDefinition = faBook;
+export class AppComponent implements OnInit {
+  downChevron: IconDefinition = faChevronDown;
+  upChevron: IconDefinition = faChevronUp;
+
+  ngOnInit() {
+  }
 }
+

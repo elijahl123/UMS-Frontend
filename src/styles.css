@@ -13,105 +13,151 @@
   h1 {
     @apply text-6xl;
   }
+
+  .brand-main {
+    @apply shadow-brand-main-muted bg-brand-main text-white;
+  }
+  .brand-main-muted {
+    @apply shadow-brand-main bg-brand-main-muted text-brand-main;
+  }
+  .brand-main.hover-enabled {
+    @apply hover:bg-brand-main-hover;
+  }
+  .brand-main-muted.hover-enabled {
+    @apply hover:shadow-brand-main-muted hover:bg-brand-main-hover hover:text-white;
+  }
+
+  .brand-secondary {
+    @apply shadow-brand-secondary-muted bg-brand-secondary text-white;
+  }
+  .brand-secondary-muted {
+    @apply shadow-brand-secondary bg-brand-secondary-muted text-brand-secondary;
+  }
+  .brand-secondary.hover-enabled {
+    @apply hover:bg-brand-secondary-hover;
+  }
+  .brand-secondary-muted.hover-enabled {
+    @apply hover:shadow-brand-secondary-muted hover:bg-brand-secondary-hover hover:text-white;
+  }
+
+  .brand-accent {
+    @apply shadow-brand-accent-muted bg-brand-accent text-white;
+  }
+  .brand-accent-muted {
+    @apply shadow-brand-accent bg-brand-accent-muted text-brand-accent;
+  }
+  .brand-accent.hover-enabled {
+    @apply hover:bg-brand-accent-hover;
+  }
+  .brand-accent-muted.hover-enabled {
+    @apply hover:shadow-brand-accent-muted hover:bg-brand-accent-hover hover:text-white;
+  }
 }
 
 @layer utilities {
 
   .primary {
-    @apply bg-utility-primary text-white;
+    @apply shadow-utility-primary-muted bg-utility-primary text-white;
   }
 
   .secondary {
-    @apply bg-utility-secondary text-white;
+    @apply shadow-utility-secondary-muted bg-utility-secondary text-white;
   }
 
   .danger {
-    @apply bg-utility-danger text-white;
+    @apply shadow-utility-danger-muted bg-utility-danger text-white;
   }
 
   .info {
-    @apply bg-utility-info text-white;
+    @apply shadow-utility-info-muted bg-utility-info text-white;
   }
 
   .warning {
-    @apply bg-utility-warning text-white;
+    @apply shadow-utility-warning-muted bg-utility-warning text-white;
   }
 
   .success {
-    @apply bg-utility-success text-white;
+    @apply shadow-utility-success-muted bg-utility-success text-white;
   }
 
   .primary-muted {
-    @apply bg-utility-primary-muted text-utility-primary;
+    @apply shadow-utility-primary bg-utility-primary-muted text-utility-primary;
   }
 
   .secondary-muted {
-    @apply bg-utility-secondary-muted text-utility-secondary;
+    @apply shadow-utility-secondary bg-utility-secondary-muted text-utility-secondary;
   }
 
   .danger-muted {
-    @apply bg-utility-danger-muted text-utility-danger;
+    @apply shadow-utility-danger bg-utility-danger-muted text-utility-danger;
   }
 
   .info-muted {
-    @apply bg-utility-info-muted text-utility-info;
+    @apply shadow-utility-info bg-utility-info-muted text-utility-info;
   }
 
   .warning-muted {
-    @apply bg-utility-warning-muted text-utility-warning;
+    @apply shadow-utility-warning bg-utility-warning-muted text-utility-warning;
   }
 
   .success-muted {
-    @apply bg-utility-success-muted text-utility-success;
+    @apply shadow-utility-success bg-utility-success-muted text-utility-success;
   }
 
   .primary.hover-enabled {
-    @apply bg-utility-primary text-white hover:bg-utility-primary-hover;
+    @apply hover:bg-utility-primary-hover;
   }
 
   .secondary.hover-enabled {
-    @apply bg-utility-secondary text-white hover:bg-utility-secondary-hover;
+    @apply hover:bg-utility-secondary-hover;
   }
 
   .danger.hover-enabled {
-    @apply bg-utility-danger text-white hover:bg-utility-danger-hover;
+    @apply hover:bg-utility-danger-hover;
   }
 
   .info.hover-enabled {
-    @apply bg-utility-info text-white hover:bg-utility-info-hover;
+    @apply hover:bg-utility-info-hover;
   }
 
   .warning.hover-enabled {
-    @apply bg-utility-warning text-white hover:bg-utility-warning-hover;
+    @apply hover:bg-utility-warning-hover;
   }
 
   .success.hover-enabled {
-    @apply bg-utility-success text-white hover:bg-utility-success-hover;
+    @apply hover:bg-utility-success-hover;
   }
 
   .primary-muted.hover-enabled {
-    @apply bg-utility-primary-muted text-utility-primary hover:bg-utility-primary-hover hover:text-white;
+    @apply hover:shadow-utility-primary-muted hover:bg-utility-primary-hover hover:text-white;
   }
 
   .secondary-muted.hover-enabled {
-    @apply bg-utility-secondary-muted text-utility-secondary hover:bg-utility-secondary-hover hover:text-white;
+    @apply hover:shadow-utility-secondary-muted hover:bg-utility-secondary-hover hover:text-white;
   }
 
   .danger-muted.hover-enabled {
-    @apply bg-utility-danger-muted text-utility-danger hover:bg-utility-danger-hover hover:text-white;
+    @apply hover:shadow-utility-danger-muted hover:bg-utility-danger-hover hover:text-white;
   }
 
   .info-muted.hover-enabled {
-    @apply bg-utility-info-muted text-utility-info hover:bg-utility-info-hover hover:text-white;
+    @apply hover:shadow-utility-info-muted hover:bg-utility-info-hover hover:text-white;
   }
 
   .warning-muted.hover-enabled {
-    @apply bg-utility-warning-muted text-utility-warning hover:bg-utility-warning-hover hover:text-white;
+    @apply hover:shadow-utility-warning-muted hover:bg-utility-warning-hover hover:text-white;
   }
 
   .success-muted.hover-enabled {
-    @apply bg-utility-success-muted text-utility-success hover:bg-utility-success-hover hover:text-white;
+    @apply hover:shadow-utility-success-muted hover:bg-utility-success-hover hover:text-white;
+  }
+}
+
+@layer utilities {
+  .close-button {
+    @apply cursor-pointer;
   }
 }
 
 /*tailwind and own styles*/
+

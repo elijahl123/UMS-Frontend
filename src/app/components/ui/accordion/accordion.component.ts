@@ -1,4 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommonModule } from '@angular/common';
+import { ToggleUiComponent } from '../../../core/components/ui/toggle.ui.component';
 
 /**
  * @author Elijah Lopez
@@ -6,14 +9,20 @@ import { Component, Input, OnInit } from '@angular/core';
  * @see [ Angular UI Components ] (https://angular.io/guide/components#ui-components)
  */
 @Component({
+  standalone: true,
+  imports: [
+    FontAwesomeModule,
+    CommonModule
+  ],
   selector: 'ui-accordion',
   templateUrl: './accordion.component.html',
   styleUrls: ['./accordion.component.css']
 })
-export class AccordionComponent implements OnInit {
-  isOpen: boolean = false;
+export class AccordionComponent extends ToggleUiComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    super();
+  }
 
   ngOnInit(): void {
     // initialize the isOpen property depending on content

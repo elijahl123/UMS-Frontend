@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CloseButtonComponent } from './close-button.component';
+import { DropdownComponent } from './dropdown.component';
 
-describe('CloseButtonComponent', () => {
-  let component: CloseButtonComponent;
-  let fixture: ComponentFixture<CloseButtonComponent>;
+describe('DropdownsComponent', () => {
+  let component: DropdownComponent;
+  let fixture: ComponentFixture<DropdownComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CloseButtonComponent ]
+      declarations: [ DropdownComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CloseButtonComponent);
+    fixture = TestBed.createComponent(DropdownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
