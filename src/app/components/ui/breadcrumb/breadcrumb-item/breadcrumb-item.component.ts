@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
+import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../button/button.component';

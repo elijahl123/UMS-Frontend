@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,95 +12,212 @@
   h1 {
     @apply text-6xl;
   }
+  :root {
+    --ums-thumb-color: rgba(var(--color-brand-secondary), 1);
 
-  .brand-main {
-    @apply shadow-brand-main-muted bg-brand-main text-white;
-  }
-  .brand-main-muted {
-    @apply shadow-brand-main bg-brand-main-muted text-brand-main;
-  }
-  .brand-main.hover-enabled {
-    @apply hover:bg-brand-main-hover;
-  }
-  .brand-main-muted.hover-enabled {
-    @apply hover:shadow-brand-main-muted hover:bg-brand-main-hover hover:text-white;
+    --color-white: 255, 255, 255;
+    --color-black: 0, 0, 0;
+    --color-brand-main: 248, 173, 157;
+    --color-brand-main-muted: 248, 173, 157, 0.14;
+    --color-brand-main-hover: 247, 160, 141;
+    --color-brand-secondary: 81, 114, 123;
+    --color-brand-secondary-muted: 81, 114, 123, 0.14;
+    --color-brand-secondary-hover: 73, 103, 111;
+    --color-brand-accent: 244, 151, 142;
+    --color-brand-accent-muted: 244, 151, 142, 0.14;
+    --color-brand-accent-hover: 242, 135, 125;
+    --color-brand-shade: 240, 128, 128;
+    --color-brand-shade-muted: 240, 128, 128, 0.14;
+    --color-brand-shade-hover: 238, 109, 109;
+    --color-brand-background: 245, 245, 245;
+    --color-brand-background-muted: 245, 245, 245, 0.14;
+    --color-brand-background-hover: 235, 235, 235;
+    --color-utility-primary: 43, 71, 140;
+    --color-utility-primary-muted: 43, 71, 140, 0.14;
+    --color-utility-primary-hover: 38, 63, 125;
+    --color-utility-secondary: 95, 88, 90;
+    --color-utility-secondary-muted: 95, 88, 90, 0.14;
+    --color-utility-secondary-hover: 85, 78, 80;
+    --color-utility-danger: 235, 94, 85;
+    --color-utility-danger-muted: 235, 94, 85, 0.14;
+    --color-utility-danger-hover: 234, 83, 72;
+    --color-utility-info: 108, 145, 194;
+    --color-utility-info-muted: 108, 145, 194, 0.14;
+    --color-utility-info-hover: 97, 137, 189;
+    --color-utility-warning: 254, 185, 95;
+    --color-utility-warning-muted: 254, 185, 95, 0.14;
+    --color-utility-warning-hover: 254, 175, 72;
+    --color-utility-success: 92, 153, 98;
+    --color-utility-success-muted: 92, 153, 98, 0.14;
+    --color-utility-success-hover: 115, 171, 121;
+    --color-rainbow-red: 235, 94, 85;
+    --color-rainbow-red-muted: 235, 94, 85, 0.14;
+    --color-rainbow-orange: 245, 140, 90;
+    --color-rainbow-orange-muted: 245, 140, 90, 0.14;
+    --color-rainbow-yellow-orange: 250, 163, 93;
+    --color-rainbow-yellow-orange-muted: 250, 163, 93, 0.14;
+    --color-rainbow-yellow: 254, 185, 95;
+    --color-rainbow-yellow-muted: 254, 185, 95, 0.14;
+    --color-rainbow-yellow-green: 191, 182, 114;
+    --color-rainbow-yellow-green-muted: 191, 182, 114, 0.14;
+    --color-rainbow-green: 92, 153, 98;
+    --color-rainbow-green-muted: 92, 153, 98, 0.14;
+    --color-rainbow-light-blue: 108, 145, 194;
+    --color-rainbow-light-blue-muted: 108, 145, 194, 0.14;
+    --color-rainbow-blue: 43, 71, 140;
+    --color-rainbow-blue-muted: 43, 71, 140, 0.14;
+    --color-rainbow-purple: 86, 82, 144;
+    --color-rainbow-purple-muted: 86, 82, 144, 0.14;
+    --color-rainbow-lilac: 128, 93, 147;
+    --color-rainbow-lilac-muted: 128, 93, 147, 0.14;
   }
 
-  .brand-secondary {
-    @apply shadow-brand-secondary-muted bg-brand-secondary text-white;
-  }
-  .brand-secondary-muted {
-    @apply shadow-brand-secondary bg-brand-secondary-muted text-brand-secondary;
-  }
-  .brand-secondary.hover-enabled {
-    @apply hover:bg-brand-secondary-hover;
-  }
-  .brand-secondary-muted.hover-enabled {
-    @apply hover:shadow-brand-secondary-muted hover:bg-brand-secondary-hover hover:text-white;
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    @apply transition-all duration-100;
   }
 
-  .brand-accent {
-    @apply shadow-brand-accent-muted bg-brand-accent text-white;
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--ums-thumb-color);
+    border-radius: 8px;
+    margin: 3px;
+    @apply transition-all duration-100;
   }
-  .brand-accent-muted {
-    @apply shadow-brand-accent bg-brand-accent-muted text-brand-accent;
-  }
-  .brand-accent.hover-enabled {
-    @apply hover:bg-brand-accent-hover;
-  }
-  .brand-accent-muted.hover-enabled {
-    @apply hover:shadow-brand-accent-muted hover:bg-brand-accent-hover hover:text-white;
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 8px;
+    @apply transition-all duration-100;
   }
 }
 
 @layer utilities {
+  .hover-enabled {
+    @apply cursor-pointer;
+  }
+
+  .brand-main {
+    --current-color: rgba(var(--color-brand-main), 1);
+    @apply !shadow-brand-main-muted bg-brand-main text-white;
+  }
+
+  .brand-main-muted {
+    --current-color: rgba(var(--color-brand-main-muted));
+    @apply !shadow-brand-main bg-brand-main-muted text-brand-main;
+  }
+
+  .brand-main.hover-enabled {
+    @apply hover:bg-brand-main-hover;
+  }
+
+  .brand-main-muted.hover-enabled {
+    @apply hover:!shadow-brand-main-muted hover:bg-brand-main-hover hover:text-white;
+  }
+
+  .brand-secondary {
+    --current-color: rgba(var(--color-brand-secondary), 1);
+    @apply !shadow-brand-secondary-muted bg-brand-secondary text-white;
+  }
+
+  .brand-secondary-muted {
+    --current-color: rgba(var(--color-brand-secondary-muted));
+    @apply !shadow-brand-secondary bg-brand-secondary-muted text-brand-secondary;
+  }
+
+  .brand-secondary.hover-enabled {
+    @apply hover:bg-brand-secondary-hover;
+  }
+
+  .brand-secondary-muted.hover-enabled {
+    @apply hover:!shadow-brand-secondary-muted hover:bg-brand-secondary-hover hover:text-white;
+  }
+
+  .brand-accent {
+    --current-color: rgba(var(--color-brand-accent), 1);
+    @apply !shadow-brand-accent-muted bg-brand-accent text-white;
+  }
+
+  .brand-accent-muted {
+    --current-color: rgba(var(--color-brand-accent-muted));
+    @apply !shadow-brand-accent bg-brand-accent-muted text-brand-accent;
+  }
+
+  .brand-accent.hover-enabled {
+    @apply hover:bg-brand-accent-hover;
+  }
+
+  .brand-accent-muted.hover-enabled {
+    @apply hover:!shadow-brand-accent-muted hover:bg-brand-accent-hover hover:text-white;
+  }
+
+  .brand-background {
+    --current-color: rgba(var(--color-brand-background), 1);
+    @apply !shadow-brand-background bg-brand-background text-brand-secondary;
+  }
+
+  .brand-background.hover-enabled {
+    @apply hover:bg-brand-background-hover;
+  }
 
   .primary {
-    @apply shadow-utility-primary-muted bg-utility-primary text-white;
+    --current-color: rgba(var(--color-utility-primary), 1);
+    @apply !shadow-utility-primary-muted bg-utility-primary text-white;
   }
 
   .secondary {
-    @apply shadow-utility-secondary-muted bg-utility-secondary text-white;
+    --current-color: rgba(var(--color-utility-secondary), 1);
+    @apply !shadow-utility-secondary-muted bg-utility-secondary text-white;
   }
 
   .danger {
-    @apply shadow-utility-danger-muted bg-utility-danger text-white;
+    --current-color: rgba(var(--color-utility-danger), 1);
+    @apply !shadow-utility-danger-muted bg-utility-danger text-white;
   }
 
   .info {
-    @apply shadow-utility-info-muted bg-utility-info text-white;
+    --current-color: rgba(var(--color-utility-info), 1);
+    @apply !shadow-utility-info-muted bg-utility-info text-white;
   }
 
   .warning {
-    @apply shadow-utility-warning-muted bg-utility-warning text-white;
+    --current-color: rgba(var(--color-utility-warning), 1);
+    @apply !shadow-utility-warning-muted bg-utility-warning text-white;
   }
 
   .success {
-    @apply shadow-utility-success-muted bg-utility-success text-white;
+    --current-color: rgba(var(--color-utility-success), 1);
+    @apply !shadow-utility-success-muted bg-utility-success text-white;
   }
 
   .primary-muted {
-    @apply shadow-utility-primary bg-utility-primary-muted text-utility-primary;
+    --current-color: rgba(var(--color-utility-primary-muted));
+    @apply !shadow-utility-primary bg-utility-primary-muted text-utility-primary;
   }
 
   .secondary-muted {
-    @apply shadow-utility-secondary bg-utility-secondary-muted text-utility-secondary;
+    --current-color: rgba(var(--color-utility-secondary-muted));
+    @apply !shadow-utility-secondary bg-utility-secondary-muted text-utility-secondary;
   }
 
   .danger-muted {
-    @apply shadow-utility-danger bg-utility-danger-muted text-utility-danger;
+    --current-color: rgba(var(--color-utility-danger-muted));
+    @apply !shadow-utility-danger bg-utility-danger-muted text-utility-danger;
   }
 
   .info-muted {
-    @apply shadow-utility-info bg-utility-info-muted text-utility-info;
+    --current-color: rgba(var(--color-utility-info-muted));
+    @apply !shadow-utility-info bg-utility-info-muted text-utility-info;
   }
 
   .warning-muted {
-    @apply shadow-utility-warning bg-utility-warning-muted text-utility-warning;
+    --current-color: rgba(var(--color-utility-warning-muted));
+    @apply !shadow-utility-warning bg-utility-warning-muted text-utility-warning;
   }
 
   .success-muted {
-    @apply shadow-utility-success bg-utility-success-muted text-utility-success;
+    --current-color: rgba(var(--color-utility-success-muted));
+    @apply !shadow-utility-success bg-utility-success-muted text-utility-success;
   }
 
   .primary.hover-enabled {
@@ -129,35 +245,61 @@
   }
 
   .primary-muted.hover-enabled {
-    @apply hover:shadow-utility-primary-muted hover:bg-utility-primary-hover hover:text-white;
+    @apply hover:!shadow-utility-primary-muted hover:bg-utility-primary-hover hover:text-white;
   }
 
   .secondary-muted.hover-enabled {
-    @apply hover:shadow-utility-secondary-muted hover:bg-utility-secondary-hover hover:text-white;
+    @apply hover:!shadow-utility-secondary-muted hover:bg-utility-secondary-hover hover:text-white;
   }
 
   .danger-muted.hover-enabled {
-    @apply hover:shadow-utility-danger-muted hover:bg-utility-danger-hover hover:text-white;
+    @apply hover:!shadow-utility-danger-muted hover:bg-utility-danger-hover hover:text-white;
   }
 
   .info-muted.hover-enabled {
-    @apply hover:shadow-utility-info-muted hover:bg-utility-info-hover hover:text-white;
+    @apply hover:!shadow-utility-info-muted hover:bg-utility-info-hover hover:text-white;
   }
 
   .warning-muted.hover-enabled {
-    @apply hover:shadow-utility-warning-muted hover:bg-utility-warning-hover hover:text-white;
+    @apply hover:!shadow-utility-warning-muted hover:bg-utility-warning-hover hover:text-white;
   }
 
   .success-muted.hover-enabled {
-    @apply hover:shadow-utility-success-muted hover:bg-utility-success-hover hover:text-white;
+    @apply hover:!shadow-utility-success-muted hover:bg-utility-success-hover hover:text-white;
   }
 }
 
-@layer utilities {
-  .close-button {
-    @apply cursor-pointer;
+@layer components {
+  .form-control {
+    @apply w-full px-4 py-2 rounded-lg focus-visible:ring-4 focus-visible:ring-utility-info-muted
+    !outline-0 border-[3px] border-brand-secondary focus-visible:border-utility-info text-brand-secondary;
+  }
+  .form-select {
+    @apply py-2 px-4 bg-white rounded-xl overflow-auto focus:!shadow-[0_0_0_4px] focus:!shadow-utility-info-muted !outline-0
+    border-[3px] border-brand-secondary focus:border-utility-info text-brand-secondary w-full transition-all duration-100
+    text-brand-secondary;
+  }
+
+  .form-select:focus {
+    --ums-thumb-color: rgba(var(--color-utility-info), 1) !important;
+  }
+
+  .form-select option {
+    @apply px-4 py-2 rounded-lg mb-2 last:!mb-0;
+  }
+
+  select[multiple]:focus option:checked {
+    background: rgba(var(--color-utility-info), 1) linear-gradient(0deg, rgba(var(--color-utility-info), 1) 0%, rgba(var(--color-utility-info), 1) 100%);
+  }
+
+  select:focus option:checked {
+    background: rgba(var(--color-brand-background), 1) linear-gradient(0deg, rgba(var(--color-brand-background), 1) 0%, rgba(var(--color-brand-background), 1) 100%);
+  }
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
   }
 }
-
-/*tailwind and own styles*/
-

@@ -1,0 +1,27 @@
+.toast {
+  @apply rounded-lg p-4 grid grid-flow-col auto-cols-[max-content_auto_max-content] gap-4;
+}
+
+.toast-icon {
+  @apply pt-0.5;
+}
+
+.toast-text {
+  @apply grid gap-3;
+}
+
+.toast-text-header {
+  @apply font-bold text-lg;
+}
+
+.toast-text-sub {
+  @apply text-sm;
+}
+
+.toast-text-content {
+  @apply grid grid-flow-col auto-cols-max gap-4;
+}
+
+.toast-button {
+  @apply !text-sm font-bold rounded-lg bg-brand-background;
+}

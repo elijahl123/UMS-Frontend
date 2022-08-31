@@ -1,0 +1,15 @@
+.form-control-number {
+  @apply relative;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.form-control-number-set {
+  @apply absolute right-2 top-2 bottom-2 grid grid-rows-2 gap-1;
+}
+
+.form-control-set-button {
+  @apply w-full h-full px-4 flex items-center justify-center cursor-pointer brand-background hover:bg-brand-background-hover rounded;
+}

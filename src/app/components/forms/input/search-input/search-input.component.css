@@ -1,0 +1,11 @@
+.form-control-search {
+  @apply relative;
+}
+
+.form-control-search-icon {
+  @apply absolute inset-y-2 left-2 flex items-center justify-center w-8 text-brand-secondary;
+}
+
+.form-control-search .form-control {
+  @apply pl-10;
+}

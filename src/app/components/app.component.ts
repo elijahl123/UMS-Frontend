@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
+import { faExclamationTriangle } from '@fortawesome/pro-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +8,7 @@ import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  downChevron: IconDefinition = faChevronDown;
-  upChevron: IconDefinition = faChevronUp;
+  infoTriangle: IconDefinition = faExclamationTriangle;
 
   ngOnInit() {
   }

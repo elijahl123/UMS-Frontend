@@ -1,0 +1,12 @@
+<div [ngClass]="['toast', class, getHidden()]">
+  <fa-icon [fixedWidth]="true" [icon]="leftIcon" class="toast-icon" size="lg"></fa-icon>
+  <div class="toast-text">
+    <div class="toast-text-head">
+      <h2 class="toast-text-header">{{ header }}</h2>
+      <span class="toast-text-sub">{{ sub }}</span>
+    </div>
+    <ng-content></ng-content>
+  </div>
+  <fa-icon (click)="onClose()" [fixedWidth]="true" [icon]="closeIcon"
+           class="hover-enabled rounded !shadow-none"></fa-icon>
+</div>

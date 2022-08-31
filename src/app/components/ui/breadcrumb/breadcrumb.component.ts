@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
-import { faFolder } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
+import { faFolder } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
 import { BreadcrumbItemComponent } from './breadcrumb-item/breadcrumb-item.component';

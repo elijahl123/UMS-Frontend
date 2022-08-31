@@ -7,20 +7,24 @@ import { StoreModule } from '@ngrx/store';
 import { UmsUiModule } from '../components/ui/ums-ui.module';
 import { UmsFormsModule } from '../components/forms/ums-forms.module';
 import { metaReducers, reducers } from './store';
+import { ModalDirective } from '../components/directives/ui/modal.directive';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers
-    }),
-    UmsUiModule,
-    UmsFormsModule,
-  ],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		StoreModule.forRoot(reducers, {
+			metaReducers
+		}),
+		UmsUiModule,
+		UmsFormsModule,
+		ModalDirective,
+  FontAwesomeModule,
+	],
   providers: [],
   bootstrap: [AppComponent]
 })

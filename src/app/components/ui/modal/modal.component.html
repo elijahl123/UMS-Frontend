@@ -1,1 +1,20 @@
-<p>modal works!</p>
+<div class="modal-trigger">
+  <ng-content select="[trigger]"></ng-content>
+</div>
+<div class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-header-text" [title]="title">
+        {{ title }}
+      </h3>
+      <ui-button class="brand-background rounded-lg text-sm" text="" [leftIcon]="closeIcon" (click)="onClose()"></ui-button>
+    </div>
+    <div class="modal-body">
+      <ng-content></ng-content>
+    </div>
+    <div class="modal-footer">
+      <ui-button class="brand-background rounded-lg" text="Close" (click)="onClose()"></ui-button>
+      <ng-content select="[foot]"></ng-content>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
-import { faClose, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
+import { faClose, faInfoCircle } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
 import { BaseUiComponent } from '../../../core/components/ui/base.ui.component';

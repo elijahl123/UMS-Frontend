@@ -10,16 +10,18 @@ import { CollapseComponent } from './collapse/collapse.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { ListGroupComponent } from './list-group/list-group.component';
 import { ModalComponent } from './modal/modal.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { ProgressComponent } from './progress/progress.component';
-import { SpinnersComponent } from './spinners/spinners.component';
-import { ToastsComponent } from './toasts/toasts.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { ToastComponent } from './toast/toast.component';
 import { AccordionItemComponent } from './accordion/accordion-item/accordion-item.component';
 import { BreadcrumbItemComponent } from './breadcrumb/breadcrumb-item/breadcrumb-item.component';
+import { DropdownItemComponent } from './dropdown/dropdown-item/dropdown-item.component';
+import { ListGroupItemComponent } from './list-group/list-group-item/list-group-item.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   exports: [
     AccordionComponent,
     AccordionItemComponent,
@@ -32,12 +34,13 @@ import { BreadcrumbItemComponent } from './breadcrumb/breadcrumb-item/breadcrumb
     CardComponent,
     CollapseComponent,
     DropdownComponent,
+    DropdownItemComponent,
     ListGroupComponent,
+    ListGroupItemComponent,
     ModalComponent,
-    NavbarComponent,
     ProgressComponent,
-    SpinnersComponent,
-    ToastsComponent,
+    SpinnerComponent,
+    ToastComponent,
   ],
   imports: [
     AccordionComponent,
@@ -51,12 +54,13 @@ import { BreadcrumbItemComponent } from './breadcrumb/breadcrumb-item/breadcrumb
     CardComponent,
     CollapseComponent,
     DropdownComponent,
+    DropdownItemComponent,
     ListGroupComponent,
+    ListGroupItemComponent,
     ModalComponent,
-    NavbarComponent,
     ProgressComponent,
-    SpinnersComponent,
-    ToastsComponent,
+    SpinnerComponent,
+    ToastComponent,
   ]
 })
 export class UmsUiModule {
