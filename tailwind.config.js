@@ -13,7 +13,7 @@ module.exports = {
     },
     colors: ( { colors } ) => ({
       inherit: colors.inherit,
-      current: colors.current,
+      current: 'var(--current-color)',
       transparent: colors.transparent,
       black: colors.black,
       white: colors.white,

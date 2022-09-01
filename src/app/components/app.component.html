@@ -1,2 +1,36 @@
-<div class="p-20">
+<div class="main">
+  <app-side-navigation nextClass="success">
+    <app-side-navigation-item
+      [leftIcon]="sideNavIcons['dashboard']"
+      class="active"
+      text="Dashboard"
+    >
+    </app-side-navigation-item>
+    <app-side-navigation-item
+      [leftIcon]="sideNavIcons['calendar']"
+      text="Calendar"
+    >
+    </app-side-navigation-item>
+    <app-side-navigation-item
+      [leftIcon]="sideNavIcons['schedule']"
+      text="Schedule"
+    >
+    </app-side-navigation-item>
+    <app-side-navigation-item
+      [leftIcon]="sideNavIcons['homework']"
+      text="Homework"
+    >
+    </app-side-navigation-item>
+    <app-side-navigation-item
+      [leftIcon]="sideNavIcons['notes']"
+      text="Notes"
+    >
+    </app-side-navigation-item>
+    <app-side-navigation-item
+      [leftIcon]="sideNavIcons['courses']"
+      text="Courses"
+    >
+    </app-side-navigation-item>
+  </app-side-navigation>
+  <div class="content"></div>
 </div>

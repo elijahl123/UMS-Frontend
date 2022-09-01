@@ -9,22 +9,24 @@ import { UmsFormsModule } from '../components/forms/ums-forms.module';
 import { metaReducers, reducers } from './store';
 import { ModalDirective } from '../components/directives/ui/modal.directive';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FeaturesModule } from '../components/features/features.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		StoreModule.forRoot(reducers, {
-			metaReducers
-		}),
-		UmsUiModule,
-		UmsFormsModule,
-		ModalDirective,
-  FontAwesomeModule,
-	],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
+    UmsUiModule,
+    UmsFormsModule,
+    ModalDirective,
+    FontAwesomeModule,
+    FeaturesModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

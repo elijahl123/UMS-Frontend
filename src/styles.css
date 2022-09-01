@@ -9,6 +9,10 @@
 
 */
 @layer base {
+  body {
+    height: 100vh;
+  }
+
   h1 {
     @apply text-6xl;
   }
@@ -89,6 +93,14 @@
     background: transparent;
     border-radius: 8px;
     @apply transition-all duration-100;
+  }
+
+  .main {
+    @apply grid grid-flow-col auto-cols-[fit-content(500px)_auto] h-full;
+  }
+
+  .content {
+    @apply bg-white;
   }
 }
 
@@ -266,6 +278,11 @@
 
   .success-muted.hover-enabled {
     @apply hover:!shadow-utility-success-muted hover:bg-utility-success-hover hover:text-white;
+  }
+
+  .btn {
+    @apply font-bold px-4 py-2 duration-200 transition-all focus:shadow-[0_0_0_4px]
+    grid gap-2 grid-flow-col auto-cols-max items-center justify-center text-inherit;
   }
 }
 

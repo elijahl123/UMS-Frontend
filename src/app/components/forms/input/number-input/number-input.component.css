@@ -1,3 +1,8 @@
+.brand-background {
+  --current-color: rgba(var(--color-brand-background), 1);
+  @apply !shadow-brand-background bg-brand-background text-brand-secondary;
+}
+
 .form-control-number {
   @apply relative;
 }
