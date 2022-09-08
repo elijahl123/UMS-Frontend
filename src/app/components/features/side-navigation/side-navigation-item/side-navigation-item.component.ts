@@ -10,6 +10,8 @@ import { BaseUiComponent } from '../../../../core/components/ui/base.ui.componen
 export class SideNavigationItemComponent extends BaseUiComponent implements OnInit {
   @Input() leftIcon: IconDefinition;
   @Input() text: string;
+  @Input() routerLink: string;
+  @Input() routerLinkActive: string;
 
   constructor() {
     super();

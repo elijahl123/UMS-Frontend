@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  graphqlUrl: 'https://api.untitledmanagementsoftware.com/api/graphql',
 };

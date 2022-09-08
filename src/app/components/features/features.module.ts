@@ -4,6 +4,8 @@ import { SideNavigationComponent } from './side-navigation/side-navigation.compo
 import { SideNavigationItemComponent } from './side-navigation/side-navigation-item/side-navigation-item.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonComponent } from '../ui/button/button.component';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -15,10 +17,12 @@ import { ButtonComponent } from '../ui/button/button.component';
     SideNavigationComponent,
     SideNavigationItemComponent
   ],
-  imports: [
-    CommonModule,
-    FontAwesomeModule,
-    ButtonComponent
-  ]
+	imports: [
+		CommonModule,
+		FontAwesomeModule,
+		ButtonComponent,
+		DashboardModule,
+		RouterModule
+	]
 })
 export class FeaturesModule { }

@@ -10,6 +10,8 @@ import { metaReducers, reducers } from './store';
 import { ModalDirective } from '../components/directives/ui/modal.directive';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FeaturesModule } from '../components/features/features.module';
+import { GraphQLModule } from './graphql/graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { FeaturesModule } from '../components/features/features.module';
     ModalDirective,
     FontAwesomeModule,
     FeaturesModule,
+    GraphQLModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

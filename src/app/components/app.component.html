@@ -2,35 +2,48 @@
   <app-side-navigation nextClass="success">
     <app-side-navigation-item
       [leftIcon]="sideNavIcons['dashboard']"
-      class="active"
+      [routerLink]="'/dashboard'"
+      routerLinkActive="active"
       text="Dashboard"
     >
     </app-side-navigation-item>
     <app-side-navigation-item
       [leftIcon]="sideNavIcons['calendar']"
+      [routerLink]="'/calendar'"
+      routerLinkActive="active"
       text="Calendar"
     >
     </app-side-navigation-item>
     <app-side-navigation-item
       [leftIcon]="sideNavIcons['schedule']"
+      [routerLink]="'/schedule'"
+      routerLinkActive="active"
       text="Schedule"
     >
     </app-side-navigation-item>
     <app-side-navigation-item
       [leftIcon]="sideNavIcons['homework']"
+      [routerLink]="'/homework'"
+      routerLinkActive="active"
       text="Homework"
     >
     </app-side-navigation-item>
     <app-side-navigation-item
       [leftIcon]="sideNavIcons['notes']"
+      [routerLink]="'/notes'"
+      routerLinkActive="active"
       text="Notes"
     >
     </app-side-navigation-item>
     <app-side-navigation-item
       [leftIcon]="sideNavIcons['courses']"
+      [routerLink]="'/courses'"
+      routerLinkActive="active"
       text="Courses"
     >
     </app-side-navigation-item>
   </app-side-navigation>
-  <div class="content"></div>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
 </div>
