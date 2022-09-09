@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faBook, faCalendars, faClock, faFilePen, faObjectsColumn, faSchool } from '@fortawesome/pro-duotone-svg-icons';
 import { Apollo, gql } from 'apollo-angular';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +16,6 @@ export class AppComponent implements OnInit {
     notes: faFilePen,
     courses: faSchool,
   };
-
-  private querySubscription: Subscription;
 
   constructor(private apollo: Apollo) {
   }
