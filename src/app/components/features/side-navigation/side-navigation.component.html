@@ -1,56 +1,58 @@
-<div class="nav">
-  <div class="nav-branding">
-    <img src="/assets/UMS%20Logo.svg" alt="UMS Logo" class="nav-branding-img">
-    <h2 class="nav-branding-text">Untitled Management Software</h2>
-  </div>
-  <div class="nav-links">
-    <ng-content></ng-content>
-  </div>
-  <div [ngClass]="['nav-next-class', nextClass]">
-    <div class="nav-next-class-icon">
-      <fa-duotone-icon [icon]="schoolIcon" [swapOpacity]="true" [fixedWidth]="true"></fa-duotone-icon>
+<div class="w-full h-full overflow-hidden" [@isOpenState]="isOpen">
+  <div class="nav">
+    <div class="nav-branding">
+      <img src="/assets/UMS%20Logo.svg" alt="UMS Logo" class="nav-branding-img">
+      <h2 class="nav-branding-text">Untitled Management Software</h2>
     </div>
-    <div class="nav-next-class-content">
-      <span class="nav-next-class-content-head">{{ nextClassHead }}</span>
-      <span class="nav-next-class-content-sub">{{ nextClassSub }}</span>
+    <div class="nav-links">
+      <ng-content></ng-content>
     </div>
-    <div class="nav-next-class-buttons">
-      <button class="btn hover-enabled nav-next-class-button">
-        <fa-icon class="" [icon]="nextClassIcons.faLink"></fa-icon>
-      </button>
-      <button class="btn hover-enabled nav-next-class-button">
-        <fa-icon class="" [icon]="nextClassIcons.faLock"></fa-icon>
-      </button>
-      <button class="btn hover-enabled nav-next-class-button">
-        <fa-icon class="" [icon]="nextClassIcons.faFile"></fa-icon>
-      </button>
-      <button class="btn hover-enabled nav-next-class-button">
-        <fa-icon class="" [icon]="nextClassIcons.faInfo"></fa-icon>
-      </button>
-    </div>
-  </div>
-  <div class="nav-account">
-    <div class="nav-account-upper">
-      <div class="nav-account-upper-icon">
-        <fa-icon [icon]="userIcon" [fixedWidth]="true"></fa-icon>
+    <div [ngClass]="['nav-next-class', nextClass]">
+      <div class="nav-next-class-icon">
+        <fa-duotone-icon [icon]="schoolIcon" [swapOpacity]="true" [fixedWidth]="true"></fa-duotone-icon>
       </div>
-      <div class="nav-account-upper-content">
-        <span class="nav-account-upper-content-head">Elijah Lopez</span>
-        <span class="nav-account-upper-content-sub">elijah.kane.1972@gmail.com</span>
+      <div class="nav-next-class-content">
+        <span class="nav-next-class-content-head">{{ nextClassHead }}</span>
+        <span class="nav-next-class-content-sub">{{ nextClassSub }}</span>
       </div>
-      <button class="btn hover-enabled nav-account-upper-log-out">
-        <fa-icon class="" [icon]="logOutIcon" [fixedWidth]="true"></fa-icon>
-      </button>
+      <div class="nav-next-class-buttons">
+        <button class="btn hover-enabled nav-next-class-button">
+          <fa-icon class="" [icon]="nextClassIcons.faLink"></fa-icon>
+        </button>
+        <button class="btn hover-enabled nav-next-class-button">
+          <fa-icon class="" [icon]="nextClassIcons.faLock"></fa-icon>
+        </button>
+        <button class="btn hover-enabled nav-next-class-button">
+          <fa-icon class="" [icon]="nextClassIcons.faFile"></fa-icon>
+        </button>
+        <button class="btn hover-enabled nav-next-class-button">
+          <fa-icon class="" [icon]="nextClassIcons.faInfo"></fa-icon>
+        </button>
+      </div>
     </div>
-    <div class="nav-account-lower">
-      <button class="btn hover-enabled nav-account-lower-btn brand-main !text-white">
-        <fa-icon [icon]="cogIcon"></fa-icon>
-        Settings
-      </button>
-      <button class="btn hover-enabled nav-account-lower-btn brand-main-muted !text-brand-accent hover:!text-white">
-        <fa-icon [icon]="messageExclamationIcon"></fa-icon>
-        Feedback
-      </button>
+    <div class="nav-account">
+      <div class="nav-account-upper">
+        <div class="nav-account-upper-icon">
+          <fa-icon [icon]="userIcon" [fixedWidth]="true"></fa-icon>
+        </div>
+        <a [routerLink]="'/auth'" class="nav-account-upper-content">
+          <span class="nav-account-upper-content-head">Elijah Lopez</span>
+          <span class="nav-account-upper-content-sub">elijah.kane.1972@gmail.com</span>
+        </a>
+        <button class="btn hover-enabled nav-account-upper-log-out">
+          <fa-icon class="" [icon]="logOutIcon" [fixedWidth]="true"></fa-icon>
+        </button>
+      </div>
+      <div class="nav-account-lower">
+        <button class="btn hover-enabled nav-account-lower-btn brand-main !text-white">
+          <fa-icon [icon]="cogIcon"></fa-icon>
+          Settings
+        </button>
+        <button class="btn hover-enabled nav-account-lower-btn brand-main-muted !text-brand-accent hover:!text-white">
+          <fa-icon [icon]="messageExclamationIcon"></fa-icon>
+          Feedback
+        </button>
+      </div>
     </div>
   </div>
 </div>

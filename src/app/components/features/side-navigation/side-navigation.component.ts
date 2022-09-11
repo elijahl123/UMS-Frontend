@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import {
   faCog,
@@ -11,14 +11,31 @@ import {
   faUser
 } from '@fortawesome/pro-solid-svg-icons';
 import { faSchool } from '@fortawesome/pro-duotone-svg-icons';
+import { SideNavigationService } from '../../../services/components/features/side-navigation/side-navigation.service';
+import { Subscription } from 'rxjs';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-side-navigation',
   templateUrl: './side-navigation.component.html',
   styleUrls: ['./side-navigation.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  animations: [
+    trigger('isOpenState', [
+      state('true', style({
+        width: '500px'
+      })),
+      state('false', style({
+        width: '0px'
+      })),
+      transition('true <=> false', animate('0.2s ease-in-out')),
+    ]),
+  ]
 })
-export class SideNavigationComponent implements OnInit {
+export class SideNavigationComponent implements OnInit, OnDestroy {
+  isOpen: 'true' | 'false';
+  openSubscription: Subscription;
+
   schoolIcon: IconDefinition = faSchool;
   nextClassIcons = {
     faLink: faUpRightFromSquare,
@@ -34,10 +51,18 @@ export class SideNavigationComponent implements OnInit {
   cogIcon: IconDefinition = faCog;
   messageExclamationIcon: IconDefinition = faMessageExclamation;
 
-  constructor() {
+  constructor(private sideNavigationService: SideNavigationService) {
   }
 
   ngOnInit(): void {
+    this.openSubscription = this.sideNavigationService.isOpen.subscribe(isOpen => {
+      localStorage.setItem('sideNavOpen', isOpen.toString());
+      this.isOpen = isOpen ? 'true' : 'false';
+    });
+  }
+
+  ngOnDestroy() {
+    this.openSubscription.unsubscribe();
   }
 
 }

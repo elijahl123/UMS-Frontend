@@ -7,7 +7,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 const uri = environment.graphqlUrl; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
-  const http = httpLink.create({uri: uri});
+  const http = httpLink.create({ uri: uri });
   const middleware = new ApolloLink((operation, forward) => {
     operation.setContext({
       headers: new HttpHeaders().set(
@@ -36,4 +36,5 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     },
   ],
 })
-export class GraphQLModule {}
+export class GraphQLModule {
+}

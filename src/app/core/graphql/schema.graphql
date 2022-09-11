@@ -86,24 +86,39 @@ type HomeworkAssignmentType {
   uid: UUID
 }
 
-type LoginMutation {
-  token: String
+type Mutation {
+  refreshToken(token: String): Refresh
+  "Obtain JSON Web Token mutation"
+  tokenAuth(email: String!, password: String!): ObtainJSONWebToken
+  verifyToken(token: String): Verify
 }
 
-type Mutation {
-  login(email: String!, password: String!): LoginMutation
+"Obtain JSON Web Token mutation"
+type ObtainJSONWebToken {
+  payload: GenericScalar!
+  refreshExpiresIn: Int!
+  token: String!
 }
 
 type Query {
-  calendarEvents: [CalendarEventType]
-  courseFiles: [CourseFileType]
-  courseLinks: [CourseLinkType]
-  courseTimes: [CourseTimeType]
-  courses: [CourseType]
-  homeworkAssignments: [HomeworkAssignmentType]
-  login(email: String!, password: String!): AccountType
-  user: AccountType
-  users: [AccountType]
+  calendarEvents(token: String): [CalendarEventType]
+  courseFiles(token: String): [CourseFileType]
+  courseLinks(token: String): [CourseLinkType]
+  courseTimes(token: String): [CourseTimeType]
+  courses(token: String): [CourseType]
+  homeworkAssignments(token: String): [HomeworkAssignmentType]
+  user(token: String): AccountType
+  users(token: String): [AccountType]
+}
+
+type Refresh {
+  payload: GenericScalar!
+  refreshExpiresIn: Int!
+  token: String!
+}
+
+type Verify {
+  payload: GenericScalar!
 }
 
 "An enumeration."
@@ -1327,6 +1342,14 @@ value as specified by
 [iso8601](https://en.wikipedia.org/wiki/ISO_8601).
 """
 scalar DateTime
+
+"""
+
+The `GenericScalar` scalar type represents a generic
+GraphQL scalar value that could be:
+String, Boolean, Int, Float, List or Object.
+"""
+scalar GenericScalar
 
 """
 

@@ -54,32 +54,32 @@
 }
 
 .nav-account-upper {
-  @apply grid grid-flow-col auto-cols-[max-content_auto_max-content] gap-4 items-center;
+  @apply grid grid-flow-col auto-cols-[max-content_auto_max-content] gap-3 items-center;
 }
 
 .nav-account-upper-icon {
-  @apply flex justify-center items-center w-11 h-11 rounded-lg bg-brand-main text-white text-xl;
+  @apply flex justify-center items-center w-[60px] h-[60px] rounded-lg bg-brand-main text-white text-2xl;
 }
 
 .nav-account-upper-content {
-  @apply grid grid-flow-row auto-rows-auto;
+  @apply grid grid-flow-row auto-rows-auto px-2 py-1 hover:bg-brand-background rounded-lg transition-all duration-200;
 }
 
 .nav-account-upper-content-head {
-  @apply text-lg font-bold text-brand-main;
+  @apply text-[1.4rem] font-bold text-brand-main;
+}
+
+.nav-account-upper-content-sub {
+  @apply text-sm font-bold text-brand-secondary;
 }
 
 .nav-account-upper-log-out {
-  @apply bg-brand-secondary-muted text-brand-secondary text-xl rounded-lg py-3 px-3.5 flex justify-center items-center
+  @apply bg-brand-secondary-muted text-brand-secondary text-xl rounded-lg w-[60px] h-[60px] flex justify-center items-center
     hover:bg-brand-secondary hover:text-white hover:shadow-brand-secondary-muted;
 }
 
 .nav-account-lower {
   @apply grid grid-flow-col gap-2;
-}
-
-.nav-account-upper-content-sub {
-  @apply text-[12pt] font-bold text-brand-secondary;
 }
 
 .nav-account-lower-btn {
