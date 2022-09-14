@@ -6,16 +6,20 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonComponent } from '../ui/button/button.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { RouterModule } from '@angular/router';
+import { TopNavigationComponent } from './top-navigation/top-navigation.component';
+import { TopNavigationItemComponent } from './top-navigation/top-navigation-item/top-navigation-item.component';
 
 
 @NgModule({
   declarations: [
     SideNavigationComponent,
-    SideNavigationItemComponent
+    SideNavigationItemComponent,
+    TopNavigationComponent,
+    TopNavigationItemComponent
   ],
   exports: [
     SideNavigationComponent,
-    SideNavigationItemComponent
+    SideNavigationItemComponent,
   ],
 	imports: [
 		CommonModule,

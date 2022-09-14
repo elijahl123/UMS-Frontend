@@ -4,10 +4,10 @@ import { BaseUiComponent } from '../../../../core/components/ui/base.ui.componen
 
 @Component({
   selector: 'app-top-navigation-item',
-  templateUrl: './side-navigation-item.component.html',
-  styleUrls: ['./side-navigation-item.component.css']
+  templateUrl: './top-navigation-item.component.html',
+  styleUrls: ['./top-navigation-item.component.css']
 })
-export class SideNavigationItemComponent extends BaseUiComponent implements OnInit {
+export class TopNavigationItemComponent extends BaseUiComponent implements OnInit {
   @Input() leftIcon: IconDefinition;
   @Input() text: string;
   @Input() routerLink: string;
