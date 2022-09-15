@@ -1,6 +1,6 @@
 .nav {
   @apply grid grid-flow-row auto-rows-[max-content_auto_max-content_max-content] bg-brand-background h-full p-4 gap-4
-    w-min;
+    w-[28rem];
 }
 
 .nav-branding {
