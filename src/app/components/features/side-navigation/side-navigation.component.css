@@ -1,6 +1,6 @@
 .nav {
   @apply grid grid-flow-row auto-rows-[max-content_auto_max-content_max-content] bg-brand-background h-full p-4 gap-4
-    w-full;
+    w-min;
 }
 
 .nav-branding {
@@ -33,11 +33,11 @@
 }
 
 .nav-next-class-content-head {
-  @apply text-base font-bold;
+  @apply text-base font-bold truncate;
 }
 
 .nav-next-class-content-sub {
-  @apply text-[8pt];
+  @apply text-[8pt] truncate;
 }
 
 .nav-next-class-buttons {
@@ -66,11 +66,11 @@
 }
 
 .nav-account-upper-content-head {
-  @apply text-[1.4rem] font-bold text-brand-main;
+  @apply text-[1.4rem] font-bold text-brand-main truncate;
 }
 
 .nav-account-upper-content-sub {
-  @apply text-sm font-bold text-brand-secondary;
+  @apply text-sm font-bold text-brand-secondary truncate;
 }
 
 .nav-account-upper-log-out {

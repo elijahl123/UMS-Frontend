@@ -3,7 +3,7 @@ import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { BaseUiComponent } from '../../../../core/components/ui/base.ui.component';
 
 @Component({
-  selector: 'app-top-navigation-item',
+  selector: 'app-side-navigation-item',
   templateUrl: './side-navigation-item.component.html',
   styleUrls: ['./side-navigation-item.component.css']
 })

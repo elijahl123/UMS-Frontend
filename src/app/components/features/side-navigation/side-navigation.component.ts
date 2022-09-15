@@ -23,10 +23,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   animations: [
     trigger('isOpenState', [
       state('true', style({
-        width: '500px'
+        width: '100%'
       })),
       state('false', style({
-        width: '0px'
+        width: '0'
       })),
       transition('true <=> false', animate('0.2s ease-in-out')),
     ]),
