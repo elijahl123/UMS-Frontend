@@ -1,62 +1,37 @@
 import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
-import {
-  faCog,
-  faFile,
-  faInfo,
-  faLock,
-  faMessageExclamation,
-  faRightFromBracket,
-  faUpRightFromSquare,
-  faUser
-} from '@fortawesome/pro-solid-svg-icons';
-import { faSchool } from '@fortawesome/pro-duotone-svg-icons';
-import { SideNavigationService } from '../../../services/components/features/side-navigation/side-navigation.service';
 import { Subscription } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  TopNavigationService
+} from '../../../services/components/features/navigation/top-navigation/top-navigation.service';
 
 @Component({
-  selector: 'app-side-navigation',
+  selector: 'app-top-navigation',
   templateUrl: './top-navigation.component.html',
   styleUrls: ['./top-navigation.component.css'],
   encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('isOpenState', [
       state('true', style({
-        width: '500px'
+        height: '100%'
       })),
       state('false', style({
-        width: '0px'
+        height: '0'
       })),
       transition('true <=> false', animate('0.2s ease-in-out')),
     ]),
   ]
 })
 export class TopNavigationComponent implements OnInit, OnDestroy {
-  isOpen: 'true' | 'false';
+  @Input() isOpen: 'true' | 'false';
   openSubscription: Subscription;
 
-  schoolIcon: IconDefinition = faSchool;
-  nextClassIcons = {
-    faLink: faUpRightFromSquare,
-    faLock: faLock,
-    faFile: faFile,
-    faInfo: faInfo
-  };
-  @Input() nextClass: string;
-  @Input() nextClassHead: string = 'PHYS 170';
-  @Input() nextClassSub: string = 'PHYSCI 110';
-  userIcon: IconDefinition = faUser;
-  logOutIcon: IconDefinition = faRightFromBracket;
-  cogIcon: IconDefinition = faCog;
-  messageExclamationIcon: IconDefinition = faMessageExclamation;
-
-  constructor(private sideNavigationService: SideNavigationService) {
+  constructor(private topNavigationService: TopNavigationService) {
   }
 
   ngOnInit(): void {
-    this.openSubscription = this.sideNavigationService.isOpen.subscribe(isOpen => {
-      localStorage.setItem('sideNavOpen', isOpen.toString());
+    this.openSubscription = this.topNavigationService.isOpen.subscribe(isOpen => {
+      localStorage.setItem('topNavOpen', isOpen.toString());
       this.isOpen = isOpen ? 'true' : 'false';
     });
   }

@@ -20,6 +20,8 @@ import { TopNavigationItemComponent } from './top-navigation/top-navigation-item
   exports: [
     SideNavigationComponent,
     SideNavigationItemComponent,
+    TopNavigationComponent,
+    TopNavigationItemComponent,
   ],
 	imports: [
 		CommonModule,

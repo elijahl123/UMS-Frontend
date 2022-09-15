@@ -11,7 +11,9 @@ import {
   faUser
 } from '@fortawesome/pro-solid-svg-icons';
 import { faSchool } from '@fortawesome/pro-duotone-svg-icons';
-import { SideNavigationService } from '../../../services/components/features/side-navigation/side-navigation.service';
+import {
+  SideNavigationService
+} from '../../../services/components/features/navigation/side-navigation/side-navigation.service';
 import { Subscription } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
@@ -33,7 +35,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   ]
 })
 export class SideNavigationComponent implements OnInit, OnDestroy {
-  isOpen: 'true' | 'false';
+  @Input() isOpen: 'true' | 'false';
   openSubscription: Subscription;
 
   schoolIcon: IconDefinition = faSchool;
@@ -56,7 +58,6 @@ export class SideNavigationComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.openSubscription = this.sideNavigationService.isOpen.subscribe(isOpen => {
-      localStorage.setItem('sideNavOpen', isOpen.toString());
       this.isOpen = isOpen ? 'true' : 'false';
     });
   }

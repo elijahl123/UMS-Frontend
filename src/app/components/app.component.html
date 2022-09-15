@@ -1,5 +1,5 @@
 <div class="main">
-  <app-side-navigation nextClass="success">
+  <app-side-navigation nextClass="success" isOpen="true">
     <app-side-navigation-item
       [leftIcon]="sideNavIcons['dashboard']"
       [routerLink]="'/dashboard'"
@@ -44,6 +44,16 @@
     </app-side-navigation-item>
   </app-side-navigation>
   <div class="content">
+    <app-top-navigation isOpen="false">
+      <app-top-navigation-item
+      text="Login"
+      [routerLink]="'/auth/login/'"
+      ></app-top-navigation-item>
+      <app-top-navigation-item
+      text="Sign Up"
+      [routerLink]="'/auth/signup/'"
+      ></app-top-navigation-item>
+    </app-top-navigation>
     <router-outlet></router-outlet>
   </div>
 </div>

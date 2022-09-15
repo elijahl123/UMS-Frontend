@@ -103,7 +103,7 @@
   }
 
   .content {
-    @apply bg-white flex-grow;
+    @apply bg-white flex-grow flex flex-col;
   }
 }
 
