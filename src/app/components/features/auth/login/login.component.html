@@ -5,26 +5,32 @@
       <p class="login-top-sub">Welcome to UMS! Please sign in with the form below</p>
     </div>
     <div class="login-form">
-      <form #f="ngForm" (ngSubmit)="onSubmit()">
-        <form-text-input
-          [f]="f"
-          name="email"
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <input
+          class="form-control"
+          formControlName="email"
+          id="email"
           placeholder="Email"
           type="email"
-        ></form-text-input>
-        <form-text-input
-          [f]="f"
-          name="password"
+          required
+        >
+        <input
+          class="form-control"
+          formControlName="password"
+          id="password"
           placeholder="Password"
           type="password"
-        ></form-text-input>
+          required
+        >
         <a class="login-form-help-text">Having trouble signing in?</a>
-        <button class="btn brand-main rounded-lg text-white hover-enabled !py-3" type="submit">Sign In</button>
+        <button class="btn brand-main rounded-lg text-white hover-enabled !py-3" type="submit" [disabled]="!loginForm.valid">
+          Sign In
+        </button>
       </form>
     </div>
     <div class="login-form-divider">
         <span class="bg-brand-background z-50 px-4">
-          <a class="login-form-divider-link">Sign Up</a> or Sign in with
+          <a [routerLink]="'/auth/signup'" class="login-form-divider-link">Sign Up</a> or Sign in with
         </span>
       <hr class="absolute w-full h-[3px] bg-brand-secondary-muted">
     </div>

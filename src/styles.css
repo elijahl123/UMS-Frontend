@@ -291,6 +291,10 @@
     @apply font-bold px-4 py-2 duration-200 transition-all focus:shadow-[0_0_0_4px]
     grid gap-2 grid-flow-col auto-cols-max items-center justify-center;
   }
+
+  .btn[disabled] {
+    @apply cursor-not-allowed opacity-50;
+  }
 }
 
 @layer components {
@@ -298,6 +302,9 @@
     @apply w-full px-5 py-3 rounded-lg focus-visible:ring-4 focus-visible:ring-utility-info-muted
     !outline-0 border-[3px] border-transparent focus-visible:border-utility-info text-brand-secondary transition-all
     duration-200 ease-in-out;
+  }
+  .form-control.ng-invalid.ng-touched {
+    @apply border-utility-danger placeholder-utility-danger focus-visible:ring-utility-danger-muted;
   }
   .form-select {
     @apply py-2 px-4 bg-white rounded-xl overflow-auto focus:!shadow-[0_0_0_4px] focus:!shadow-utility-info-muted !outline-0

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
@@ -13,12 +13,30 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   googleIcon: IconDefinition = faGoogle;
 
-  constructor() { }
+  constructor(private fb: FormBuilder) {
+  }
 
   ngOnInit(): void {
+    this.loginForm = this.createForm();
   }
 
   onSubmit() {
-    console.log(this.loginForm.value);
+    console.log(this.loginForm);
+  }
+
+  createForm(): FormGroup {
+    return this.fb.group(
+      {
+        // email is required and must be a valid email
+        email: [null, Validators.compose([
+          Validators.email,
+          Validators.required
+        ])
+        ],
+        password: [null, Validators.compose([
+          // 1. Password Field is Required
+          Validators.required,
+        ])]
+      });
   }
 }

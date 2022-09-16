@@ -15,7 +15,7 @@ export class BaseFormsComponent {
   @Input() label: string = 'label';
   @Input() id: string = uuidv4();
   @Input() placeholder: string = "";
-  @Input() required: boolean = false;
+  @Input() required: string = "false";
   @Input() f: NgForm;
 }
 

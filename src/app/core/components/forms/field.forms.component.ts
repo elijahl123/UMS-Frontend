@@ -7,6 +7,6 @@ import { BaseFormsComponent } from './base.forms.component';
 })
 export class FieldFormsComponent extends BaseFormsComponent {
   @Input() info: boolean = false;
-  @Input() required: boolean = false;
+  @Input() required: string = "false";
 }
 
