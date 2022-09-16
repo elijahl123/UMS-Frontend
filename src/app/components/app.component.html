@@ -54,6 +54,7 @@
       [routerLink]="'/auth/signup/'"
       ></app-top-navigation-item>
     </app-top-navigation>
+    <ui-spinner class="w-full h-full" lineColor="brand-main" *ngIf="loading"></ui-spinner>
     <router-outlet></router-outlet>
   </div>
 </div>

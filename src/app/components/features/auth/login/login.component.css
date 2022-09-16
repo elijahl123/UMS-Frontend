@@ -1,0 +1,35 @@
+app-auth {
+  @apply h-full;
+}
+
+.login {
+  @apply p-8 rounded-2xl border-[3px] border-brand-accent bg-brand-background flex flex-col justify-center gap-8;
+}
+
+.login-top {
+  @apply flex flex-col gap-2 items-center;
+}
+
+.login-top-head {
+  @apply text-[2rem] font-bold text-brand-main;
+}
+
+.login-top-sub {
+  @apply font-bold text-brand-secondary;
+}
+
+.login-form form {
+  @apply flex flex-col gap-4;
+}
+
+.login-form-help-text {
+  @apply text-utility-primary text-left text-sm cursor-pointer hover:text-utility-primary-hover;
+}
+
+.login-form-divider {
+  @apply text-center w-full text-brand-secondary relative flex items-center justify-center;
+}
+
+.login-form-divider-link {
+  @apply text-utility-primary text-center font-bold cursor-pointer hover:text-utility-primary-hover;
+}

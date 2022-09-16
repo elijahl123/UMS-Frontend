@@ -7,17 +7,23 @@ export class NavigationService {
     this.isOpen = new BehaviorSubject<boolean>(this.getDefault());
   }
 
-  getDefault() {
+  getDefault(): boolean {
     return false;
   }
 
-  async toggle() {
-    await this.isOpen.next(!this.isOpen.value);
-    return this.isOpen;
+  getDuration(): number | void {}
+
+  toggle(): Promise<BehaviorSubject<boolean>> {
+    this.isOpen.next(!this.isOpen.value);
+    return new Promise<BehaviorSubject<boolean>>(resolve => {
+      setTimeout(resolve, (this.getDuration() ?? 0) * 1000);
+    });
   }
 
-  async set(value: boolean) {
-    await this.isOpen.next(value);
-    return this.isOpen;
+  set(value: boolean): Promise<BehaviorSubject<boolean>> {
+    this.isOpen.next(value);
+    return new Promise<BehaviorSubject<boolean>>(resolve => {
+      setTimeout(resolve, (this.getDuration() ?? 0) * 1000);
+    });
   }
 }

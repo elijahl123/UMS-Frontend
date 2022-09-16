@@ -15,16 +15,14 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   constructor(private sideNavigationService: SideNavigationService, private topNavigationService: TopNavigationService) { }
 
-  ngOnInit(): void {
-    this.sideNavigationService.set(false).then(() => {
-      this.topNavigationService.set(true).then();
-    });
+  async ngOnInit() {
+    await this.sideNavigationService.set(false).then();
+    await this.topNavigationService.set(true).then();
   }
 
-  ngOnDestroy(): void {
-    this.topNavigationService.set(false).then(() => {
-      this.sideNavigationService.set(true).then();
-    });
+  async ngOnDestroy() {
+    await this.topNavigationService.set(false).then();
+    await this.sideNavigationService.set(true).then();
   }
 
 }

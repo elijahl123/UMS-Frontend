@@ -1,19 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AuthRoutingModule } from './auth-routing.module';
+import { AuthRoutingModule } from '../../../services/routing/components/features/auth/auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { SpinnerComponent } from '../../ui/spinner/spinner.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UmsFormsModule } from '../../forms/ums-forms.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
   declarations: [
-    AuthComponent
+    AuthComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
-    SpinnerComponent
+    SpinnerComponent,
+    ReactiveFormsModule,
+    UmsFormsModule,
+    FormsModule,
+    FontAwesomeModule
   ]
 })
 export class AuthModule { }

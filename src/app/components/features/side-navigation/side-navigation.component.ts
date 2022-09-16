@@ -1,4 +1,13 @@
-import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostBinding,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import {
   faCog,
@@ -16,6 +25,9 @@ import {
 } from '../../../services/components/features/navigation/side-navigation/side-navigation.service';
 import { Subscription } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  TOP_NAVIGATION_DURATION
+} from '../../../services/components/features/navigation/top-navigation/top-navigation.service';
 
 @Component({
   selector: 'app-side-navigation',
@@ -24,19 +36,24 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('isOpenState', [
-      state('true', style({
-        width: '100%'
-      })),
       state('false', style({
-        width: '0'
+        width: '0px'
       })),
-      transition('true <=> false', animate('0.2s ease-in-out')),
+      transition('true <=> false', [
+        animate(`${TOP_NAVIGATION_DURATION}s ease-in-out`),
+        style({
+          width: '{{width}}'
+        })
+      ], {params: {width: '0px'}}),
     ]),
   ]
 })
 export class SideNavigationComponent implements OnInit, OnDestroy {
   @Input() isOpen: 'true' | 'false';
   openSubscription: Subscription;
+  @ViewChild('nav', {static : true}) nav: ElementRef;
+  width: string = '0px';
+  @HostBinding('@isOpenState') state: any;
 
   schoolIcon: IconDefinition = faSchool;
   nextClassIcons = {
@@ -60,6 +77,13 @@ export class SideNavigationComponent implements OnInit, OnDestroy {
     this.openSubscription = this.sideNavigationService.isOpen.subscribe(isOpen => {
       this.isOpen = isOpen ? 'true' : 'false';
     });
+    this.width = this.nav.nativeElement.offsetWidth + 'px';
+    this.state = {
+      value: this.width,
+      params: {
+        width: this.width
+      }
+    }
   }
 
   ngOnDestroy() {

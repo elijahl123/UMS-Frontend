@@ -1,0 +1,36 @@
+<main class="page-default">
+  <div class="login">
+    <div class="login-top">
+      <h3 class="login-top-head">Log In</h3>
+      <p class="login-top-sub">Welcome to UMS! Please sign in with the form below</p>
+    </div>
+    <div class="login-form">
+      <form #f="ngForm" (ngSubmit)="onSubmit()">
+        <form-text-input
+          [f]="f"
+          name="email"
+          placeholder="Email"
+          type="email"
+        ></form-text-input>
+        <form-text-input
+          [f]="f"
+          name="password"
+          placeholder="Password"
+          type="password"
+        ></form-text-input>
+        <a class="login-form-help-text">Having trouble signing in?</a>
+        <button class="btn brand-main rounded-lg text-white hover-enabled !py-3" type="submit">Sign In</button>
+      </form>
+    </div>
+    <div class="login-form-divider">
+        <span class="bg-brand-background z-50 px-4">
+          <a class="login-form-divider-link">Sign Up</a> or Sign in with
+        </span>
+      <hr class="absolute w-full h-[3px] bg-brand-secondary-muted">
+    </div>
+    <button class="btn success-muted rounded-lg text-white hover-enabled !gap-4" type="submit">
+      <fa-icon [icon]="googleIcon"></fa-icon>
+      Google
+    </button>
+  </div>
+</main>
