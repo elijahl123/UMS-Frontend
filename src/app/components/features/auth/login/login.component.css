@@ -7,11 +7,11 @@ app-auth {
 }
 
 .login-top {
-  @apply flex flex-col gap-2 items-center;
+  @apply flex flex-col gap-2.5 items-center;
 }
 
 .login-top-head {
-  @apply text-[2rem] font-bold text-brand-main;
+  @apply text-4xl font-bold text-brand-main;
 }
 
 .login-top-sub {

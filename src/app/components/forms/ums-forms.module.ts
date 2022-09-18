@@ -11,7 +11,8 @@ import { RadioInputComponent } from './input/radio-input/radio-input.component';
 import { SwitchInputComponent } from './input/switch-input/switch-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { BaseComponent } from './field/base/base.component';
+import { BaseFormComponent } from './base/base-form.component';
+import { BaseFieldComponent } from './field/base/base-field.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BaseComponent } from './field/base/base.component';
     CheckboxInputComponent,
     RadioInputComponent,
     SwitchInputComponent,
-    BaseComponent,
+    BaseFieldComponent,
+    BaseFormComponent,
   ],
   exports: [
     CheckboxInputComponent,
@@ -36,7 +38,8 @@ import { BaseComponent } from './field/base/base.component';
     SwitchInputComponent,
     TextAreaComponent,
     TextInputComponent,
-    BaseComponent
+    BaseFieldComponent,
+    BaseFormComponent,
   ],
   imports: [
     CommonModule,

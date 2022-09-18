@@ -9,11 +9,11 @@ import { FieldFormsComponent } from '../../../../core/components/forms/field.for
  */
 @Component({
   selector: 'form-field',
-  templateUrl: './base.component.html',
-  styleUrls: ['./base.component.css'],
+  templateUrl: './base-field.component.html',
+  styleUrls: ['./base-field.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class BaseComponent extends FieldFormsComponent implements OnInit {
+export class BaseFieldComponent extends FieldFormsComponent implements OnInit {
   @Input() horizontal: boolean = false;
   @Input() label: string = 'Label';
   @Input() subLabel: string;

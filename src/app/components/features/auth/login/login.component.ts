@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.loginForm);
   }
 
   createForm(): FormGroup {
@@ -34,7 +33,6 @@ export class LoginComponent implements OnInit {
         ])
         ],
         password: [null, Validators.compose([
-          // 1. Password Field is Required
           Validators.required,
         ])]
       });
