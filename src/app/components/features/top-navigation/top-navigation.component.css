@@ -4,7 +4,7 @@
 
 .top-nav-branding {
   @apply flex items-center justify-center p-2 gap-4 pr-4 cursor-pointer transition-all duration-200 ease-in-out
-    hover:bg-brand-background-hover rounded-lg text-xl font-bold text-brand-main;
+    hover:bg-brand-background-hover rounded-lg text-xl text-brand-main;
 }
 
 .top-nav-branding-img {

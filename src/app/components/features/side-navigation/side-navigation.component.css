@@ -12,7 +12,7 @@
 }
 
 .nav-branding-text {
-  @apply text-2xl font-bold text-brand-main;
+  @apply text-2xl text-brand-main;
 }
 
 .nav-links {
@@ -33,7 +33,7 @@
 }
 
 .nav-next-class-content-head {
-  @apply text-base font-bold truncate;
+  @apply text-base truncate;
 }
 
 .nav-next-class-content-sub {
@@ -66,11 +66,11 @@
 }
 
 .nav-account-upper-content-head {
-  @apply text-[1.4rem] font-bold text-brand-main truncate;
+  @apply text-[1.4rem] text-brand-main truncate;
 }
 
 .nav-account-upper-content-sub {
-  @apply text-sm font-bold text-brand-secondary truncate;
+  @apply text-sm font-normal text-brand-secondary truncate;
 }
 
 .nav-account-upper-log-out {

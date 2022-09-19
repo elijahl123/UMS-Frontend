@@ -11,11 +11,11 @@ app-auth {
 }
 
 .login-top-head {
-  @apply text-4xl font-bold text-brand-main;
+  @apply text-4xl text-brand-main;
 }
 
 .login-top-sub {
-  @apply font-bold text-brand-secondary;
+  @apply text-brand-secondary;
 }
 
 .login-form form {
@@ -31,5 +31,5 @@ app-auth {
 }
 
 .login-form-divider-link {
-  @apply text-utility-primary text-center font-bold cursor-pointer hover:text-utility-primary-hover;
+  @apply text-utility-primary text-center cursor-pointer hover:text-utility-primary-hover;
 }

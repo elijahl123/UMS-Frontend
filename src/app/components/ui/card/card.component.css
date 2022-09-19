@@ -3,7 +3,7 @@
 }
 
 .card-title {
-  @apply font-bold text-xl mb-2 text-inherit;
+  @apply text-xl mb-2 text-inherit;
 }
 
 .card-text {
