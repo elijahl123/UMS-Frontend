@@ -5,6 +5,8 @@ import {
 import {
   TopNavigationService
 } from '../../../services/components/features/navigation/top-navigation/top-navigation.service';
+import { AuthService } from '../../../services/components/features/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -13,11 +15,15 @@ import {
 })
 export class AuthComponent implements OnInit, OnDestroy {
 
-  constructor(private sideNavigationService: SideNavigationService, private topNavigationService: TopNavigationService) { }
+  constructor(private sideNavigationService: SideNavigationService, private topNavigationService: TopNavigationService, private authService: AuthService, private router: Router) { }
 
   async ngOnInit() {
-    await this.sideNavigationService.set(false).then();
-    await this.topNavigationService.set(true).then();
+    if (this.authService.isAuthenticated()) {
+      await this.router.navigate(['/']);
+    } else {
+      await this.sideNavigationService.set(false).then();
+      await this.topNavigationService.set(true).then();
+    }
   }
 
   async ngOnDestroy() {
