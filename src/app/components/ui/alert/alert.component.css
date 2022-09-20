@@ -1,13 +1,13 @@
 .alert {
-  @apply flex items-start px-4 py-3 rounded-lg w-full;
+  @apply flex items-center px-4 py-3 rounded-lg w-full;
 }
 
 .alert span {
-  @apply flex-1;
+  @apply flex-1 text-sm;
 }
 
 .alert-icon-wrapper {
-  @apply flex items-end justify-center flex-shrink-0 mr-4 ;
+  @apply flex items-end justify-center flex-shrink-0 mr-4;
 }
 
 .alert.hidden {

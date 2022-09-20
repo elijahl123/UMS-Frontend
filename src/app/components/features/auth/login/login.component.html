@@ -22,9 +22,11 @@
           type="password"
           required
         >
+          <ui-alert class="danger rounded-lg" *ngFor="let error of getFormErrors()" [text]="error"></ui-alert>
         <a class="login-form-help-text">Having trouble signing in?</a>
         <button class="btn brand-main rounded-lg text-white hover-enabled !py-3" type="submit" [disabled]="!loginForm.valid">
-          Sign In
+          {{ loading ? '' : 'Sign In' }}
+          <ui-spinner *ngIf="loading" lineColor="white"></ui-spinner>
         </button>
       </form>
     </div>

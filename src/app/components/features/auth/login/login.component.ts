@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, NgIterable, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent implements OnInit {
+  loading: boolean = false;
   loginForm: FormGroup;
   googleIcon: IconDefinition = faGoogle;
 
@@ -23,15 +24,20 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loading = true;
     if (this.loginForm.valid) {
       this.authService.tokenAuth(this.loginForm.value.email, this.loginForm.value.password)
         .subscribe(({data}) => {
           if (data) {
             if (data.tokenAuth) {
               localStorage.setItem('token', data.tokenAuth.token);
-              this.router.navigate(['/']);
+              this.router.navigate(['/']).then();
             }
           }
+        }, (error) => {
+          this.loginForm.setErrors({error: error});
+          console.log(this.loginForm.errors);
+          this.loading = false;
         });
     }
   }
@@ -49,5 +55,15 @@ export class LoginComponent implements OnInit {
           Validators.required,
         ])]
       });
+  }
+
+  getFormErrors(): NgIterable<any> | undefined | null {
+    let errors: string[] = [];
+    if (this.loginForm.errors) {
+      for (const value of Object.values(this.loginForm.errors)) {
+        errors.push(value.message);
+      }
+    }
+    return errors;
   }
 }
