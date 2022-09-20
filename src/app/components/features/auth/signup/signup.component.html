@@ -1,0 +1,44 @@
+<main class="page-default">
+  <div class="signup">
+    <div class="signup-top">
+      <h3 class="signup-top-head">Sign Up</h3>
+      <p class="signup-top-sub">Welcome to UMS! Please sign up with the form below</p>
+    </div>
+    <div class="signup-form">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <input
+          class="form-control"
+          formControlName="email"
+          id="email"
+          placeholder="Email"
+          type="email"
+          required
+        >
+        <input
+          class="form-control"
+          formControlName="password"
+          id="password"
+          placeholder="Password"
+          type="password"
+          required
+        >
+        <ui-alert class="danger rounded-lg" *ngFor="let error of getFormErrors()" [text]="error"></ui-alert>
+        <a class="signup-form-help-text">Having trouble signing in?</a>
+        <button class="btn brand-main rounded-lg text-white hover-enabled !py-3" type="submit" [disabled]="!signupForm.valid">
+          {{ loading ? '' : 'Sign In' }}
+          <ui-spinner *ngIf="loading" lineColor="white"></ui-spinner>
+        </button>
+      </form>
+    </div>
+    <div class="signup-form-divider">
+        <span class="bg-brand-background z-50 px-4">
+          <a [routerLink]="'/auth/signup'" class="signup-form-divider-link">Sign Up</a> or Sign in with
+        </span>
+      <hr class="absolute w-full h-[3px] bg-brand-secondary-muted">
+    </div>
+    <button class="btn success-muted rounded-lg text-white hover-enabled !gap-4" type="submit">
+      <fa-icon [icon]="googleIcon"></fa-icon>
+      Google
+    </button>
+  </div>
+</main>
