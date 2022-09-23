@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private apollo: Apollo) {
+  constructor(private apollo: Apollo, private router: Router) {
   }
 
   isAuthenticated() {
@@ -57,5 +58,10 @@ export class AuthService {
         token
       }
     });
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/auth/login']).then();
   }
 }

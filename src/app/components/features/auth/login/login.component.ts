@@ -1,5 +1,5 @@
 import { Component, NgIterable, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { AuthService } from '../../../../services/components/features/auth/auth.service';
@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
           }
         }, (error) => {
           this.loginForm.setErrors({error: error});
-          console.log(this.loginForm.errors);
           this.loading = false;
         });
     }

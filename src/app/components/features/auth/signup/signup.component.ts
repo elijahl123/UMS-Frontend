@@ -1,4 +1,4 @@
-import {Component, NgIterable, OnInit} from '@angular/core';
+import { Component, NgIterable, OnInit, ViewEncapsulation } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {IconDefinition} from "@fortawesome/pro-regular-svg-icons";
 import {faGoogle} from "@fortawesome/free-brands-svg-icons";
@@ -8,7 +8,8 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SignupComponent implements OnInit {
   loading: boolean = false;
@@ -35,7 +36,6 @@ export class SignupComponent implements OnInit {
           }
         }, (error) => {
           this.signupForm.setErrors({error: error});
-          console.log(this.signupForm.errors);
           this.loading = false;
         });
     }
@@ -44,13 +44,20 @@ export class SignupComponent implements OnInit {
   createForm(): FormGroup {
     return this.fb.group(
       {
-        // email is required and must be a valid email
         email: [null, Validators.compose([
           Validators.email,
           Validators.required
         ])
         ],
+        username: [null, Validators.compose([
+          Validators.minLength(3),
+          Validators.required
+        ])
+        ],
         password: [null, Validators.compose([
+          Validators.required,
+        ])],
+        password1: [null, Validators.compose([
           Validators.required,
         ])]
       });

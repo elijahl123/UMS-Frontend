@@ -5,26 +5,39 @@
       <p class="login-top-sub">Welcome to UMS! Please sign in with the form below</p>
     </div>
     <div class="login-form">
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <input
-          class="form-control"
-          formControlName="email"
-          id="email"
-          placeholder="Email"
-          type="email"
-          required
-        >
-        <input
-          class="form-control"
-          formControlName="password"
-          id="password"
-          placeholder="Password"
-          type="password"
-          required
-        >
-          <ui-alert class="danger rounded-lg" *ngFor="let error of getFormErrors()" [text]="error"></ui-alert>
+      <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+        <div class="login-form-group">
+          <input
+            class="form-control"
+            formControlName="email"
+            id="email"
+            placeholder="Email"
+            required
+            type="email"
+          >
+          <span *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors && loginForm.controls.email.errors.required"
+                class="login-form-error-text">
+            This field is required.
+          </span>
+          <span *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors && loginForm.controls.email.errors.email"
+                class="login-form-error-text">
+            Please provide a valid email.
+          </span>
+        </div>
+        <div class="login-form-group">
+          <input
+            class="form-control"
+            formControlName="password"
+            id="password"
+            placeholder="Password"
+            required
+            type="password"
+          >
+        </div>
+        <ui-alert *ngFor="let error of getFormErrors()" [text]="error" class="danger rounded-lg"></ui-alert>
         <a class="login-form-help-text">Having trouble signing in?</a>
-        <button class="btn brand-main rounded-lg text-white hover-enabled !py-3" type="submit" [disabled]="!loginForm.valid">
+        <button [disabled]="!loginForm.valid" class="btn brand-main rounded-lg text-white hover-enabled !py-3"
+                type="submit">
           {{ loading ? '' : 'Sign In' }}
           <ui-spinner *ngIf="loading" lineColor="white"></ui-spinner>
         </button>

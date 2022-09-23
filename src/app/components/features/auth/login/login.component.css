@@ -33,3 +33,11 @@ app-auth {
 .login-form-divider-link {
   @apply text-utility-primary text-center cursor-pointer hover:text-utility-primary-hover;
 }
+
+.login-form-group {
+  @apply flex flex-col gap-1.5;
+}
+
+.login-form-error-text {
+  @apply ml-2 text-utility-danger text-sm;
+}
