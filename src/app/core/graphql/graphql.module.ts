@@ -9,12 +9,11 @@ const uri = environment.graphqlUrl; // <-- add the URL of the GraphQL server her
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   const http = httpLink.create({ uri: uri });
   const middleware = new ApolloLink((operation, forward) => {
-    operation.setContext({
-      headers: new HttpHeaders().set(
-        'Authorization',
-        `Bearer ${localStorage.getItem('token') || null}`,
-      ),
-    });
+    if (localStorage.getItem('token')) {
+      operation.setContext({
+        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`)
+      });
+    }
     return forward(operation);
   });
 

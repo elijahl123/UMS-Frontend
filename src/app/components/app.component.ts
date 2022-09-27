@@ -24,19 +24,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.apollo.query({
-      query: gql`
-        query {
-          user {
-            uid
-            firstName
-            lastName
-          }
-        }
-      `
-    }).subscribe(data => {
-      console.log(data);
-    });
     this.router.events.subscribe((event: Event) => {
       switch (true) {
         case event instanceof NavigationStart:

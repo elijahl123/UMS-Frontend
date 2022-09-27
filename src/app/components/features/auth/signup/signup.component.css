@@ -1,9 +1,5 @@
-app-auth {
-  @apply h-full;
-}
-
 .signup {
-  @apply p-8 rounded-2xl border-[3px] border-brand-accent bg-brand-background flex flex-col justify-center gap-8;
+  @apply p-8 rounded-2xl border-[3px] border-brand-accent bg-brand-background flex flex-col justify-start gap-8 overflow-auto;
 }
 
 .signup-top {

@@ -7,6 +7,41 @@
     <div class="signup-form">
       <form (ngSubmit)="onSubmit()" [formGroup]="signupForm">
         <div class="signup-form-group">
+          <div class="flex flex-row gap-4">
+            <input
+              class="form-control"
+              formControlName="firstName"
+              id="firstName"
+              placeholder="First Name"
+              required
+              type="text"
+            >
+            <input
+              class="form-control"
+              formControlName="lastName"
+              id="lastName"
+              placeholder="Last Name"
+              required
+              type="text"
+            >
+          </div>
+          <span
+            *ngIf="(signupForm.controls.firstName.touched && signupForm.controls.firstName.errors && signupForm.controls.firstName.errors.required) || (signupForm.controls.lastName.touched && signupForm.controls.lastName.errors && signupForm.controls.lastName.errors.required)"
+            class="signup-form-error-text">
+            This field is required.
+          </span>
+          <ng-container *ngIf="signupForm.controls.firstName.errors">
+            <span *ngFor="let message of signupForm.controls.firstName.errors.messages" class="signup-form-error-text">
+            {{ message }}
+          </span>
+          </ng-container>
+          <ng-container *ngIf="signupForm.controls.lastName.errors">
+            <span *ngFor="let message of signupForm.controls.lastName.errors.messages" class="signup-form-error-text">
+            {{ message }}
+          </span>
+          </ng-container>
+        </div>
+        <div class="signup-form-group">
           <input
             class="form-control"
             formControlName="email"
@@ -15,14 +50,21 @@
             required
             type="email"
           >
-          <span *ngIf="signupForm.controls.email.touched && signupForm.controls.email.errors && signupForm.controls.email.errors.required"
-                class="signup-form-error-text">
+          <span
+            *ngIf="signupForm.controls.email.touched && signupForm.controls.email.errors && signupForm.controls.email.errors.required"
+            class="signup-form-error-text">
             This field is required.
           </span>
-          <span *ngIf="signupForm.controls.email.touched && signupForm.controls.email.errors && signupForm.controls.email.errors.email"
-                class="signup-form-error-text">
+          <span
+            *ngIf="signupForm.controls.email.touched && signupForm.controls.email.errors && signupForm.controls.email.errors.email"
+            class="signup-form-error-text">
             Please provide a valid email.
           </span>
+          <ng-container *ngIf="signupForm.controls.email.errors">
+            <span *ngFor="let message of signupForm.controls.email.errors.messages" class="signup-form-error-text">
+            {{ message }}
+          </span>
+          </ng-container>
         </div>
         <div class="signup-form-group">
           <input
@@ -31,47 +73,65 @@
             id="username"
             placeholder="Username"
             required
-            type="username"
+            type="text"
           >
-          <span *ngIf="signupForm.controls.username.touched && signupForm.controls.username.errors && signupForm.controls.username.errors.required"
-                class="signup-form-error-text">
+          <span
+            *ngIf="signupForm.controls.username.touched && signupForm.controls.username.errors && signupForm.controls.username.errors.required"
+            class="signup-form-error-text">
             This field is required.
           </span>
-          <span *ngIf="signupForm.controls.username.touched && signupForm.controls.username.errors && signupForm.controls.username.errors.minlength"
-                class="signup-form-error-text">
+          <span
+            *ngIf="signupForm.controls.username.touched && signupForm.controls.username.errors && signupForm.controls.username.errors.minlength"
+            class="signup-form-error-text">
             Username must be at least {{ signupForm.controls.username.errors.minlength.requiredLength }} characters long
           </span>
-        </div>
-        <div class="signup-form-group">
-          <input
-            class="form-control"
-            formControlName="password"
-            id="password"
-            placeholder="Password"
-            required
-            type="password"
-          >
-          <span *ngIf="signupForm.controls.password.touched && signupForm.controls.password.errors && signupForm.controls.password.errors.required"
-                class="signup-form-error-text">
-            This field is required.
+          <ng-container *ngIf="signupForm.controls.username.errors">
+            <span *ngFor="let message of signupForm.controls.username.errors.messages" class="signup-form-error-text">
+            {{ message }}
           </span>
+          </ng-container>
         </div>
         <div class="signup-form-group">
           <input
             class="form-control"
             formControlName="password1"
             id="password1"
-            placeholder="Retype Password"
+            placeholder="Password"
             required
-            type="password1"
+            type="password"
           >
-          <span *ngIf="signupForm.controls.password1.touched && signupForm.controls.password1.errors && signupForm.controls.password1.errors.required"
-                class="signup-form-error-text">
+          <span
+            *ngIf="signupForm.controls.password1.touched && signupForm.controls.password1.errors && signupForm.controls.password1.errors.required"
+            class="signup-form-error-text">
             This field is required.
           </span>
+          <ng-container *ngIf="signupForm.controls.password1.errors">
+            <span *ngFor="let message of signupForm.controls.password1.errors.messages" class="signup-form-error-text">
+            {{ message }}
+          </span>
+          </ng-container>
+        </div>
+        <div class="signup-form-group">
+          <input
+            class="form-control"
+            formControlName="password2"
+            id="password2"
+            placeholder="Retype Password"
+            required
+            type="password"
+          >
+          <span
+            *ngIf="signupForm.controls.password2.touched && signupForm.controls.password2.errors && signupForm.controls.password2.errors.required"
+            class="signup-form-error-text">
+            This field is required.
+          </span>
+          <ng-container *ngIf="signupForm.controls.password2.errors">
+            <span *ngFor="let message of signupForm.controls.password2.errors.messages" class="signup-form-error-text">
+            {{ message }}
+          </span>
+          </ng-container>
         </div>
         <ui-alert *ngFor="let error of getFormErrors()" [text]="error" class="danger rounded-lg"></ui-alert>
-        <a class="signup-form-help-text">Having trouble signing in?</a>
         <button [disabled]="!signupForm.valid" class="btn brand-main rounded-lg text-white hover-enabled !py-3"
                 type="submit">
           {{ loading ? '' : 'Create Account' }}

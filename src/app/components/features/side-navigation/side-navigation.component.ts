@@ -28,6 +28,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import {
   TOP_NAVIGATION_DURATION
 } from '../../../services/components/features/navigation/top-navigation/top-navigation.service';
+import { AuthService } from '../../../services/components/features/auth/auth.service';
 
 @Component({
   selector: 'app-side-navigation',
@@ -70,7 +71,7 @@ export class SideNavigationComponent implements OnInit, OnDestroy {
   cogIcon: IconDefinition = faCog;
   messageExclamationIcon: IconDefinition = faMessageExclamation;
 
-  constructor(private sideNavigationService: SideNavigationService) {
+  constructor(private sideNavigationService: SideNavigationService, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -90,4 +91,7 @@ export class SideNavigationComponent implements OnInit, OnDestroy {
     this.openSubscription.unsubscribe();
   }
 
+  onLogout() {
+    this.authService.logout();
+  }
 }

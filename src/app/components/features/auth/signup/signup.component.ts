@@ -1,9 +1,9 @@
 import { Component, NgIterable, OnInit, ViewEncapsulation } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {IconDefinition} from "@fortawesome/pro-regular-svg-icons";
-import {faGoogle} from "@fortawesome/free-brands-svg-icons";
-import {AuthService} from "../../../../services/components/features/auth/auth.service";
-import {Router} from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { AuthService } from '../../../../services/components/features/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -26,24 +26,36 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     if (this.signupForm.valid) {
-      this.authService.tokenAuth(this.signupForm.value.email, this.signupForm.value.password)
-        .subscribe(({data}) => {
+      this.authService.signup(this.signupForm.value.firstName, this.signupForm.value.lastName, this.signupForm.value.email, this.signupForm.value.username, this.signupForm.value.password1, this.signupForm.value.password2)
+        .subscribe(({ data }) => {
           if (data) {
-            if (data.tokenAuth) {
-              localStorage.setItem('token', data.tokenAuth.token);
-              this.router.navigate(['/']).then();
+            if (data.signup.errors.length > 0) {
+              for (const error of data.signup.errors) {
+                this.signupForm.controls[error.field].setErrors({messages: error.messages});
+              }
+            } else {
+              if (data.signup.token) {
+                this.authService.setToken(data.signup.token);
+                this.router.navigate(['/']).then();
+              }
             }
           }
-        }, (error) => {
-          this.signupForm.setErrors({error: error});
-          this.loading = false;
         });
     }
+
   }
 
   createForm(): FormGroup {
     return this.fb.group(
       {
+        firstName: [null, Validators.compose([
+          Validators.required
+        ])
+        ],
+        lastName: [null, Validators.compose([
+          Validators.required
+        ])
+        ],
         email: [null, Validators.compose([
           Validators.email,
           Validators.required
@@ -54,10 +66,10 @@ export class SignupComponent implements OnInit {
           Validators.required
         ])
         ],
-        password: [null, Validators.compose([
+        password1: [null, Validators.compose([
           Validators.required,
         ])],
-        password1: [null, Validators.compose([
+        password2: [null, Validators.compose([
           Validators.required,
         ])]
       });

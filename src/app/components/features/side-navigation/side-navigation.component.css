@@ -20,7 +20,7 @@
 }
 
 .nav-next-class {
-  @apply p-4 bg-current rounded-lg grid grid-flow-col auto-cols-[max-content_auto_max-content] gap-4 text-white
+  @apply p-4 rounded-lg grid grid-flow-col auto-cols-[max-content_auto_max-content] gap-4 text-white
     items-center;
 }
 

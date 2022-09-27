@@ -27,13 +27,8 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     if (this.loginForm.valid) {
       this.authService.tokenAuth(this.loginForm.value.email, this.loginForm.value.password)
-        .subscribe(({data}) => {
-          if (data) {
-            if (data.tokenAuth) {
-              localStorage.setItem('token', data.tokenAuth.token);
-              this.router.navigate(['/']).then();
-            }
-          }
+        .then(() => {
+          this.router.navigate(['/']);
         }, (error) => {
           this.loginForm.setErrors({error: error});
           this.loading = false;
