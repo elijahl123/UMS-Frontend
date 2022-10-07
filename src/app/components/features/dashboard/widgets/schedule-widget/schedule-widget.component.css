@@ -1,0 +1,27 @@
+app-schedule-widget {
+  @apply h-full;
+}
+
+.schedule-widget {
+  @apply flex flex-col gap-4 h-full;
+}
+
+.schedule-widget-header {
+  @apply flex flex-row justify-between items-center pl-1;
+}
+
+.schedule-widget-header-title {
+  @apply text-2xl text-utility-secondary;
+}
+
+.schedule-widget-date {
+  @apply flex flex-row gap-4 items-center;
+}
+
+.schedule-widget-date-input {
+  @apply rounded-lg w-full focus:outline-none hover:shadow-[0_0_0_4px] cursor-pointer transition-all duration-200;
+}
+
+.schedule-widget-content {
+  @apply flex flex-col gap-4 h-full bg-white rounded-xl;
+}

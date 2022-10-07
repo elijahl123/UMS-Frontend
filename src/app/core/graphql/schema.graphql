@@ -5,13 +5,21 @@ schema {
   mutation: Mutation
 }
 
-type AccountType {
+"An object with an ID"
+interface Node {
+  "The ID of the object."
+  id: ID!
+}
+
+type AccountType implements Node {
   classNotifications: Boolean!
   dateJoined: DateTime!
   email: String!
   exemptFromPayment: Boolean!
   firstName: String
   homeworkNotifications: Boolean!
+  "The ID of the object."
+  id: ID!
   isActive: Boolean!
   isAdmin: Boolean!
   isStaff: Boolean!
@@ -26,20 +34,52 @@ type AccountType {
   username: String!
 }
 
+type AccountTypeConnection {
+  "Contains the nodes in this connection."
+  edges: [AccountTypeEdge]!
+  "Pagination data for this connection."
+  pageInfo: PageInfo!
+}
+
+"A Relay edge containing a `AccountType` and its cursor."
+type AccountTypeEdge {
+  "A cursor for use in pagination"
+  cursor: String!
+  "The item at the end of the edge"
+  node: AccountType
+}
+
 type AddEmailMutationPayload {
   clientMutationId: String
   email: String!
   errors: [ErrorType]
 }
 
-type CalendarEventType {
+type CalendarEventType implements Node {
   date: Date
   description: String
+  "The ID of the object."
+  id: ID!
   "Leave Blank if Event is All Day"
   time: Time
   title: String
   uid: UUID
   user: AccountType
+}
+
+type CalendarEventTypeConnection {
+  "Contains the nodes in this connection."
+  edges: [CalendarEventTypeEdge]!
+  "Pagination data for this connection."
+  pageInfo: PageInfo!
+}
+
+"A Relay edge containing a `CalendarEventType` and its cursor."
+type CalendarEventTypeEdge {
+  "A cursor for use in pagination"
+  cursor: String!
+  "The item at the end of the edge"
+  node: CalendarEventType
 }
 
 type ChangePasswordMutationPayload {
@@ -50,22 +90,58 @@ type ChangePasswordMutationPayload {
   password2: String!
 }
 
-type CourseFileType {
+type CourseFileType implements Node {
   course: CourseType!
+  "The ID of the object."
+  id: ID!
   title: String
   uid: UUID
 }
 
-type CourseLinkType {
+type CourseFileTypeConnection {
+  "Contains the nodes in this connection."
+  edges: [CourseFileTypeEdge]!
+  "Pagination data for this connection."
+  pageInfo: PageInfo!
+}
+
+"A Relay edge containing a `CourseFileType` and its cursor."
+type CourseFileTypeEdge {
+  "A cursor for use in pagination"
+  cursor: String!
+  "The item at the end of the edge"
+  node: CourseFileType
+}
+
+type CourseLinkType implements Node {
   course: CourseType!
+  "The ID of the object."
+  id: ID!
   link: String
   title: String
   uid: UUID
 }
 
-type CourseTimeType {
+type CourseLinkTypeConnection {
+  "Contains the nodes in this connection."
+  edges: [CourseLinkTypeEdge]!
+  "Pagination data for this connection."
+  pageInfo: PageInfo!
+}
+
+"A Relay edge containing a `CourseLinkType` and its cursor."
+type CourseLinkTypeEdge {
+  "A cursor for use in pagination"
+  cursor: String!
+  "The item at the end of the edge"
+  node: CourseLinkType
+}
+
+type CourseTimeType implements Node {
   course: CourseType!
   endTime: Time
+  "The ID of the object."
+  id: ID!
   link: String
   "Leave Blank if Class is Online"
   location: String
@@ -76,9 +152,26 @@ type CourseTimeType {
   zoomPassword: String
 }
 
-type CourseType {
+type CourseTimeTypeConnection {
+  "Contains the nodes in this connection."
+  edges: [CourseTimeTypeEdge]!
+  "Pagination data for this connection."
+  pageInfo: PageInfo!
+}
+
+"A Relay edge containing a `CourseTimeType` and its cursor."
+type CourseTimeTypeEdge {
+  "A cursor for use in pagination"
+  cursor: String!
+  "The item at the end of the edge"
+  node: CourseTimeType
+}
+
+type CourseType implements Node {
   "Color You Want This Class to Show Up as on Calendar and Schedule"
   color: CourseColor!
+  "The ID of the object."
+  id: ID!
   "Name of Class (CHEM 161, POLS 110, etc.)"
   name: String
   "Not Required"
@@ -89,20 +182,52 @@ type CourseType {
   user: AccountType
 }
 
+type CourseTypeConnection {
+  "Contains the nodes in this connection."
+  edges: [CourseTypeEdge]!
+  "Pagination data for this connection."
+  pageInfo: PageInfo!
+}
+
+"A Relay edge containing a `CourseType` and its cursor."
+type CourseTypeEdge {
+  "A cursor for use in pagination"
+  cursor: String!
+  "The item at the end of the edge"
+  node: CourseType
+}
+
 type ErrorType {
   field: String!
   messages: [String!]!
 }
 
-type HomeworkAssignmentType {
+type HomeworkAssignmentType implements Node {
   completed: Boolean!
   course: CourseType
   description: String
   dueDate: Date
   dueTime: Time!
+  "The ID of the object."
+  id: ID!
   link: String
   name: String
   uid: UUID
+}
+
+type HomeworkAssignmentTypeConnection {
+  "Contains the nodes in this connection."
+  edges: [HomeworkAssignmentTypeEdge]!
+  "Pagination data for this connection."
+  pageInfo: PageInfo!
+}
+
+"A Relay edge containing a `HomeworkAssignmentType` and its cursor."
+type HomeworkAssignmentTypeEdge {
+  "A cursor for use in pagination"
+  cursor: String!
+  "The item at the end of the edge"
+  node: HomeworkAssignmentType
 }
 
 type Mutation {
@@ -125,15 +250,28 @@ type ObtainJSONWebToken {
   token: String!
 }
 
+"The Relay compliant `PageInfo` type, containing data necessary to paginate this connection."
+type PageInfo {
+  "When paginating forwards, the cursor to continue."
+  endCursor: String
+  "When paginating forwards, are there more items?"
+  hasNextPage: Boolean!
+  "When paginating backwards, are there more items?"
+  hasPreviousPage: Boolean!
+  "When paginating backwards, the cursor to continue."
+  startCursor: String
+}
+
 type Query {
-  calendarEvents(token: String): [CalendarEventType]
-  courseFiles(token: String): [CourseFileType]
-  courseLinks(token: String): [CourseLinkType]
-  courseTimes(token: String): [CourseTimeType]
-  courses(token: String): [CourseType]
-  homeworkAssignments(token: String): [HomeworkAssignmentType]
+  calendarEvents(after: String, before: String, date: Date, description: String, first: Int, last: Int, offset: Int, time: Time, title: String, token: String, uid: UUID, user: ID): CalendarEventTypeConnection
+  courseFiles(after: String, before: String, course: ID, first: Int, last: Int, offset: Int, title: String, token: String, uid: UUID): CourseFileTypeConnection
+  courseLinks(after: String, before: String, course: ID, first: Int, last: Int, link: String, offset: Int, title: String, token: String, uid: UUID): CourseLinkTypeConnection
+  courseTimes(after: String, before: String, course: ID, endTime: Time, first: Int, last: Int, link: String, location: String, offset: Int, startTime: Time, token: String, uid: UUID, user: ID, weekday: String, zoomPassword: String): CourseTimeTypeConnection
+  courses(after: String, before: String, color: String, first: Int, last: Int, name: String, offset: Int, teacher: String, title: String, token: String, uid: UUID, user: ID): CourseTypeConnection
+  getSchedule(date: Date, token: String): [CourseTimeType]
+  homeworkAssignments(after: String, before: String, completed: Boolean, course: ID, description: String, dueDate: Date, dueTime: Time, first: Int, last: Int, link: String, name: String, offset: Int, token: String, uid: UUID): HomeworkAssignmentTypeConnection
   user(token: String): AccountType
-  users(token: String): [AccountType]
+  users(after: String, before: String, classNotifications: Boolean, dateJoined: DateTime, email: String, exemptFromPayment: Boolean, first: Int, firstName: String, homeworkNotifications: Boolean, isActive: Boolean, isAdmin: Boolean, isStaff: Boolean, isSuperuser: Boolean, last: Int, lastLogin: DateTime, lastName: String, offset: Int, school: String, sendScheduledEmails: Boolean, showScheduleOnCalendar: Boolean, timezone: String, token: String, uid: UUID, username: String): AccountTypeConnection
 }
 
 type Refresh {

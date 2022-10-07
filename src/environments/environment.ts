@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  graphqlUrl: 'http://localhost:8000/api/graphql',
+  graphqlUrl: 'http://192.168.10.101:8000/api/graphql',
 };
 
 /*

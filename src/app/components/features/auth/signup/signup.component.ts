@@ -33,6 +33,7 @@ export class SignupComponent implements OnInit {
               for (const error of data.signup.errors) {
                 this.signupForm.controls[error.field].setErrors({messages: error.messages});
               }
+              this.loading = false;
             } else {
               if (data.signup.token) {
                 this.authService.setToken(data.signup.token);
