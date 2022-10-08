@@ -25,3 +25,67 @@ app-schedule-widget {
 .schedule-widget-content {
   @apply flex flex-col gap-4 h-full bg-white rounded-xl;
 }
+
+.schedule-widget-courses {
+  @apply p-4 flex flex-col gap-4 w-full h-full;
+}
+
+.schedule-widget-course {
+  @apply rounded-xl p-4 flex flex-col gap-4 items-center bg-brand-background;
+}
+
+.schedule-widget-course-head {
+  @apply flex flex-row gap-4 items-center w-full;
+}
+
+.schedule-widget-course-head-icon {
+  @apply w-11 h-11 rounded-lg text-white flex items-center justify-center;
+}
+
+.schedule-widget-course-head-title {
+  @apply text-2xl flex-grow;
+}
+
+.schedule-widget-course-head-time {
+  @apply px-4 py-2 rounded-lg text-white;
+}
+
+.schedule-widget-course-content {
+  @apply grid grid-cols-2 grid-rows-2 gap-4 w-full;
+}
+
+.schedule-widget-course-content-due-soon {
+  @apply row-span-2 rounded-xl p-4 flex flex-col gap-2 bg-current;
+}
+
+.schedule-widget-course-content-due-soon-items {
+  @apply flex flex-row gap-2 items-center;
+}
+
+.schedule-widget-course-content-due-soon-item {
+  @apply text-white w-full flex flex-row gap-3 items-center px-4 py-2 rounded-lg pl-2 transition-all duration-200 active:shadow-[0_0_0_4px];
+}
+
+.schedule-widget-course-content-due-soon-item-left-icon {
+  @apply rounded-md flex items-center justify-center bg-white p-2;
+}
+
+.schedule-widget-course-content-due-soon-item-text {
+  @apply flex-grow;
+}
+
+.schedule-widget-course-content-due-soon-item-title {
+  @apply text-[10pt];
+}
+
+.schedule-widget-course-content-due-soon-item-time {
+  @apply text-[8pt] font-normal;
+}
+
+.schedule-widget-course-content-zoom-meeting {
+  @apply rounded-xl p-4 flex flex-col gap-4 items-center bg-current;
+}
+
+.schedule-widget-course-content-useful-links {
+  @apply rounded-xl p-4 flex flex-col gap-4 items-center bg-current;
+}

@@ -7,28 +7,64 @@
     </button>
   </div>
   <div class="schedule-widget-date">
-    <button class="btn secondary-muted hover-enabled rounded-lg" (click)="decrementDate()">
+    <button (click)="decrementDate()" class="btn secondary-muted hover-enabled rounded-lg">
       <fa-icon [icon]="chevronLeftIcon"></fa-icon>
     </button>
-    <input type="date" class="schedule-widget-date-input btn secondary-muted" [value]="date.value" (change)="onDateChanged($event)">
-    <button class="btn secondary-muted hover-enabled rounded-lg" (click)="incrementDate()">
+    <input (change)="onDateChanged($event)" [value]="date.value" class="schedule-widget-date-input btn secondary-muted"
+           type="date">
+    <button (click)="incrementDate()" class="btn secondary-muted hover-enabled rounded-lg">
       <fa-icon [icon]="chevronRightIcon"></fa-icon>
     </button>
   </div>
   <div class="schedule-widget-content">
-    <div class="schedule-widget-courses" *ngIf="schedule.value">
-      <div class="schedule-widget-course" *ngFor="let course of getCourseTimeObjects()">
-        <div class="schedule-widget-course-head">
-          <div class="schedule-widget-course-head-icon">
-            <fa-icon [icon]="schoolIcon"></fa-icon>
+    <div *ngIf="schedule.value" class="schedule-widget-courses">
+      <ng-container *ngFor="let course of getCourseTimeObjects()">
+        <div [ngClass]="['schedule-widget-course', course.course.color.toLowerCase().concat('-muted')]">
+          <div class="schedule-widget-course-head">
+            <div
+              [ngClass]="['schedule-widget-course-head-icon', 'bg-utility-'.concat(course.course.color.toLowerCase())]">
+              <fa-icon [icon]="schoolIcon"></fa-icon>
+            </div>
+            <div class="schedule-widget-course-head-title">
+              {{ course.course.name }}
+            </div>
+            <div
+              [ngClass]="['schedule-widget-course-head-time', 'bg-utility-'.concat(course.course.color.toLowerCase())]">
+              {{ formatTime( course.startTime ) }}
+            </div>
           </div>
-          <div class="schedule-widget-course-head-title"></div>
-          <div class="schedule-widget-course-head-time"></div>
+          <div *ngIf="isCourseCurrent(course)" class="schedule-widget-course-content">
+            <div class="schedule-widget-course-content-due-soon">
+              <div class="schedule-widget-course-content-due-soon-title">
+                Due Soon
+              </div>
+              <div class="schedule-widget-course-content-due-soon-items">
+                <div *ngFor="let assignment of assignmentsDueSoon.value"
+                     [ngClass]="['schedule-widget-course-content-due-soon-item hover-enabled', course.course.color.toLowerCase()]">
+                  <div [ngClass]="['schedule-widget-course-content-due-soon-item-left-icon', course.course.color.toLowerCase().concat('-muted')]">
+                    <fa-icon [icon]="assignmentIcon" class="w-[1.25rem] h-[1.25rem] flex items-center justify-center"></fa-icon>
+                  </div>
+                  <div class="schedule-widget-course-content-due-soon-item-text">
+                    <div class="schedule-widget-course-content-due-soon-item-title">
+                      {{ assignment.node.name }}
+                    </div>
+                    <div class="schedule-widget-course-content-due-soon-item-time">
+                      {{ assignment.node.dueDate | date: 'EEEE' }} at {{ formatTime(assignment.node.dueTime) }}
+                    </div>
+                  </div>
+                  <div class="schedule-widget-course-content-due-soon-item-right-icon">
+                    <fa-icon [icon]="linkIcon"></fa-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="schedule-widget-course-content-zoom-meeting">
+            </div>
+            <div class="schedule-widget-course-content-useful-links">
+            </div>
+          </div>
         </div>
-        <div class="schedule-widget-course-content">
-
-        </div>
-      </div>
+      </ng-container>
     </div>
   </div>
 </div>
