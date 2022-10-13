@@ -2,12 +2,11 @@
   "name": "ums-frontend",
   "version": "0.0.0",
   "scripts": {
-    "ng": "nx",
-    "start": "nx serve --host 0.0.0.0",
-    "build": "nx build",
-    "watch": "nx build --watch --configuration development",
-    "test": "nx test",
-    "postinstall": "node ./decorate-angular-cli.js"
+    "ng": "ng",
+    "start": "ng serve --host 0.0.0.0",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -35,7 +34,6 @@
     "@graphql-tools/mock": "^8.7.6",
     "@graphql-tools/schema": "^9.0.4",
     "@ngrx/store": "^14.0.2",
-    "@nrwl/angular": "^14.5.1",
     "apollo-angular": "^4.0.1",
     "crypto-hash": "^2.0.1",
     "graphql": "^16.6.0",
@@ -63,9 +61,6 @@
     "stylelint": "^14.10.0",
     "stylelint-config-standard": "^27.0.0",
     "tailwindcss": "^3.1.8",
-    "typescript": "^4.7.4",
-    "@nrwl/workspace": "14.5.1",
-    "nx": "14.5.1",
-    "prettier": "^2.6.2"
+    "typescript": "^4.7.4"
   }
 }

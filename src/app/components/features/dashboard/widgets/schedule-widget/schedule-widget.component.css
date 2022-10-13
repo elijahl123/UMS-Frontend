@@ -31,7 +31,7 @@ app-schedule-widget {
 }
 
 .schedule-widget-course {
-  @apply rounded-xl p-4 flex flex-col gap-4 items-center bg-brand-background transition-all duration-200;
+  @apply rounded-xl p-4 flex flex-col gap-4 items-center bg-brand-background;
 }
 
 .schedule-widget-course-head {
