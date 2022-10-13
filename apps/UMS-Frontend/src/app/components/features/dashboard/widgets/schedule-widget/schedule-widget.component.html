@@ -19,7 +19,7 @@
   <div class="schedule-widget-content">
     <div *ngIf="schedule.value" class="schedule-widget-courses">
       <ng-container *ngFor="let course of getCourseTimeObjects()">
-        <div [ngClass]="['schedule-widget-course', course.course.color.toLowerCase().concat('-muted')]">
+        <div [ngClass]="['schedule-widget-course', course.course.color.toLowerCase().concat('-muted'), isCourseCurrent(course) ?? 'hover-enabled']">
           <div class="schedule-widget-course-head">
             <div
               [ngClass]="['schedule-widget-course-head-icon', 'bg-utility-'.concat(course.course.color.toLowerCase())]">
@@ -33,7 +33,7 @@
               {{ formatTime( course.startTime ) }}
             </div>
           </div>
-          <div *ngIf="isCourseCurrent(course)" class="schedule-widget-course-content">
+          <div class="schedule-widget-course-content">
             <div class="schedule-widget-course-content-due-soon">
               <div class="schedule-widget-course-content-due-soon-title">
                 Due Soon

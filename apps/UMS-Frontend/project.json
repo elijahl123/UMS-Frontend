@@ -1,0 +1,97 @@
+{
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:application": {
+      "strict": true
+    }
+  },
+  "sourceRoot": "apps/UMS-Frontend/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/UMS-Frontend",
+        "index": "apps/UMS-Frontend/src/index.html",
+        "main": "apps/UMS-Frontend/src/main.ts",
+        "polyfills": "apps/UMS-Frontend/src/polyfills.ts",
+        "tsConfig": "apps/UMS-Frontend/tsconfig.app.json",
+        "assets": [
+          "apps/UMS-Frontend/src/favicon.ico",
+          "apps/UMS-Frontend/src/assets"
+        ],
+        "styles": [
+          "apps/UMS-Frontend/src/styles.css"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/UMS-Frontend/src/environments/environment.ts",
+              "with": "apps/UMS-Frontend/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "UMS-Frontend:build:production"
+        },
+        "development": {
+          "browserTarget": "UMS-Frontend:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "UMS-Frontend:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "apps/UMS-Frontend/src/test.ts",
+        "polyfills": "apps/UMS-Frontend/src/polyfills.ts",
+        "tsConfig": "apps/UMS-Frontend/tsconfig.spec.json",
+        "karmaConfig": "apps/UMS-Frontend/karma.conf.js",
+        "assets": [
+          "apps/UMS-Frontend/src/favicon.ico",
+          "apps/UMS-Frontend/src/assets"
+        ],
+        "styles": [
+          "apps/UMS-Frontend/src/styles.css"
+        ],
+        "scripts": []
+      }
+    }
+  }
+}
