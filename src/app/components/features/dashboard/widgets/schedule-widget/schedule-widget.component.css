@@ -31,7 +31,8 @@ app-schedule-widget {
 }
 
 .schedule-widget-course {
-  @apply rounded-xl p-4 flex flex-col gap-4 items-center bg-brand-background;
+  @apply rounded-xl p-4 flex flex-col gap-4 items-center bg-brand-background transition-all duration-200
+    hover:shadow-[0_0_0_4px] overflow-y-hidden;
 }
 
 .schedule-widget-course-head {
@@ -51,19 +52,20 @@ app-schedule-widget {
 }
 
 .schedule-widget-course-content {
-  @apply grid grid-cols-2 grid-rows-2 gap-4 w-full;
+  @apply grid grid-cols-2 gap-4 w-full transition-[height] duration-500 flex-grow auto-rows-[max-content_auto];
 }
 
 .schedule-widget-course-content-due-soon {
-  @apply row-span-2 rounded-xl p-4 flex flex-col gap-2 bg-current;
+  @apply row-span-2 rounded-xl p-4 flex flex-col gap-2 bg-current h-full;
 }
 
 .schedule-widget-course-content-due-soon-items {
-  @apply flex flex-row gap-2 items-center;
+  @apply flex flex-row gap-2 h-full items-start;
 }
 
 .schedule-widget-course-content-due-soon-item {
-  @apply text-white w-full flex flex-row gap-3 items-center px-4 py-2 rounded-lg pl-2 transition-all duration-200 active:shadow-[0_0_0_4px];
+  @apply text-white w-full flex flex-row gap-3 items-center px-4 py-2 rounded-lg pl-2 transition-all duration-200
+    active:shadow-[0_0_0_4px];
 }
 
 .schedule-widget-course-content-due-soon-item-left-icon {
@@ -82,10 +84,26 @@ app-schedule-widget {
   @apply text-[8pt] font-normal;
 }
 
-.schedule-widget-course-content-zoom-meeting {
-  @apply rounded-xl p-4 flex flex-col gap-4 items-center bg-current;
+.schedule-widget-course-content-class-location {
+  @apply rounded-xl p-3 flex flex-row gap-4 items-center flex-shrink pr-5 transition-all duration-200;
 }
 
 .schedule-widget-course-content-useful-links {
   @apply rounded-xl p-4 flex flex-col gap-4 items-center bg-current;
+}
+
+.schedule-widget-course-class-location-icon {
+  @apply w-[33pt] h-[33pt] rounded-lg text-white flex items-center justify-center;
+}
+
+.schedule-widget-course-class-location-text {
+  @apply flex flex-col flex-grow;
+}
+
+.schedule-widget-course-class-location-text-head {
+  @apply text-base;
+}
+
+.schedule-widget-course-class-location-text-sub {
+  @apply text-xs;
 }

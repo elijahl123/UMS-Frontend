@@ -19,8 +19,10 @@
   <div class="schedule-widget-content">
     <div *ngIf="schedule.value" class="schedule-widget-courses">
       <ng-container *ngFor="let course of getCourseTimeObjects()">
-        <div [ngClass]="['schedule-widget-course', course.course.color.toLowerCase().concat('-muted')]">
-          <div class="schedule-widget-course-head">
+        <div
+          [ngClass]="['schedule-widget-course', course.course.color.toLowerCase().concat('-muted'), isCourseCurrent(course) == false ? 'hover-enabled' : 'flex-grow']">
+          <div (click)="toggleCourse(course)"
+               class="schedule-widget-course-head hover-enabled">
             <div
               [ngClass]="['schedule-widget-course-head-icon', 'bg-utility-'.concat(course.course.color.toLowerCase())]">
               <fa-icon [icon]="schoolIcon"></fa-icon>
@@ -33,33 +35,71 @@
               {{ formatTime( course.startTime ) }}
             </div>
           </div>
-          <div *ngIf="isCourseCurrent(course)" class="schedule-widget-course-content">
+          <div [ngClass]="['schedule-widget-course-content', isCourseCurrent(course) ? '' : '!hidden']">
             <div class="schedule-widget-course-content-due-soon">
               <div class="schedule-widget-course-content-due-soon-title">
                 Due Soon
               </div>
               <div class="schedule-widget-course-content-due-soon-items">
-                <div *ngFor="let assignment of assignmentsDueSoon.value"
-                     [ngClass]="['schedule-widget-course-content-due-soon-item hover-enabled', course.course.color.toLowerCase()]">
-                  <div [ngClass]="['schedule-widget-course-content-due-soon-item-left-icon', course.course.color.toLowerCase().concat('-muted')]">
-                    <fa-icon [icon]="assignmentIcon" class="w-[1.25rem] h-[1.25rem] flex items-center justify-center"></fa-icon>
-                  </div>
-                  <div class="schedule-widget-course-content-due-soon-item-text">
-                    <div class="schedule-widget-course-content-due-soon-item-title">
-                      {{ assignment.node.name }}
+                <ng-container *ngIf="courseContainsAssignments(course); else noAssignmentsDueSoon">
+                  <ng-container *ngFor="let assignment of assignmentsDueSoon.value">
+                    <div *ngIf="assignment.node.course.uid == course.course.uid"
+                         [ngClass]="['schedule-widget-course-content-due-soon-item hover-enabled', course.course.color.toLowerCase()]">
+                      <div
+                        [ngClass]="['schedule-widget-course-content-due-soon-item-left-icon', course.course.color.toLowerCase().concat('-muted')]">
+                        <fa-icon [icon]="assignmentIcon"
+                                 class="w-[1.25rem] h-[1.25rem] flex items-center justify-center">
+                        </fa-icon>
+                      </div>
+                      <div class="schedule-widget-course-content-due-soon-item-text">
+                        <div class="schedule-widget-course-content-due-soon-item-title">
+                          {{ assignment.node.name }}
+                        </div>
+                        <div class="schedule-widget-course-content-due-soon-item-time">
+                          {{ assignment.node.dueDate | date: 'EEEE' }} at {{ formatTime( assignment.node.dueTime ) }}
+                        </div>
+                      </div>
+                      <div class="schedule-widget-course-content-due-soon-item-right-icon">
+                        <fa-icon [icon]="linkIcon"></fa-icon>
+                      </div>
                     </div>
-                    <div class="schedule-widget-course-content-due-soon-item-time">
-                      {{ assignment.node.dueDate | date: 'EEEE' }} at {{ formatTime(assignment.node.dueTime) }}
+                  </ng-container>
+                </ng-container>
+                <ng-template #noAssignmentsDueSoon>
+                  <div
+                    [ngClass]="['schedule-widget-course-content-due-soon-item text-center h-full', course.course.color.toLowerCase()]">
+                    <div class="text-[10pt] w-full">
+                      No assignments due soon!
                     </div>
                   </div>
-                  <div class="schedule-widget-course-content-due-soon-item-right-icon">
-                    <fa-icon [icon]="linkIcon"></fa-icon>
-                  </div>
-                </div>
+                </ng-template>
               </div>
             </div>
-            <div class="schedule-widget-course-content-zoom-meeting">
-            </div>
+            <a (click)="course.link ? null : $event.preventDefault()" [href]="course.link ? course.link : '#'"
+               [ngClass]="['schedule-widget-course-content-class-location', course.link ? 'hover-enabled hover:shadow-[0_0_0_4px] ' : '', course.course.color.toLowerCase().concat('-muted')]"
+               target="_blank">
+              <div
+                [ngClass]="['schedule-widget-course-class-location-icon', 'bg-utility-'.concat(course.course.color.toLowerCase())]">
+                <fa-icon [icon]="course.link ? videoIcon : mapIcon"></fa-icon>
+              </div>
+              <div class="schedule-widget-course-class-location-text">
+                  <span class="schedule-widget-course-class-location-text-head">
+                    {{ course.link ? 'Online' : 'In-Person' }}
+                  </span>
+                <span class="schedule-widget-course-class-location-text-sub">
+
+                      {{ course.link ?
+                  'Password: ' :
+                  'Location: ' }} <span class="font-normal">{{ course.link ?
+                  (course.zoomPassword ? course.zoomPassword : 'None') :
+                  course.location }}
+                  </span>
+                  </span>
+              </div>
+              <div *ngIf="course.link" class="schedule-widget-course-class-location-right-icon">
+                <fa-icon [icon]="linkIcon"></fa-icon>
+              </div>
+            </a>
             <div class="schedule-widget-course-content-useful-links">
             </div>
           </div>
