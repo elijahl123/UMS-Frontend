@@ -53,7 +53,7 @@ export class AssignmentsWidgetComponent implements OnInit {
         }
       `
     }).subscribe(({ data }) => {
-      // Check if the assignment is late or it is due within the next 3 days
+      // Check if the assignment is late, or it is due within the next 3 days
       const now = new Date();
       const threeDaysFromNow = new Date();
       threeDaysFromNow.setDate(threeDaysFromNow.getDate() + 3);

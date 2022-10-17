@@ -19,7 +19,8 @@
 }
 
 .calendar-tasks-date {
-  @apply w-full px-5 h-full rounded-lg text-center flex justify-center items-center transition-all duration-200 ease-in-out;
+  @apply w-full px-5 h-full rounded-lg text-center flex justify-center items-center transition-all
+  duration-200 ease-in-out;
 }
 
 .calendar-tasks-search-container {

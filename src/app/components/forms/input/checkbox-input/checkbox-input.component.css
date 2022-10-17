@@ -14,7 +14,7 @@
 
 /* On mouse-over, add a grey background color */
 .form-check:hover input ~ .form-checkmark {
-  background-color: rgba(var(--color-utility-info), 0.5);
+  background-color: rgba(var(--color-utility-info) 0.5);
 }
 
 /* When the checkbox is checked, add a blue background */
@@ -23,27 +23,27 @@
 }
 
 /* Create the form-checkmark/indicator (hidden when not checked) */
-.form-checkmark:after {
+.form-checkmark::after {
   content: "";
   position: absolute;
   display: none;
 }
 
 /* Show the form-checkmark when checked */
-.form-check input:checked ~ .form-checkmark:after {
+.form-check input:checked ~ .form-checkmark::after {
   @apply block;
 }
 
 /* Style the form-checkmark/indicator */
-.form-check .form-checkmark:after {
+.form-check .form-checkmark::after {
   left: 6px;
   top: 8px;
   width: 4px;
   height: 7px;
   border: solid white;
   border-width: 0 2px 2px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  transform: rotate(45deg);
   transform: rotate(45deg);
 }
 

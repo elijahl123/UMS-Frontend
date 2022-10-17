@@ -35,7 +35,7 @@ function getCurrentDate() {
   styleUrls: ['./schedule-widget.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ScheduleWidgetComponent<T> implements OnInit {
+export class ScheduleWidgetComponent implements OnInit {
   cogIcon: IconDefinition = faCog;
   chevronLeftIcon: IconDefinition = faChevronLeft;
   chevronRightIcon: IconDefinition = faChevronRight;

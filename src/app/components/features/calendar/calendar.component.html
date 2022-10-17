@@ -29,7 +29,12 @@
         <div class="calendar-days-of-week-day">Sat</div>
       </div>
       <div class="calendar-body">
-        <app-calendar-date *ngFor="let date of currentDates" [class]="isDateToday(date) ? 'secondary' : 'secondary-muted'" [date]="date" (selectDate)="selectDate($event)" [events]="eventsForDate(date)">
+        <app-calendar-date
+          *ngFor="let dateFrame of currentDates"
+          [class]="(isDateToday(dateFrame) ? 'secondary' : 'secondary-muted') + ' ' + ((dateFrame.getMonth() == date.getMonth()) ? '' : 'opacity-50')"
+          [date]="dateFrame" (selectDate)="selectDate($event)"
+          [events]="eventsForDate(dateFrame)"
+        >
         </app-calendar-date>
       </div>
     </div>
