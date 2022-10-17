@@ -24,7 +24,7 @@
   }
 
   :root {
-    --ums-thumb-color: rgb(var(--color-brand-secondary) 1);
+    --ums-thumb-color: rgba(var(--color-brand-secondary), 1);
     --color-white: 255, 255, 255;
     --color-black: 0, 0, 0;
     --color-brand-main: 248, 173, 157;

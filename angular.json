@@ -75,6 +75,9 @@
             },
             "development": {
               "browserTarget": "UMS-Frontend:build:development"
+            },
+            "options": {
+              "optimization": true
             }
           },
           "defaultConfiguration": "development"

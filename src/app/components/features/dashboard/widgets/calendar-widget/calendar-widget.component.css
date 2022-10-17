@@ -1,0 +1,35 @@
+app-calendar-widget {
+  @apply h-full;
+}
+
+.calendar-widget {
+  @apply flex flex-col gap-4 overflow-auto h-full;
+}
+
+.calendar-widget-header {
+  @apply flex flex-row justify-between items-center pl-1;
+}
+
+.calendar-widget-title {
+  @apply text-xl text-utility-secondary whitespace-nowrap overflow-hidden overflow-ellipsis;
+}
+
+.calendar-widget-header-action {
+  @apply rounded-lg;
+}
+
+.calendar-widget-content {
+  @apply flex flex-col gap-4 h-full rounded-xl overflow-y-auto overflow-x-hidden flex-grow;
+}
+
+.calendar-widget-content-dates {
+  @apply grid grid-cols-7 auto-rows-auto h-full gap-y-1 bg-brand-background-hover;
+}
+
+.calendar-widget-content-date {
+  @apply bg-brand-background hover:bg-brand-background-hover flex flex-col items-center justify-center text-utility-secondary transition-all duration-200 ease-in-out cursor-pointer;
+}
+
+.calendar-widget-content-date.active {
+  @apply rounded-lg bg-utility-secondary hover:bg-utility-secondary-hover text-white;
+}

@@ -11,9 +11,9 @@ app-dashboard {
 }
 
 .dashboard-secondary-content {
-  @apply bg-brand-background rounded-2xl flex flex-col hover:shadow-[0_0_0_4px] hover:shadow-brand-background-hover transition-all duration-200;
+  @apply bg-brand-background rounded-2xl flex flex-col hover:shadow-[0_0_0_4px] hover:shadow-brand-background-hover transition-all duration-200 p-5 overflow-y-auto;
 }
 
 .dashboard-tertiary-content {
-  @apply bg-brand-background rounded-2xl flex flex-col hover:shadow-[0_0_0_4px] hover:shadow-brand-background-hover transition-all duration-200;
+  @apply bg-brand-background rounded-2xl flex flex-col hover:shadow-[0_0_0_4px] hover:shadow-brand-background-hover transition-all duration-200 p-5 overflow-y-auto;
 }

@@ -9,13 +9,18 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'auth',
+    loadChildren: () => import('../../components/features/auth/auth.module').then(m => m.AuthModule)
+  },
+  {
     path: 'dashboard',
     canActivate: [AuthGuard],
     loadChildren: () => import('../../components/features/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-    path: 'auth',
-    loadChildren: () => import('../../components/features/auth/auth.module').then(m => m.AuthModule)
+    path: 'calendar',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('../../components/features/calendar/calendar.module').then(m => m.CalendarModule)
   },
 ];
 

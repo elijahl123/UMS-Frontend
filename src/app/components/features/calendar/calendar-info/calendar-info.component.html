@@ -1,0 +1,43 @@
+<div [ngClass]="['calendar-info-container', selectedEvent !== null ? 'gap-4' : '']">
+  <div class="calendar-info-content-container">
+    <div class="calendar-info-header">
+      <div class="calendar-info-header-title">
+        {{ date | date: 'longDate' }}
+      </div>
+      <button class="calendar-info-header-button hover-enabled secondary-muted">
+        <fa-icon [icon]="plusIcon" class="w-4 h-4 flex justify-center items-center"></fa-icon>
+      </button>
+    </div>
+    <div class="calendar-info-body">
+      <ui-card
+        (click)="selectEvent(event)"
+        *ngFor="let event of events"
+        [color]="event.course.color.toLowerCase()"
+        [head]="event.title"
+        [leftIcon]="eventIcon"
+        sub="{{ event.time ? getEventDateTime(event) : 'All day' }}"
+      ></ui-card>
+    </div>
+  </div>
+  <div [ngClass]="['calendar-info-more', selectedEvent !== null ? 'h-full ' + getSelectedColor() : 'h-0']">
+    <div *ngIf="selectedEvent !== null" class="calendar-info-more-inner">
+      <div class="calendar-info-more-header">
+        <div class="calendar-info-more-header-title">
+          {{ selectedEvent.title }}
+        </div>
+        <div class="calendar-info-more-header-sub">
+          {{ selectedEvent.time ? getEventDateTime(selectedEvent) : 'All day' }}
+        </div>
+      </div>
+      <hr>
+      <div class="calendar-info-more-body">
+        <div class="calendar-info-more-body-description">
+          {{ selectedEvent.description ? selectedEvent.description : 'No description' }}
+        </div>
+        <a [ngClass]="['calendar-info-more-body-link btn hover-enabled', getSelectedColor().concat('-muted')]" *ngIf="selectedEvent.link" [href]="selectedEvent.link" target="_blank">
+          Go to Link
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

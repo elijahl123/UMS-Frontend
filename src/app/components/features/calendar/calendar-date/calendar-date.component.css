@@ -1,0 +1,23 @@
+.calendar-body-date {
+  @apply bg-brand-background h-full p-1 flex flex-col gap-2 overflow-y-auto overflow-x-hidden;
+}
+
+.calendar-body-date::-webkit-scrollbar {
+  @apply w-1.5;
+}
+
+.calendar-body-date::-webkit-scrollbar-thumb {
+  @apply bg-utility-secondary;
+}
+
+.calendar-body-date-number {
+  @apply flex flex-col justify-center items-center p-1 rounded-lg w-full;
+}
+
+.calendar-body-date-body-item {
+  @apply py-1 px-2 w-full overflow-hidden text-ellipsis whitespace-nowrap rounded-md text-[8pt];
+}
+
+.calendar-body-date-body {
+  @apply flex flex-col gap-2 w-full h-full;
+}

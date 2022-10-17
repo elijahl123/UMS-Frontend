@@ -1,19 +1,24 @@
-.card {
-  @apply bg-brand-background p-4 rounded-xl grid auto-rows-max gap-4;
+ui-card {
+  @apply w-full;
 }
 
-.card-title {
-  @apply text-xl mb-2 text-inherit;
+.card-item {
+  @apply text-white w-full flex flex-row gap-3 items-center px-4 py-2.5 rounded-lg pl-2.5 transition-all duration-200
+    active:shadow-[0_0_0_4px];
 }
 
-.card-text {
-  @apply mb-4 text-brand-secondary;
+.card-item-left-icon {
+  @apply rounded-md flex items-center justify-center bg-white p-2;
 }
 
-.card-footer {
-  @apply grid grid-flow-col gap-4 auto-cols-max;
+.card-item-text {
+  @apply flex-grow;
 }
 
-.card-image {
-  @apply rounded-lg flex max-h-[100px] w-full object-contain bg-brand-background-hover;
+.card-item-head {
+  @apply text-[10pt];
+}
+
+.card-item-sub {
+  @apply text-[8pt] font-normal;
 }

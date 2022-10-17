@@ -15,7 +15,7 @@ import { TopNavigationItemComponent } from './top-navigation/top-navigation-item
     SideNavigationComponent,
     SideNavigationItemComponent,
     TopNavigationComponent,
-    TopNavigationItemComponent
+    TopNavigationItemComponent,
   ],
   exports: [
     SideNavigationComponent,

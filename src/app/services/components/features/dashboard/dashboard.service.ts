@@ -3,26 +3,20 @@ import { BehaviorSubject } from 'rxjs';
 import {
   ScheduleWidgetComponent
 } from '../../../../components/features/dashboard/widgets/schedule-widget/schedule-widget.component';
-
-class LargeWidget {
-  size = 'large';
-}
-
-class MediumWidget {
-  size = 'medium';
-}
-
-class SmallWidget {
-  size = 'small';
-}
+import {
+  AssignmentsWidgetComponent
+} from '../../../../components/features/dashboard/widgets/assignments-widget/assignments-widget.component';
+import {
+  CalendarWidgetComponent
+} from '../../../../components/features/dashboard/widgets/calendar-widget/calendar-widget.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
-  private primaryContent: BehaviorSubject<Type<any> | null> = new BehaviorSubject<Type<any> | null>(ScheduleWidgetComponent<LargeWidget>);
-  private secondaryContent: BehaviorSubject<Type<any> | null> = new BehaviorSubject<Type<any> | null>(null);
-  private tertiaryContent: BehaviorSubject<Type<any> | null> = new BehaviorSubject<Type<any> | null>(null);
+  private primaryContent: BehaviorSubject<Type<any> | null> = new BehaviorSubject<Type<any> | null>(ScheduleWidgetComponent);
+  private secondaryContent: BehaviorSubject<Type<any> | null> = new BehaviorSubject<Type<any> | null>(AssignmentsWidgetComponent);
+  private tertiaryContent: BehaviorSubject<Type<any> | null> = new BehaviorSubject<Type<any> | null>(CalendarWidgetComponent);
 
   constructor() {
   }

@@ -1,0 +1,10 @@
+<div class="calendar-body-date">
+  <button [ngClass]="['calendar-body-date-number btn hover-enabled', class]" (click)="selectDate.emit(date)">
+    {{ date.getDate() }}
+  </button>
+  <div class="calendar-body-date-body">
+    <div *ngFor="let event of events" [ngClass]="['hover-enabled calendar-body-date-body-item', event.course ? event.course.color.toLowerCase() : 'brand-main']" (click)="selectDate.emit(date)">
+        {{ getClassName(event) }}<span class="font-normal">{{ event.title }}</span>
+    </div>
+  </div>
+</div>

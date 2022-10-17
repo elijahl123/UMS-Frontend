@@ -4,9 +4,12 @@ import {
   faBook,
   faChevronLeft,
   faChevronRight,
-  faCog, faMap,
+  faCog,
+  faLink,
+  faMap,
   faSchool,
-  faSquareArrowUpRight, faVideo
+  faSquareArrowUpRight,
+  faVideo
 } from '@fortawesome/pro-solid-svg-icons';
 import { Apollo, gql } from 'apollo-angular';
 import { BehaviorSubject } from 'rxjs';
@@ -43,9 +46,12 @@ export class ScheduleWidgetComponent<T> implements OnInit {
   assignmentIcon: IconDefinition = faBook;
   linkIcon: IconDefinition = faSquareArrowUpRight;
 
-  openCourses: Schedule[] = [];
+  openCourses: BehaviorSubject<Schedule[]> = new BehaviorSubject<Schedule[]>([]);
   videoIcon: IconDefinition = faVideo;
   mapIcon: IconDefinition = faMap;
+
+  courseLinks: BehaviorSubject<{ course: { uid: string }; link: string; title: string; }[]> = new BehaviorSubject<{ course: { uid: string }; link: string; title: string; }[]>([]);
+  externalLinkIcon: IconDefinition = faLink;
 
   constructor(private apollo: Apollo) {
   }
@@ -54,7 +60,44 @@ export class ScheduleWidgetComponent<T> implements OnInit {
     // Every time the date changes, we want to update the schedule
     this.date = new BehaviorSubject<string>(getCurrentDate());
     this.date.subscribe((date) => {
-      this.apollo.query<{ getSchedule: Schedule[]; }>({
+      this.openCourses.next([]);
+      this.apollo.query<{
+          getSchedule: {
+            course: {
+              uid: string,
+              name: string,
+              color: string,
+            },
+            startTime: string,
+            endTime: string,
+            link: string,
+            zoomPassword: string,
+            location: string,
+          }[],
+          homeworkAssignments: {
+            edges: {
+              node: {
+                name: string,
+                dueDate: string,
+                dueTime: string,
+                course: {
+                  uid: string
+                }
+              }
+            }[]
+          },
+          courseLinks: {
+            edges: {
+              node: {
+                course: {
+                  uid: string,
+                }
+                link: string
+                title: string
+              }
+            }[]
+          }
+        }>({
         query: gql`
           query {
             getSchedule(date: "${date}") {
@@ -69,15 +112,7 @@ export class ScheduleWidgetComponent<T> implements OnInit {
               zoomPassword
               location
             }
-          }
-        `
-      }).subscribe((data) => {
-        data.data.getSchedule.length > 0 ? this.schedule.next(data.data.getSchedule) : this.schedule.next(null);
-      });
-      this.apollo.query<{ homeworkAssignments: { edges: { node: { name: string, dueDate: string, dueTime: string, course: { uid: string } } }[] } }>({
-        query: gql`
-          query {
-            homeworkAssignments {
+            homeworkAssignments(completed: false) {
               edges {
                 node {
                   name
@@ -89,22 +124,39 @@ export class ScheduleWidgetComponent<T> implements OnInit {
                 }
               }
             }
+            courseLinks {
+              edges {
+                node {
+                  course {
+                    uid
+                  }
+                  link
+                  title
+                }
+              }
+            }
           }
         `
-      }).subscribe(({ data }) => {
+      }).subscribe((data) => {
+        data.data.getSchedule.length > 0 ? this.schedule.next(data.data.getSchedule) : this.schedule.next(null);
+        for (const course of data.data.getSchedule) {
+          this.isCourseCurrent(course);
+        }
+
         let assignmentsDueSoon: { node: { name: string; dueDate: string; dueTime: string; course: { uid: string } }; }[] = [];
-        for (const assignment of data.homeworkAssignments.edges) {
+        for (const assignment of data.data.homeworkAssignments.edges) {
           // Check if the assignment is due within the next three days
-          const dueDate = new Date(assignment.node.dueDate);
-          const dueDateTime = new Date(dueDate.toISOString().split('T')[0] + 'T' + assignment.node.dueTime);
-          const currentDate = new Date(date);
-          const currentDatePlusThreeDays = new Date(date);
+          const dueDateTime = new Date(assignment.node.dueDate + 'T' + assignment.node.dueTime);
+          const currentDate = new Date(date + 'T00:00:00');
+          const currentDatePlusThreeDays = new Date(date + 'T00:00:00');
           currentDatePlusThreeDays.setDate(currentDatePlusThreeDays.getDate() + 3);
           if (dueDateTime > currentDate && dueDateTime < currentDatePlusThreeDays) {
             assignmentsDueSoon.push(assignment);
           }
         }
         this.assignmentsDueSoon.next(assignmentsDueSoon);
+
+        this.courseLinks.next(data.data.courseLinks.edges.map((edge) => edge.node));
       });
     });
   }
@@ -146,10 +198,9 @@ export class ScheduleWidgetComponent<T> implements OnInit {
     hours = hours ? hours : 12;
     minutes = minutes.length === 1 ? '0' + minutes : minutes;
     return hours + ':' + minutes + ' ' + ampm;
-
   }
 
-  isCourseCurrent(course: Schedule): boolean {
+  isCourseCurrent(course: Schedule): void {
     const selectedTime = new Date(this.date.value);
     const currentTime = new Date();
     // Get the start time and subtract 1 day
@@ -157,18 +208,27 @@ export class ScheduleWidgetComponent<T> implements OnInit {
     const endTime = new Date(selectedTime.toISOString().split('T')[0] + 'T' + course.endTime);
     selectedTime.setDate(selectedTime.getDate() + 1);
     // If the current time is not in the open courses list, and the current time is between the start and end time of the course, add it to the list
-    if (!this.openCourses.includes(course) && currentTime > startTime && currentTime < endTime) {
-      this.openCourses.push(course);
+    if (!this.openCourses.value.includes(course) && currentTime > startTime && currentTime < endTime) {
+      // Remove the other courses from the list
+      this.openCourses.next([course]);
     }
 
-    return this.openCourses.includes(course);
+    // If the current time is in the open courses list, and the current time is not between the start and end time of the course, remove it from the list
+    if (this.openCourses.value.includes(course) && (currentTime < startTime || currentTime > endTime)) {
+      this.openCourses.next(this.openCourses.value.filter((openCourse) => openCourse !== course));
+    }
+
+    // If the open courses list is empty, make the current course the first one in the list
+    if (this.openCourses.value.length === 0) {
+      this.openCourses.next([course]);
+    }
   }
 
   toggleCourse(course: Schedule) {
-    if (this.openCourses.includes(course)) {
-      this.openCourses.splice(this.openCourses.indexOf(course), 1);
+    if (this.openCourses.value.includes(course)) {
+      this.openCourses.value.splice(this.openCourses.value.indexOf(course), 1);
     } else {
-      this.openCourses.push(course);
+      this.openCourses.value.push(course);
     }
   }
 
@@ -176,6 +236,17 @@ export class ScheduleWidgetComponent<T> implements OnInit {
     if (this.assignmentsDueSoon.value) {
       for (const assignment of this.assignmentsDueSoon.value) {
         if (assignment.node.course.uid === course.course.uid) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  courseContainsLinks(course: Schedule): boolean {
+    if (this.courseLinks.value) {
+      for (const link of this.courseLinks.value) {
+        if (link.course.uid === course.course.uid) {
           return true;
         }
       }
