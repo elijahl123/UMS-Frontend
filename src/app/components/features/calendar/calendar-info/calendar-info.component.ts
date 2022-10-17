@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { CalendarEvent } from '../calendar.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
-import { faCalendar, faPlus } from '@fortawesome/pro-solid-svg-icons';
+import { faCalendar, faClose, faPlus } from '@fortawesome/pro-solid-svg-icons';
 
 @Component({
   selector: 'app-calendar-info',
@@ -17,8 +17,9 @@ export class CalendarInfoComponent implements OnInit {
   eventIcon: IconDefinition = faCalendar;
 
   selectedEvent: CalendarEvent | null = null;
+  closeIcon: IconDefinition = faClose;
 
-  constructor(private apollo: Apollo, private route: ActivatedRoute) {
+  constructor(private apollo: Apollo, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -145,5 +146,9 @@ export class CalendarInfoComponent implements OnInit {
     } else {
       return 'brand-main';
     }
+  }
+
+  closeMenu() {
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }

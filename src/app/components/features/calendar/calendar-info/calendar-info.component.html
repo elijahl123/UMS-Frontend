@@ -7,6 +7,9 @@
       <button class="calendar-info-header-button hover-enabled secondary-muted">
         <fa-icon [icon]="plusIcon" class="w-4 h-4 flex justify-center items-center"></fa-icon>
       </button>
+      <button class="calendar-info-header-button hover-enabled secondary-muted" (click)="closeMenu()">
+        <fa-icon [icon]="closeIcon" class="w-4 h-4 flex justify-center items-center"></fa-icon>
+      </button>
     </div>
     <div class="calendar-info-body">
       <ui-card

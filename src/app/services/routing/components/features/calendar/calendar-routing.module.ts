@@ -11,9 +11,9 @@ const routes: Routes = [
     component: CalendarComponent,
     children: [
       {
+        outlet: 'calendarInfo',
         path: ':date',
         component: CalendarInfoComponent,
-        children: []
       }
     ]
   }

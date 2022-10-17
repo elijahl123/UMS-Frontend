@@ -199,12 +199,20 @@ export class CalendarComponent implements OnInit {
     // Check if the date parameter is the same as the date selected
     if (this.activatedRoute.children[0]?.snapshot.paramMap.has('date')) {
       if (this.activatedRoute.children[0].snapshot.paramMap.get('date') !== this.getDateStr()) {
-        this.router.navigate(['/calendar', this.getDateStr()]).then();
+        this.router.navigate(['/calendar', {
+          outlets: {
+            'calendarInfo': [this.getDateStr()]
+          }
+        }]).then();
       } else {
         this.router.navigate(['/calendar']).then();
       }
     } else {
-      this.router.navigate(['/calendar', this.getDateStr()]).then();
+      this.router.navigate(['/calendar', {
+        outlets: {
+          'calendarInfo': [this.getDateStr()]
+        }
+      }]).then();
     }
   }
 

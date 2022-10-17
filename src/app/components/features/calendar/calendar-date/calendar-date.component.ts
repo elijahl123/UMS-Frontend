@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CalendarEvent, CalendarEventMin } from '../calendar.component';
+import { CalendarEventMin } from '../calendar.component';
 
 @Component({
   selector: 'app-calendar-date',

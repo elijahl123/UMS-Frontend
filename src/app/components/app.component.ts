@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faBook, faCalendars, faClock, faFilePen, faObjectsColumn, faSchool } from '@fortawesome/pro-duotone-svg-icons';
-import { Apollo, gql } from 'apollo-angular';
 import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
-import { AuthService } from '../services/components/features/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +18,7 @@ export class AppComponent implements OnInit {
   };
   loading: boolean;
 
-  constructor(private router: Router, private apollo: Apollo) {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
