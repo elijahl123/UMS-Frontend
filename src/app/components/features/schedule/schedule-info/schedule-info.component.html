@@ -1,0 +1,54 @@
+<div [ngClass]="['class-schedule-content-info-content',
+courseTime.course.color.toLowerCase().concat('-muted')]">
+  <div class="class-schedule-content-info-content-header">
+    <div [ngClass]="['class-schedule-content-info-content-header-icon',
+    courseTime.course.color.toLowerCase()]">
+      <fa-icon [icon]="schoolIcon"></fa-icon>
+    </div>
+    <div class="class-schedule-content-info-content-header-title">
+      {{ courseTime.course.name }}
+    </div>
+    <button class="class-schedule-content-info-content-header-button hover-enabled secondary-muted" (click)="closeMenu()">
+      <fa-icon [icon]="closeIcon" class="w-4 h-4 flex justify-center items-center"></fa-icon>
+    </button>
+  </div>
+  <div class="class-schedule-content-info-content-body">
+    <div *ngFor="let weekday of getWeekdays()"
+         [ngClass]="['class-schedule-content-info-content-body-course-time',
+         courseTime.course.color.toLowerCase()]"
+    >
+      <div class="class-schedule-content-info-content-body-course-time-header">
+        <div class="class-schedule-content-info-content-body-course-time-header-title">
+          {{ weekday }}
+        </div>
+        <div [ngClass]="['class-schedule-content-info-content-body-course-time-header-time',
+          courseTime.course.color.toLowerCase().concat('-muted')]">
+          {{ courseTime.startTime | time }}
+        </div>
+      </div>
+      <div class="class-schedule-content-info-content-body-course-time-content">
+        <div [ngClass]="['class-schedule-content-info-content-body-course-time-content-button btn hover-enabled', courseTime.course.color.toLowerCase().concat('-muted')]" title="Open Notes">
+          <fa-icon [icon]="openNotesIcon"></fa-icon>
+        </div>
+        <div [ngClass]="['class-schedule-content-info-content-body-course-time-content-button btn hover-enabled', courseTime.course.color.toLowerCase().concat('-muted')]" title="Add">
+          <fa-icon [icon]="addIcon"></fa-icon>
+        </div>
+      </div>
+      <div class="class-schedule-content-info-content-body-course-time-link" *ngIf="courseTime.link">
+        <a [href]="courseTime.link" target="_blank" [ngClass]="['class-schedule-content-info-content-body-course-time-link-text btn hover-enabled', courseTime.course.color.toLowerCase().concat('-muted')]">
+          Go to Class
+          <fa-icon [icon]="linkIcon"></fa-icon>
+        </a>
+        <div [ngClass]="['class-schedule-content-info-content-body-course-time-link-password btn', courseTime.course.color.toLowerCase().concat('-muted')]">
+          {{ courseTime.zoomPassword }}
+        </div>
+      </div>
+      <div class="class-schedule-content-info-content-body-course-time-link" *ngIf="courseTime.location">
+        <div [ngClass]="['class-schedule-content-info-content-body-course-time-link-text btn hover-enabled', courseTime.course.color.toLowerCase().concat('-muted')]">
+          {{ courseTime.location  }}
+          <fa-icon [icon]="mapIcon"></fa-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

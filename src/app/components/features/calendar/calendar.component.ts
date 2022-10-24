@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@an
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faChevronLeft, faChevronRight, faPlus } from '@fortawesome/pro-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Apollo, gql } from 'apollo-angular';
+import { ReadService } from '../../../services/model/read/read.service';
 
 export interface CalendarEvent {
   uid?: string;
@@ -30,20 +30,20 @@ export interface CalendarEventMin {
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class CalendarComponent implements OnInit {
+  @ViewChild('changeDateInput') changeDateInput: ElementRef;
   chevronLeftIcon: IconDefinition = faChevronLeft;
   chevronRightIcon: IconDefinition = faChevronRight;
-  plusIcon: IconDefinition = faPlus;
-  date: Date;
-
   currentDates: Date[] = [];
-  @ViewChild('changeDateInput') changeDateInput: ElementRef;
 
+  date: Date;
   events: CalendarEventMin[] = [];
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private apollo: Apollo) {
+  plusIcon: IconDefinition = faPlus;
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private read: ReadService) {
   }
 
   ngOnInit(): void {
@@ -63,59 +63,13 @@ export class CalendarComponent implements OnInit {
       this.currentDates = this.getDates();
     }
 
-    this.apollo.query<{
-      calendarEvents: {
-        edges: {
-          node: {
-            date: string,
-            title: string,
-          }
-        }[]
-      }
-      homeworkAssignments: {
-        edges: {
-          node: {
-            dueDate: string,
-            name: string,
-            course: {
-              name: string,
-              color: string,
-            }
-          }
-        }[]
-      }
-    }>({
-      query: gql`
-        query {
-          calendarEvents {
-            edges {
-              node {
-                date
-                title
-              }
-            }
-          }
-          homeworkAssignments {
-            edges {
-              node {
-                dueDate
-                name
-                course {
-                  name
-                  color
-                }
-              }
-            }
-          }
-        }
-      `
-    }).subscribe(data => {
-      this.events = data.data.calendarEvents.edges.map(edge => {
+    this.read.getCalendarEvents().then((data) => {
+      this.events = data.calendarEvents.edges.map(edge => {
         return {
           title: edge.node.title,
           date: edge.node.date,
         }
-      }).concat(data.data.homeworkAssignments.edges.map(edge => {
+      }).concat(data.homeworkAssignments.edges.map(edge => {
         return {
           title: edge.node.name,
           date: edge.node.dueDate,
@@ -126,6 +80,33 @@ export class CalendarComponent implements OnInit {
         }
       }));
     })
+  }
+
+  decrementDate() {
+    if (this.router.url !== '/calendar') {
+      this.selectDate(new Date(this.date.getFullYear(), this.date.getMonth() - 1, this.date.getDate()));
+    } else {
+      this.date = new Date(this.date.getFullYear(), this.date.getMonth() - 1, this.date.getDate());
+      this.currentDates = this.getDates();
+    }
+  }
+
+  incrementDate() {
+    if (this.router.url !== '/calendar') {
+      this.selectDate(new Date(this.date.getFullYear(), this.date.getMonth() + 1, this.date.getDate()));
+    } else {
+      this.date = new Date(this.date.getFullYear(), this.date.getMonth() + 1, this.date.getDate());
+      this.currentDates = this.getDates();
+    }
+  }
+
+  eventsForDate(date: Date): CalendarEventMin[] {
+    return this.events.filter(event => event.date === date.toISOString().slice(0, 10));
+  }
+
+  focusOnInput() {
+    // Focus on the input when the user clicks on the calendar icon
+    this.changeDateInput.nativeElement.focus();
   }
 
   getDates(): Date[] {
@@ -143,8 +124,25 @@ export class CalendarComponent implements OnInit {
     return dates;
   }
 
+  getDateStr() {
+    // Get the date in the format of YYYY-MM-DD
+    return this.date.toLocaleDateString('en-CA', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).replace(/\//g, '-');
+  }
+
+  getMonthName() {
+    return this.date.toLocaleDateString('en-CA', { month: 'long' });
+  }
+
   isDateToday(date: Date) {
-    return this.date.toISOString().slice(0, 10) === date.toISOString().slice(0, 10);
+    return this.date.toLocaleDateString() === date.toLocaleDateString();
+  }
+
+  isInfoShowing() {
+    return this.router.url !== '/calendar';
   }
 
   onDateChange(event: Event) {
@@ -161,38 +159,6 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  incrementDate() {
-    if (this.router.url !== '/calendar') {
-      this.selectDate(new Date(this.date.getFullYear(), this.date.getMonth() + 1, this.date.getDate()));
-    } else {
-      this.date = new Date(this.date.getFullYear(), this.date.getMonth() + 1, this.date.getDate());
-      this.currentDates = this.getDates();
-    }
-  }
-
-  decrementDate() {
-    if (this.router.url !== '/calendar') {
-      this.selectDate(new Date(this.date.getFullYear(), this.date.getMonth() - 1, this.date.getDate()));
-    } else {
-      this.date = new Date(this.date.getFullYear(), this.date.getMonth() - 1, this.date.getDate());
-      this.currentDates = this.getDates();
-    }
-  }
-
-  getDateStr() {
-    // Get the date in the format of YYYY-MM-DD
-    return this.date.toLocaleDateString('en-CA', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit'
-    }).replace(/\//g, '-');
-  }
-
-  focusOnInput() {
-    // Focus on the input when the user clicks on the calendar icon
-    this.changeDateInput.nativeElement.focus();
-  }
-
   selectDate(date: Date) {
     this.date = date;
     this.currentDates = this.getDates();
@@ -205,7 +171,7 @@ export class CalendarComponent implements OnInit {
           }
         }]).then();
       } else {
-        this.router.navigate(['/calendar']).then();
+        this.router.navigate(['/calendar', { outlets: { 'calendarInfo': null } }]).then();
       }
     } else {
       this.router.navigate(['/calendar', {
@@ -214,18 +180,6 @@ export class CalendarComponent implements OnInit {
         }
       }]).then();
     }
-  }
-
-  isInfoShowing() {
-    return this.router.url !== '/calendar';
-  }
-
-  eventsForDate(date: Date): CalendarEventMin[] {
-    return this.events.filter(event => event.date === date.toISOString().slice(0, 10));
-  }
-
-  getMonthName() {
-    return this.date.toLocaleDateString('en-CA', { month: 'long' });
   }
 
   setDateToToday() {

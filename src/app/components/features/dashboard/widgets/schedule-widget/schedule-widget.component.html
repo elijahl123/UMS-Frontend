@@ -10,16 +10,16 @@
     <button (click)="decrementDate()" class="btn secondary-muted hover-enabled rounded-lg">
       <fa-icon [icon]="chevronLeftIcon"></fa-icon>
     </button>
-    <input (change)="onDateChanged($event)" [value]="date.value" class="schedule-widget-date-input btn secondary-muted"
+    <input (change)="onDateChanged($event)" [value]="getDate()" class="schedule-widget-date-input btn secondary-muted"
            type="date">
     <button (click)="incrementDate()" class="btn secondary-muted hover-enabled rounded-lg">
       <fa-icon [icon]="chevronRightIcon"></fa-icon>
     </button>
   </div>
   <div class="schedule-widget-content">
-    <div *ngIf="schedule.value" class="schedule-widget-courses">
+    <div *ngIf="getSchedule()" class="schedule-widget-courses">
       <ng-container *ngFor="let course of getCourseTimeObjects()">
-        <div [ngClass]="['schedule-widget-course', course.course.color.toLowerCase().concat('-muted'), openCourses.value.includes(course) == false ? 'hover-enabled' : 'flex-grow']">
+        <div [ngClass]="['schedule-widget-course', course.course.color.toLowerCase().concat('-muted'), getOpenCourses().includes(course) == false ? 'hover-enabled' : 'flex-grow']">
           <div (click)="toggleCourse(course)" class="schedule-widget-course-head hover-enabled">
             <div [ngClass]="['schedule-widget-course-head-icon', 'bg-utility-'.concat(course.course.color.toLowerCase())]">
               <fa-icon [icon]="schoolIcon"></fa-icon>
@@ -31,14 +31,14 @@
               {{ formatTime( course.startTime ) }}
             </div>
           </div>
-          <div [ngClass]="['schedule-widget-course-content', openCourses.value.includes(course) ? '' : '!hidden']">
+          <div [ngClass]="['schedule-widget-course-content', getOpenCourses().includes(course) ? '' : '!hidden']">
             <div class="schedule-widget-course-content-due-soon">
               <div class="schedule-widget-course-content-due-soon-title">
                 Due Soon
               </div>
               <div class="schedule-widget-course-content-due-soon-items">
                 <ng-container *ngIf="courseContainsAssignments(course); else noAssignmentsDueSoon">
-                  <ng-container *ngFor="let assignment of assignmentsDueSoon.value">
+                  <ng-container *ngFor="let assignment of getAssignmentsDueSoon()">
                     <ui-card *ngIf="assignment.node.course.uid == course.course.uid"
                              [color]="course.course.color.toLowerCase()"
                              [head]="assignment.node.name" [leftIcon]="assignmentIcon" [rightIcon]="linkIcon"
@@ -87,7 +87,7 @@
               </div>
               <div class="schedule-widget-course-content-useful-links-items">
                 <ng-container *ngIf="courseContainsLinks(course); else noLinks">
-                  <ng-container *ngFor="let link of courseLinks.value">
+                  <ng-container *ngFor="let link of getCourseLinks()">
                     <ui-card *ngIf="link.course.uid == course.course.uid" [head]="link.title"
                              [href]="link.link" [leftIcon]="externalLinkIcon" [rightIcon]="linkIcon" [color]="course.course.color.toLowerCase()">
                     </ui-card>

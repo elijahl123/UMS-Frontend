@@ -22,14 +22,15 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (!localStorage.getItem('token')) {
+    if (!this.authService.getToken()) {
       this.router.navigate(['/auth', 'login']);
       return false;
     }
     return new Promise((resolve, reject) => {
-      this.authService.verifyToken(localStorage.getItem('token') || '')
+      this.authService.verifyToken(this.authService.getToken() || '')
         .subscribe(({data}) => {
           if (data) {
+            console.log(data);
             if (data.verifyToken) {
               resolve(true);
             }

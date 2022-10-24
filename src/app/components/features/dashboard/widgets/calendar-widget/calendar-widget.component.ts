@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faPlus } from '@fortawesome/pro-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-calendar-widget',
@@ -12,7 +13,7 @@ export class CalendarWidgetComponent implements OnInit {
   plusIcon: IconDefinition = faPlus;
   currentDate: Date;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.currentDate = new Date();
@@ -48,5 +49,13 @@ export class CalendarWidgetComponent implements OnInit {
 
   isToday(date: Date) {
     return date.getDate() === this.currentDate.getDate() && date.getMonth() === this.currentDate.getMonth() && date.getFullYear() === this.currentDate.getFullYear();
+  }
+
+  getDateLink(date: Date) {
+    this.router.navigate(['/calendar', {
+      outlets: {
+        calendarInfo: [date.toLocaleDateString('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '-')]
+      }
+    }]).then();
   }
 }

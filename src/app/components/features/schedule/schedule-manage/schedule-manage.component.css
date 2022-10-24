@@ -1,0 +1,19 @@
+.class-schedule-content-manage-content {
+  @apply flex flex-col gap-4 p-4 rounded-lg bg-brand-background w-full h-full;
+}
+
+.class-schedule-content-manage-content-header {
+  @apply flex flex-row gap-4 w-full;
+}
+
+.class-schedule-content-manage-content-header-title {
+  @apply text-utility-secondary px-4 py-2 bg-utility-secondary-muted rounded-lg w-full overflow-hidden text-ellipsis whitespace-nowrap;
+}
+
+.class-schedule-content-manage-content-body {
+  @apply flex flex-col gap-4 w-full h-full;
+}
+
+.class-schedule-content-manage-content-header-button {
+  @apply flex justify-center items-center rounded-lg transition-all duration-200 ease-in-out p-3;
+}

@@ -1,0 +1,59 @@
+.class-schedule-content-info-content {
+  @apply flex flex-col gap-4 p-4 bg-brand-background rounded-lg h-full;
+}
+
+.class-schedule-content-info-content-header {
+  @apply flex flex-row gap-x-4 items-center;
+}
+
+.class-schedule-content-info-content-header-icon {
+  @apply aspect-square w-11 h-11 flex justify-center items-center rounded-lg;
+}
+
+.class-schedule-content-info-content-header-title {
+  @apply text-2xl flex-grow;
+}
+
+.class-schedule-content-info-content-header-button {
+  @apply flex justify-center items-center rounded-lg transition-all duration-200 ease-in-out p-3;
+}
+
+.class-schedule-content-info-content-body {
+  @apply flex-grow flex flex-col gap-4;
+}
+
+.class-schedule-content-info-content-body-course-time {
+  @apply h-full rounded-lg flex flex-col gap-4 p-4;
+}
+
+.class-schedule-content-info-content-body-course-time-header {
+  @apply flex flex-row gap-x-4 items-center;
+}
+
+.class-schedule-content-info-content-body-course-time-header-title {
+  @apply flex-grow text-lg whitespace-nowrap overflow-hidden text-ellipsis;
+}
+
+.class-schedule-content-info-content-body-course-time-header-time {
+  @apply bg-white px-3 py-1.5 rounded-lg text-sm whitespace-nowrap;
+}
+
+.class-schedule-content-info-content-body-course-time-content {
+  @apply flex-grow rounded-lg flex flex-row gap-4;
+}
+
+.class-schedule-content-info-content-body-course-time-link {
+  @apply flex flex-row gap-4;
+}
+
+.class-schedule-content-info-content-body-course-time-link-text {
+  @apply bg-white rounded-lg px-3 py-1.5 justify-between flex-grow whitespace-nowrap overflow-hidden text-ellipsis text-xs;
+}
+
+.class-schedule-content-info-content-body-course-time-link-password {
+  @apply bg-white rounded-lg px-3 py-1.5 text-xs whitespace-nowrap overflow-hidden text-ellipsis;
+}
+
+.class-schedule-content-info-content-body-course-time-content-button {
+  @apply flex flex-col gap-2 items-center justify-center flex-grow bg-white rounded-lg p-4 text-lg;
+}

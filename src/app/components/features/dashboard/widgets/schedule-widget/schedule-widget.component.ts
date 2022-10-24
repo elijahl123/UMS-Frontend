@@ -1,4 +1,4 @@
-import { Component, NgIterable, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, NgIterable, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import {
   faBook,
@@ -11,8 +11,8 @@ import {
   faSquareArrowUpRight,
   faVideo
 } from '@fortawesome/pro-solid-svg-icons';
-import { Apollo, gql } from 'apollo-angular';
 import { BehaviorSubject } from 'rxjs';
+import { ReadService } from '../../../../../services/model/read/read.service';
 
 interface Schedule {
   course: { name: string, color: string, uid: string },
@@ -33,9 +33,9 @@ function getCurrentDate() {
   selector: 'app-schedule-widget',
   templateUrl: './schedule-widget.component.html',
   styleUrls: ['./schedule-widget.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
-export class ScheduleWidgetComponent implements OnInit {
+export class ScheduleWidgetComponent implements OnInit, OnDestroy {
   cogIcon: IconDefinition = faCog;
   chevronLeftIcon: IconDefinition = faChevronLeft;
   chevronRightIcon: IconDefinition = faChevronRight;
@@ -46,105 +46,32 @@ export class ScheduleWidgetComponent implements OnInit {
   assignmentIcon: IconDefinition = faBook;
   linkIcon: IconDefinition = faSquareArrowUpRight;
 
-  openCourses: BehaviorSubject<Schedule[]> = new BehaviorSubject<Schedule[]>([]);
+  openCourses: BehaviorSubject<Schedule[]>;
   videoIcon: IconDefinition = faVideo;
   mapIcon: IconDefinition = faMap;
 
-  courseLinks: BehaviorSubject<{ course: { uid: string }; link: string; title: string; }[]> = new BehaviorSubject<{ course: { uid: string }; link: string; title: string; }[]>([]);
+  courseLinks: BehaviorSubject<{ course: { uid: string }; link: string; title: string; }[]>;
   externalLinkIcon: IconDefinition = faLink;
 
-  constructor(private apollo: Apollo) {
+  constructor(private read: ReadService) {
   }
 
   ngOnInit(): void {
     // Every time the date changes, we want to update the schedule
     this.date = new BehaviorSubject<string>(getCurrentDate());
+    this.openCourses = new BehaviorSubject<Schedule[]>([]);
+    this.courseLinks = new BehaviorSubject<{ course: { uid: string }; link: string; title: string; }[]>([]);
     this.date.subscribe((date) => {
       this.openCourses.next([]);
-      this.apollo.query<{
-          getSchedule: {
-            course: {
-              uid: string,
-              name: string,
-              color: string,
-            },
-            startTime: string,
-            endTime: string,
-            link: string,
-            zoomPassword: string,
-            location: string,
-          }[],
-          homeworkAssignments: {
-            edges: {
-              node: {
-                name: string,
-                dueDate: string,
-                dueTime: string,
-                course: {
-                  uid: string
-                }
-              }
-            }[]
-          },
-          courseLinks: {
-            edges: {
-              node: {
-                course: {
-                  uid: string,
-                }
-                link: string
-                title: string
-              }
-            }[]
-          }
-        }>({
-        query: gql`
-          query {
-            getSchedule(date: "${date}") {
-              course {
-                uid
-                name
-                color
-              }
-              startTime
-              endTime
-              link
-              zoomPassword
-              location
-            }
-            homeworkAssignments(completed: false) {
-              edges {
-                node {
-                  name
-                  dueDate
-                  dueTime
-                  course {
-                    uid
-                  }
-                }
-              }
-            }
-            courseLinks {
-              edges {
-                node {
-                  course {
-                    uid
-                  }
-                  link
-                  title
-                }
-              }
-            }
-          }
-        `
-      }).subscribe((data) => {
-        data.data.getSchedule.length > 0 ? this.schedule.next(data.data.getSchedule) : this.schedule.next(null);
-        for (const course of data.data.getSchedule) {
+
+      this.read.getSchedule(date).then((data) => {
+        data.getSchedule.length > 0 ? this.schedule.next(data.getSchedule) : this.schedule.next(null);
+        for (const course of data.getSchedule) {
           this.isCourseCurrent(course);
         }
 
         let assignmentsDueSoon: { node: { name: string; dueDate: string; dueTime: string; course: { uid: string } }; }[] = [];
-        for (const assignment of data.data.homeworkAssignments.edges) {
+        for (const assignment of data.homeworkAssignments.edges) {
           // Check if the assignment is due within the next three days
           const dueDateTime = new Date(assignment.node.dueDate + 'T' + assignment.node.dueTime);
           const currentDate = new Date(date + 'T00:00:00');
@@ -156,9 +83,9 @@ export class ScheduleWidgetComponent implements OnInit {
         }
         this.assignmentsDueSoon.next(assignmentsDueSoon);
 
-        this.courseLinks.next(data.data.courseLinks.edges.map((edge) => edge.node));
-      });
-    });
+        this.courseLinks.next(data.courseLinks.edges.map((edge) => edge.node));
+      })
+    })
   }
 
   incrementDate() {
@@ -252,5 +179,33 @@ export class ScheduleWidgetComponent implements OnInit {
       }
     }
     return false;
+  }
+
+  ngOnDestroy() {
+    // Zero out all the data
+    this.schedule.next(null);
+    this.openCourses.next([]);
+    this.assignmentsDueSoon.next(null);
+    this.courseLinks.next([]);
+  }
+
+  getDate() {
+    return this.date.getValue();
+  }
+
+  getSchedule() {
+    return this.schedule.getValue();
+  }
+
+  getOpenCourses() {
+    return this.openCourses.getValue();
+  }
+
+  getCourseLinks() {
+    return this.courseLinks.getValue();
+  }
+
+  getAssignmentsDueSoon() {
+    return this.assignmentsDueSoon.getValue();
   }
 }

@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
 import { CalendarEvent } from '../calendar.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faCalendar, faClose, faPlus } from '@fortawesome/pro-solid-svg-icons';
+import { ReadService } from '../../../../services/model/read/read.service';
 
 @Component({
   selector: 'app-calendar-info',
   templateUrl: './calendar-info.component.html',
-  styleUrls: ['./calendar-info.component.css']
+  styleUrls: ['./calendar-info.component.css'],
 })
 export class CalendarInfoComponent implements OnInit {
   events: CalendarEvent[] = [];
@@ -19,75 +20,14 @@ export class CalendarInfoComponent implements OnInit {
   selectedEvent: CalendarEvent | null = null;
   closeIcon: IconDefinition = faClose;
 
-  constructor(private apollo: Apollo, private route: ActivatedRoute, private router: Router) {
+  constructor(private apollo: Apollo, private route: ActivatedRoute, private router: Router, private read: ReadService) {
   }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.apollo.query<{
-        calendarEvents: {
-          edges: {
-            node: {
-              date: string,
-              time: string,
-              title: string,
-              description: string,
-            }
-          }[]
-        }
-        homeworkAssignments: {
-          edges: {
-            node: {
-              completed: boolean,
-              dueDate: string,
-              dueTime: string,
-              name: string,
-              description: string,
-              link: string,
-              course: {
-                name: string,
-                color: string,
-              }
-            }
-          }[]
-        }
-      }>({
-        query: gql`
-          query getCalendarEvents($date: Date!) {
-            calendarEvents(date: $date) {
-              edges {
-                node {
-                  date
-                  time
-                  title
-                  description
-                }
-              }
-            }
-            homeworkAssignments(dueDate: $date) {
-              edges {
-                node {
-                  completed
-                  dueDate
-                  dueTime
-                  name
-                  description
-                  link
-                  course {
-                    name
-                    color
-                  }
-                }
-              }
-            }
-          }
-        `,
-        variables: {
-          date: params.date
-        }
-      }).subscribe(data => {
+      this.read.getCalendarEventInfo(params.date).then(data => {
         // Add the calendar events
-        this.events = data.data.calendarEvents.edges.map(edge => {
+        this.events = data.calendarEvents.edges.map(edge => {
           return {
             date: edge.node.date,
             time: edge.node.time === '00:00:00' ? undefined : edge.node.time,
@@ -100,7 +40,7 @@ export class CalendarInfoComponent implements OnInit {
         });
 
         // Add the homework assignments
-        this.events = this.events.concat(data.data.homeworkAssignments.edges.map(edge => {
+        this.events = this.events.concat(data.homeworkAssignments.edges.map((edge) => {
           return {
             date: edge.node.dueDate,
             time: edge.node.dueTime === '00:00:00' ? undefined : edge.node.dueTime,
@@ -149,6 +89,6 @@ export class CalendarInfoComponent implements OnInit {
   }
 
   closeMenu() {
-    this.router.navigate(['../'], { relativeTo: this.route });
+    this.router.navigate(['../'], { relativeTo: this.route }).then();
   }
 }

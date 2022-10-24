@@ -3,6 +3,7 @@ import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faMemoPad, faPlus, faSquareArrowUpRight } from '@fortawesome/pro-solid-svg-icons';
 import { BehaviorSubject } from 'rxjs';
 import { Apollo, gql } from 'apollo-angular';
+import { ReadService } from '../../../../../services/model/read/read.service';
 
 interface Assignment {
   uid: string
@@ -20,7 +21,7 @@ interface Assignment {
   selector: 'app-assignments-widget',
   templateUrl: './assignments-widget.component.html',
   styleUrls: ['./assignments-widget.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class AssignmentsWidgetComponent implements OnInit {
   plusIcon: IconDefinition = faPlus;
@@ -28,31 +29,11 @@ export class AssignmentsWidgetComponent implements OnInit {
   assignmentIcon: IconDefinition = faMemoPad;
   linkIcon: IconDefinition = faSquareArrowUpRight;
 
-  constructor(private apollo: Apollo) {
+  constructor(private read: ReadService) {
   }
 
   ngOnInit(): void {
-    this.apollo.query<{ homeworkAssignments: { edges: { node: Assignment; }[] } }>({
-      query: gql`
-        query {
-          homeworkAssignments(completed: false) {
-            edges {
-              node {
-                uid
-                name
-                dueDate
-                dueTime
-                course {
-                  uid
-                  name
-                  color
-                }
-              }
-            }
-          }
-        }
-      `
-    }).subscribe(({ data }) => {
+    this.read.getHomeworkAssignments().then((data) => {
       // Check if the assignment is late, or it is due within the next 3 days
       const now = new Date();
       const threeDaysFromNow = new Date();
@@ -78,4 +59,7 @@ export class AssignmentsWidgetComponent implements OnInit {
     return hours + ':' + minutes + ' ' + ampm;
   }
 
+  getUpcomingAssignments() {
+    return this.upcomingAssignments.getValue();
+  }
 }

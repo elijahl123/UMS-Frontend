@@ -1,0 +1,6 @@
+<ui-card [color]="assignment.course.color.toLowerCase()"
+         [head]="assignment.name"
+         [leftIcon]="assignmentIcon"
+         [rightIcon]="infoIcon"
+         sub="{{ assignment.course.name }}: {{ assignment.dueTime | time }}">
+</ui-card>

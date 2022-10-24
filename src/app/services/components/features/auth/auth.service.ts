@@ -113,7 +113,10 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/auth/login']).then();
+    localStorage.setItem('token', '');
+    this.setToken(null);
+
+    // Refresh the page to clear the cache
+    this.router.navigate(['/auth', 'login'], {queryParams: {refresh: true}});
   }
 }

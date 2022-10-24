@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="assignments-widget-content">
-    <ng-container *ngFor="let assignment of upcomingAssignments.value">
+    <ng-container *ngFor="let assignment of getUpcomingAssignments()">
       <ui-card [color]="assignment.course.color.toLowerCase()"
                [head]="assignment.name"
                [leftIcon]="assignmentIcon"

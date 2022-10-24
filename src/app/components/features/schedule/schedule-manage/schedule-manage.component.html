@@ -1,0 +1,17 @@
+<div class="class-schedule-content-manage-content">
+  <div class="class-schedule-content-manage-content-header">
+    <div class="class-schedule-content-manage-content-header-title">Manage Schedule</div>
+    <button class="class-schedule-content-manage-content-header-button hover-enabled secondary-muted" (click)="closeMenu()">
+      <fa-icon [icon]="closeIcon" class="w-4 h-4 flex justify-center items-center"></fa-icon>
+    </button>
+  </div>
+  <div class="class-schedule-content-manage-content-body">
+    <ui-card *ngFor="let courseTime of courseTimes"
+             [color]="courseTime.course.color.toLowerCase()"
+             [leftIcon]="courseIcon"
+             [head]="courseTime.course.name"
+             sub="{{getWeekdayStr(courseTime)}} at {{ courseTime.startTime | time }}"
+             [rightIcon]="editIcon"
+    ></ui-card>
+  </div>
+</div>
