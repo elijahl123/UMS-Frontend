@@ -5,26 +5,26 @@ import { CommonModule } from '@angular/common';
 import { BaseUiComponent } from '../../../core/components/ui/base.ui.component';
 
 @Component({
-  standalone: true,
-  imports: [
-    FontAwesomeModule,
-    CommonModule
-  ],
-  selector: 'ui-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.css'],
-  encapsulation: ViewEncapsulation.None
+   standalone: true,
+   imports: [
+      FontAwesomeModule,
+      CommonModule
+   ],
+   selector: 'ui-button',
+   templateUrl: './button.component.html',
+   styleUrls: ['./button.component.css'],
+   encapsulation: ViewEncapsulation.None
 })
 export class ButtonComponent extends BaseUiComponent implements OnInit {
-  @Input('type') buttonType: string = 'button';
-  @Input() text: string = 'Button';
-  @Input() leftIcon: IconDefinition;
-  @Input() rightIcon: IconDefinition;
+   @Input('type') buttonType: string = 'button';
+   @Input() text: string = 'Button';
+   @Input() leftIcon: IconDefinition;
+   @Input() rightIcon: IconDefinition;
 
-  constructor() {
-    super();
-  }
+   constructor() {
+      super();
+   }
 
-  ngOnInit(): void {
-  }
+   ngOnInit(): void {
+   }
 }

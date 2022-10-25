@@ -7,24 +7,24 @@ import { BreadcrumbItemComponent } from './breadcrumb-item/breadcrumb-item.compo
 import { BaseUiComponent } from '../../../core/components/ui/base.ui.component';
 
 @Component({
-  standalone: true,
-  imports: [
-    FontAwesomeModule,
-    CommonModule,
-    BreadcrumbItemComponent
-  ],
-  selector: 'ui-breadcrumb',
-  templateUrl: './breadcrumb.component.html',
-  styleUrls: ['./breadcrumb.component.css']
+   standalone: true,
+   imports: [
+      FontAwesomeModule,
+      CommonModule,
+      BreadcrumbItemComponent
+   ],
+   selector: 'ui-breadcrumb',
+   templateUrl: './breadcrumb.component.html',
+   styleUrls: ['./breadcrumb.component.css']
 })
 export class BreadcrumbComponent extends BaseUiComponent implements OnInit {
-  @Input() mainIcon: IconDefinition = faFolder;
+   @Input() mainIcon: IconDefinition = faFolder;
 
-  constructor() {
-    super();
-  }
+   constructor() {
+      super();
+   }
 
-  ngOnInit(): void {
-  }
+   ngOnInit(): void {
+   }
 
 }

@@ -1,7 +1,7 @@
 .form-select-wrapper {
-  @apply w-full h-full relative;
+   @apply w-full h-full relative;
 }
 
 .form-select-caret {
-  @apply absolute inset-y-2 right-4 flex items-center justify-center pointer-events-none text-brand-secondary;
+   @apply absolute inset-y-2 right-4 flex items-center justify-center pointer-events-none text-brand-secondary;
 }

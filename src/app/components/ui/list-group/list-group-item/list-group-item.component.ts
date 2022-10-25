@@ -5,22 +5,22 @@ import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { BaseUiComponent } from '../../../../core/components/ui/base.ui.component';
 
 @Component({
-  selector: 'ui-list-group-item',
-  standalone: true,
-  imports: [CommonModule, FontAwesomeModule],
-  templateUrl: './list-group-item.component.html',
-  styleUrls: ['./list-group-item.component.css']
+   selector: 'ui-list-group-item',
+   standalone: true,
+   imports: [CommonModule, FontAwesomeModule],
+   templateUrl: './list-group-item.component.html',
+   styleUrls: ['./list-group-item.component.css']
 })
 export class ListGroupItemComponent extends BaseUiComponent implements OnInit {
-  @Input() text: string;
-  @Input() leftIcon: IconDefinition;
-  @Input() rightIcon: IconDefinition;
+   @Input() text: string;
+   @Input() leftIcon: IconDefinition;
+   @Input() rightIcon: IconDefinition;
 
-  constructor() {
-    super();
-  }
+   constructor() {
+      super();
+   }
 
-  ngOnInit(): void {
-  }
+   ngOnInit(): void {
+   }
 
 }

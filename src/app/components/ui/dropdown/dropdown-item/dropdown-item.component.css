@@ -1,7 +1,7 @@
 .dropdown-item {
-  @apply px-4 py-2 inline-grid grid-flow-col gap-4 auto-cols-auto max-w-full w-full;
+   @apply px-4 py-2 inline-grid grid-flow-col gap-4 auto-cols-auto max-w-full w-full;
 }
 
 .dropdown-item-text {
-  @apply w-full truncate text-left;
+   @apply w-full truncate text-left;
 }

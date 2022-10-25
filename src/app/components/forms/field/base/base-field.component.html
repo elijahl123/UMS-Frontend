@@ -1,21 +1,21 @@
 <div [ngClass]="['form-field', getFormFieldClass()]">
-  <div class="form-field-label-wrapper">
-    <label [for]="id" class="form-field-label">
-      {{ label }} <span *ngIf="required" class="text-utility-danger">*</span>
-    </label>
-    <span *ngIf="subLabel" class="form-field-label-sub">{{ subLabel }}</span>
-  </div>
-  <ng-content></ng-content>
+   <div class="form-field-label-wrapper">
+      <label [for]="id" class="form-field-label">
+         {{ label }} <span *ngIf="required" class="text-utility-danger">*</span>
+      </label>
+      <span *ngIf="subLabel" class="form-field-label-sub">{{ subLabel }}</span>
+   </div>
+   <ng-content></ng-content>
 </div>
 <div class="col-sm-2 form-group">
-  <label for="amount">Amount</label>
-  <input
-    type="number"
-    id="amount"
-    class="form-control"
-    name="amount"
-    ngModel
-    required
-    pattern="^[1-9]+[0-9]*$"
-  >
+   <label for="amount">Amount</label>
+   <input
+      type="number"
+      id="amount"
+      class="form-control"
+      name="amount"
+      ngModel
+      required
+      pattern="^[1-9]+[0-9]*$"
+   >
 </div>

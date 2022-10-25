@@ -13,19 +13,19 @@ import { faChevronDown } from '@fortawesome/pro-solid-svg-icons';
  * </form-select-input>
  */
 @Component({
-  selector: 'form-select-input',
-  templateUrl: './select-input.component.html',
-  styleUrls: ['./select-input.component.css'],
-  encapsulation: ViewEncapsulation.None
+   selector: 'form-select-input',
+   templateUrl: './select-input.component.html',
+   styleUrls: ['./select-input.component.css'],
+   encapsulation: ViewEncapsulation.None
 })
 export class SelectInputComponent extends BaseFormsComponent implements OnInit {
-  caretIcon: IconDefinition = faChevronDown;
+   caretIcon: IconDefinition = faChevronDown;
 
-  constructor() {
-    super();
-  }
+   constructor() {
+      super();
+   }
 
-  ngOnInit(): void {
-  }
+   ngOnInit(): void {
+   }
 
 }

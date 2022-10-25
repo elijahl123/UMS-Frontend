@@ -15,38 +15,38 @@ import { BaseFormComponent } from './base/base-form.component';
 import { BaseFieldComponent } from './field/base/base-field.component';
 
 @NgModule({
-  declarations: [
-    TextInputComponent,
-    SelectInputComponent,
-    TextAreaComponent,
-    MultiSelectInputComponent,
-    SearchInputComponent,
-    NumberInputComponent,
-    CheckboxInputComponent,
-    RadioInputComponent,
-    SwitchInputComponent,
-    BaseFieldComponent,
-    BaseFormComponent,
-  ],
-  exports: [
-    CheckboxInputComponent,
-    RadioInputComponent,
-    MultiSelectInputComponent,
-    NumberInputComponent,
-    SearchInputComponent,
-    SelectInputComponent,
-    SwitchInputComponent,
-    TextAreaComponent,
-    TextInputComponent,
-    BaseFieldComponent,
-    BaseFormComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    FontAwesomeModule
-  ]
+   declarations: [
+      TextInputComponent,
+      SelectInputComponent,
+      TextAreaComponent,
+      MultiSelectInputComponent,
+      SearchInputComponent,
+      NumberInputComponent,
+      CheckboxInputComponent,
+      RadioInputComponent,
+      SwitchInputComponent,
+      BaseFieldComponent,
+      BaseFormComponent,
+   ],
+   exports: [
+      CheckboxInputComponent,
+      RadioInputComponent,
+      MultiSelectInputComponent,
+      NumberInputComponent,
+      SearchInputComponent,
+      SelectInputComponent,
+      SwitchInputComponent,
+      TextAreaComponent,
+      TextInputComponent,
+      BaseFieldComponent,
+      BaseFormComponent,
+   ],
+   imports: [
+      CommonModule,
+      FormsModule,
+      ReactiveFormsModule,
+      FontAwesomeModule
+   ]
 })
 export class UmsFormsModule {
 }

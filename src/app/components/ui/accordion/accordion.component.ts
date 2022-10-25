@@ -9,23 +9,23 @@ import { ToggleUiComponent } from '../../../core/components/ui/toggle.ui.compone
  * @see [ Angular UI Components ] (https://angular.io/guide/components#ui-components)
  */
 @Component({
-  standalone: true,
-  imports: [
-    FontAwesomeModule,
-    CommonModule
-  ],
-  selector: 'ui-accordion',
-  templateUrl: './accordion.component.html',
-  styleUrls: ['./accordion.component.css']
+   standalone: true,
+   imports: [
+      FontAwesomeModule,
+      CommonModule
+   ],
+   selector: 'ui-accordion',
+   templateUrl: './accordion.component.html',
+   styleUrls: ['./accordion.component.css']
 })
 export class AccordionComponent extends ToggleUiComponent implements OnInit {
 
-  constructor() {
-    super();
-  }
+   constructor() {
+      super();
+   }
 
-  ngOnInit(): void {
-    // initialize the isOpen property depending on content
-  }
+   ngOnInit(): void {
+      // initialize the isOpen property depending on content
+   }
 
 }

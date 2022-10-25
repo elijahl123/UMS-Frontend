@@ -1,18 +1,18 @@
 <div class="form-control-number">
-  <input
-    [(ngModel)]="value"
-    [id]="id"
-    [name]="name"
-    [required]="required"
-    class="form-control"
-    type="number"
-  >
-  <div class="form-control-number-set">
-    <button (click)="increment()" class="form-control-set-button" type="button">
-      <fa-icon [icon]="upArrow" size="sm"></fa-icon>
-    </button>
-    <button (click)="decrement()" class="form-control-set-button" type="button">
-      <fa-icon [icon]="downArrow" size="sm"></fa-icon>
-    </button>
-  </div>
+   <input
+      [(ngModel)]="value"
+      [id]="id"
+      [name]="name"
+      [required]="required"
+      class="form-control"
+      type="number"
+   >
+   <div class="form-control-number-set">
+      <button (click)="increment()" class="form-control-set-button" type="button">
+         <fa-icon [icon]="upArrow" size="sm"></fa-icon>
+      </button>
+      <button (click)="decrement()" class="form-control-set-button" type="button">
+         <fa-icon [icon]="downArrow" size="sm"></fa-icon>
+      </button>
+   </div>
 </div>

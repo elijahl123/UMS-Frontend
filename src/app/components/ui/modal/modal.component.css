@@ -1,27 +1,27 @@
 .modal {
-  @apply hidden absolute bg-brand-secondary-muted inset-0 backdrop-blur-sm items-center justify-center;
+   @apply hidden absolute bg-brand-secondary-muted inset-0 backdrop-blur-sm items-center justify-center;
 }
 
 ui-modal.open > .modal {
-  @apply flex;
+   @apply flex;
 }
 
 .modal-content {
-  @apply bg-white p-4 rounded-lg shadow shadow-brand-background grid grid-flow-row gap-6 max-w-lg;
+   @apply bg-white p-4 rounded-lg shadow shadow-brand-background grid grid-flow-row gap-6 max-w-lg;
 }
 
 .modal-header {
-  @apply font-bold text-2xl grid grid-flow-col auto-cols-auto justify-between items-center gap-4 text-brand-main;
+   @apply font-bold text-2xl grid grid-flow-col auto-cols-auto justify-between items-center gap-4 text-brand-main;
 }
 
 .modal-header-text {
-  @apply truncate;
+   @apply truncate;
 }
 
 .modal-body {
-  @apply text-brand-secondary;
+   @apply text-brand-secondary;
 }
 
 .modal-footer {
-  @apply grid grid-flow-col auto-cols-auto gap-4 justify-end;
+   @apply grid grid-flow-col auto-cols-auto gap-4 justify-end;
 }

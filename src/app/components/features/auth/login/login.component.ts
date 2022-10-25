@@ -6,58 +6,58 @@ import { AuthService } from '../../../../services/components/features/auth/auth.
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  encapsulation: ViewEncapsulation.None,
+   selector: 'app-login',
+   templateUrl: './login.component.html',
+   styleUrls: ['./login.component.css'],
+   encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent implements OnInit {
-  loading: boolean = false;
-  loginForm: FormGroup;
-  googleIcon: IconDefinition = faGoogle;
+   loading: boolean = false;
+   loginForm: FormGroup;
+   googleIcon: IconDefinition = faGoogle;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
-  }
+   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+   }
 
-  ngOnInit(): void {
-    this.loginForm = this.createForm();
-  }
+   ngOnInit(): void {
+      this.loginForm = this.createForm();
+   }
 
-  onSubmit() {
-    this.loading = true;
-    if (this.loginForm.valid) {
-      this.authService.tokenAuth(this.loginForm.value.email, this.loginForm.value.password)
-        .then(() => {
-          this.router.navigate(['/']);
-        }, (error) => {
-          this.loginForm.setErrors({ error: error });
-          this.loading = false;
-        });
-    }
-  }
-
-  createForm(): FormGroup {
-    return this.fb.group(
-      {
-        // email is required and must be a valid email
-        email: [null, Validators.compose([
-          Validators.email,
-          Validators.required
-        ])
-        ],
-        password: [null, Validators.compose([
-          Validators.required,
-        ])]
-      });
-  }
-
-  getFormErrors(): NgIterable<any> | undefined | null {
-    let errors: string[] = [];
-    if (this.loginForm.errors) {
-      for (const value of Object.values(this.loginForm.errors)) {
-        errors.push(value.message);
+   onSubmit() {
+      this.loading = true;
+      if (this.loginForm.valid) {
+         this.authService.tokenAuth(this.loginForm.value.email, this.loginForm.value.password)
+            .then(() => {
+               this.router.navigate(['/']);
+            }, (error) => {
+               this.loginForm.setErrors({ error: error });
+               this.loading = false;
+            });
       }
-    }
-    return errors;
-  }
+   }
+
+   createForm(): FormGroup {
+      return this.fb.group(
+         {
+            // email is required and must be a valid email
+            email: [null, Validators.compose([
+               Validators.email,
+               Validators.required
+            ])
+            ],
+            password: [null, Validators.compose([
+               Validators.required,
+            ])]
+         });
+   }
+
+   getFormErrors(): NgIterable<any> | undefined | null {
+      let errors: string[] = [];
+      if (this.loginForm.errors) {
+         for (const value of Object.values(this.loginForm.errors)) {
+            errors.push(value.message);
+         }
+      }
+      return errors;
+   }
 }

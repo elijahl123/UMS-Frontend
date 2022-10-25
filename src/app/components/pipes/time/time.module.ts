@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 import { TimePipe } from './time.pipe';
 
 
-
 @NgModule({
-  declarations: [
-    TimePipe
-  ],
-  exports: [
-    TimePipe
-  ],
-  imports: [
-    CommonModule
-  ]
+   declarations: [
+      TimePipe
+   ],
+   exports: [
+      TimePipe
+   ],
+   imports: [
+      CommonModule
+   ]
 })
-export class TimeModule { }
+export class TimeModule {
+}

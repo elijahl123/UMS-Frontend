@@ -13,20 +13,21 @@ import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
-  declarations: [
-    AuthComponent,
-    LoginComponent,
-    SignupComponent
-  ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    SpinnerComponent,
-    ReactiveFormsModule,
-    UmsFormsModule,
-    FormsModule,
-    FontAwesomeModule,
-    AlertComponent
-  ]
+   declarations: [
+      AuthComponent,
+      LoginComponent,
+      SignupComponent
+   ],
+   imports: [
+      CommonModule,
+      AuthRoutingModule,
+      SpinnerComponent,
+      ReactiveFormsModule,
+      UmsFormsModule,
+      FormsModule,
+      FontAwesomeModule,
+      AlertComponent
+   ]
 })
-export class AuthModule { }
+export class AuthModule {
+}

@@ -24,25 +24,25 @@ import { ToggleUiComponent } from '../../../core/components/ui/toggle.ui.compone
  * @description: This component is used to create a collapse element.
  */
 @Component({
-  standalone: true,
-  imports: [
-    FontAwesomeModule,
-    CommonModule
-  ],
-  selector: 'ui-collapse',
-  templateUrl: './collapse.component.html',
-  styleUrls: ['./collapse.component.css']
+   standalone: true,
+   imports: [
+      FontAwesomeModule,
+      CommonModule
+   ],
+   selector: 'ui-collapse',
+   templateUrl: './collapse.component.html',
+   styleUrls: ['./collapse.component.css']
 })
 export class CollapseComponent extends ToggleUiComponent implements OnInit {
 
-  @ViewChild('collapseBody', { static: false }) collapseBody: any;
+   @ViewChild('collapseBody', { static: false }) collapseBody: any;
 
-  constructor() {
-    super();
-  }
+   constructor() {
+      super();
+   }
 
-  ngOnInit(): void {
-  }
+   ngOnInit(): void {
+   }
 
 }
 

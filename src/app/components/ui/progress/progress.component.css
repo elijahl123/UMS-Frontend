@@ -1,7 +1,7 @@
 .progress-wrapper {
-  @apply bg-brand-background rounded-lg overflow-hidden relative;
+   @apply bg-brand-background rounded-lg overflow-hidden relative;
 }
 
 .progress-bar {
-  @apply absolute inset-y-0 left-0;
+   @apply absolute inset-y-0 left-0;
 }

@@ -1,20 +1,20 @@
 .brand-background {
-  --current-color: rgba(var(--color-brand-background), 1);
-  @apply !shadow-brand-background bg-brand-background text-brand-secondary;
+   --current-color: rgba(var(--color-brand-background), 1);
+   @apply !shadow-brand-background bg-brand-background text-brand-secondary;
 }
 
 .form-control-number {
-  @apply relative;
+   @apply relative;
 }
 
 input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+   -webkit-appearance: none;
 }
 
 .form-control-number-set {
-  @apply absolute right-2 top-2 bottom-2 grid grid-rows-2 gap-1;
+   @apply absolute right-2 top-2 bottom-2 grid grid-rows-2 gap-1;
 }
 
 .form-control-set-button {
-  @apply w-full h-full px-4 flex items-center justify-center cursor-pointer brand-background hover:bg-brand-background-hover rounded;
+   @apply w-full h-full px-4 flex items-center justify-center cursor-pointer brand-background hover:bg-brand-background-hover rounded;
 }

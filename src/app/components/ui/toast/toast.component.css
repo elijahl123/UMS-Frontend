@@ -1,27 +1,27 @@
 .toast {
-  @apply rounded-lg p-4 grid grid-flow-col auto-cols-[max-content_auto_max-content] gap-4;
+   @apply rounded-lg p-4 grid grid-flow-col auto-cols-[max-content_auto_max-content] gap-4;
 }
 
 .toast-icon {
-  @apply pt-0.5;
+   @apply pt-0.5;
 }
 
 .toast-text {
-  @apply grid gap-3;
+   @apply grid gap-3;
 }
 
 .toast-text-header {
-  @apply text-lg;
+   @apply text-lg;
 }
 
 .toast-text-sub {
-  @apply text-sm;
+   @apply text-sm;
 }
 
 .toast-text-content {
-  @apply grid grid-flow-col auto-cols-max gap-4;
+   @apply grid grid-flow-col auto-cols-max gap-4;
 }
 
 .toast-button {
-  @apply !text-sm rounded-lg bg-brand-background;
+   @apply !text-sm rounded-lg bg-brand-background;
 }

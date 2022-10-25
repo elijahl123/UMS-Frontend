@@ -1,52 +1,52 @@
 .form-check {
-  @apply grid grid-flow-col auto-cols-max gap-2.5 items-center relative cursor-pointer select-none;
+   @apply grid grid-flow-col auto-cols-max gap-2.5 items-center relative cursor-pointer select-none;
 }
 
 /* Hide the browser's default checkbox */
 .form-check input {
-  @apply absolute opacity-0 cursor-pointer h-0 w-0;
+   @apply absolute opacity-0 cursor-pointer h-0 w-0;
 }
 
 /* Create a custom checkbox */
 .form-checkmark {
-  @apply top-0 left-0 h-4 w-4 bg-utility-info-muted rounded transition-all duration-100;
+   @apply top-0 left-0 h-4 w-4 bg-utility-info-muted rounded transition-all duration-100;
 }
 
 /* On mouse-over, add a grey background color */
 .form-check:hover input ~ .form-checkmark {
-  background-color: rgba(var(--color-utility-info) 0.5);
+   background-color: rgba(var(--color-utility-info) 0.5);
 }
 
 /* When the checkbox is checked, add a blue background */
 .form-check input:checked ~ .form-checkmark {
-  @apply !bg-utility-info;
+   @apply !bg-utility-info;
 }
 
 /* Create the form-checkmark/indicator (hidden when not checked) */
 .form-checkmark::after {
-  content: "";
-  position: absolute;
-  display: none;
+   content: "";
+   position: absolute;
+   display: none;
 }
 
 /* Show the form-checkmark when checked */
 .form-check input:checked ~ .form-checkmark::after {
-  @apply block;
+   @apply block;
 }
 
 /* Style the form-checkmark/indicator */
 .form-check .form-checkmark::after {
-  left: 6px;
-  top: 8px;
-  width: 4px;
-  height: 7px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-  transform: rotate(45deg);
-  transform: rotate(45deg);
+   left: 6px;
+   top: 8px;
+   width: 4px;
+   height: 7px;
+   border: solid white;
+   border-width: 0 2px 2px 0;
+   transform: rotate(45deg);
+   transform: rotate(45deg);
+   transform: rotate(45deg);
 }
 
 .form-check-label {
-  @apply text-brand-secondary text-base;
+   @apply text-brand-secondary text-base;
 }

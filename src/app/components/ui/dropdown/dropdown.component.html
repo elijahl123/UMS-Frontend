@@ -1,10 +1,10 @@
 <div [ngClass]="['dropdown', (isOpen ? 'open' : '')]" uiDropdown>
-  <div class="dropdown-header" #dropdownButton>
-    <ng-content select="[head]"></ng-content>
-  </div>
-  <div [ngClass]="['dropdown-body']" #dropdownBody>
-    <div [ngClass]="['dropdown-body-inner-wrapper', class]">
-      <ng-content></ng-content>
-    </div>
-  </div>
+   <div class="dropdown-header" #dropdownButton>
+      <ng-content select="[head]"></ng-content>
+   </div>
+   <div [ngClass]="['dropdown-body']" #dropdownBody>
+      <div [ngClass]="['dropdown-body-inner-wrapper', class]">
+         <ng-content></ng-content>
+      </div>
+   </div>
 </div>
