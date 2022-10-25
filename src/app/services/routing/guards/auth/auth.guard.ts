@@ -30,7 +30,6 @@ export class AuthGuard implements CanActivate {
       this.authService.verifyToken(this.authService.getToken() || '')
         .subscribe(({data}) => {
           if (data) {
-            console.log(data);
             if (data.verifyToken) {
               resolve(true);
             }

@@ -94,5 +94,6 @@ export class HomeworkComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+     this.outlet.deactivate();
   }
 }

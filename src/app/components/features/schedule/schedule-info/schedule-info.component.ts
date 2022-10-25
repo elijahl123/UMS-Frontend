@@ -41,8 +41,11 @@ export class ScheduleInfoComponent implements OnInit, OnDestroy {
    ngOnInit(): void {
       // Pull the course time from the route
       this.route.paramMap.subscribe(params => {
-         this.uid.next(params.get('uid'));
-      });
+            this.uid.next(params.get('uid'));
+         },
+         error => {
+            console.error(error);
+         })
       this.uid.subscribe(uid => {
          if (uid) {
             this.read.getScheduleInfo(uid).then(data => {

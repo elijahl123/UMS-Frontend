@@ -280,7 +280,7 @@ export class ReadService {
          }
       }>(gql`
          query {
-            courseTimes(uid: "${uid}") {
+            courseTimes(uid: "${uid}", token: "${this.authService.getToken()}") {
                edges {
                   node {
                      uid

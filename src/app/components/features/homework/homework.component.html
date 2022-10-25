@@ -7,7 +7,7 @@
   </div>
   <div class="homework-body">
     <div class="homework-body-inner">
-      <div *ngIf="getLateAssignments().length !== 0" class="homework-late-assignments danger-muted">
+      <div *ngIf="getLateAssignments().length !== 0" class="homework-late-assignments danger !bg-utility-danger-hover">
         <div class="homework-late-assignments-header">
           <h3 class="homework-late-assignments-header-title">Missing Assignments</h3>
         </div>
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div [ngClass]="['homework-body-router', isRouterActive() ? 'w-0' : 'w-1/2']">
-      <router-outlet name="homeworkInfo"></router-outlet>
+      <router-outlet name="homeworkInfo" #homeworkInfo></router-outlet>
     </div>
   </div>
 </div>
