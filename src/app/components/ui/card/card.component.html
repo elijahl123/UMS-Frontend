@@ -1,5 +1,5 @@
 <div (click)="onClick($event)"
-     [ngClass]="['card-item hover-enabled', color, class]">
+     [ngClass]="['card-item hover-enabled', color, class, leftIcon ? '!pl-2.5' : '']" [ngStyle]="style ">
    <div
       [ngClass]="['card-item-left-icon', color.endsWith('-muted') ? color : color.concat('-muted')]" *ngIf="leftIcon">
       <fa-icon [icon]="leftIcon"

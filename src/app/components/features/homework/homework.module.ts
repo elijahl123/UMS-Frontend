@@ -12,17 +12,19 @@ import { HomeworkService } from '../../../services/components/features/homework/
 
 
 @NgModule({
-  declarations: [
-    HomeworkComponent,
-    HomeworkItemComponent,
-    HomeworkInfoComponent
-  ],
-  imports: [
-    CommonModule,
-    HomeworkRoutingModule,
-    FontAwesomeModule,
-    CardComponent,
-    TimeModule
-  ]
+   declarations: [
+      HomeworkComponent,
+      HomeworkItemComponent,
+      HomeworkInfoComponent
+   ],
+   imports: [
+      CommonModule,
+      HomeworkRoutingModule,
+      FontAwesomeModule,
+      CardComponent,
+      TimeModule
+   ],
+   providers: [HomeworkService]
 })
-export class HomeworkModule { }
+export class HomeworkModule {
+}

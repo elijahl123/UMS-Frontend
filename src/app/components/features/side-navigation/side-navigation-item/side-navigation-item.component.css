@@ -1,17 +1,17 @@
 .nav-item {
-  @apply grid grid-flow-col auto-cols-[max-content_auto_max-content] gap-4 px-5 py-3 bg-brand-accent-muted
-    text-brand-accent text-lg hover:bg-brand-main hover:text-white rounded-lg focus:shadow-[0_0_0_4px] shadow-none
-    shadow-brand-accent transition-all duration-200 ease-in-out;
+   @apply grid grid-flow-col auto-cols-[max-content_auto_max-content] gap-4 px-5 py-3 bg-brand-accent-muted
+   text-brand-accent text-lg hover:bg-brand-main hover:text-white rounded-lg focus:shadow-[0_0_0_4px] shadow-none
+   shadow-brand-accent transition-all duration-200 ease-in-out;
 }
 
 .nav-item.active {
-  @apply bg-brand-main text-white hover:bg-brand-main-hover shadow-none focus:shadow-[0_0_0_4px] shadow-brand-accent-muted;
+   @apply bg-brand-main text-white hover:bg-brand-main-hover shadow-none focus:shadow-[0_0_0_4px] shadow-brand-accent-muted;
 }
 
 .nav-item:focus:hover {
-  @apply shadow-brand-accent-muted;
+   @apply shadow-brand-accent-muted;
 }
 
 .nav-item-text {
-  @apply text-left truncate;
+   @apply text-left truncate;
 }

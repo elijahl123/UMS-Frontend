@@ -1,16 +1,17 @@
 <div class="calendar-widget">
-  <div class="calendar-widget-header">
-    <h2 class="calendar-widget-title">Calendar</h2>
-    <div class="calendar-widget-header-action btn secondary-muted hover-enabled">
-      <fa-icon [icon]="plusIcon"></fa-icon>
-    </div>
-  </div>
-  <div class="calendar-widget-content">
-    <div class="calendar-widget-content-dates">
-      <div *ngFor="let date of getDates()" (click)="getDateLink(date)" [ngClass]="['calendar-widget-content-date', isDateInMonth(date) ? '': '!text-utility-secondary-muted', isToday(date) ? 'active !secondary': '']" >
-        <div class="calendar-widget-content-date-date" >{{ date | date:'dd' }}</div>
-        <div class="calendar-widget-content-date-indicator"></div>
+   <div class="calendar-widget-header">
+      <h2 class="calendar-widget-title">Calendar</h2>
+      <div class="calendar-widget-header-action btn secondary-muted hover-enabled">
+         <fa-icon [icon]="plusIcon"></fa-icon>
       </div>
-    </div>
-  </div>
+   </div>
+   <div class="calendar-widget-content">
+      <div class="calendar-widget-content-dates">
+         <div *ngFor="let date of getDates()" (click)="getDateLink(date)"
+              [ngClass]="['calendar-widget-content-date', isDateInMonth(date) ? '': '!text-utility-secondary-muted', isToday(date) ? 'active !secondary': '']">
+            <div class="calendar-widget-content-date-date">{{ date | date:'dd' }}</div>
+            <div class="calendar-widget-content-date-indicator"></div>
+         </div>
+      </div>
+   </div>
 </div>

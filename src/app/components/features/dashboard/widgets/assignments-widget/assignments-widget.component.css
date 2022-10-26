@@ -1,23 +1,23 @@
 app-assignments-widget {
-  @apply h-full;
+   @apply h-full;
 }
 
 .assignments-widget {
-  @apply flex flex-col gap-4 overflow-auto h-full;
+   @apply flex flex-col gap-4 overflow-auto h-full;
 }
 
 .assignments-widget-header {
-  @apply flex flex-row justify-between items-center pl-1;
+   @apply flex flex-row justify-between items-center pl-1;
 }
 
 .assignments-widget-title {
-  @apply text-xl text-utility-secondary whitespace-nowrap overflow-hidden overflow-ellipsis;
+   @apply text-xl text-utility-secondary whitespace-nowrap overflow-hidden overflow-ellipsis;
 }
 
 .assignments-widget-header-action {
-  @apply rounded-lg;
+   @apply rounded-lg;
 }
 
 .assignments-widget-content {
-  @apply pr-1 flex flex-col gap-4 h-full rounded-xl overflow-y-auto overflow-x-hidden flex-grow;
+   @apply pr-1 flex flex-col gap-4 h-full rounded-xl overflow-y-auto overflow-x-hidden flex-grow;
 }

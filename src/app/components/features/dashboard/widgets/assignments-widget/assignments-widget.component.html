@@ -1,19 +1,19 @@
 <div class="assignments-widget">
-  <div class="assignments-widget-header">
-    <h2 class="assignments-widget-title">Upcoming Assignments</h2>
-    <div class="assignments-widget-header-action btn secondary-muted hover-enabled">
-      <fa-icon [icon]="plusIcon"></fa-icon>
-    </div>
-  </div>
-  <div class="assignments-widget-content">
-    <ng-container *ngFor="let assignment of getUpcomingAssignments()">
-      <ui-card [color]="assignment.course.color.toLowerCase()"
-               [head]="assignment.name"
-               [leftIcon]="assignmentIcon"
-               [rightIcon]="linkIcon"
-               sub="{{ assignment.course.name }}: {{ assignment.dueDate | date:'EEEE' }} at {{ formatTime(assignment.dueTime) }}"
-      >
-      </ui-card>
-    </ng-container>
-  </div>
+   <div class="assignments-widget-header">
+      <h2 class="assignments-widget-title">Upcoming Assignments</h2>
+      <div class="assignments-widget-header-action btn secondary-muted hover-enabled">
+         <fa-icon [icon]="plusIcon"></fa-icon>
+      </div>
+   </div>
+   <div class="assignments-widget-content">
+      <ng-container *ngFor="let assignment of getUpcomingAssignments()">
+         <ui-card [color]="assignment.course.color.toLowerCase()"
+                  [head]="assignment.name"
+                  [leftIcon]="assignmentIcon"
+                  [rightIcon]="linkIcon"
+                  sub="{{ assignment.course.name }}: {{ assignment.dueDate | date:'EEEE' }} at {{ formatTime(assignment.dueTime) }}"
+         >
+         </ui-card>
+      </ng-container>
+   </div>
 </div>

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DashboardRoutingModule } from '../../../services/routing/components/features/dashboard/dashboard-routing.module';
+import {
+   DashboardRoutingModule
+} from '../../../services/routing/components/features/dashboard/dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { ScheduleWidgetComponent } from './widgets/schedule-widget/schedule-widget.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -12,18 +14,19 @@ import { CalendarWidgetComponent } from './widgets/calendar-widget/calendar-widg
 
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    ScheduleWidgetComponent,
-    AssignmentsWidgetComponent,
-    CalendarWidgetComponent,
-  ],
-	imports: [
-		CommonModule,
-		DashboardRoutingModule,
-		FontAwesomeModule,
-		FormsModule,
-		CardComponent
-	]
+   declarations: [
+      DashboardComponent,
+      ScheduleWidgetComponent,
+      AssignmentsWidgetComponent,
+      CalendarWidgetComponent,
+   ],
+   imports: [
+      CommonModule,
+      DashboardRoutingModule,
+      FontAwesomeModule,
+      FormsModule,
+      CardComponent
+   ]
 })
-export class DashboardModule { }
+export class DashboardModule {
+}

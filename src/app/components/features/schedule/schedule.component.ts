@@ -55,22 +55,16 @@ export class ScheduleComponent implements OnInit, OnDestroy {
          }
       });
       this.selectedCourseTime.subscribe(courseTime => {
-         this.selectedCourseTimeValue = courseTime;
          if (courseTime) {
             // If a course time is selected, navigate to the course time info page
-            this.router.navigate(['/schedule', {
-               outlets: {
-                  'courseTimeInfo': [courseTime.uid]
-               }
-            }]);
+            this.router.navigate([courseTime.uid], { relativeTo: this.route });
          } else {
-            // If no course time is selected, navigate to the schedule page with the courseTimeInfo outlet set to null
-            this.router.navigate(['/schedule', {
-               outlets: {
-                  'courseTimeInfo': null
-               }
-            }]);
+            // If no course time is selected, navigate to the schedule page
+            if (this.selectedCourseTimeValue) {
+               this.router.navigate(['.'], { relativeTo: this.route });
+            }
          }
+         this.selectedCourseTimeValue = courseTime;
       })
    }
 
@@ -216,42 +210,28 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       return this.router.url === '/schedule';
    }
 
-   isRouterOnCourseTimeInfo() {
-      return this.router.url.includes('courseTimeInfo');
-   }
-
-   isRouterOnScheduleInfo() {
-      return this.router.url.includes('scheduleInfo');
-   }
-
    getBodyContainerWrapperStyle() {
       let classes = ['class-schedule-body-container-wrapper'];
       if (!this.isRouterOnHomepage()) {
-         if (this.isRouterOnScheduleInfo()) {
-            if (this.isRouterOnCourseTimeInfo()) {
-               classes.push('gap-4');
-            } else {
-               classes.push('gap-2');
-            }
-         } else {
-            classes.push('gap-4');
-         }
+         classes.push('gap-4');
       }
       return classes;
    }
 
    onManageSchedule() {
       // Check if the scheduleInfo outlet is activated. If so, deactivate it, otherwise activate it
-      if (!this.isRouterOnScheduleInfo()) {
-         this.router.navigate(['/schedule', { outlets: { 'scheduleInfo': ['manage'] } }])
+      if (!this.router.url.startsWith('/schedule/manage')) {
+         this.router.navigate(['/schedule', 'manage'])
       } else {
-         this.router.navigate(['/schedule', { outlets: { 'scheduleInfo': [] } }]);
+         this.router.navigate(['/schedule']);
       }
    }
 
    ngOnDestroy() {
-      this.routerOutlets.forEach(routerOutlet => {
-         routerOutlet.deactivate();
-      })
+   }
+
+   onRouterDeactivate($event: any) {
+      // When the router deactivates, set the selected course time to null
+      this.selectedCourseTime.next(null);
    }
 }

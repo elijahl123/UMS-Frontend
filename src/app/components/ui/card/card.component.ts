@@ -17,7 +17,7 @@ import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 })
 export class CardComponent extends BaseUiComponent implements OnInit {
    @Input() title: string;
-   @Input() leftIcon: IconDefinition;
+   @Input() leftIcon: IconDefinition | null;
    @Input() color: string;
    @Input() rightIcon: IconDefinition;
    @Input() head: string;

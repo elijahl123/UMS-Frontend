@@ -1,22 +1,22 @@
 {
-  "name": "UMS GraphQL Schema",
-  "schemaPath": "schema.graphql",
-  "extensions": {
-    "endpoints": {
-      "Local GraphQL Endpoint": {
-        "url": "http://localhost:8000/api/graphql",
-        "headers": {
-          "user-agent": "JS GraphQL"
-        },
-        "introspect": true
-      },
-      "Prod GraphQL Endpoint": {
-        "url": "https://api.untitledmanagementsoftware.com/api/graphql",
-        "headers": {
-          "user-agent": "JS GraphQL"
-        },
-        "introspect": false
+   "name": "UMS GraphQL Schema",
+   "schemaPath": "schema.graphql",
+   "extensions": {
+      "endpoints": {
+         "Local GraphQL Endpoint": {
+            "url": "http://localhost:8000/api/graphql",
+            "headers": {
+               "user-agent": "JS GraphQL"
+            },
+            "introspect": true
+         },
+         "Prod GraphQL Endpoint": {
+            "url": "https://api.untitledmanagementsoftware.com/api/graphql",
+            "headers": {
+               "user-agent": "JS GraphQL"
+            },
+            "introspect": false
+         }
       }
-    }
-  }
+   }
 }

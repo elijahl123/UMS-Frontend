@@ -1,62 +1,62 @@
 <div class="main">
-  <app-side-navigation isOpen="true" nextClass="success">
-    <app-side-navigation-item
-      [leftIcon]="sideNavIcons['dashboard']"
-      [routerLink]="'/dashboard'"
-      routerLinkActive="active"
-      text="Dashboard"
-    >
-    </app-side-navigation-item>
-    <app-side-navigation-item
-      [leftIcon]="sideNavIcons['calendar']"
-      [routerLink]="'/calendar'"
-      routerLinkActive="active"
-      text="Calendar"
-    >
-    </app-side-navigation-item>
-    <app-side-navigation-item
-      [leftIcon]="sideNavIcons['schedule']"
-      [routerLink]="'/schedule'"
-      routerLinkActive="active"
-      text="Schedule"
-    >
-    </app-side-navigation-item>
-    <app-side-navigation-item
-      [leftIcon]="sideNavIcons['homework']"
-      [routerLink]="'/homework'"
-      routerLinkActive="active"
-      text="Homework"
-    >
-    </app-side-navigation-item>
-    <app-side-navigation-item
-      [leftIcon]="sideNavIcons['notes']"
-      [routerLink]="'/notes'"
-      routerLinkActive="active"
-      text="Notes"
-    >
-    </app-side-navigation-item>
-    <app-side-navigation-item
-      [leftIcon]="sideNavIcons['courses']"
-      [routerLink]="'/courses'"
-      routerLinkActive="active"
-      text="Courses"
-    >
-    </app-side-navigation-item>
-  </app-side-navigation>
-  <div class="content">
-    <app-top-navigation isOpen="false">
-      <app-top-navigation-item
-        [routerLink]="'/auth/login/'"
-        text="Login"
-      ></app-top-navigation-item>
-      <app-top-navigation-item
-        [routerLink]="'/auth/signup/'"
-        text="Sign Up"
-      ></app-top-navigation-item>
-    </app-top-navigation>
-    <ui-spinner *ngIf="loading" class="w-full h-full" lineColor="brand-main"></ui-spinner>
-    <div class="w-full h-full" *ngIf="!loading">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+   <app-side-navigation isOpen="true" nextClass="success">
+      <app-side-navigation-item
+         [leftIcon]="sideNavIcons['dashboard']"
+         [routerLink]="'/dashboard'"
+         routerLinkActive="active"
+         text="Dashboard"
+      >
+      </app-side-navigation-item>
+      <app-side-navigation-item
+         [leftIcon]="sideNavIcons['calendar']"
+         [routerLink]="'/calendar'"
+         routerLinkActive="active"
+         text="Calendar"
+      >
+      </app-side-navigation-item>
+      <app-side-navigation-item
+         [leftIcon]="sideNavIcons['schedule']"
+         [routerLink]="'/schedule'"
+         routerLinkActive="active"
+         text="Schedule"
+      >
+      </app-side-navigation-item>
+      <app-side-navigation-item
+         [leftIcon]="sideNavIcons['homework']"
+         [routerLink]="'/homework'"
+         routerLinkActive="active"
+         text="Homework"
+      >
+      </app-side-navigation-item>
+      <app-side-navigation-item
+         [leftIcon]="sideNavIcons['notes']"
+         [routerLink]="'/notes'"
+         routerLinkActive="active"
+         text="Notes"
+      >
+      </app-side-navigation-item>
+      <app-side-navigation-item
+         [leftIcon]="sideNavIcons['courses']"
+         [routerLink]="'/courses'"
+         routerLinkActive="active"
+         text="Courses"
+      >
+      </app-side-navigation-item>
+   </app-side-navigation>
+   <div class="content">
+      <app-top-navigation isOpen="false">
+         <app-top-navigation-item
+            [routerLink]="'/auth/login/'"
+            text="Login"
+         ></app-top-navigation-item>
+         <app-top-navigation-item
+            [routerLink]="'/auth/signup/'"
+            text="Sign Up"
+         ></app-top-navigation-item>
+      </app-top-navigation>
+      <ui-spinner *ngIf="loading" class="w-full h-full" lineColor="brand-main"></ui-spinner>
+      <div class="w-full h-full" *ngIf="!loading">
+         <router-outlet></router-outlet>
+      </div>
+   </div>
 </div>

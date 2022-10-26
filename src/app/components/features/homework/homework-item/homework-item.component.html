@@ -1,6 +1,9 @@
-<ui-card [color]="assignment.course.color.toLowerCase()"
-         [head]="assignment.name"
-         [leftIcon]="assignmentIcon"
-         [rightIcon]="infoIcon"
-         sub="{{ assignment.course.name }}: {{ assignment.dueTime | time }}">
+<ui-card
+   [color]="this.transparent ? assignment.course.color.toLowerCase().concat('-muted') : assignment.course.color.toLowerCase()"
+   [class]="this.transparent ? '!bg-white hover:!bg-brand-background' : ''"
+   [style]="{'color': this.transparent ? 'rgba(var(--color-utility-'.concat(assignment.course.color.toLowerCase()).concat('), 1)') : ''}"
+   [head]="assignment.name"
+   [leftIcon]="this.transparent ? null : assignmentIcon"
+   [rightIcon]="infoIcon"
+   sub="{{ assignment.course.name }}: {{ assignment.dueTime | time }}">
 </ui-card>

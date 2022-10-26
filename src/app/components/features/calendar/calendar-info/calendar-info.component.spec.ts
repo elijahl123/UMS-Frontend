@@ -3,21 +3,21 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CalendarInfoComponent } from './calendar-info.component';
 
 describe('CalendarInfoComponent', () => {
-  let component: CalendarInfoComponent;
-  let fixture: ComponentFixture<CalendarInfoComponent>;
+   let component: CalendarInfoComponent;
+   let fixture: ComponentFixture<CalendarInfoComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ CalendarInfoComponent ]
-    })
-    .compileComponents();
+   beforeEach(async () => {
+      await TestBed.configureTestingModule({
+         declarations: [CalendarInfoComponent]
+      })
+         .compileComponents();
 
-    fixture = TestBed.createComponent(CalendarInfoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+      fixture = TestBed.createComponent(CalendarInfoComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+   it('should create', () => {
+      expect(component).toBeTruthy();
+   });
 });

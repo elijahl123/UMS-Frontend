@@ -1,21 +1,21 @@
 app-dashboard {
-  @apply h-full w-full;
+   @apply h-full w-full;
 }
 
 .dashboard {
-  @apply grid grid-cols-3 grid-rows-2 gap-4 w-full h-full p-4;
+   @apply grid grid-cols-3 grid-rows-2 gap-4 w-full h-full p-4;
 }
 
 .dashboard-primary-content {
-  @apply bg-brand-background rounded-2xl flex flex-col hover:shadow-[0_0_0_4px]
-    hover:shadow-brand-background-hover transition-all duration-200 row-span-2
-    col-span-2 p-5;
+   @apply bg-brand-background rounded-2xl flex flex-col hover:shadow-[0_0_0_4px]
+   hover:shadow-brand-background-hover transition-all duration-200 row-span-2
+   col-span-2 p-5;
 }
 
 .dashboard-secondary-content {
-  @apply bg-brand-background rounded-2xl flex flex-col hover:shadow-[0_0_0_4px] hover:shadow-brand-background-hover transition-all duration-200 p-5 overflow-y-auto;
+   @apply bg-brand-background rounded-2xl flex flex-col hover:shadow-[0_0_0_4px] hover:shadow-brand-background-hover transition-all duration-200 p-5 overflow-y-auto;
 }
 
 .dashboard-tertiary-content {
-  @apply bg-brand-background rounded-2xl flex flex-col hover:shadow-[0_0_0_4px] hover:shadow-brand-background-hover transition-all duration-200 p-5 overflow-y-auto;
+   @apply bg-brand-background rounded-2xl flex flex-col hover:shadow-[0_0_0_4px] hover:shadow-brand-background-hover transition-all duration-200 p-5 overflow-y-auto;
 }

@@ -11,24 +11,25 @@ import { TopNavigationItemComponent } from './top-navigation/top-navigation-item
 
 
 @NgModule({
-  declarations: [
-    SideNavigationComponent,
-    SideNavigationItemComponent,
-    TopNavigationComponent,
-    TopNavigationItemComponent,
-  ],
-  exports: [
-    SideNavigationComponent,
-    SideNavigationItemComponent,
-    TopNavigationComponent,
-    TopNavigationItemComponent,
-  ],
-	imports: [
-		CommonModule,
-		FontAwesomeModule,
-		ButtonComponent,
-		DashboardModule,
-		RouterModule
-	]
+   declarations: [
+      SideNavigationComponent,
+      SideNavigationItemComponent,
+      TopNavigationComponent,
+      TopNavigationItemComponent,
+   ],
+   exports: [
+      SideNavigationComponent,
+      SideNavigationItemComponent,
+      TopNavigationComponent,
+      TopNavigationItemComponent,
+   ],
+   imports: [
+      CommonModule,
+      FontAwesomeModule,
+      ButtonComponent,
+      DashboardModule,
+      RouterModule
+   ]
 })
-export class FeaturesModule { }
+export class FeaturesModule {
+}

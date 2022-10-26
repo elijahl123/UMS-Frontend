@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Apollo, gql } from 'apollo-angular';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faMap, faPlus, faSchool, faSquareArrowUpRight, faTimes } from '@fortawesome/pro-solid-svg-icons';
 import { faFilePen } from '@fortawesome/pro-duotone-svg-icons';
@@ -35,17 +34,14 @@ export class ScheduleInfoComponent implements OnInit, OnDestroy {
    mapIcon: IconDefinition = faMap;
    closeIcon: IconDefinition = faTimes;
 
-   constructor(private route: ActivatedRoute, private apollo: Apollo, private router: Router, private read: ReadService) {
+   constructor(private route: ActivatedRoute, private router: Router, private read: ReadService) {
    }
 
    ngOnInit(): void {
       // Pull the course time from the route
-      this.route.paramMap.subscribe(params => {
-            this.uid.next(params.get('uid'));
-         },
-         error => {
-            console.error(error);
-         })
+      this.route.params.subscribe((params) => {
+         this.uid.next(params.uid);
+      });
       this.uid.subscribe(uid => {
          if (uid) {
             this.read.getScheduleInfo(uid).then(data => {
@@ -60,11 +56,7 @@ export class ScheduleInfoComponent implements OnInit, OnDestroy {
    }
 
    closeMenu() {
-      this.router.navigate(['/schedule', {
-         outlets: {
-            'courseTimeInfo': null
-         }
-      }]);
+      this.router.navigate(['/schedule']);
    }
 
    ngOnDestroy(): void {

@@ -3,7 +3,7 @@ ui-card {
 }
 
 .card-item {
-   @apply text-white w-full flex flex-row gap-3 items-center px-4 py-2.5 rounded-lg pl-2.5 transition-all duration-200 z-40 active:shadow-[0_0_0_4px] overflow-hidden;
+   @apply w-full flex flex-row gap-3 items-center px-4 py-2.5 rounded-lg transition-all duration-200 z-40 active:shadow-[0_0_0_4px] overflow-hidden;
 }
 
 .card-item-left-icon {

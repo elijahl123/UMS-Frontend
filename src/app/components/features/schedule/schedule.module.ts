@@ -11,17 +11,18 @@ import { CardComponent } from '../../ui/card/card.component';
 
 
 @NgModule({
-  declarations: [
-    ScheduleComponent,
-    ScheduleInfoComponent,
-    ScheduleManageComponent
-  ],
-  imports: [
-    CommonModule,
-    ScheduleRoutingModule,
-    FontAwesomeModule,
-    TimeModule,
-    CardComponent
-  ]
+   declarations: [
+      ScheduleComponent,
+      ScheduleInfoComponent,
+      ScheduleManageComponent
+   ],
+   imports: [
+      CommonModule,
+      ScheduleRoutingModule,
+      FontAwesomeModule,
+      TimeModule,
+      CardComponent
+   ]
 })
-export class ScheduleModule { }
+export class ScheduleModule {
+}

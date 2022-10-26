@@ -1,3 +1,35 @@
 .homework-info {
-  @apply w-full h-full;
+   @apply w-full h-full bg-brand-background rounded-lg p-4 flex flex-col gap-4;
+}
+
+.homework-info-header {
+   @apply flex flex-row items-center gap-4;
+}
+
+.homework-info-header-icon {
+   @apply aspect-square w-11 h-11 flex justify-center items-center rounded-lg;
+}
+
+.homework-info-header-title {
+   @apply overflow-hidden flex-grow text-ellipsis text-xl whitespace-nowrap;
+}
+
+.homework-info-header-button {
+   @apply flex justify-center items-center rounded-lg transition-all duration-200 ease-in-out p-3;
+}
+
+.homework-info-body {
+   @apply flex flex-col gap-4 flex-grow;
+}
+
+.homework-info-body-section {
+   @apply p-4 flex flex-col gap-2 rounded-lg;
+}
+
+.homework-info-body-section-title {
+   @apply text-lg;
+}
+
+.homework-info-body-section-content {
+   @apply flex-grow text-sm;
 }

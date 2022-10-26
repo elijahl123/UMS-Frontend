@@ -1,4 +1,4 @@
-<div [ngClass]="['class-schedule-content-info-content',
+<div *ngIf="courseTime" [ngClass]="['class-schedule-content-info-content',
 courseTime.course.color.toLowerCase().concat('-muted')]">
    <div class="class-schedule-content-info-content-header">
       <div [ngClass]="['class-schedule-content-info-content-header-icon',
@@ -40,7 +40,8 @@ courseTime.course.color.toLowerCase().concat('-muted')]">
             </div>
          </div>
          <div *ngIf="courseTime.link" class="class-schedule-content-info-content-body-course-time-link">
-            <a [href]="courseTime.link" [ngClass]="['class-schedule-content-info-content-body-course-time-link-text btn hover-enabled', courseTime.course.color.toLowerCase().concat('-muted')]"
+            <a [href]="courseTime.link"
+               [ngClass]="['class-schedule-content-info-content-body-course-time-link-text btn hover-enabled', courseTime.course.color.toLowerCase().concat('-muted')]"
                target="_blank">
                Go to Class
                <fa-icon [icon]="linkIcon"></fa-icon>
