@@ -1,8 +1,6 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { faBook, faCalendars, faClock, faFilePen, faObjectsColumn, faSchool } from '@fortawesome/pro-duotone-svg-icons';
 import {
-   ActivatedRoute,
-   ActivationStart,
    Event,
    NavigationCancel,
    NavigationEnd,
@@ -29,7 +27,7 @@ export class AppComponent implements OnInit, AfterViewInit {
    loading: boolean;
    @ViewChild(RouterOutlet) routerOutlet: RouterOutlet;
 
-   constructor(private router: Router, private route: ActivatedRoute) {
+   constructor(private router: Router) {
    }
 
    ngOnInit() {
