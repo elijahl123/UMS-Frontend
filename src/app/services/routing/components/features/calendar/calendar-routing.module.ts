@@ -13,7 +13,7 @@ const routes: Routes = [
       canActivate: [AuthGuard],
       children: [
          {
-            path: ':date',
+            path: 'date/:date',
             component: CalendarInfoComponent,
          }
       ]
