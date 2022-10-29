@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
-import { faPlus } from '@fortawesome/pro-solid-svg-icons';
+import { faExclamation, faExclamationCircle, faExclamationTriangle, faPlus } from '@fortawesome/pro-solid-svg-icons';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { HomeworkService } from '../../../services/components/features/homework/homework.service';
 import { ReadService } from '../../../services/model/read/read.service';
@@ -31,6 +31,7 @@ export class HomeworkComponent implements OnInit, OnDestroy {
    assignments: BehaviorSubject<HomeworkAssignment[]> = new BehaviorSubject<HomeworkAssignment[]>([]);
    plusIcon: IconDefinition = faPlus;
    @ViewChild(RouterOutlet) outlet: RouterOutlet;
+   dangerIcon: IconDefinition = faExclamationTriangle;
 
    constructor(private homeworkService: HomeworkService, private read: ReadService, private router: Router, private route: ActivatedRoute) {
    }
@@ -90,10 +91,16 @@ export class HomeworkComponent implements OnInit, OnDestroy {
    }
 
    isRouterActive() {
-      return this.router.url === '/homework';
+      return this.router.url !== '/homework';
    }
 
    ngOnDestroy(): void {
       this.outlet.deactivate();
+   }
+
+   isDateToday(dueDate: string) {
+      const today = new Date();
+      const due = new Date(dueDate + 'T00:00:00');
+      return today.getDate() === due.getDate() && today.getMonth() === due.getMonth() && today.getFullYear() === due.getFullYear();
    }
 }

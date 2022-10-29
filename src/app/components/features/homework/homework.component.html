@@ -5,11 +5,12 @@
          <fa-icon [icon]="plusIcon"></fa-icon>
       </button>
    </div>
-   <div class="homework-body">
+   <div class="homework-body" [style.gap]="isRouterActive() ? '1rem' : '0'">
       <div class="homework-body-inner">
          <div *ngIf="getLateAssignments().length !== 0"
-              class="homework-late-assignments danger !bg-utility-danger-hover">
+              class="homework-late-assignments danger-muted">
             <div class="homework-late-assignments-header">
+               <fa-icon [icon]="dangerIcon" [fixedWidth]="true"></fa-icon>
                <h3 class="homework-late-assignments-header-title">Missing Assignments</h3>
             </div>
             <div class="homework-late-assignments-list">
@@ -17,24 +18,22 @@
                   *ngFor="let lateAssignment of getLateAssignments()"
                   [assignment]="lateAssignment"
                   (click)="selectAssignment(lateAssignment)"
-                  [transparent]="true"
                ></app-homework-item>
             </div>
          </div>
          <div class="homework-content">
             <div *ngFor="let assignmentObj of getAssignments()" class="homework-content-dates">
                <div *ngIf="dateHasChanged(assignmentObj)" class="homework-content-date">
-                  {{ assignmentObj.dueDate | date:'EEEE, MMMM d' }}
+                  {{ isDateToday(assignmentObj.dueDate) ? 'Today' : assignmentObj.dueDate | date:'EEEE, MMMM d' }}
                </div>
                <app-homework-item
                   [assignment]="assignmentObj"
                   (click)="selectAssignment(assignmentObj)"
-                  [class]="dateHasChanged(assignmentObj) ? '' : 'pb-2'"
                ></app-homework-item>
             </div>
          </div>
       </div>
-      <div [ngClass]="['homework-body-router', isRouterActive() ? 'w-0' : 'w-full']">
+      <div [ngClass]="['homework-body-router', isRouterActive() ? 'w-full' : 'w-0']">
          <router-outlet></router-outlet>
       </div>
    </div>

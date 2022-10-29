@@ -15,7 +15,7 @@
 }
 
 .homework-body {
-   @apply flex flex-row gap-4 w-full h-full overflow-y-auto overflow-x-hidden transition-all duration-300 ease-in-out;
+   @apply flex flex-row gap-4 w-full h-full overflow-y-auto overflow-x-hidden transition-all duration-200 ease-in-out;
 }
 
 .homework-body-router {
@@ -27,11 +27,11 @@
 }
 
 .homework-late-assignments {
-   @apply flex flex-col gap-2 rounded-lg p-4 overflow-y-auto;
+   @apply flex flex-col gap-3 rounded-lg p-4 overflow-y-auto;
 }
 
 .homework-late-assignments-header {
-   @apply w-full;
+   @apply w-full flex flex-row items-center gap-x-3 px-1 text-lg;
 }
 
 .homework-late-assignments-list {
@@ -39,15 +39,19 @@
 }
 
 .homework-content {
-   @apply flex-grow bg-brand-background rounded-lg p-4 flex flex-col gap-2 overflow-auto;
+   @apply flex-grow bg-brand-background rounded-lg p-4 flex flex-col gap-3 overflow-auto;
 }
 
 .homework-content-dates {
    @apply gap-3 flex flex-col;
 }
 
+.homework-content-dates:first-child > .homework-content-date {
+   @apply !pt-0;
+}
+
 .homework-content-date {
-   @apply text-utility-secondary;
+   @apply text-utility-secondary text-lg pt-2;
 }
 
 .homework-content-assignments {
