@@ -55,7 +55,7 @@
          ></app-top-navigation-item>
       </app-top-navigation>
       <ui-spinner *ngIf="loading" class="w-full h-full" lineColor="brand-main"></ui-spinner>
-      <div class="w-full h-full" *ngIf="!loading">
+      <div [ngClass]="['w-full', this.loading ? 'h-0' : 'h-full']">
          <router-outlet></router-outlet>
       </div>
    </div>

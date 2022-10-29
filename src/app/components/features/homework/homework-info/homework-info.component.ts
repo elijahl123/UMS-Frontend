@@ -4,6 +4,7 @@ import { HomeworkAssignment } from '../homework.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faBook, faCalendar, faCheckCircle, faSquareArrowUpRight, faTimes } from '@fortawesome/pro-solid-svg-icons';
+import { filter } from 'rxjs/operators';
 
 @Component({
    selector: 'app-homework-info',
@@ -12,6 +13,7 @@ import { faBook, faCalendar, faCheckCircle, faSquareArrowUpRight, faTimes } from
    encapsulation: ViewEncapsulation.None
 })
 export class HomeworkInfoComponent implements OnInit {
+   assignment: HomeworkAssignment | null;
    bookIcon: IconDefinition = faBook;
    closeIcon: IconDefinition = faTimes;
    linkIcon: IconDefinition = faSquareArrowUpRight;
@@ -22,14 +24,17 @@ export class HomeworkInfoComponent implements OnInit {
    }
 
    ngOnInit(): void {
-   }
-
-   get assignment(): HomeworkAssignment | null {
-      return this.homeworkService.selectedAssignment.getValue();
+      this.homeworkService.selectedAssignment.subscribe(assignment => {
+         this.assignment = assignment;
+      });
+      let uid = this.route.snapshot.paramMap.get('uid');
+      this.homeworkService.assignments.pipe(filter(assignments => assignments.length > 0)).subscribe(assignments => {
+         this.assignment = assignments.find(assignment => assignment.uid === uid) || null;
+      })
    }
 
    closeMenu() {
-      this.router.navigate(['..'], { relativeTo: this.route });
+      this.router.navigate(['/homework']);
    }
 
    getAssignmentDueDate(assignment: HomeworkAssignment) {
@@ -41,6 +46,6 @@ export class HomeworkInfoComponent implements OnInit {
    }
 
    goToCalendar(dueDate: string) {
-      this.router.navigate(['/calendar', { outlets: { 'calendarInfo': dueDate } }]);
+      this.router.navigate(['/calendar', 'date', dueDate]);
    }
 }

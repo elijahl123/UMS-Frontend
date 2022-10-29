@@ -10,13 +10,9 @@ export class HomeworkService {
    selectedAssignment: BehaviorSubject<HomeworkAssignment | null> = new BehaviorSubject<HomeworkAssignment | null>(null);
 
    constructor(private route: ActivatedRoute, private read: ReadService, private router: Router) {
-      this.read.getAssignments().then(assignments => {
-         this.assignments.next(assignments.homeworkAssignments.edges.map(edge => edge.node));
-         let uid = this.route.firstChild?.snapshot.paramMap.get('uid')
-         if (uid) {
-            this.selectedAssignment.next(this.getAssignment(uid));
-         }
-      });
+      this.read.getAssignments().then(data => {
+         this.assignments.next(data.homeworkAssignments.edges.map(edge => edge.node));
+      })
    }
 
    getAssignments(date?: Date) {
@@ -34,13 +30,9 @@ export class HomeworkService {
       }
    }
 
-   getAssignment(uid: string | null): HomeworkAssignment | null {
-      return this.assignments.getValue().find(assignment => assignment.uid === uid) || null;
-   }
-
    selectAssignment(assignmentObj: HomeworkAssignment | null) {
       if (assignmentObj) {
-         this.router.navigate(['/homework', assignmentObj.uid]);
+         this.router.navigate(['/homework', 'assignment', assignmentObj.uid]);
          this.selectedAssignment.next(assignmentObj);
       } else {
          this.router.navigate(['/homework']);

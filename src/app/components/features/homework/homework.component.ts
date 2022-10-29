@@ -24,14 +24,15 @@ export interface HomeworkAssignment {
    selector: 'app-homework',
    templateUrl: './homework.component.html',
    styleUrls: ['./homework.component.css'],
-   encapsulation: ViewEncapsulation.None
+   encapsulation: ViewEncapsulation.None,
+   providers: [HomeworkService]
 })
 export class HomeworkComponent implements OnInit, OnDestroy {
    assignments: BehaviorSubject<HomeworkAssignment[]> = new BehaviorSubject<HomeworkAssignment[]>([]);
    plusIcon: IconDefinition = faPlus;
    @ViewChild(RouterOutlet) outlet: RouterOutlet;
 
-   constructor(private read: ReadService, private router: Router, private route: ActivatedRoute, private homeworkService: HomeworkService) {
+   constructor(private homeworkService: HomeworkService, private read: ReadService, private router: Router, private route: ActivatedRoute) {
    }
 
    ngOnInit(): void {

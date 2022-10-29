@@ -57,7 +57,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       this.selectedCourseTime.subscribe(courseTime => {
          if (courseTime) {
             // If a course time is selected, navigate to the course time info page
-            this.router.navigate([courseTime.uid], { relativeTo: this.route });
+            this.router.navigate(['course-time', courseTime.uid], { relativeTo: this.route });
          } else {
             // If no course time is selected, navigate to the schedule page
             if (this.selectedCourseTimeValue) {
@@ -228,10 +228,5 @@ export class ScheduleComponent implements OnInit, OnDestroy {
    }
 
    ngOnDestroy() {
-   }
-
-   onRouterDeactivate($event: any) {
-      // When the router deactivates, set the selected course time to null
-      this.selectedCourseTime.next(null);
    }
 }

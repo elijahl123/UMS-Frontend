@@ -8,7 +8,6 @@ import { CardComponent } from '../../ui/card/card.component';
 import { HomeworkItemComponent } from './homework-item/homework-item.component';
 import { TimeModule } from '../../pipes/time/time.module';
 import { HomeworkInfoComponent } from './homework-info/homework-info.component';
-import { HomeworkService } from '../../../services/components/features/homework/homework.service';
 
 
 @NgModule({
@@ -23,8 +22,7 @@ import { HomeworkService } from '../../../services/components/features/homework/
       FontAwesomeModule,
       CardComponent,
       TimeModule
-   ],
-   providers: [HomeworkService]
+   ]
 })
 export class HomeworkModule {
 }

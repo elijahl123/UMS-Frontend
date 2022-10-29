@@ -13,7 +13,7 @@ const routes: Routes = [
       canActivate: [AuthGuard],
       children: [
          {
-            path: ':uid',
+            path: 'assignment/:uid',
             component: HomeworkInfoComponent,
          }
       ]

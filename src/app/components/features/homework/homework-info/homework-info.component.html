@@ -9,10 +9,6 @@
       </button>
    </div>
    <div class="homework-info-body">
-      <div [ngClass]="['homework-info-body-section flex-grow', assignment.course.color.toLowerCase()]">
-         <div class="homework-info-body-section-title">Description</div>
-         <div class="homework-info-body-section-content">{{ assignment.description || 'None' }}</div>
-      </div>
       <ui-card
          head="{{ getAssignmentDueDate(assignment)|date:'EEEE, MMMM d' }}"
          sub="{{ getAssignmentDueDate(assignment)|date:'h:mm a' }}"
@@ -20,6 +16,10 @@
          [color]="assignment.course.color.toLowerCase()"
          (click)="goToCalendar(assignment.dueDate)"
       ></ui-card>
+      <div [ngClass]="['homework-info-body-section flex-grow', assignment.course.color.toLowerCase()]">
+         <div class="homework-info-body-section-title">Description</div>
+         <div class="homework-info-body-section-content">{{ assignment.description || 'None' }}</div>
+      </div>
       <ui-card
          *ngIf="assignment.link"
          head="Go to Link"

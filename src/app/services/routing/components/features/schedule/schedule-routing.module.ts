@@ -16,12 +16,12 @@ const routes: Routes = [
       canActivate: [AuthGuard],
       children: [
          {
-            path: 'manage',
-            component: ScheduleManageComponent
+            path: 'course-time/:uid',
+            component: ScheduleInfoComponent
          },
          {
-            path: ':uid',
-            component: ScheduleInfoComponent
+            path: 'manage',
+            component: ScheduleManageComponent
          }
       ]
    }
