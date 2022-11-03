@@ -27,6 +27,10 @@ const routes: Routes = [
       path: 'homework',
       loadChildren: () => import('../../components/features/homework/homework.module').then(m => m.HomeworkModule)
    },
+   {
+      path: 'notes',
+      loadChildren: () => import('../../components/features/notes/notes.module').then(m => m.NotesModule)
+   },
 ];
 
 @NgModule({

@@ -53,14 +53,11 @@ export class CalendarWidgetComponent implements OnInit {
    }
 
    getDateLink(date: Date) {
-      this.router.navigate(['/calendar', {
-         outlets: {
-            calendarInfo: [date.toLocaleDateString('en-CA', {
-               year: 'numeric',
-               month: '2-digit',
-               day: '2-digit'
-            }).replace(/\//g, '-')]
-         }
-      }]).then();
+      this.router.navigate(['/calendar', 'date', date.toLocaleDateString('en-CA', {
+         year: 'numeric',
+         month: '2-digit',
+         day: '2-digit'
+      }).replace(/\//g, '-')
+      ]).then();
    }
 }

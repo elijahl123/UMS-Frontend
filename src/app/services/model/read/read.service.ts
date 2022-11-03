@@ -111,6 +111,35 @@ class GetCourseTimesResponse {
    }
 }
 
+class GetCoursesResponse {
+   courses: {
+      edges: {
+         node: {
+            uid: string;
+            name: string;
+            color: string;
+         }
+      }[]
+   }
+}
+
+class GetNotesResponse {
+   notes: {
+      edges: {
+         node: {
+            uid: string;
+            title: string;
+            content: string;
+            uploaded: string;
+            modified: string;
+            course: {
+               uid: string;
+            }
+         }
+      }[]
+   }
+}
+
 @Injectable({
    providedIn: 'root'
 })
@@ -361,6 +390,43 @@ export class ReadService {
                      startTime
                      endTime
                      weekday
+                  }
+               }
+            }
+         }
+      `);
+   }
+
+   async getCourses() {
+      return this.performQuery<GetCoursesResponse>(gql`
+         query {
+            courses(token: "${this.authService.getToken()}") {
+               edges {
+                  node {
+                     uid
+                     name
+                     color
+                  }
+               }
+            }
+         }
+      `);
+   }
+
+   getNotes() {
+      return this.performQuery<GetNotesResponse>(gql`
+         query {
+            notes(token: "${this.authService.getToken()}") {
+               edges {
+                  node {
+                     uid
+                     title
+                     content
+                     uploaded
+                     modified
+                     course {
+                        uid
+                     }
                   }
                }
             }
