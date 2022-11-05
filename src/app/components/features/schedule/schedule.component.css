@@ -1,84 +1,84 @@
 app-schedule {
-   @apply h-full;
+  @apply h-full;
 }
 
 .class-schedule {
-   @apply flex flex-col p-4 h-full gap-4;
+  @apply flex flex-col p-4 h-full gap-4;
 }
 
 .class-schedule-header {
-   @apply flex flex-row items-center gap-x-4;
+  @apply flex flex-row items-center gap-x-4;
 }
 
 .class-schedule-header-title {
-   @apply w-full px-4 py-2 text-lg bg-brand-background text-utility-secondary rounded-lg;
+  @apply w-full px-4 py-2 text-lg bg-brand-background text-utility-secondary rounded-lg;
 }
 
 .class-schedule-header-add-button {
-   @apply rounded-lg;
+  @apply rounded-lg;
 }
 
 .class-schedule-header-manage-schedule-button {
-   @apply rounded-lg !px-4 !py-2;
+  @apply rounded-lg !px-4 !py-2;
 }
 
 .class-schedule-content {
-   @apply overflow-auto flex-grow grid auto-rows-[max-content_auto] auto-cols-[max-content_auto] gap-4 transition-all duration-300 ease-in-out;
+  @apply overflow-auto flex-grow grid auto-rows-[max-content_auto] auto-cols-[max-content_auto] gap-4 transition-all duration-300 ease-in-out;
 }
 
 .class-schedule-days-of-the-week {
-   @apply col-start-2 row-start-1 flex flex-row rounded-lg bg-brand-background gap-0.5;
+  @apply col-start-2 row-start-1 flex flex-row rounded-lg bg-brand-background gap-0.5;
 }
 
 .class-schedule-day-of-the-week {
-   @apply w-full text-center text-lg text-utility-secondary px-4 py-2 rounded-lg;
+  @apply w-full text-center text-lg text-utility-secondary px-4 py-2 rounded-lg;
 }
 
 .class-schedule-times {
-   @apply overflow-auto col-start-1 row-start-2 flex flex-col h-full bg-brand-background rounded-lg gap-0.5;
+  @apply overflow-auto col-start-1 row-start-2 flex flex-col h-full bg-brand-background rounded-lg gap-0.5;
 }
 
 .class-schedule-time {
-   @apply whitespace-nowrap text-ellipsis overflow-hidden text-utility-secondary h-full text-center text-[8pt] px-4 flex items-center justify-center;
+  @apply whitespace-nowrap text-ellipsis overflow-hidden text-utility-secondary h-full text-center text-[8pt] px-4 flex items-center justify-center;
 }
 
 .class-schedule-body-container-wrapper {
-   @apply col-start-2 row-start-2 flex flex-row overflow-y-auto overflow-x-hidden w-full h-full transition-all duration-300 ease-in-out;
+  @apply col-start-2 row-start-2 flex flex-row overflow-y-auto overflow-x-hidden w-full h-full transition-all duration-300 ease-in-out;
 }
 
 .class-schedule-body-container {
-   @apply overflow-auto grid grid-cols-7 gap-0.5 h-full bg-brand-background-hover rounded-lg relative flex-grow transition-all duration-300 ease-in-out;
+  @apply overflow-auto grid grid-cols-7 gap-0.5 h-full bg-brand-background-hover rounded-lg relative flex-grow transition-all duration-300 ease-in-out;
 }
 
 .class-schedule-body {
-   @apply absolute inset-0 grid grid-cols-7 gap-0.5;
+  @apply absolute inset-0 grid grid-cols-7 gap-0.5;
 }
 
 .class-schedule-day {
-   @apply bg-brand-background first:rounded-tl-lg last:rounded-br-lg;
+  @apply bg-brand-background first:rounded-tl-lg last:rounded-br-lg;
 }
 
 .class-schedule-day:nth-child(7) {
-   @apply rounded-tr-lg;
+  @apply rounded-tr-lg;
 }
 
 .class-schedule-day:nth-last-child(7) {
-   @apply rounded-bl-lg;
+  @apply rounded-bl-lg;
 }
 
 .class-schedule-course-time {
-   @apply z-10 p-1;
+  @apply z-10 p-1;
 }
 
 .class-schedule-course-time-content {
-   @apply w-full h-full rounded-lg transition-all duration-200 ease-in-out;
+  @apply w-full h-full rounded-lg transition-all duration-200 ease-in-out;
 }
 
 .class-schedule-course-time-content-title {
-   @apply w-full h-full text-center flex items-center justify-center text-xs;
+  @apply w-full h-full text-center flex items-center justify-center text-xs;
 }
 
 .class-schedule-content-info {
-   @apply transition-all duration-500 ease-in-out max-w-[300px];
+  @apply transition-all duration-500 ease-in-out max-w-[300px];
 }
 

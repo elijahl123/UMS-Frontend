@@ -1,55 +1,55 @@
 .calendar-info-container {
-   @apply p-4 w-full h-full flex flex-col;
+  @apply p-4 w-full h-full flex flex-col;
 }
 
 .calendar-info-content-container {
-   @apply flex flex-col gap-4 w-full h-full;
+  @apply flex flex-col gap-4 w-full h-full;
 }
 
 .calendar-info-header {
-   @apply flex flex-row justify-between items-center w-full gap-4 rounded-lg;
+  @apply flex flex-row justify-between items-center w-full gap-4 rounded-lg;
 }
 
 .calendar-info-header-title {
-   @apply w-full bg-utility-secondary-muted text-utility-secondary rounded-lg py-2 px-4;
+  @apply w-full bg-utility-secondary-muted text-utility-secondary rounded-lg py-2 px-4;
 }
 
 .calendar-info-header-button {
-   @apply flex justify-center items-center rounded-lg transition-all duration-200 ease-in-out p-3;
+  @apply flex justify-center items-center rounded-lg transition-all duration-200 ease-in-out p-3;
 }
 
 .calendar-info-body {
-   @apply flex flex-col gap-4 w-full flex-grow overflow-auto;
+  @apply flex flex-col gap-4 w-full flex-grow overflow-auto;
 }
 
 .calendar-info-more {
-   @apply flex flex-col rounded-lg w-full transition-all duration-200 ease-in-out;
+  @apply flex flex-col rounded-lg w-full transition-all duration-200 ease-in-out;
 }
 
 .calendar-info-more-inner {
-   @apply flex flex-col w-full h-full gap-4 p-4;
+  @apply flex flex-col w-full h-full gap-4 p-4;
 }
 
 .calendar-info-more-header {
-   @apply flex flex-col gap-2 w-full;
+  @apply flex flex-col gap-2 w-full;
 }
 
 .calendar-info-more-header-title {
-   @apply text-2xl;
+  @apply text-2xl;
 }
 
 .calendar-info-more-header-sub {
-   @apply text-sm;
+  @apply text-sm;
 }
 
 .calendar-info-more-body {
-   @apply flex flex-col gap-4 w-full h-full;
+  @apply flex flex-col gap-4 w-full h-full;
 }
 
 .calendar-info-more-body-description {
-   @apply h-full w-full;
+  @apply h-full w-full;
 }
 
 .calendar-info-more-body-link {
-   @apply bg-white rounded-lg;
+  @apply bg-white rounded-lg;
 }

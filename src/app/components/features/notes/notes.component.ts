@@ -5,19 +5,19 @@ import { Router } from '@angular/router';
 import { Course, Note, NotesService } from '../../../services/components/features/notes/notes.service';
 
 @Component({
-   selector: 'app-notes',
-   templateUrl: './notes.component.html',
-   styleUrls: ['./notes.component.css'],
-   providers: [NotesService]
+  selector: 'app-notes',
+  templateUrl: './notes.component.html',
+  styleUrls: ['./notes.component.css'],
+  providers: [NotesService]
 })
 export class NotesComponent implements OnInit {
-   plusIcon: IconDefinition = faPlus;
+  plusIcon: IconDefinition = faPlus;
 
-   constructor(private notesService: NotesService, private router: Router) {
-   }
+  constructor(private notesService: NotesService, private router: Router) {
+  }
 
-   ngOnInit(): void {
-      this.notesService.initCourses();
-      this.notesService.initNotes();
-   }
+  ngOnInit(): void {
+    this.notesService.initCourses();
+    this.notesService.initNotes();
+  }
 }

@@ -5,30 +5,30 @@ import { LoginComponent } from '../../../../../components/features/auth/login/lo
 import { SignupComponent } from '../../../../../components/features/auth/signup/signup.component';
 
 const routes: Routes = [
-   {
-      path: '',
-      component: AuthComponent,
-      children: [
-         {
-            path: '',
-            pathMatch: 'full',
-            redirectTo: '/auth/login',
-         },
-         {
-            path: 'login',
-            component: LoginComponent,
-         },
-         {
-            path: 'signup',
-            component: SignupComponent,
-         }
-      ]
-   }
+  {
+    path: '',
+    component: AuthComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/auth/login',
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
+      {
+        path: 'signup',
+        component: SignupComponent,
+      }
+    ]
+  }
 ];
 
 @NgModule({
-   imports: [RouterModule.forChild(routes)],
-   exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class AuthRoutingModule {
 }

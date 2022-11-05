@@ -1,46 +1,47 @@
 <div class="calendar">
-   <div class="calendar-header">
-      <button (click)="decrementDate()" class="calendar-header-button hover-enabled secondary-muted">
-         <fa-icon [icon]="chevronLeftIcon" class="flex items-center justify-center"></fa-icon>
-      </button>
-      <div (click)="focusOnInput()" class="calendar-header-month btn secondary-muted hover-enabled">
-         {{ getMonthName() }}
+  <div class="calendar-header">
+    <button (click)="decrementDate()" class="calendar-header-button hover-enabled secondary-muted">
+      <fa-icon [icon]="chevronLeftIcon" class="flex items-center justify-center"></fa-icon>
+    </button>
+    <div (click)="focusOnInput()" class="calendar-header-month btn secondary-muted hover-enabled">
+      {{ getMonthName() }}
+    </div>
+    <button (click)="incrementDate()" class="calendar-header-button hover-enabled secondary-muted">
+      <fa-icon [icon]="chevronRightIcon" class="flex items-center justify-center"></fa-icon>
+    </button>
+  </div>
+  <div class="calendar-tasks">
+    <button (click)="setDateToToday()" class="btn secondary rounded-lg">Today</button>
+    <input #changeDateInput (change)="onDateChange($event)"
+           [value]="getDateStr()" class="calendar-tasks-date hover-enabled secondary-muted" type="date">
+    <button class="btn secondary rounded-lg">
+      <fa-icon [icon]="plusIcon"></fa-icon>
+    </button>
+  </div>
+  <div [ngClass]="['calendar-divider', isInfoShowing() ? 'gap-4' : '']">
+    <div class="calendar-body-container">
+      <div class="calendar-days-of-week">
+        <div class="calendar-days-of-week-day">Sun</div>
+        <div class="calendar-days-of-week-day">Mon</div>
+        <div class="calendar-days-of-week-day">Tue</div>
+        <div class="calendar-days-of-week-day">Wed</div>
+        <div class="calendar-days-of-week-day">Thu</div>
+        <div class="calendar-days-of-week-day">Fri</div>
+        <div class="calendar-days-of-week-day">Sat</div>
       </div>
-      <button (click)="incrementDate()" class="calendar-header-button hover-enabled secondary-muted">
-         <fa-icon [icon]="chevronRightIcon" class="flex items-center justify-center"></fa-icon>
-      </button>
-   </div>
-   <div class="calendar-tasks">
-      <button (click)="setDateToToday()" class="btn secondary rounded-lg">Today</button>
-      <input #changeDateInput (change)="onDateChange($event)"
-             [value]="getDateStr()" class="calendar-tasks-date hover-enabled secondary-muted" type="date">
-      <button class="btn secondary rounded-lg">
-         <fa-icon [icon]="plusIcon"></fa-icon>
-      </button>
-   </div>
-   <div [ngClass]="['calendar-divider', isInfoShowing() ? 'gap-4' : '']">
-      <div class="calendar-body-container">
-         <div class="calendar-days-of-week">
-            <div class="calendar-days-of-week-day">Sun</div>
-            <div class="calendar-days-of-week-day">Mon</div>
-            <div class="calendar-days-of-week-day">Tue</div>
-            <div class="calendar-days-of-week-day">Wed</div>
-            <div class="calendar-days-of-week-day">Thu</div>
-            <div class="calendar-days-of-week-day">Fri</div>
-            <div class="calendar-days-of-week-day">Sat</div>
-         </div>
-         <div class="calendar-body">
-            <app-calendar-date
-               (selectDate)="selectDate($event)"
-               *ngFor="let dateFrame of currentDates"
-               [class]="(isDateToday(dateFrame) ? 'secondary' : 'secondary-muted') + ' ' + ((dateFrame.getMonth() == date.getMonth()) ? '' : 'opacity-50')" [date]="dateFrame"
-               [events]="eventsForDate(dateFrame)"
-            >
-            </app-calendar-date>
-         </div>
+      <div class="calendar-body">
+        <app-calendar-date
+          (selectDate)="selectDate($event)"
+          *ngFor="let dateFrame of currentDates"
+          [class]="(isDateToday(dateFrame) ? 'secondary' : 'secondary-muted') + ' ' + ((dateFrame.getMonth() == date.getMonth()) ? '' : 'opacity-50')"
+          [date]="dateFrame"
+          [events]="eventsForDate(dateFrame)"
+        >
+        </app-calendar-date>
       </div>
-      <div [ngClass]="['calendar-info', isInfoShowing() ? 'w-1/2' : 'w-0']">
-         <router-outlet></router-outlet>
-      </div>
-   </div>
+    </div>
+    <div [ngClass]="['calendar-info', isInfoShowing() ? 'w-1/2' : 'w-0']">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

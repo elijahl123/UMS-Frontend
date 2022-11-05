@@ -5,25 +5,25 @@ import { CommonModule } from '@angular/common';
 import { BaseUiComponent } from '../../../core/components/ui/base.ui.component';
 
 @Component({
-   standalone: true,
-   imports: [
-      FontAwesomeModule,
-      CommonModule
-   ],
-   selector: 'ui-badge',
-   templateUrl: './badge.component.html',
-   styleUrls: ['./badge.component.css']
+  standalone: true,
+  imports: [
+    FontAwesomeModule,
+    CommonModule
+  ],
+  selector: 'ui-badge',
+  templateUrl: './badge.component.html',
+  styleUrls: ['./badge.component.css']
 })
 export class BadgeComponent extends BaseUiComponent implements OnInit {
-   @Input() text: string = 'Badge';
-   @Input() leftIcon: IconDefinition;
-   @Input() rightIcon: IconDefinition;
+  @Input() text: string = 'Badge';
+  @Input() leftIcon: IconDefinition;
+  @Input() rightIcon: IconDefinition;
 
-   constructor() {
-      super();
-   }
+  constructor() {
+    super();
+  }
 
-   ngOnInit(): void {
-   }
+  ngOnInit(): void {
+  }
 
 }

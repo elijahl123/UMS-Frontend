@@ -11,18 +11,18 @@ import { BaseFormsComponent } from '../../../../core/components/forms/base.forms
  * </form-multi-select-input>
  */
 @Component({
-   selector: 'form-multi-select-input',
-   templateUrl: './multi-select-input.component.html',
-   styleUrls: ['./multi-select-input.component.css'],
-   encapsulation: ViewEncapsulation.None
+  selector: 'form-multi-select-input',
+  templateUrl: './multi-select-input.component.html',
+  styleUrls: ['./multi-select-input.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MultiSelectInputComponent extends BaseFormsComponent implements OnInit {
 
-   constructor() {
-      super();
-   }
+  constructor() {
+    super();
+  }
 
-   ngOnInit(): void {
-   }
+  ngOnInit(): void {
+  }
 
 }

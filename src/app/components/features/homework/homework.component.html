@@ -1,40 +1,40 @@
 <div class="homework">
-   <div class="homework-header">
-      <h2 class="homework-header-title">Homework</h2>
-      <button class="homework-header-add-button btn secondary-muted hover-enabled">
-         <fa-icon [icon]="plusIcon"></fa-icon>
-      </button>
-   </div>
-   <div [style.gap]="isRouterActive() ? '1rem' : '0'" class="homework-body">
-      <div class="homework-body-inner">
-         <div *ngIf="getLateAssignments().length !== 0"
-              class="homework-late-assignments danger-muted">
-            <div class="homework-late-assignments-header">
-               <fa-icon [fixedWidth]="true" [icon]="dangerIcon"></fa-icon>
-               <h3 class="homework-late-assignments-header-title">Missing Assignments</h3>
-            </div>
-            <div class="homework-late-assignments-list">
-               <app-homework-item
-                  (click)="selectAssignment(lateAssignment)"
-                  *ngFor="let lateAssignment of getLateAssignments()"
-                  [assignment]="lateAssignment"
-               ></app-homework-item>
-            </div>
-         </div>
-         <div class="homework-content">
-            <div *ngFor="let assignmentObj of getAssignments()" class="homework-content-dates">
-               <div *ngIf="dateHasChanged(assignmentObj)" class="homework-content-date">
-                  {{ isDateToday( assignmentObj.dueDate ) ? 'Today' : assignmentObj.dueDate | date:'EEEE, MMMM d' }}
-               </div>
-               <app-homework-item
-                  (click)="selectAssignment(assignmentObj)"
-                  [assignment]="assignmentObj"
-               ></app-homework-item>
-            </div>
-         </div>
+  <div class="homework-header">
+    <h2 class="homework-header-title">Homework</h2>
+    <button class="homework-header-add-button btn secondary-muted hover-enabled">
+      <fa-icon [icon]="plusIcon"></fa-icon>
+    </button>
+  </div>
+  <div [style.gap]="isRouterActive() ? '1rem' : '0'" class="homework-body">
+    <div class="homework-body-inner">
+      <div *ngIf="getLateAssignments().length !== 0"
+           class="homework-late-assignments danger-muted">
+        <div class="homework-late-assignments-header">
+          <fa-icon [fixedWidth]="true" [icon]="dangerIcon"></fa-icon>
+          <h3 class="homework-late-assignments-header-title">Missing Assignments</h3>
+        </div>
+        <div class="homework-late-assignments-list">
+          <app-homework-item
+            (click)="selectAssignment(lateAssignment)"
+            *ngFor="let lateAssignment of getLateAssignments()"
+            [assignment]="lateAssignment"
+          ></app-homework-item>
+        </div>
       </div>
-      <div [ngClass]="['homework-body-router', isRouterActive() ? 'w-full' : 'w-0']">
-         <router-outlet></router-outlet>
+      <div class="homework-content">
+        <div *ngFor="let assignmentObj of getAssignments()" class="homework-content-dates">
+          <div *ngIf="dateHasChanged(assignmentObj)" class="homework-content-date">
+            {{ isDateToday( assignmentObj.dueDate ) ? 'Today' : assignmentObj.dueDate | date:'EEEE, MMMM d' }}
+          </div>
+          <app-homework-item
+            (click)="selectAssignment(assignmentObj)"
+            [assignment]="assignmentObj"
+          ></app-homework-item>
+        </div>
       </div>
-   </div>
+    </div>
+    <div [ngClass]="['homework-body-router', isRouterActive() ? 'w-full' : 'w-0']">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

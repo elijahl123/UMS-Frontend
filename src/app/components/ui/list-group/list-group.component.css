@@ -1,3 +1,3 @@
 .list-group {
-   @apply grid rounded-lg overflow-auto;
+  @apply grid rounded-lg overflow-auto;
 }

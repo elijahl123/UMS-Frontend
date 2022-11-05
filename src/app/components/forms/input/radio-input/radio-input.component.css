@@ -1,54 +1,54 @@
 .form-radio {
-   @apply grid grid-flow-col auto-cols-max gap-2.5 items-center relative cursor-pointer select-none;
+  @apply grid grid-flow-col auto-cols-max gap-2.5 items-center relative cursor-pointer select-none;
 }
 
 /* Hide the browser's default checkbox */
 .form-radio input {
-   @apply absolute opacity-0 cursor-pointer h-0 w-0;
+  @apply absolute opacity-0 cursor-pointer h-0 w-0;
 }
 
 /* Create a custom checkbox */
 .form-radio-mark {
-   @apply top-0 left-0 h-4 w-4 bg-utility-info-muted rounded-xl transition-all duration-100;
+  @apply top-0 left-0 h-4 w-4 bg-utility-info-muted rounded-xl transition-all duration-100;
 }
 
 /* On mouse-over, add a grey background color */
 .form-radio:hover input ~ .form-radio-mark {
-   background-color: rgba(var(--color-utility-info), 0.5);
+  background-color: rgba(var(--color-utility-info), 0.5);
 }
 
 /* On mouse-over, add a grey background color */
 .form-radio input:focus ~ .form-radio-mark {
-   @apply shadow-[0_0_0_4px] shadow-utility-info-muted;
+  @apply shadow-[0_0_0_4px] shadow-utility-info-muted;
 }
 
 /* When the checkbox is checked, add a blue background */
 .form-radio input:checked ~ .form-radio-mark {
-   @apply bg-utility-info;
+  @apply bg-utility-info;
 }
 
 /* Create the form-radio-mark/indicator (hidden when not checked) */
 .form-radio-mark:after {
-   content: "";
-   position: absolute;
-   display: none;
+  content: "";
+  position: absolute;
+  display: none;
 }
 
 /* Show the form-radio-mark when checked */
 .form-radio input:checked ~ .form-radio-mark:after {
-   @apply block;
+  @apply block;
 }
 
 /* Style the form-radio-mark/indicator */
 .form-radio .form-radio-mark:after {
-   top: 4px;
-   left: 4px;
-   width: 8px;
-   height: 8px;
-   border-radius: 50%;
-   background: white;
+  top: 4px;
+  left: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
 }
 
 .form-radio-label {
-   @apply text-brand-secondary text-base;
+  @apply text-brand-secondary text-base;
 }

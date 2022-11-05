@@ -10,16 +10,16 @@ import { NoteCoursesComponent } from './note-courses/note-courses.component';
 
 
 @NgModule({
-   declarations: [
-      NotesComponent,
-      NoteComponent,
-      NoteCoursesComponent
-   ],
-   imports: [
-      CommonModule,
-      NotesRoutingModule,
-      FontAwesomeModule
-   ]
+  declarations: [
+    NotesComponent,
+    NoteComponent,
+    NoteCoursesComponent
+  ],
+  imports: [
+    CommonModule,
+    NotesRoutingModule,
+    FontAwesomeModule
+  ]
 })
 export class NotesModule {
 }

@@ -4,33 +4,33 @@ import { CommonModule } from '@angular/common';
 import { BaseUiComponent } from '../../../core/components/ui/base.ui.component';
 
 @Component({
-   standalone: true,
-   imports: [
-      FontAwesomeModule,
-      CommonModule
-   ],
-   selector: 'ui-spinner',
-   templateUrl: './spinner.component.html',
-   styleUrls: ['./spinner.component.css']
+  standalone: true,
+  imports: [
+    FontAwesomeModule,
+    CommonModule
+  ],
+  selector: 'ui-spinner',
+  templateUrl: './spinner.component.html',
+  styleUrls: ['./spinner.component.css']
 })
 export class SpinnerComponent extends BaseUiComponent implements OnInit {
-   @ViewChild('spinner', { static: true }) spinner: ElementRef;
-   @Input() spinnerSize: string;
-   @Input() lineColor: string = 'brand-secondary';
-   @Input() ringColor: string = 'brand-background';
+  @ViewChild('spinner', { static: true }) spinner: ElementRef;
+  @Input() spinnerSize: string;
+  @Input() lineColor: string = 'brand-secondary';
+  @Input() ringColor: string = 'brand-background';
 
-   constructor() {
-      super();
-   }
+  constructor() {
+    super();
+  }
 
-   ngOnInit(): void {
-   }
+  ngOnInit(): void {
+  }
 
-   getStyle() {
-      return {
-         '--spinner-size': this.spinnerSize,
-         '--line-color': `rgb(var(--color-${this.lineColor}))`,
-         '--ring-color': `rgb(var(--color-${this.ringColor}))`
-      }
-   }
+  getStyle() {
+    return {
+      '--spinner-size': this.spinnerSize,
+      '--line-color': `rgb(var(--color-${this.lineColor}))`,
+      '--ring-color': `rgb(var(--color-${this.ringColor}))`
+    }
+  }
 }

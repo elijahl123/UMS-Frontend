@@ -5,26 +5,26 @@ import { NoteComponent } from '../../../../../components/features/notes/note/not
 import { NoteCoursesComponent } from '../../../../../components/features/notes/note-courses/note-courses.component';
 
 const routes: Routes = [
-   {
-      path: '',
-      component: NotesComponent,
-      children: [
-         {
-            path: '',
-            component: NoteCoursesComponent,
-            pathMatch: 'full'
-         },
-         {
-            path: 'note/:uid',
-            component: NoteComponent
-         }
-      ]
-   }
+  {
+    path: '',
+    component: NotesComponent,
+    children: [
+      {
+        path: '',
+        component: NoteCoursesComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'note/:uid',
+        component: NoteComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({
-   imports: [RouterModule.forChild(routes)],
-   exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class NotesRoutingModule {
 }

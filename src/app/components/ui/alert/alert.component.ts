@@ -6,30 +6,30 @@ import { CommonModule } from '@angular/common';
 import { BaseUiComponent } from '../../../core/components/ui/base.ui.component';
 
 @Component({
-   standalone: true,
-   imports: [
-      FontAwesomeModule,
-      CommonModule
-   ],
-   selector: 'ui-alert',
-   templateUrl: './alert.component.html',
-   styleUrls: ['./alert.component.css']
+  standalone: true,
+  imports: [
+    FontAwesomeModule,
+    CommonModule
+  ],
+  selector: 'ui-alert',
+  templateUrl: './alert.component.html',
+  styleUrls: ['./alert.component.css']
 })
 export class AlertComponent extends BaseUiComponent implements OnInit {
-   @Input('text') message: string = 'This is an alert!';
-   @Input('icon') leftIcon: IconDefinition = faInfoCircle;
-   closeIcon: IconDefinition = faClose;
+  @Input('text') message: string = 'This is an alert!';
+  @Input('icon') leftIcon: IconDefinition = faInfoCircle;
+  closeIcon: IconDefinition = faClose;
 
-   @ViewChild('alert', { static: false }) alertRef: ElementRef;
+  @ViewChild('alert', { static: false }) alertRef: ElementRef;
 
-   constructor() {
-      super();
-   }
+  constructor() {
+    super();
+  }
 
-   ngOnInit(): void {
-   }
+  ngOnInit(): void {
+  }
 
-   onCloseButtonClick() {
-      this.alertRef.nativeElement.classList.add('hidden');
-   }
+  onCloseButtonClick() {
+    this.alertRef.nativeElement.classList.add('hidden');
+  }
 }

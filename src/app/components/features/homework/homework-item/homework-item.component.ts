@@ -4,20 +4,20 @@ import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faBook, faInfoCircle } from '@fortawesome/pro-solid-svg-icons';
 
 @Component({
-   selector: 'app-homework-item',
-   templateUrl: './homework-item.component.html',
-   styleUrls: ['./homework-item.component.css'],
-   encapsulation: ViewEncapsulation.None
+  selector: 'app-homework-item',
+  templateUrl: './homework-item.component.html',
+  styleUrls: ['./homework-item.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeworkItemComponent implements OnInit {
-   @Input() assignment: HomeworkAssignment;
-   @Input() transparent: boolean = false;
-   assignmentIcon: IconDefinition = faBook;
-   infoIcon: IconDefinition = faInfoCircle;
+  @Input() assignment: HomeworkAssignment;
+  @Input() transparent: boolean = false;
+  assignmentIcon: IconDefinition = faBook;
+  infoIcon: IconDefinition = faInfoCircle;
 
-   constructor() {
-   }
+  constructor() {
+  }
 
-   ngOnInit(): void {
-   }
+  ngOnInit(): void {
+  }
 }

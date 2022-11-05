@@ -1,39 +1,39 @@
 .signup {
-   @apply p-8 rounded-2xl border-[3px] border-brand-accent bg-brand-background flex flex-col justify-start gap-8 overflow-auto;
+  @apply p-8 rounded-2xl border-[3px] border-brand-accent bg-brand-background flex flex-col justify-start gap-8 overflow-auto;
 }
 
 .signup-top {
-   @apply flex flex-col gap-2.5 items-center;
+  @apply flex flex-col gap-2.5 items-center;
 }
 
 .signup-top-head {
-   @apply text-4xl text-brand-main;
+  @apply text-4xl text-brand-main;
 }
 
 .signup-top-sub {
-   @apply text-brand-secondary;
+  @apply text-brand-secondary;
 }
 
 .signup-form form {
-   @apply flex flex-col gap-4;
+  @apply flex flex-col gap-4;
 }
 
 .signup-form-help-text {
-   @apply text-utility-primary text-left text-sm cursor-pointer hover:text-utility-primary-hover;
+  @apply text-utility-primary text-left text-sm cursor-pointer hover:text-utility-primary-hover;
 }
 
 .signup-form-divider {
-   @apply text-center w-full text-brand-secondary relative flex items-center justify-center;
+  @apply text-center w-full text-brand-secondary relative flex items-center justify-center;
 }
 
 .signup-form-divider-link {
-   @apply text-utility-primary text-center cursor-pointer hover:text-utility-primary-hover;
+  @apply text-utility-primary text-center cursor-pointer hover:text-utility-primary-hover;
 }
 
 .signup-form-group {
-   @apply flex flex-col gap-1.5;
+  @apply flex flex-col gap-1.5;
 }
 
 .signup-form-error-text {
-   @apply ml-2 text-utility-danger text-sm;
+  @apply ml-2 text-utility-danger text-sm;
 }

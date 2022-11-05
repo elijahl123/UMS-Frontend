@@ -11,39 +11,39 @@ import { ToggleUiComponent } from '../../../../core/components/ui/toggle.ui.comp
  * @see [ Angular UI Components ] (https://angular.io/guide/components#ui-components)
  */
 @Component({
-   standalone: true,
-   imports: [
-      FontAwesomeModule,
-      CommonModule
-   ],
-   selector: 'ui-accordion-item',
-   templateUrl: './accordion-item.component.html',
-   styleUrls: ['./accordion-item.component.css']
+  standalone: true,
+  imports: [
+    FontAwesomeModule,
+    CommonModule
+  ],
+  selector: 'ui-accordion-item',
+  templateUrl: './accordion-item.component.html',
+  styleUrls: ['./accordion-item.component.css']
 })
 export class AccordionItemComponent extends ToggleUiComponent implements OnInit {
-   @Input('isOpen') isOpen: boolean = false;
-   @Input() heading: string = 'Accordion Item';
+  @Input('isOpen') isOpen: boolean = false;
+  @Input() heading: string = 'Accordion Item';
 
-   chevronDown: IconDefinition = faChevronDown;
-   chevronUp: IconDefinition = faChevronUp;
+  chevronDown: IconDefinition = faChevronDown;
+  chevronUp: IconDefinition = faChevronUp;
 
-   constructor() {
-      super();
-   }
+  constructor() {
+    super();
+  }
 
-   ngOnInit(): void {
-   }
+  ngOnInit(): void {
+  }
 
-   onToggle() {
-      this.isOpen = !this.isOpen;
+  onToggle() {
+    this.isOpen = !this.isOpen;
 
-   }
+  }
 
-   getIcon(): IconDefinition {
-      return this.isOpen ? this.chevronUp : this.chevronDown;
-   }
+  getIcon(): IconDefinition {
+    return this.isOpen ? this.chevronUp : this.chevronDown;
+  }
 
-   getHeaderClassList(): string[] {
-      return this.isOpen ? ['accordion-header-open'] : [];
-   }
+  getHeaderClassList(): string[] {
+    return this.isOpen ? ['accordion-header-open'] : [];
+  }
 }

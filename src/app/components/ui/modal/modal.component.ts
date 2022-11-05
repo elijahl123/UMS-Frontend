@@ -23,30 +23,30 @@ import { faClose, IconDefinition } from '@fortawesome/pro-solid-svg-icons';
  * @description: This component is used to create a modal element.
  */
 @Component({
-   standalone: true,
-   imports: [
-      FontAwesomeModule,
-      CommonModule,
-      ButtonComponent
-   ],
-   selector: 'ui-modal',
-   templateUrl: './modal.component.html',
-   styleUrls: ['./modal.component.css'],
-   encapsulation: ViewEncapsulation.None
+  standalone: true,
+  imports: [
+    FontAwesomeModule,
+    CommonModule,
+    ButtonComponent
+  ],
+  selector: 'ui-modal',
+  templateUrl: './modal.component.html',
+  styleUrls: ['./modal.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent extends BaseUiComponent implements OnInit {
-   closeIcon: IconDefinition = faClose;
-   @Input() title: string = 'Modal Title';
+  closeIcon: IconDefinition = faClose;
+  @Input() title: string = 'Modal Title';
 
-   constructor(private modalDirective: ModalDirective) {
-      super();
-   }
+  constructor(private modalDirective: ModalDirective) {
+    super();
+  }
 
-   ngOnInit(): void {
-      console.log(this.modalDirective);
-   }
+  ngOnInit(): void {
+    console.log(this.modalDirective);
+  }
 
-   onClose() {
-      this.modalDirective.toggleOpen();
-   }
+  onClose() {
+    this.modalDirective.toggleOpen();
+  }
 }

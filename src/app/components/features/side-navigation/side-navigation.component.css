@@ -1,87 +1,87 @@
 .nav {
-   @apply grid grid-flow-row auto-rows-[max-content_auto_max-content_max-content] bg-brand-background h-full p-4 gap-4
-   w-[28rem];
+  @apply grid grid-flow-row auto-rows-[max-content_auto_max-content_max-content] bg-brand-background h-full p-4 gap-4
+  w-[28rem];
 }
 
 .nav-branding {
-   @apply grid grid-flow-col auto-cols-[max-content_auto] gap-6 items-center p-4 bg-white rounded-lg;
+  @apply grid grid-flow-col auto-cols-[max-content_auto] gap-6 items-center p-4 bg-white rounded-lg;
 }
 
 .nav-branding-img {
-   @apply w-14 h-14 rounded-lg bg-brand-main;
+  @apply w-14 h-14 rounded-lg bg-brand-main;
 }
 
 .nav-branding-text {
-   @apply text-2xl text-brand-main;
+  @apply text-2xl text-brand-main;
 }
 
 .nav-links {
-   @apply grid grid-flow-row auto-rows-max gap-4 p-4 bg-white rounded-lg;
+  @apply grid grid-flow-row auto-rows-max gap-4 p-4 bg-white rounded-lg;
 }
 
 .nav-next-class {
-   @apply p-4 rounded-lg grid grid-flow-col auto-cols-[max-content_auto_max-content] gap-4 text-white
-   items-center;
+  @apply p-4 rounded-lg grid grid-flow-col auto-cols-[max-content_auto_max-content] gap-4 text-white
+  items-center;
 }
 
 .nav-next-class-icon {
-   @apply flex justify-center items-center w-9 h-9 rounded-lg bg-white text-current;
+  @apply flex justify-center items-center w-9 h-9 rounded-lg bg-white text-current;
 }
 
 .nav-next-class-content {
-   @apply grid grid-flow-row auto-rows-[auto_max-content];
+  @apply grid grid-flow-row auto-rows-[auto_max-content];
 }
 
 .nav-next-class-content-head {
-   @apply text-base truncate;
+  @apply text-base truncate;
 }
 
 .nav-next-class-content-sub {
-   @apply text-[8pt] truncate;
+  @apply text-[8pt] truncate;
 }
 
 .nav-next-class-buttons {
-   @apply grid grid-flow-col auto-cols-max gap-2;
+  @apply grid grid-flow-col auto-cols-max gap-2;
 }
 
 .nav-next-class-button {
-   @apply rounded-lg text-sm w-[36px] h-[36px] p-0 flex justify-center items-center bg-white hover:bg-brand-background
-   text-current shadow-brand-background hover:shadow-white focus:shadow-brand-background;
+  @apply rounded-lg text-sm w-[36px] h-[36px] p-0 flex justify-center items-center bg-white hover:bg-brand-background
+  text-current shadow-brand-background hover:shadow-white focus:shadow-brand-background;
 }
 
 .nav-account {
-   @apply grid grid-flow-row gap-3 auto-rows-max bg-white rounded-lg p-4;
+  @apply grid grid-flow-row gap-3 auto-rows-max bg-white rounded-lg p-4;
 }
 
 .nav-account-upper {
-   @apply grid grid-flow-col auto-cols-[max-content_auto_max-content] gap-3 items-center;
+  @apply grid grid-flow-col auto-cols-[max-content_auto_max-content] gap-3 items-center;
 }
 
 .nav-account-upper-icon {
-   @apply flex justify-center items-center w-[60px] h-[60px] rounded-lg bg-brand-main text-white text-2xl;
+  @apply flex justify-center items-center w-[60px] h-[60px] rounded-lg bg-brand-main text-white text-2xl;
 }
 
 .nav-account-upper-content {
-   @apply grid grid-flow-row auto-rows-auto px-2 py-1 hover:bg-brand-background rounded-lg transition-all duration-200;
+  @apply grid grid-flow-row auto-rows-auto px-2 py-1 hover:bg-brand-background rounded-lg transition-all duration-200;
 }
 
 .nav-account-upper-content-head {
-   @apply text-[1.4rem] text-brand-main truncate;
+  @apply text-[1.4rem] text-brand-main truncate;
 }
 
 .nav-account-upper-content-sub {
-   @apply text-sm font-normal text-brand-secondary truncate;
+  @apply text-sm font-normal text-brand-secondary truncate;
 }
 
 .nav-account-upper-log-out {
-   @apply bg-brand-secondary-muted text-brand-secondary text-xl rounded-lg w-[60px] h-[60px] flex justify-center items-center
-   hover:bg-brand-secondary hover:text-white hover:shadow-brand-secondary-muted;
+  @apply bg-brand-secondary-muted text-brand-secondary text-xl rounded-lg w-[60px] h-[60px] flex justify-center items-center
+  hover:bg-brand-secondary hover:text-white hover:shadow-brand-secondary-muted;
 }
 
 .nav-account-lower {
-   @apply grid grid-flow-col gap-2;
+  @apply grid grid-flow-col gap-2;
 }
 
 .nav-account-lower-btn {
-   @apply text-[8pt] px-3 py-1.5 rounded-lg w-full;
+  @apply text-[8pt] px-3 py-1.5 rounded-lg w-full;
 }

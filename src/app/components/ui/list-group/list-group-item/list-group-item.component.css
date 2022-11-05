@@ -1,7 +1,7 @@
 .list-group-item {
-   @apply px-4 py-2 grid grid-flow-col auto-cols-[max-content_auto_max-content] gap-4;
+  @apply px-4 py-2 grid grid-flow-col auto-cols-[max-content_auto_max-content] gap-4;
 }
 
 .list-group-item-text {
-   @apply flex w-full col-start-2 truncate;
+  @apply flex w-full col-start-2 truncate;
 }

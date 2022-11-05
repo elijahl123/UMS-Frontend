@@ -1,36 +1,36 @@
 <div *ngIf="assignment" [ngClass]="['homework-info', assignment.course.color.toLowerCase().concat('-muted')]">
-   <div class="homework-info-header">
-      <div [ngClass]="['homework-info-header-icon', assignment.course.color.toLowerCase()]">
-         <fa-icon [icon]="bookIcon"></fa-icon>
-      </div>
-      <div class="homework-info-header-title">{{ assignment.name }}</div>
-      <button (click)="closeMenu()" class="homework-info-header-button hover-enabled secondary-muted">
-         <fa-icon [icon]="closeIcon" class="w-4 h-4 flex justify-center items-center"></fa-icon>
-      </button>
-   </div>
-   <div class="homework-info-body">
-      <ui-card
-         (click)="goToCalendar(assignment.dueDate)"
-         [color]="assignment.course.color.toLowerCase()"
-         [leftIcon]="calendarIcon"
-         head="{{ getAssignmentDueDate(assignment)|date:'EEEE, MMMM d' }}"
-         sub="{{ getAssignmentDueDate(assignment)|date:'h:mm a' }}"
-      ></ui-card>
-      <div [ngClass]="['homework-info-body-section flex-grow', assignment.course.color.toLowerCase()]">
-         <div class="homework-info-body-section-title">Description</div>
-         <div class="homework-info-body-section-content">{{ assignment.description || 'None' }}</div>
-      </div>
-      <ui-card
-         (click)="openLink(assignment.link)"
-         *ngIf="assignment.link"
-         [color]="assignment.course.color.toLowerCase()"
-         [rightIcon]="linkIcon"
-         head="Go to Link"
-      ></ui-card>
-      <ui-card
-         [rightIcon]="checkIcon"
-         color="success"
-         head="Complete"
-      ></ui-card>
-   </div>
+  <div class="homework-info-header">
+    <div [ngClass]="['homework-info-header-icon', assignment.course.color.toLowerCase()]">
+      <fa-icon [icon]="bookIcon"></fa-icon>
+    </div>
+    <div class="homework-info-header-title">{{ assignment.name }}</div>
+    <button (click)="closeMenu()" class="homework-info-header-button hover-enabled secondary-muted">
+      <fa-icon [icon]="closeIcon" class="w-4 h-4 flex justify-center items-center"></fa-icon>
+    </button>
+  </div>
+  <div class="homework-info-body">
+    <ui-card
+      (click)="goToCalendar(assignment.dueDate)"
+      [color]="assignment.course.color.toLowerCase()"
+      [leftIcon]="calendarIcon"
+      head="{{ getAssignmentDueDate(assignment)|date:'EEEE, MMMM d' }}"
+      sub="{{ getAssignmentDueDate(assignment)|date:'h:mm a' }}"
+    ></ui-card>
+    <div [ngClass]="['homework-info-body-section flex-grow', assignment.course.color.toLowerCase()]">
+      <div class="homework-info-body-section-title">Description</div>
+      <div class="homework-info-body-section-content">{{ assignment.description || 'None' }}</div>
+    </div>
+    <ui-card
+      (click)="openLink(assignment.link)"
+      *ngIf="assignment.link"
+      [color]="assignment.course.color.toLowerCase()"
+      [rightIcon]="linkIcon"
+      head="Go to Link"
+    ></ui-card>
+    <ui-card
+      [rightIcon]="checkIcon"
+      color="success"
+      head="Complete"
+    ></ui-card>
+  </div>
 </div>

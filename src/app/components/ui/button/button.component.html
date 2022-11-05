@@ -1,6 +1,6 @@
 <button [ngClass]="['btn hover-enabled', class]" [type]="buttonType">
-   <fa-icon *ngIf="leftIcon" [icon]="leftIcon"
-            [ngClass]="!!text ? 'button-left-icon' : 'button-left-icon !mr-0'"></fa-icon>
-   <span class="button-text">{{ text }}</span>
-   <fa-icon *ngIf="rightIcon" [icon]="rightIcon" class="button-right-icon"></fa-icon>
+  <fa-icon *ngIf="leftIcon" [icon]="leftIcon"
+           [ngClass]="!!text ? 'button-left-icon' : 'button-left-icon !mr-0'"></fa-icon>
+  <span class="button-text">{{ text }}</span>
+  <fa-icon *ngIf="rightIcon" [icon]="rightIcon" class="button-right-icon"></fa-icon>
 </button>

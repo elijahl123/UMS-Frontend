@@ -11,18 +11,18 @@ import { HomeworkInfoComponent } from './homework-info/homework-info.component';
 
 
 @NgModule({
-   declarations: [
-      HomeworkComponent,
-      HomeworkItemComponent,
-      HomeworkInfoComponent
-   ],
-   imports: [
-      CommonModule,
-      HomeworkRoutingModule,
-      FontAwesomeModule,
-      CardComponent,
-      TimeModule
-   ]
+  declarations: [
+    HomeworkComponent,
+    HomeworkItemComponent,
+    HomeworkInfoComponent
+  ],
+  imports: [
+    CommonModule,
+    HomeworkRoutingModule,
+    FontAwesomeModule,
+    CardComponent,
+    TimeModule
+  ]
 })
 export class HomeworkModule {
 }

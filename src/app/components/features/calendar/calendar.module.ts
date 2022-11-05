@@ -10,18 +10,18 @@ import { CalendarDateComponent } from './calendar-date/calendar-date.component';
 import { CardComponent } from '../../ui/card/card.component';
 
 @NgModule({
-   declarations: [
-      CalendarComponent,
-      CalendarInfoComponent,
-      CalendarDateComponent,
-   ],
-   imports: [
-      CommonModule,
-      CalendarRoutingModule,
-      FontAwesomeModule,
-      FormsModule,
-      CardComponent
-   ]
+  declarations: [
+    CalendarComponent,
+    CalendarInfoComponent,
+    CalendarDateComponent,
+  ],
+  imports: [
+    CommonModule,
+    CalendarRoutingModule,
+    FontAwesomeModule,
+    FormsModule,
+    CardComponent
+  ]
 })
 export class CalendarModule {
 }

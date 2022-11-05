@@ -1,130 +1,130 @@
 app-schedule-widget {
-   @apply h-full;
+  @apply h-full;
 }
 
 .schedule-widget {
-   @apply flex flex-col gap-4 h-full;
+  @apply flex flex-col gap-4 h-full;
 }
 
 .schedule-widget-header {
-   @apply flex flex-row justify-between items-center pl-1;
+  @apply flex flex-row justify-between items-center pl-1;
 }
 
 .schedule-widget-header-title {
-   @apply text-2xl text-utility-secondary;
+  @apply text-2xl text-utility-secondary;
 }
 
 .schedule-widget-date {
-   @apply flex flex-row gap-4 items-center;
+  @apply flex flex-row gap-4 items-center;
 }
 
 .schedule-widget-date-input {
-   @apply rounded-lg w-full focus:outline-none hover:shadow-[0_0_0_4px] cursor-pointer transition-all duration-200;
+  @apply rounded-lg w-full focus:outline-none hover:shadow-[0_0_0_4px] cursor-pointer transition-all duration-200;
 }
 
 .schedule-widget-content {
-   @apply flex flex-col gap-4 h-full bg-white rounded-xl overflow-y-auto overflow-x-hidden;
+  @apply flex flex-col gap-4 h-full bg-white rounded-xl overflow-y-auto overflow-x-hidden;
 }
 
 .schedule-widget-courses {
-   @apply p-4 flex flex-col gap-4 w-full h-full overflow-y-auto overflow-x-hidden;
+  @apply p-4 flex flex-col gap-4 w-full h-full overflow-y-auto overflow-x-hidden;
 }
 
 .schedule-widget-course {
-   @apply rounded-xl p-4 flex flex-col gap-4 items-center bg-brand-background transition-all duration-200
-   hover:shadow-[0_0_0_4px] overflow-y-auto overflow-x-hidden;
+  @apply rounded-xl p-4 flex flex-col gap-4 items-center bg-brand-background transition-all duration-200
+  hover:shadow-[0_0_0_4px] overflow-y-auto overflow-x-hidden;
 }
 
 .schedule-widget-course-head {
-   @apply flex flex-row gap-4 items-center w-full;
+  @apply flex flex-row gap-4 items-center w-full;
 }
 
 .schedule-widget-course-head-icon {
-   @apply w-11 h-11 rounded-lg text-white flex items-center justify-center;
+  @apply w-11 h-11 rounded-lg text-white flex items-center justify-center;
 }
 
 .schedule-widget-course-head-title {
-   @apply text-2xl flex-grow;
+  @apply text-2xl flex-grow;
 }
 
 .schedule-widget-course-head-time {
-   @apply px-4 py-2 rounded-lg text-white;
+  @apply px-4 py-2 rounded-lg text-white;
 }
 
 .schedule-widget-course-content {
-   @apply grid grid-cols-2 gap-4 w-full transition-[height] duration-500 flex-grow grid-rows-[auto_1fr] overflow-y-auto overflow-x-hidden;
+  @apply grid grid-cols-2 gap-4 w-full transition-[height] duration-500 flex-grow grid-rows-[auto_1fr] overflow-y-auto overflow-x-hidden;
 }
 
 .schedule-widget-course-content-due-soon {
-   @apply row-span-2 row-start-1 col-start-1 rounded-xl p-4 flex flex-col gap-2 bg-current h-full overflow-y-auto overflow-x-hidden;
+  @apply row-span-2 row-start-1 col-start-1 rounded-xl p-4 flex flex-col gap-2 bg-current h-full overflow-y-auto overflow-x-hidden;
 }
 
 .schedule-widget-course-content-due-soon-items {
-   @apply flex flex-col gap-2 h-full items-start overflow-y-auto overflow-x-hidden;
+  @apply flex flex-col gap-2 h-full items-start overflow-y-auto overflow-x-hidden;
 }
 
 .schedule-widget-course-content-due-soon-item {
-   @apply text-white w-full flex flex-row gap-3 items-center px-4 py-2 rounded-lg pl-2 transition-all duration-200
-   active:shadow-[0_0_0_4px];
+  @apply text-white w-full flex flex-row gap-3 items-center px-4 py-2 rounded-lg pl-2 transition-all duration-200
+  active:shadow-[0_0_0_4px];
 }
 
 .schedule-widget-course-content-due-soon-item-left-icon {
-   @apply rounded-md flex items-center justify-center bg-white p-2;
+  @apply rounded-md flex items-center justify-center bg-white p-2;
 }
 
 .schedule-widget-course-content-due-soon-item-text {
-   @apply flex-grow;
+  @apply flex-grow;
 }
 
 .schedule-widget-course-content-due-soon-item-title {
-   @apply text-[10pt];
+  @apply text-[10pt];
 }
 
 .schedule-widget-course-content-due-soon-item-time {
-   @apply text-[8pt] font-normal;
+  @apply text-[8pt] font-normal;
 }
 
 .schedule-widget-course-content-class-location {
-   @apply rounded-xl p-3 flex flex-row gap-4 items-center flex-shrink pr-5 transition-all duration-200 row-start-1 col-start-2;
+  @apply rounded-xl p-3 flex flex-row gap-4 items-center flex-shrink pr-5 transition-all duration-200 row-start-1 col-start-2;
 }
 
 .schedule-widget-course-class-location-icon {
-   @apply w-[33pt] h-[33pt] rounded-lg text-white flex items-center justify-center;
+  @apply w-[33pt] h-[33pt] rounded-lg text-white flex items-center justify-center;
 }
 
 .schedule-widget-course-class-location-text {
-   @apply flex flex-col flex-grow;
+  @apply flex flex-col flex-grow;
 }
 
 .schedule-widget-course-class-location-text-head {
-   @apply text-base;
+  @apply text-base;
 }
 
 .schedule-widget-course-class-location-text-sub {
-   @apply text-xs;
+  @apply text-xs;
 }
 
 .schedule-widget-course-content-useful-links {
-   @apply rounded-xl p-4 flex flex-col gap-4 items-start bg-current h-full overflow-y-auto overflow-x-hidden row-start-2 col-start-2;
+  @apply rounded-xl p-4 flex flex-col gap-4 items-start bg-current h-full overflow-y-auto overflow-x-hidden row-start-2 col-start-2;
 }
 
 .schedule-widget-course-content-useful-links-items {
-   @apply flex flex-row gap-2 h-full w-full items-start;
+  @apply flex flex-row gap-2 h-full w-full items-start;
 }
 
 .schedule-widget-course-content-useful-links-item {
-   @apply text-white w-full flex flex-row gap-3 items-center px-4 py-2 rounded-lg pl-2 transition-all duration-200
-   active:shadow-[0_0_0_4px];
+  @apply text-white w-full flex flex-row gap-3 items-center px-4 py-2 rounded-lg pl-2 transition-all duration-200
+  active:shadow-[0_0_0_4px];
 }
 
 .schedule-widget-course-content-useful-links-item-left-icon {
-   @apply rounded-md flex items-center justify-center bg-white p-1.5;
+  @apply rounded-md flex items-center justify-center bg-white p-1.5;
 }
 
 .schedule-widget-course-content-useful-links-item-text {
-   @apply flex-grow;
+  @apply flex-grow;
 }
 
 .schedule-widget-course-content-useful-links-item-title {
-   @apply text-[10pt];
+  @apply text-[10pt];
 }

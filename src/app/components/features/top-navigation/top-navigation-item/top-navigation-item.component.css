@@ -1,8 +1,8 @@
 .top-nav-item {
-   @apply bg-brand-secondary-muted px-5 py-2.5 rounded-lg text-brand-secondary hover:bg-brand-secondary hover:text-white
-   transition-all duration-200 ease-in-out;
+  @apply bg-brand-secondary-muted px-5 py-2.5 rounded-lg text-brand-secondary hover:bg-brand-secondary hover:text-white
+  transition-all duration-200 ease-in-out;
 }
 
 .top-nav-item.active {
-   @apply bg-brand-secondary text-white hover:bg-brand-secondary-hover hover:text-white;
+  @apply bg-brand-secondary text-white hover:bg-brand-secondary-hover hover:text-white;
 }

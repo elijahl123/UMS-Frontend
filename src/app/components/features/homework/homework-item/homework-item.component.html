@@ -1,9 +1,9 @@
 <ui-card
-   [class]="this.transparent ? '!bg-white hover:!bg-brand-background' : ''"
-   [color]="this.transparent ? assignment.course.color.toLowerCase().concat('-muted') : assignment.course.color.toLowerCase()"
-   [head]="assignment.name"
-   [leftIcon]="this.transparent ? null : assignmentIcon"
-   [rightIcon]="infoIcon"
-   [style]="{'color': this.transparent ? 'rgba(var(--color-utility-'.concat(assignment.course.color.toLowerCase()).concat('), 1)') : ''}"
-   sub="{{ assignment.course.name }}: {{ assignment.dueTime | time }}">
+  [class]="this.transparent ? '!bg-white hover:!bg-brand-background' : ''"
+  [color]="this.transparent ? assignment.course.color.toLowerCase().concat('-muted') : assignment.course.color.toLowerCase()"
+  [head]="assignment.name"
+  [leftIcon]="this.transparent ? null : assignmentIcon"
+  [rightIcon]="infoIcon"
+  [style]="{'color': this.transparent ? 'rgba(var(--color-utility-'.concat(assignment.course.color.toLowerCase()).concat('), 1)') : ''}"
+  sub="{{ assignment.course.name }}: {{ assignment.dueTime | time }}">
 </ui-card>

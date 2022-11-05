@@ -3,21 +3,21 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ScheduleWidgetComponent } from './schedule-widget.component';
 
 describe('ScheduleWidgetComponent', () => {
-   let component: ScheduleWidgetComponent;
-   let fixture: ComponentFixture<ScheduleWidgetComponent>;
+  let component: ScheduleWidgetComponent;
+  let fixture: ComponentFixture<ScheduleWidgetComponent>;
 
-   beforeEach(async () => {
-      await TestBed.configureTestingModule({
-         declarations: [ScheduleWidgetComponent]
-      })
-         .compileComponents();
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ScheduleWidgetComponent]
+    })
+      .compileComponents();
 
-      fixture = TestBed.createComponent(ScheduleWidgetComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-   });
+    fixture = TestBed.createComponent(ScheduleWidgetComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-   it('should create', () => {
-      expect(component).toBeTruthy();
-   });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

@@ -1,19 +1,19 @@
 .notes {
-   @apply p-4 h-full flex flex-col overflow-y-auto gap-4;
+  @apply p-4 h-full flex flex-col overflow-y-auto gap-4;
 }
 
 .notes-header {
-   @apply flex items-center gap-x-4;
+  @apply flex items-center gap-x-4;
 }
 
 .notes-header-text {
-   @apply w-full px-4 py-2 text-lg bg-brand-background text-utility-secondary rounded-lg
+  @apply w-full px-4 py-2 text-lg bg-brand-background text-utility-secondary rounded-lg
 }
 
 .notes-header-add-button {
-   @apply rounded-lg h-full;
+  @apply rounded-lg h-full;
 }
 
 .notes-content {
-   @apply flex-grow flex flex-col overflow-auto;
+  @apply flex-grow flex flex-col overflow-auto;
 }

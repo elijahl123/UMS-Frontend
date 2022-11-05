@@ -20,46 +20,46 @@ import { Subject } from 'rxjs';
  * </ui-toast>
  */
 @Component({
-   standalone: true,
-   imports: [
-      FontAwesomeModule,
-      CommonModule,
-      ButtonComponent
-   ],
-   selector: 'ui-toast',
-   templateUrl: './toast.component.html',
-   styleUrls: ['./toast.component.css'],
-   encapsulation: ViewEncapsulation.None
+  standalone: true,
+  imports: [
+    FontAwesomeModule,
+    CommonModule,
+    ButtonComponent
+  ],
+  selector: 'ui-toast',
+  templateUrl: './toast.component.html',
+  styleUrls: ['./toast.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ToastComponent extends BaseUiComponent implements OnInit, OnDestroy {
-   closeIcon: IconDefinition = faClose;
-   @Input() leftIcon: IconDefinition = faInfo;
-   @Input() header: string = 'Default Message';
-   @Input() sub: string = 'Today at 10:00AM';
-   @Input() hide: Subject<boolean> = new Subject<boolean>();
-   isHidden: boolean = false;
+  closeIcon: IconDefinition = faClose;
+  @Input() leftIcon: IconDefinition = faInfo;
+  @Input() header: string = 'Default Message';
+  @Input() sub: string = 'Today at 10:00AM';
+  @Input() hide: Subject<boolean> = new Subject<boolean>();
+  isHidden: boolean = false;
 
-   @ViewChild('toastContent', { static: true }) toastContent: any;
+  @ViewChild('toastContent', { static: true }) toastContent: any;
 
-   constructor() {
-      super();
-   }
+  constructor() {
+    super();
+  }
 
-   ngOnInit(): void {
-      this.hide.subscribe((isHidden) => {
-         this.isHidden = isHidden;
-      })
-   }
+  ngOnInit(): void {
+    this.hide.subscribe((isHidden) => {
+      this.isHidden = isHidden;
+    })
+  }
 
-   onClose() {
-      this.hide.next(true);
-   }
+  onClose() {
+    this.hide.next(true);
+  }
 
-   getHidden() {
-      return this.isHidden ? '!hidden' : '';
-   }
+  getHidden() {
+    return this.isHidden ? '!hidden' : '';
+  }
 
-   ngOnDestroy(): void {
-      this.hide.unsubscribe();
-   }
+  ngOnDestroy(): void {
+    this.hide.unsubscribe();
+  }
 }

@@ -1,54 +1,54 @@
 .notes-content-courses {
-   @apply flex-grow flex flex-col gap-4;
+  @apply flex-grow flex flex-col gap-4;
 }
 
 .notes-content-course {
-   @apply bg-brand-background rounded-lg p-4 flex flex-col gap-4;
+  @apply bg-brand-background rounded-lg p-4 flex flex-col gap-4;
 }
 
 .notes-content-course-header {
-   @apply flex flex-row items-center gap-x-4;
+  @apply flex flex-row items-center gap-x-4;
 }
 
 .notes-content-course-header-left-icon {
-   @apply rounded-md flex items-center justify-center w-10 h-10;
+  @apply rounded-md flex items-center justify-center w-10 h-10;
 }
 
 .notes-content-course-header-text {
-   @apply text-2xl flex-grow;
+  @apply text-2xl flex-grow;
 }
 
 .notes-content-course-header-add-button {
-   @apply rounded-lg w-10 h-10;
+  @apply rounded-lg w-10 h-10;
 }
 
 .notes-content-course-content {
-   @apply grid grid-cols-3 gap-4;
+  @apply grid grid-cols-3 gap-4;
 }
 
 .notes-content-course-content-note {
-   @apply flex flex-col gap-4 p-4 rounded-lg transition-all duration-300 ease-in-out;
+  @apply flex flex-col gap-4 p-4 rounded-lg transition-all duration-300 ease-in-out;
 }
 
 .notes-content-course-content-note-text {
-   @apply text-xl;
+  @apply text-xl;
 }
 
 .notes-content-course-content-note-description {
-   display: -webkit-box;
-   -webkit-line-clamp: 3;
-   -webkit-box-orient: vertical;
-   @apply text-sm flex-grow overflow-hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  @apply text-sm flex-grow overflow-hidden;
 }
 
 .notes-content-course-content-note-footer {
-   @apply flex flex-row items-center gap-x-4;
+  @apply flex flex-row items-center gap-x-4;
 }
 
 .notes-content-course-content-note-footer-modified {
-   @apply flex-grow bg-white h-full rounded-lg py-2 px-4 flex flex-row items-center gap-x-2 text-sm;
+  @apply flex-grow bg-white h-full rounded-lg py-2 px-4 flex flex-row items-center gap-x-2 text-sm;
 }
 
 .notes-content-course-content-note-footer-edit-button {
-   @apply bg-white rounded-lg flex items-center justify-center w-9 h-9 cursor-pointer hover:bg-brand-background text-sm
+  @apply bg-white rounded-lg flex items-center justify-center w-9 h-9 cursor-pointer hover:bg-brand-background text-sm
 }

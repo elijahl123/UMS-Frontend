@@ -1,16 +1,16 @@
 <div class="content grid grid-cols-4 h-full">
-      <div class="note-courses">
-         <div class="header">
-            <div class="header-text bg-utility-secondary-muted">
-               Courses
-            </div>
-         </div>
-         <ng-container *ngFor="let course of getCourses()">
-            <div class="note-content-header">
-               {{ course.name }}
-            </div>
-         </ng-container>
+  <div class="note-courses">
+    <div class="header">
+      <div class="header-text bg-utility-secondary-muted">
+        Courses
       </div>
-      <div class="note-content">
+    </div>
+    <div class="padded-container" *ngFor="let course of getCourses()">
+      <div class="note-content-header">
+        {{ course.name }}
       </div>
-   </div>
+    </div>
+  </div>
+  <div class="note-content">
+  </div>
+</div>

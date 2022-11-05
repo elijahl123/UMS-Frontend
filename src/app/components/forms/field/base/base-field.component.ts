@@ -8,24 +8,24 @@ import { FieldFormsComponent } from '../../../../core/components/forms/field.for
  * </form-field>
  */
 @Component({
-   selector: 'form-field',
-   templateUrl: './base-field.component.html',
-   styleUrls: ['./base-field.component.css'],
-   encapsulation: ViewEncapsulation.None
+  selector: 'form-field',
+  templateUrl: './base-field.component.html',
+  styleUrls: ['./base-field.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class BaseFieldComponent extends FieldFormsComponent implements OnInit {
-   @Input() horizontal: boolean = false;
-   @Input() label: string = 'Label';
-   @Input() subLabel: string;
+  @Input() horizontal: boolean = false;
+  @Input() label: string = 'Label';
+  @Input() subLabel: string;
 
-   constructor() {
-      super();
-   }
+  constructor() {
+    super();
+  }
 
-   ngOnInit(): void {
-   }
+  ngOnInit(): void {
+  }
 
-   getFormFieldClass() {
-      return this.horizontal ? 'row' : '';
-   }
+  getFormFieldClass() {
+    return this.horizontal ? 'row' : '';
+  }
 }

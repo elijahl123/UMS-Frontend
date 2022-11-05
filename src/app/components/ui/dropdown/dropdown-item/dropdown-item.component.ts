@@ -5,25 +5,25 @@ import { BaseUiComponent } from '../../../../core/components/ui/base.ui.componen
 import { CommonModule } from '@angular/common';
 
 @Component({
-   standalone: true,
-   selector: 'ui-dropdown-item',
-   templateUrl: './dropdown-item.component.html',
-   imports: [
-      FontAwesomeModule,
-      CommonModule
-   ],
-   styleUrls: ['./dropdown-item.component.css'],
-   encapsulation: ViewEncapsulation.None
+  standalone: true,
+  selector: 'ui-dropdown-item',
+  templateUrl: './dropdown-item.component.html',
+  imports: [
+    FontAwesomeModule,
+    CommonModule
+  ],
+  styleUrls: ['./dropdown-item.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DropdownItemComponent extends BaseUiComponent implements OnInit {
-   @Input() text: string = 'This is a dropdown item';
-   @Input() leftIcon: IconDefinition;
+  @Input() text: string = 'This is a dropdown item';
+  @Input() leftIcon: IconDefinition;
 
-   constructor() {
-      super();
-   }
+  constructor() {
+    super();
+  }
 
-   ngOnInit(): void {
-   }
+  ngOnInit(): void {
+  }
 
 }

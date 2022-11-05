@@ -1,42 +1,42 @@
 <div class="class-schedule">
-   <div class="class-schedule-header">
-      <h2 class="class-schedule-header-title">Class Schedule</h2>
-      <button class="class-schedule-header-add-button btn secondary-muted hover-enabled">
-         <fa-icon [icon]="plusIcon"></fa-icon>
-      </button>
-      <button (click)="onManageSchedule()"
-              class="class-schedule-header-manage-schedule-button btn secondary hover-enabled">
-         <fa-icon [icon]="cogIcon"></fa-icon>
-         Manage Schedule
-      </button>
-   </div>
-   <div class="class-schedule-content">
-      <div class="class-schedule-times">
-         <div *ngFor="let time of getTimes()" class="class-schedule-time">{{ time }}</div>
-      </div>
-      <div class="class-schedule-days-of-the-week">
-         <div *ngFor="let dayOfWeek of getDaysOfWeek()"
-              [ngClass]="['class-schedule-day-of-the-week', isDayOfWeekToday(dayOfWeek) ? 'bg-utility-secondary !text-white' : '']">{{ dayOfWeek }}</div>
-      </div>
-      <div [ngClass]="getBodyContainerWrapperStyle()">
-         <div [ngStyle]="getBodyContainerStyle()" class="class-schedule-body-container">
-            <div [ngStyle]="getBodyStyle()" class="class-schedule-body">
-               <div *ngFor="let day of getDays()" class="class-schedule-day">
-               </div>
+  <div class="class-schedule-header">
+    <h2 class="class-schedule-header-title">Class Schedule</h2>
+    <button class="class-schedule-header-add-button btn secondary-muted hover-enabled">
+      <fa-icon [icon]="plusIcon"></fa-icon>
+    </button>
+    <button (click)="onManageSchedule()"
+            class="class-schedule-header-manage-schedule-button btn secondary hover-enabled">
+      <fa-icon [icon]="cogIcon"></fa-icon>
+      Manage Schedule
+    </button>
+  </div>
+  <div class="class-schedule-content">
+    <div class="class-schedule-times">
+      <div *ngFor="let time of getTimes()" class="class-schedule-time">{{ time }}</div>
+    </div>
+    <div class="class-schedule-days-of-the-week">
+      <div *ngFor="let dayOfWeek of getDaysOfWeek()"
+           [ngClass]="['class-schedule-day-of-the-week', isDayOfWeekToday(dayOfWeek) ? 'bg-utility-secondary !text-white' : '']">{{ dayOfWeek }}</div>
+    </div>
+    <div [ngClass]="getBodyContainerWrapperStyle()">
+      <div [ngStyle]="getBodyContainerStyle()" class="class-schedule-body-container">
+        <div [ngStyle]="getBodyStyle()" class="class-schedule-body">
+          <div *ngFor="let day of getDays()" class="class-schedule-day">
+          </div>
+        </div>
+        <div *ngFor="let courseTime of getTotalCourseTimes()" [ngStyle]="getStyle(courseTime)"
+             class="class-schedule-course-time">
+          <div (click)="selectCourse(courseTime)"
+               [ngClass]="['class-schedule-course-time-content hover-enabled', courseTime.course.color.toLowerCase()]">
+            <div class="class-schedule-course-time-content-title">
+              {{ courseTime.course.name }}
             </div>
-            <div *ngFor="let courseTime of getTotalCourseTimes()" [ngStyle]="getStyle(courseTime)"
-                 class="class-schedule-course-time">
-               <div (click)="selectCourse(courseTime)"
-                    [ngClass]="['class-schedule-course-time-content hover-enabled', courseTime.course.color.toLowerCase()]">
-                  <div class="class-schedule-course-time-content-title">
-                     {{ courseTime.course.name }}
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div [ngClass]="['class-schedule-content-info', !isRouterOnHomepage() ? 'w-full' : 'w-0']">
-            <router-outlet></router-outlet>
-         </div>
+          </div>
+        </div>
       </div>
-   </div>
+      <div [ngClass]="['class-schedule-content-info', !isRouterOnHomepage() ? 'w-full' : 'w-0']">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
 </div>

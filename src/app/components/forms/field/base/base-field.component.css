@@ -1,19 +1,19 @@
 .form-field {
-   @apply grid gap-3;
+  @apply grid gap-3;
 }
 
 .form-field.row {
-   @apply grid-flow-col justify-between items-center;
+  @apply grid-flow-col justify-between items-center;
 }
 
 .form-field-label-wrapper {
-   @apply grid gap-1;
+  @apply grid gap-1;
 }
 
 .form-field-label {
-   @apply text-brand-secondary font-bold;
+  @apply text-brand-secondary font-bold;
 }
 
 .form-field-label-sub {
-   @apply text-brand-secondary text-sm;
+  @apply text-brand-secondary text-sm;
 }

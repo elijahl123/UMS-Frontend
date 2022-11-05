@@ -1,11 +1,11 @@
 <div #nav [@isOpenState]="isOpen" class="w-full h-full overflow-hidden">
-   <div class="top-nav">
-      <div [routerLink]="'/'" class="top-nav-branding">
-         <img alt="UMS Logo" class="top-nav-branding-img" src="/assets/UMS%20Logo.svg">
-         <h2 class="top-nav-branding-text">Untitled Management Software</h2>
-      </div>
-      <div class="top-nav-actions">
-         <ng-content></ng-content>
-      </div>
-   </div>
+  <div class="top-nav">
+    <div [routerLink]="'/'" class="top-nav-branding">
+      <img alt="UMS Logo" class="top-nav-branding-img" src="/assets/UMS%20Logo.svg">
+      <h2 class="top-nav-branding-text">Untitled Management Software</h2>
+    </div>
+    <div class="top-nav-actions">
+      <ng-content></ng-content>
+    </div>
+  </div>
 </div>

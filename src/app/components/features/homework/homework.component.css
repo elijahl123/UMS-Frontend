@@ -1,60 +1,60 @@
 .homework {
-   @apply flex flex-col p-4 h-full gap-4;
+  @apply flex flex-col p-4 h-full gap-4;
 }
 
 .homework-header {
-   @apply flex flex-row items-center gap-x-4;
+  @apply flex flex-row items-center gap-x-4;
 }
 
 .homework-header-title {
-   @apply w-full px-4 py-2 text-lg bg-brand-background text-utility-secondary rounded-lg;
+  @apply w-full px-4 py-2 text-lg bg-brand-background text-utility-secondary rounded-lg;
 }
 
 .homework-header-add-button {
-   @apply rounded-lg;
+  @apply rounded-lg;
 }
 
 .homework-body {
-   @apply flex flex-row gap-4 w-full h-full overflow-y-auto overflow-x-hidden transition-all duration-200 ease-in-out;
+  @apply flex flex-row gap-4 w-full h-full overflow-y-auto overflow-x-hidden transition-all duration-200 ease-in-out;
 }
 
 .homework-body-router {
-   @apply transition-all duration-200 ease-in-out max-w-[400px];
+  @apply transition-all duration-200 ease-in-out max-w-[400px];
 }
 
 .homework-body-inner {
-   @apply flex flex-col gap-4 w-full h-full overflow-auto;
+  @apply flex flex-col gap-4 w-full h-full overflow-auto;
 }
 
 .homework-late-assignments {
-   @apply flex flex-col gap-3 rounded-lg p-4 overflow-y-auto;
+  @apply flex flex-col gap-3 rounded-lg p-4 overflow-y-auto;
 }
 
 .homework-late-assignments-header {
-   @apply w-full flex flex-row items-center gap-x-3 px-1 text-lg;
+  @apply w-full flex flex-row items-center gap-x-3 px-1 text-lg;
 }
 
 .homework-late-assignments-list {
-   @apply flex flex-col gap-2 overflow-y-auto max-h-96 rounded-lg pr-1;
+  @apply flex flex-col gap-2 overflow-y-auto max-h-96 rounded-lg pr-1;
 }
 
 .homework-content {
-   @apply flex-grow bg-brand-background rounded-lg p-4 flex flex-col gap-3 overflow-auto;
+  @apply flex-grow bg-brand-background rounded-lg p-4 flex flex-col gap-3 overflow-auto;
 }
 
 .homework-content-dates {
-   @apply gap-3 flex flex-col;
+  @apply gap-3 flex flex-col;
 }
 
 .homework-content-dates:first-child > .homework-content-date {
-   @apply !pt-0;
+  @apply !pt-0;
 }
 
 .homework-content-date {
-   @apply text-utility-secondary text-lg pt-2;
+  @apply text-utility-secondary text-lg pt-2;
 }
 
 .homework-content-assignments {
-   @apply flex flex-col gap-2;
+  @apply flex flex-col gap-2;
 }
 

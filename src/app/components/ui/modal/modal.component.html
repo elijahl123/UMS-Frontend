@@ -1,21 +1,21 @@
 <div class="modal-trigger">
-   <ng-content select="[trigger]"></ng-content>
+  <ng-content select="[trigger]"></ng-content>
 </div>
 <div class="modal">
-   <div class="modal-content">
-      <div class="modal-header">
-         <h3 [title]="title" class="modal-header-text">
-            {{ title }}
-         </h3>
-         <ui-button (click)="onClose()" [leftIcon]="closeIcon" class="brand-background rounded-lg text-sm"
-                    text=""></ui-button>
-      </div>
-      <div class="modal-body">
-         <ng-content></ng-content>
-      </div>
-      <div class="modal-footer">
-         <ui-button (click)="onClose()" class="brand-background rounded-lg" text="Close"></ui-button>
-         <ng-content select="[foot]"></ng-content>
-      </div>
-   </div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 [title]="title" class="modal-header-text">
+        {{ title }}
+      </h3>
+      <ui-button (click)="onClose()" [leftIcon]="closeIcon" class="brand-background rounded-lg text-sm"
+                 text=""></ui-button>
+    </div>
+    <div class="modal-body">
+      <ng-content></ng-content>
+    </div>
+    <div class="modal-footer">
+      <ui-button (click)="onClose()" class="brand-background rounded-lg" text="Close"></ui-button>
+      <ng-content select="[foot]"></ng-content>
+    </div>
+  </div>
 </div>

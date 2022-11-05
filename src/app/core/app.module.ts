@@ -14,22 +14,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SpinnerComponent } from '../components/ui/spinner/spinner.component';
 
 @NgModule({
-   declarations: [
-      AppComponent
-   ],
-   imports: [
-      BrowserModule,
-      AppRoutingModule,
-      ModalDirective,
-      FontAwesomeModule,
-      FeaturesModule,
-      GraphQLModule,
-      HttpClientModule,
-      BrowserAnimationsModule,
-      SpinnerComponent,
-   ],
-   providers: [],
-   bootstrap: [AppComponent]
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ModalDirective,
+    FontAwesomeModule,
+    FeaturesModule,
+    GraphQLModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    SpinnerComponent,
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

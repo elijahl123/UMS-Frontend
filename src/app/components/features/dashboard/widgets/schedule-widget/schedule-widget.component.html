@@ -1,115 +1,115 @@
 <div class="schedule-widget">
-   <div class="schedule-widget-header">
-      <h3 class="schedule-widget-header-title">Today's Schedule</h3>
-      <button class="btn secondary-muted hover-enabled rounded-lg">
-         <fa-icon [icon]="cogIcon"></fa-icon>
-         Manage Schedule
-      </button>
-   </div>
-   <div class="schedule-widget-date">
-      <button (click)="decrementDate()" class="btn secondary-muted hover-enabled rounded-lg">
-         <fa-icon [icon]="chevronLeftIcon"></fa-icon>
-      </button>
-      <input (change)="onDateChanged($event)" [value]="getDate()" class="schedule-widget-date-input btn secondary-muted"
-             type="date">
-      <button (click)="incrementDate()" class="btn secondary-muted hover-enabled rounded-lg">
-         <fa-icon [icon]="chevronRightIcon"></fa-icon>
-      </button>
-   </div>
-   <div class="schedule-widget-content">
-      <div *ngIf="getSchedule()" class="schedule-widget-courses">
-         <ng-container *ngFor="let course of getCourseTimeObjects()">
+  <div class="schedule-widget-header">
+    <h3 class="schedule-widget-header-title">Today's Schedule</h3>
+    <button class="btn secondary-muted hover-enabled rounded-lg">
+      <fa-icon [icon]="cogIcon"></fa-icon>
+      Manage Schedule
+    </button>
+  </div>
+  <div class="schedule-widget-date">
+    <button (click)="decrementDate()" class="btn secondary-muted hover-enabled rounded-lg">
+      <fa-icon [icon]="chevronLeftIcon"></fa-icon>
+    </button>
+    <input (change)="onDateChanged($event)" [value]="getDate()" class="schedule-widget-date-input btn secondary-muted"
+           type="date">
+    <button (click)="incrementDate()" class="btn secondary-muted hover-enabled rounded-lg">
+      <fa-icon [icon]="chevronRightIcon"></fa-icon>
+    </button>
+  </div>
+  <div class="schedule-widget-content">
+    <div *ngIf="getSchedule()" class="schedule-widget-courses">
+      <ng-container *ngFor="let course of getCourseTimeObjects()">
+        <div
+          [ngClass]="['schedule-widget-course', course.course.color.toLowerCase().concat('-muted'), getOpenCourses().includes(course) == false ? 'hover-enabled' : 'flex-grow']">
+          <div (click)="toggleCourse(course)" class="schedule-widget-course-head hover-enabled">
             <div
-               [ngClass]="['schedule-widget-course', course.course.color.toLowerCase().concat('-muted'), getOpenCourses().includes(course) == false ? 'hover-enabled' : 'flex-grow']">
-               <div (click)="toggleCourse(course)" class="schedule-widget-course-head hover-enabled">
+              [ngClass]="['schedule-widget-course-head-icon', 'bg-utility-'.concat(course.course.color.toLowerCase())]">
+              <fa-icon [icon]="schoolIcon"></fa-icon>
+            </div>
+            <div class="schedule-widget-course-head-title">
+              {{ course.course.name }}
+            </div>
+            <div
+              [ngClass]="['schedule-widget-course-head-time', 'bg-utility-'.concat(course.course.color.toLowerCase())]">
+              {{ formatTime( course.startTime ) }}
+            </div>
+          </div>
+          <div [ngClass]="['schedule-widget-course-content', getOpenCourses().includes(course) ? '' : '!hidden']">
+            <div class="schedule-widget-course-content-due-soon">
+              <div class="schedule-widget-course-content-due-soon-title">
+                Due Soon
+              </div>
+              <div class="schedule-widget-course-content-due-soon-items">
+                <ng-container *ngIf="courseContainsAssignments(course); else noAssignmentsDueSoon">
+                  <ng-container *ngFor="let assignment of getAssignmentsDueSoon()">
+                    <ui-card *ngIf="assignment.node.course.uid == course.course.uid"
+                             [color]="course.course.color.toLowerCase()"
+                             [head]="assignment.node.name" [leftIcon]="assignmentIcon" [rightIcon]="linkIcon"
+                             sub="{{ assignment.node.dueDate | date: 'EEEE' }} at {{ formatTime( assignment.node.dueTime ) }}">
+                    </ui-card>
+                  </ng-container>
+                </ng-container>
+                <ng-template #noAssignmentsDueSoon>
                   <div
-                     [ngClass]="['schedule-widget-course-head-icon', 'bg-utility-'.concat(course.course.color.toLowerCase())]">
-                     <fa-icon [icon]="schoolIcon"></fa-icon>
+                    [ngClass]="['schedule-widget-course-content-due-soon-item text-center h-full', course.course.color.toLowerCase()]">
+                    <div class="text-[10pt] w-full">
+                      No assignments due soon!
+                    </div>
                   </div>
-                  <div class="schedule-widget-course-head-title">
-                     {{ course.course.name }}
-                  </div>
-                  <div
-                     [ngClass]="['schedule-widget-course-head-time', 'bg-utility-'.concat(course.course.color.toLowerCase())]">
-                     {{ formatTime( course.startTime ) }}
-                  </div>
-               </div>
-               <div [ngClass]="['schedule-widget-course-content', getOpenCourses().includes(course) ? '' : '!hidden']">
-                  <div class="schedule-widget-course-content-due-soon">
-                     <div class="schedule-widget-course-content-due-soon-title">
-                        Due Soon
-                     </div>
-                     <div class="schedule-widget-course-content-due-soon-items">
-                        <ng-container *ngIf="courseContainsAssignments(course); else noAssignmentsDueSoon">
-                           <ng-container *ngFor="let assignment of getAssignmentsDueSoon()">
-                              <ui-card *ngIf="assignment.node.course.uid == course.course.uid"
-                                       [color]="course.course.color.toLowerCase()"
-                                       [head]="assignment.node.name" [leftIcon]="assignmentIcon" [rightIcon]="linkIcon"
-                                       sub="{{ assignment.node.dueDate | date: 'EEEE' }} at {{ formatTime( assignment.node.dueTime ) }}">
-                              </ui-card>
-                           </ng-container>
-                        </ng-container>
-                        <ng-template #noAssignmentsDueSoon>
-                           <div
-                              [ngClass]="['schedule-widget-course-content-due-soon-item text-center h-full', course.course.color.toLowerCase()]">
-                              <div class="text-[10pt] w-full">
-                                 No assignments due soon!
-                              </div>
-                           </div>
-                        </ng-template>
-                     </div>
-                  </div>
-                  <a (click)="course.link ? null : $event.preventDefault()" [href]="course.link ? course.link : '#'"
-                     [ngClass]="['schedule-widget-course-content-class-location', course.link ? 'hover-enabled hover:shadow-[0_0_0_4px] ' : '', course.course.color.toLowerCase().concat('-muted')]"
-                     target="_blank">
-                     <div
-                        [ngClass]="['schedule-widget-course-class-location-icon', 'bg-utility-'.concat(course.course.color.toLowerCase())]">
-                        <fa-icon [icon]="course.link ? videoIcon : mapIcon"></fa-icon>
-                     </div>
-                     <div class="schedule-widget-course-class-location-text">
+                </ng-template>
+              </div>
+            </div>
+            <a (click)="course.link ? null : $event.preventDefault()" [href]="course.link ? course.link : '#'"
+               [ngClass]="['schedule-widget-course-content-class-location', course.link ? 'hover-enabled hover:shadow-[0_0_0_4px] ' : '', course.course.color.toLowerCase().concat('-muted')]"
+               target="_blank">
+              <div
+                [ngClass]="['schedule-widget-course-class-location-icon', 'bg-utility-'.concat(course.course.color.toLowerCase())]">
+                <fa-icon [icon]="course.link ? videoIcon : mapIcon"></fa-icon>
+              </div>
+              <div class="schedule-widget-course-class-location-text">
                   <span class="schedule-widget-course-class-location-text-head">
                     {{ course.link ? 'Online' : 'In-Person' }}
                   </span>
-                        <span class="schedule-widget-course-class-location-text-sub">
+                <span class="schedule-widget-course-class-location-text-sub">
 
                       {{ course.link ?
-                           'Password: ' :
-                           'Location: ' }} <span class="font-normal">{{ course.link ?
-                           (course.zoomPassword ? course.zoomPassword : 'None') :
-                           course.location }}
+                  'Password: ' :
+                  'Location: ' }} <span class="font-normal">{{ course.link ?
+                  (course.zoomPassword ? course.zoomPassword : 'None') :
+                  course.location }}
                   </span>
                   </span>
-                     </div>
-                     <div *ngIf="course.link" class="schedule-widget-course-class-location-right-icon">
-                        <fa-icon [icon]="linkIcon"></fa-icon>
-                     </div>
-                  </a>
-                  <div class="schedule-widget-course-content-useful-links">
-                     <div class="schedule-widget-course-content-useful-links-title">
-                        Useful Links
-                     </div>
-                     <div class="schedule-widget-course-content-useful-links-items">
-                        <ng-container *ngIf="courseContainsLinks(course); else noLinks">
-                           <ng-container *ngFor="let link of getCourseLinks()">
-                              <ui-card *ngIf="link.course.uid == course.course.uid" [color]="course.course.color.toLowerCase()"
-                                       [head]="link.title" [href]="link.link" [leftIcon]="externalLinkIcon"
-                                       [rightIcon]="linkIcon">
-                              </ui-card>
-                           </ng-container>
-                        </ng-container>
-                        <ng-template #noLinks>
-                           <div
-                              [ngClass]="['schedule-widget-course-content-useful-links-item text-center h-full', course.course.color.toLowerCase()]">
-                              <div class="text-[10pt] w-full">
-                                 No links!
-                              </div>
-                           </div>
-                        </ng-template>
-                     </div>
+              </div>
+              <div *ngIf="course.link" class="schedule-widget-course-class-location-right-icon">
+                <fa-icon [icon]="linkIcon"></fa-icon>
+              </div>
+            </a>
+            <div class="schedule-widget-course-content-useful-links">
+              <div class="schedule-widget-course-content-useful-links-title">
+                Useful Links
+              </div>
+              <div class="schedule-widget-course-content-useful-links-items">
+                <ng-container *ngIf="courseContainsLinks(course); else noLinks">
+                  <ng-container *ngFor="let link of getCourseLinks()">
+                    <ui-card *ngIf="link.course.uid == course.course.uid" [color]="course.course.color.toLowerCase()"
+                             [head]="link.title" [href]="link.link" [leftIcon]="externalLinkIcon"
+                             [rightIcon]="linkIcon">
+                    </ui-card>
+                  </ng-container>
+                </ng-container>
+                <ng-template #noLinks>
+                  <div
+                    [ngClass]="['schedule-widget-course-content-useful-links-item text-center h-full', course.course.color.toLowerCase()]">
+                    <div class="text-[10pt] w-full">
+                      No links!
+                    </div>
                   </div>
-               </div>
+                </ng-template>
+              </div>
             </div>
-         </ng-container>
-      </div>
-   </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </div>

@@ -11,378 +11,378 @@
 
 */
 @layer base {
-   body {
-      height: 100vh;
-      max-height: 100vh;
-      font-family: Poppins, sans-serif;
-      font-weight: 500;
-      font-style: normal;
-   }
+  body {
+    height: 100vh;
+    max-height: 100vh;
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
 
-   h1 {
-      @apply text-6xl;
-   }
+  h1 {
+    @apply text-6xl;
+  }
 
-   :root {
-      --ums-thumb-color: rgba(var(--color-brand-secondary), 1);
-      --color-white: 255, 255, 255;
-      --color-black: 0, 0, 0;
-      --color-brand-main: 248, 173, 157;
-      --color-brand-main-muted: 248, 173, 157, 0.14;
-      --color-brand-main-hover: 247, 160, 141;
-      --color-brand-secondary: 81, 114, 123;
-      --color-brand-secondary-muted: 81, 114, 123, 0.14;
-      --color-brand-secondary-hover: 73, 103, 111;
-      --color-brand-accent: 244, 151, 142;
-      --color-brand-accent-muted: 244, 151, 142, 0.14;
-      --color-brand-accent-hover: 242, 135, 125;
-      --color-brand-shade: 240, 128, 128;
-      --color-brand-shade-muted: 240, 128, 128, 0.14;
-      --color-brand-shade-hover: 238, 109, 109;
-      --color-brand-background: 245, 245, 245;
-      --color-brand-background-muted: 245, 245, 245, 0.14;
-      --color-brand-background-hover: 235, 235, 235;
-      --color-utility-primary: 43, 71, 140;
-      --color-utility-primary-muted: 43, 71, 140, 0.14;
-      --color-utility-primary-hover: 38, 63, 125;
-      --color-utility-secondary: 95, 88, 90;
-      --color-utility-secondary-muted: 95, 88, 90, 0.14;
-      --color-utility-secondary-hover: 85, 78, 80;
-      --color-utility-danger: 235, 94, 85;
-      --color-utility-danger-muted: 235, 94, 85, 0.14;
-      --color-utility-danger-hover: 234, 83, 72;
-      --color-utility-info: 108, 145, 194;
-      --color-utility-info-muted: 108, 145, 194, 0.14;
-      --color-utility-info-hover: 97, 137, 189;
-      --color-utility-warning: 254, 185, 95;
-      --color-utility-warning-muted: 254, 185, 95, 0.14;
-      --color-utility-warning-hover: 254, 175, 72;
-      --color-utility-success: 92, 153, 98;
-      --color-utility-success-muted: 92, 153, 98, 0.14;
-      --color-utility-success-hover: 115, 171, 121;
-      --color-rainbow-red: 235, 94, 85;
-      --color-rainbow-red-muted: 235, 94, 85, 0.14;
-      --color-rainbow-orange: 245, 140, 90;
-      --color-rainbow-orange-muted: 245, 140, 90, 0.14;
-      --color-rainbow-yellow-orange: 250, 163, 93;
-      --color-rainbow-yellow-orange-muted: 250, 163, 93, 0.14;
-      --color-rainbow-yellow: 254, 185, 95;
-      --color-rainbow-yellow-muted: 254, 185, 95, 0.14;
-      --color-rainbow-yellow-green: 191, 182, 114;
-      --color-rainbow-yellow-green-muted: 191, 182, 114, 0.14;
-      --color-rainbow-green: 92, 153, 98;
-      --color-rainbow-green-muted: 92, 153, 98, 0.14;
-      --color-rainbow-light-blue: 108, 145, 194;
-      --color-rainbow-light-blue-muted: 108, 145, 194, 0.14;
-      --color-rainbow-blue: 43, 71, 140;
-      --color-rainbow-blue-muted: 43, 71, 140, 0.14;
-      --color-rainbow-purple: 86, 82, 144;
-      --color-rainbow-purple-muted: 86, 82, 144, 0.14;
-      --color-rainbow-lilac: 128, 93, 147;
-      --color-rainbow-lilac-muted: 128, 93, 147, 0.14;
-   }
+  :root {
+    --ums-thumb-color: rgb(var(--color-brand-secondary) 1);
+    --color-white: 255, 255, 255;
+    --color-black: 0, 0, 0;
+    --color-brand-main: 248, 173, 157;
+    --color-brand-main-muted: 248, 173, 157, 0.14;
+    --color-brand-main-hover: 247, 160, 141;
+    --color-brand-secondary: 81, 114, 123;
+    --color-brand-secondary-muted: 81, 114, 123, 0.14;
+    --color-brand-secondary-hover: 73, 103, 111;
+    --color-brand-accent: 244, 151, 142;
+    --color-brand-accent-muted: 244, 151, 142, 0.14;
+    --color-brand-accent-hover: 242, 135, 125;
+    --color-brand-shade: 240, 128, 128;
+    --color-brand-shade-muted: 240, 128, 128, 0.14;
+    --color-brand-shade-hover: 238, 109, 109;
+    --color-brand-background: 245, 245, 245;
+    --color-brand-background-muted: 245, 245, 245, 0.14;
+    --color-brand-background-hover: 235, 235, 235;
+    --color-utility-primary: 43, 71, 140;
+    --color-utility-primary-muted: 43, 71, 140, 0.14;
+    --color-utility-primary-hover: 38, 63, 125;
+    --color-utility-secondary: 95, 88, 90;
+    --color-utility-secondary-muted: 95, 88, 90, 0.14;
+    --color-utility-secondary-hover: 85, 78, 80;
+    --color-utility-danger: 235, 94, 85;
+    --color-utility-danger-muted: 235, 94, 85, 0.14;
+    --color-utility-danger-hover: 234, 83, 72;
+    --color-utility-info: 108, 145, 194;
+    --color-utility-info-muted: 108, 145, 194, 0.14;
+    --color-utility-info-hover: 97, 137, 189;
+    --color-utility-warning: 254, 185, 95;
+    --color-utility-warning-muted: 254, 185, 95, 0.14;
+    --color-utility-warning-hover: 254, 175, 72;
+    --color-utility-success: 92, 153, 98;
+    --color-utility-success-muted: 92, 153, 98, 0.14;
+    --color-utility-success-hover: 115, 171, 121;
+    --color-rainbow-red: 235, 94, 85;
+    --color-rainbow-red-muted: 235, 94, 85, 0.14;
+    --color-rainbow-orange: 245, 140, 90;
+    --color-rainbow-orange-muted: 245, 140, 90, 0.14;
+    --color-rainbow-yellow-orange: 250, 163, 93;
+    --color-rainbow-yellow-orange-muted: 250, 163, 93, 0.14;
+    --color-rainbow-yellow: 254, 185, 95;
+    --color-rainbow-yellow-muted: 254, 185, 95, 0.14;
+    --color-rainbow-yellow-green: 191, 182, 114;
+    --color-rainbow-yellow-green-muted: 191, 182, 114, 0.14;
+    --color-rainbow-green: 92, 153, 98;
+    --color-rainbow-green-muted: 92, 153, 98, 0.14;
+    --color-rainbow-light-blue: 108, 145, 194;
+    --color-rainbow-light-blue-muted: 108, 145, 194, 0.14;
+    --color-rainbow-blue: 43, 71, 140;
+    --color-rainbow-blue-muted: 43, 71, 140, 0.14;
+    --color-rainbow-purple: 86, 82, 144;
+    --color-rainbow-purple-muted: 86, 82, 144, 0.14;
+    --color-rainbow-lilac: 128, 93, 147;
+    --color-rainbow-lilac-muted: 128, 93, 147, 0.14;
+  }
 
-   ::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
 
-      @apply transition-all duration-100;
-   }
+    @apply transition-all duration-100;
+  }
 
-   ::-webkit-scrollbar-thumb {
-      background-color: var(--ums-thumb-color);
-      border-radius: 8px;
-      margin: 3px;
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--ums-thumb-color);
+    border-radius: 8px;
+    margin: 3px;
 
-      @apply transition-all duration-100;
-   }
+    @apply transition-all duration-100;
+  }
 
-   ::-webkit-scrollbar-track {
-      background: transparent;
-      border-radius: 8px;
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 8px;
 
-      @apply transition-all duration-100;
-   }
+    @apply transition-all duration-100;
+  }
 
-   .main {
-      @apply flex flex-row h-full;
-   }
+  .main {
+    @apply flex flex-row h-full;
+  }
 
-   .content-container {
-      @apply bg-white flex-grow flex flex-col;
-   }
+  .content-container {
+    @apply bg-white flex-grow flex flex-col;
+  }
 
-   .page-default {
-      @apply flex flex-col flex-grow w-full h-full items-center justify-center overflow-auto;
-   }
+  .page-default {
+    @apply flex flex-col flex-grow w-full h-full items-center justify-center overflow-auto;
+  }
 
-   .body {
-      @apply p-4 flex flex-col flex-grow w-full h-full overflow-auto;
-   }
+  .body {
+    @apply p-4 flex flex-col flex-grow w-full h-full overflow-auto;
+  }
 
-   .header {
-      @apply w-full flex flex-row items-center gap-x-4
-   }
+  .header {
+    @apply w-full flex flex-row items-center gap-x-4;
+  }
 
-   .header-text {
-      @apply w-full px-4 py-2 text-lg bg-brand-background text-utility-secondary rounded-lg;
-   }
+  .header-text {
+    @apply w-full px-4 py-2 text-lg bg-brand-background text-utility-secondary rounded-lg;
+  }
 
-   .header-add-button {
-      @apply rounded-lg;
-   }
+  .header-add-button {
+    @apply rounded-lg;
+  }
 
-   .content {
-      @apply flex-grow flex flex-col gap-4 overflow-auto;
-   }
+  .content {
+    @apply flex-grow flex flex-col gap-4 overflow-auto;
+  }
 }
 
 @layer utilities {
-   .hover-enabled {
-      @apply cursor-pointer;
-   }
+  .hover-enabled {
+    @apply cursor-pointer;
+  }
 
-   .brand-main {
-      --current-color: rgb(var(--color-brand-main) 1);
+  .brand-main {
+    --current-color: rgb(var(--color-brand-main) 1);
 
-      @apply !shadow-brand-main-muted bg-brand-main text-white;
-   }
+    @apply !shadow-brand-main-muted bg-brand-main text-white;
+  }
 
-   .brand-main-muted {
-      --current-color: rgba(var(--color-brand-main-muted));
+  .brand-main-muted {
+    --current-color: rgba(var(--color-brand-main-muted));
 
-      @apply !shadow-brand-main bg-brand-main-muted text-brand-main;
-   }
+    @apply !shadow-brand-main bg-brand-main-muted text-brand-main;
+  }
 
-   .brand-main.hover-enabled {
-      @apply hover:bg-brand-main-hover;
-   }
+  .brand-main.hover-enabled {
+    @apply hover:bg-brand-main-hover;
+  }
 
-   .brand-main-muted.hover-enabled {
-      @apply hover:!shadow-brand-main-muted hover:bg-brand-main-hover hover:text-white;
-   }
+  .brand-main-muted.hover-enabled {
+    @apply hover:!shadow-brand-main-muted hover:bg-brand-main-hover hover:text-white;
+  }
 
-   .brand-secondary {
-      --current-color: rgb(var(--color-brand-secondary) 1);
+  .brand-secondary {
+    --current-color: rgb(var(--color-brand-secondary) 1);
 
-      @apply !shadow-brand-secondary-muted bg-brand-secondary text-white;
-   }
+    @apply !shadow-brand-secondary-muted bg-brand-secondary text-white;
+  }
 
-   .brand-secondary-muted {
-      --current-color: rgba(var(--color-brand-secondary-muted));
+  .brand-secondary-muted {
+    --current-color: rgba(var(--color-brand-secondary-muted));
 
-      @apply !shadow-brand-secondary bg-brand-secondary-muted text-brand-secondary;
-   }
+    @apply !shadow-brand-secondary bg-brand-secondary-muted text-brand-secondary;
+  }
 
-   .brand-secondary.hover-enabled {
-      @apply hover:bg-brand-secondary-hover;
-   }
+  .brand-secondary.hover-enabled {
+    @apply hover:bg-brand-secondary-hover;
+  }
 
-   .brand-secondary-muted.hover-enabled {
-      @apply hover:!shadow-brand-secondary-muted hover:bg-brand-secondary-hover hover:text-white;
-   }
+  .brand-secondary-muted.hover-enabled {
+    @apply hover:!shadow-brand-secondary-muted hover:bg-brand-secondary-hover hover:text-white;
+  }
 
-   .brand-accent {
-      --current-color: rgb(var(--color-brand-accent) 1);
+  .brand-accent {
+    --current-color: rgb(var(--color-brand-accent) 1);
 
-      @apply !shadow-brand-accent-muted bg-brand-accent text-white;
-   }
+    @apply !shadow-brand-accent-muted bg-brand-accent text-white;
+  }
 
-   .brand-accent-muted {
-      --current-color: rgba(var(--color-brand-accent-muted));
+  .brand-accent-muted {
+    --current-color: rgba(var(--color-brand-accent-muted));
 
-      @apply !shadow-brand-accent bg-brand-accent-muted text-brand-accent;
-   }
+    @apply !shadow-brand-accent bg-brand-accent-muted text-brand-accent;
+  }
 
-   .brand-accent.hover-enabled {
-      @apply hover:bg-brand-accent-hover;
-   }
+  .brand-accent.hover-enabled {
+    @apply hover:bg-brand-accent-hover;
+  }
 
-   .brand-accent-muted.hover-enabled {
-      @apply hover:!shadow-brand-accent-muted hover:bg-brand-accent-hover hover:text-white;
-   }
+  .brand-accent-muted.hover-enabled {
+    @apply hover:!shadow-brand-accent-muted hover:bg-brand-accent-hover hover:text-white;
+  }
 
-   .brand-background {
-      --current-color: rgb(var(--color-brand-background) 1);
+  .brand-background {
+    --current-color: rgb(var(--color-brand-background) 1);
 
-      @apply !shadow-brand-background bg-brand-background text-brand-secondary;
-   }
+    @apply !shadow-brand-background bg-brand-background text-brand-secondary;
+  }
 
-   .brand-background.hover-enabled {
-      @apply hover:bg-brand-background-hover;
-   }
+  .brand-background.hover-enabled {
+    @apply hover:bg-brand-background-hover;
+  }
 
-   .primary {
-      --current-color: rgb(var(--color-utility-primary) 1);
+  .primary {
+    --current-color: rgb(var(--color-utility-primary) 1);
 
-      @apply !shadow-utility-primary-muted bg-utility-primary text-white;
-   }
+    @apply !shadow-utility-primary-muted bg-utility-primary text-white;
+  }
 
-   .secondary {
-      --current-color: rgb(var(--color-utility-secondary) 1);
+  .secondary {
+    --current-color: rgb(var(--color-utility-secondary) 1);
 
-      @apply !shadow-utility-secondary-muted bg-utility-secondary text-white;
-   }
+    @apply !shadow-utility-secondary-muted bg-utility-secondary text-white;
+  }
 
-   .danger {
-      --current-color: rgb(var(--color-utility-danger) 1);
+  .danger {
+    --current-color: rgb(var(--color-utility-danger) 1);
 
-      @apply !shadow-utility-danger-muted bg-utility-danger text-white;
-   }
+    @apply !shadow-utility-danger-muted bg-utility-danger text-white;
+  }
 
-   .info {
-      --current-color: rgb(var(--color-utility-info) 1);
+  .info {
+    --current-color: rgb(var(--color-utility-info) 1);
 
-      @apply !shadow-utility-info-muted bg-utility-info text-white;
-   }
+    @apply !shadow-utility-info-muted bg-utility-info text-white;
+  }
 
-   .warning {
-      --current-color: rgb(var(--color-utility-warning) 1);
+  .warning {
+    --current-color: rgb(var(--color-utility-warning) 1);
 
-      @apply !shadow-utility-warning-muted bg-utility-warning text-white;
-   }
+    @apply !shadow-utility-warning-muted bg-utility-warning text-white;
+  }
 
-   .success {
-      --current-color: rgb(var(--color-utility-success) 1);
+  .success {
+    --current-color: rgb(var(--color-utility-success) 1);
 
-      @apply !shadow-utility-success-muted bg-utility-success text-white;
-   }
+    @apply !shadow-utility-success-muted bg-utility-success text-white;
+  }
 
-   .primary-muted {
-      --current-color: rgba(var(--color-utility-primary-muted));
+  .primary-muted {
+    --current-color: rgba(var(--color-utility-primary-muted));
 
-      @apply !shadow-utility-primary bg-utility-primary-muted text-utility-primary;
-   }
+    @apply !shadow-utility-primary bg-utility-primary-muted text-utility-primary;
+  }
 
-   .secondary-muted {
-      --current-color: rgba(var(--color-utility-secondary-muted));
+  .secondary-muted {
+    --current-color: rgba(var(--color-utility-secondary-muted));
 
-      @apply !shadow-utility-secondary bg-utility-secondary-muted text-utility-secondary;
-   }
+    @apply !shadow-utility-secondary bg-utility-secondary-muted text-utility-secondary;
+  }
 
-   .danger-muted {
-      --current-color: rgba(var(--color-utility-danger-muted));
+  .danger-muted {
+    --current-color: rgba(var(--color-utility-danger-muted));
 
-      @apply !shadow-utility-danger bg-utility-danger-muted text-utility-danger;
-   }
+    @apply !shadow-utility-danger bg-utility-danger-muted text-utility-danger;
+  }
 
-   .info-muted {
-      --current-color: rgba(var(--color-utility-info-muted));
+  .info-muted {
+    --current-color: rgba(var(--color-utility-info-muted));
 
-      @apply !shadow-utility-info bg-utility-info-muted text-utility-info;
-   }
+    @apply !shadow-utility-info bg-utility-info-muted text-utility-info;
+  }
 
-   .warning-muted {
-      --current-color: rgba(var(--color-utility-warning-muted));
+  .warning-muted {
+    --current-color: rgba(var(--color-utility-warning-muted));
 
-      @apply !shadow-utility-warning bg-utility-warning-muted text-utility-warning;
-   }
+    @apply !shadow-utility-warning bg-utility-warning-muted text-utility-warning;
+  }
 
-   .success-muted {
-      --current-color: rgba(var(--color-utility-success-muted));
+  .success-muted {
+    --current-color: rgba(var(--color-utility-success-muted));
 
-      @apply !shadow-utility-success bg-utility-success-muted text-utility-success;
-   }
+    @apply !shadow-utility-success bg-utility-success-muted text-utility-success;
+  }
 
-   .primary.hover-enabled {
-      @apply hover:bg-utility-primary-hover;
-   }
+  .primary.hover-enabled {
+    @apply hover:bg-utility-primary-hover;
+  }
 
-   .secondary.hover-enabled {
-      @apply hover:bg-utility-secondary-hover;
-   }
+  .secondary.hover-enabled {
+    @apply hover:bg-utility-secondary-hover;
+  }
 
-   .danger.hover-enabled {
-      @apply hover:bg-utility-danger-hover;
-   }
+  .danger.hover-enabled {
+    @apply hover:bg-utility-danger-hover;
+  }
 
-   .info.hover-enabled {
-      @apply hover:bg-utility-info-hover;
-   }
+  .info.hover-enabled {
+    @apply hover:bg-utility-info-hover;
+  }
 
-   .warning.hover-enabled {
-      @apply hover:bg-utility-warning-hover;
-   }
+  .warning.hover-enabled {
+    @apply hover:bg-utility-warning-hover;
+  }
 
-   .success.hover-enabled {
-      @apply hover:bg-utility-success-hover;
-   }
+  .success.hover-enabled {
+    @apply hover:bg-utility-success-hover;
+  }
 
-   .primary-muted.hover-enabled {
-      @apply hover:!shadow-utility-primary-muted hover:bg-utility-primary-hover hover:text-white;
-   }
+  .primary-muted.hover-enabled {
+    @apply hover:!shadow-utility-primary-muted hover:bg-utility-primary-hover hover:text-white;
+  }
 
-   .secondary-muted.hover-enabled {
-      @apply hover:!shadow-utility-secondary-muted hover:bg-utility-secondary-hover hover:text-white;
-   }
+  .secondary-muted.hover-enabled {
+    @apply hover:!shadow-utility-secondary-muted hover:bg-utility-secondary-hover hover:text-white;
+  }
 
-   .danger-muted.hover-enabled {
-      @apply hover:!shadow-utility-danger-muted hover:bg-utility-danger-hover hover:text-white;
-   }
+  .danger-muted.hover-enabled {
+    @apply hover:!shadow-utility-danger-muted hover:bg-utility-danger-hover hover:text-white;
+  }
 
-   .info-muted.hover-enabled {
-      @apply hover:!shadow-utility-info-muted hover:bg-utility-info-hover hover:text-white;
-   }
+  .info-muted.hover-enabled {
+    @apply hover:!shadow-utility-info-muted hover:bg-utility-info-hover hover:text-white;
+  }
 
-   .warning-muted.hover-enabled {
-      @apply hover:!shadow-utility-warning-muted hover:bg-utility-warning-hover hover:text-white;
-   }
+  .warning-muted.hover-enabled {
+    @apply hover:!shadow-utility-warning-muted hover:bg-utility-warning-hover hover:text-white;
+  }
 
-   .success-muted.hover-enabled {
-      @apply hover:!shadow-utility-success-muted hover:bg-utility-success-hover hover:text-white;
-   }
+  .success-muted.hover-enabled {
+    @apply hover:!shadow-utility-success-muted hover:bg-utility-success-hover hover:text-white;
+  }
 
-   .btn {
-      @apply px-4 py-2 duration-200 transition-all focus:shadow-[0_0_0_4px]
-      grid gap-2 grid-flow-col auto-cols-max items-center justify-center;
-   }
+  .btn {
+    @apply px-4 py-2 duration-200 transition-all focus:shadow-[0_0_0_4px]
+    grid gap-2 grid-flow-col auto-cols-max items-center justify-center;
+  }
 
-   .btn[disabled] {
-      @apply cursor-not-allowed opacity-50;
-   }
+  .btn[disabled] {
+    @apply cursor-not-allowed opacity-50;
+  }
 }
 
 @layer components {
-   .form-control {
-      @apply w-full px-5 py-3 rounded-lg focus-visible:ring-4 focus-visible:ring-utility-info-muted
-      !outline-0 border-[3px] border-transparent focus-visible:border-utility-info text-brand-secondary transition-all
-      duration-200 ease-in-out;
-   }
+  .form-control {
+    @apply w-full px-5 py-3 rounded-lg focus-visible:ring-4 focus-visible:ring-utility-info-muted
+    !outline-0 border-[3px] border-transparent focus-visible:border-utility-info text-brand-secondary transition-all
+    duration-200 ease-in-out;
+  }
 
-   .form-control.ng-invalid.ng-touched {
-      @apply border-utility-danger placeholder-utility-danger focus-visible:ring-utility-danger-muted;
-   }
+  .form-control.ng-invalid.ng-touched {
+    @apply border-utility-danger placeholder-utility-danger focus-visible:ring-utility-danger-muted;
+  }
 
-   .form-select {
-      @apply py-2 px-4 bg-white rounded-xl overflow-auto focus:!shadow-[0_0_0_4px] focus:!shadow-utility-info-muted !outline-0
-      border-[3px] border-transparent focus:border-utility-info text-brand-secondary w-full transition-all duration-100
-      text-brand-secondary;
-   }
+  .form-select {
+    @apply py-2 px-4 bg-white rounded-xl overflow-auto focus:!shadow-[0_0_0_4px] focus:!shadow-utility-info-muted !outline-0
+    border-[3px] border-transparent focus:border-utility-info text-brand-secondary w-full transition-all duration-100
+    text-brand-secondary;
+  }
 
-   .form-select:focus {
-      --ums-thumb-color: rgb(var(--color-utility-info) 1) !important;
-   }
+  .form-select:focus {
+    --ums-thumb-color: rgb(var(--color-utility-info) 1) !important;
+  }
 
-   .form-select option {
-      @apply px-4 py-2 rounded-lg mb-2 last:!mb-0;
-   }
+  .form-select option {
+    @apply px-4 py-2 rounded-lg mb-2 last:!mb-0;
+  }
 
-   select[multiple]:focus option:checked {
-      background: rgb(var(--color-utility-info) 1) linear-gradient(0deg, rgb(var(--color-utility-info) 1) 0%, rgb(var(--color-utility-info) 1) 100%);
-   }
+  select[multiple]:focus option:checked {
+    background: rgb(var(--color-utility-info) 1) linear-gradient(0deg, rgb(var(--color-utility-info) 1) 0%, rgb(var(--color-utility-info) 1) 100%);
+  }
 
-   select:focus option:checked {
-      background: rgb(var(--color-brand-background) 1) linear-gradient(0deg, rgb(var(--color-brand-background) 1) 0%, rgb(var(--color-brand-background) 1) 100%);
-   }
+  select:focus option:checked {
+    background: rgb(var(--color-brand-background) 1) linear-gradient(0deg, rgb(var(--color-brand-background) 1) 0%, rgb(var(--color-brand-background) 1) 100%);
+  }
 
-   select {
-      appearance: none;
-      appearance: none;
-      text-indent: 1px;
-      text-overflow: "";
-   }
+  select {
+    appearance: none;
+    appearance: none;
+    text-indent: 1px;
+    text-overflow: "";
+  }
 
-   app-auth {
-      @apply h-full overflow-auto;
-   }
+  app-auth {
+    @apply h-full overflow-auto;
+  }
 }
