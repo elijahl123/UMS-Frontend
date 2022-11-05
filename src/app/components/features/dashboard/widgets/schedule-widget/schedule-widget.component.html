@@ -91,9 +91,9 @@
                      <div class="schedule-widget-course-content-useful-links-items">
                         <ng-container *ngIf="courseContainsLinks(course); else noLinks">
                            <ng-container *ngFor="let link of getCourseLinks()">
-                              <ui-card *ngIf="link.course.uid == course.course.uid" [head]="link.title"
-                                       [href]="link.link" [leftIcon]="externalLinkIcon" [rightIcon]="linkIcon"
-                                       [color]="course.course.color.toLowerCase()">
+                              <ui-card *ngIf="link.course.uid == course.course.uid" [color]="course.course.color.toLowerCase()"
+                                       [head]="link.title" [href]="link.link" [leftIcon]="externalLinkIcon"
+                                       [rightIcon]="linkIcon">
                               </ui-card>
                            </ng-container>
                         </ng-container>

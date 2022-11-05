@@ -1,5 +1,5 @@
-<button [routerLink]="routerLink" [routerLinkActive]="routerLinkActive" [ngClass]="['top-nav-item', class]">
-   <fa-duotone-icon class="top-nav-item-icon" [icon]="leftIcon" *ngIf="leftIcon"></fa-duotone-icon>
+<button [ngClass]="['top-nav-item', class]" [routerLinkActive]="routerLinkActive" [routerLink]="routerLink">
+   <fa-duotone-icon *ngIf="leftIcon" [icon]="leftIcon" class="top-nav-item-icon"></fa-duotone-icon>
    <span class="top-nav-item-text">{{ text }}</span>
    <div class="top-nav-item-content">
       <ng-content></ng-content>

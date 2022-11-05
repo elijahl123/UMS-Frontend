@@ -11,6 +11,7 @@ import { FeaturesModule } from '../components/features/features.module';
 import { GraphQLModule } from './graphql/graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SpinnerComponent } from '../components/ui/spinner/spinner.component';
 
 @NgModule({
    declarations: [
@@ -19,14 +20,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
    imports: [
       BrowserModule,
       AppRoutingModule,
-      UmsUiModule,
-      UmsFormsModule,
       ModalDirective,
       FontAwesomeModule,
       FeaturesModule,
       GraphQLModule,
       HttpClientModule,
       BrowserAnimationsModule,
+      SpinnerComponent,
    ],
    providers: [],
    bootstrap: [AppComponent]

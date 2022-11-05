@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -7,8 +7,10 @@ import { Subject } from 'rxjs';
    providedIn: 'root'
 })
 export class AuthService {
-   private token: string | null;
    onTokenChange: Subject<string | null> = new Subject<string | null>();
+   private token: string | null;
+
+   loggedOut: EventEmitter<void> = new EventEmitter<void>();
 
    constructor(private apollo: Apollo, private router: Router) {
    }
@@ -114,6 +116,7 @@ export class AuthService {
    logout() {
       localStorage.setItem('token', '');
       this.setToken(null);
+      this.loggedOut.emit();
 
       // Refresh the page to clear the cache
       this.router.navigate(['/auth', 'login'], { queryParams: { refresh: true } });

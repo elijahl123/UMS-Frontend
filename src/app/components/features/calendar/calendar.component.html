@@ -3,7 +3,7 @@
       <button (click)="decrementDate()" class="calendar-header-button hover-enabled secondary-muted">
          <fa-icon [icon]="chevronLeftIcon" class="flex items-center justify-center"></fa-icon>
       </button>
-      <div class="calendar-header-month btn secondary-muted hover-enabled" (click)="focusOnInput()">
+      <div (click)="focusOnInput()" class="calendar-header-month btn secondary-muted hover-enabled">
          {{ getMonthName() }}
       </div>
       <button (click)="incrementDate()" class="calendar-header-button hover-enabled secondary-muted">
@@ -11,9 +11,9 @@
       </button>
    </div>
    <div class="calendar-tasks">
-      <button class="btn secondary rounded-lg" (click)="setDateToToday()">Today</button>
-      <input (change)="onDateChange($event)" [value]="getDateStr()"
-             class="calendar-tasks-date hover-enabled secondary-muted" type="date" #changeDateInput>
+      <button (click)="setDateToToday()" class="btn secondary rounded-lg">Today</button>
+      <input #changeDateInput (change)="onDateChange($event)"
+             [value]="getDateStr()" class="calendar-tasks-date hover-enabled secondary-muted" type="date">
       <button class="btn secondary rounded-lg">
          <fa-icon [icon]="plusIcon"></fa-icon>
       </button>
@@ -31,9 +31,9 @@
          </div>
          <div class="calendar-body">
             <app-calendar-date
+               (selectDate)="selectDate($event)"
                *ngFor="let dateFrame of currentDates"
-               [class]="(isDateToday(dateFrame) ? 'secondary' : 'secondary-muted') + ' ' + ((dateFrame.getMonth() == date.getMonth()) ? '' : 'opacity-50')"
-               [date]="dateFrame" (selectDate)="selectDate($event)"
+               [class]="(isDateToday(dateFrame) ? 'secondary' : 'secondary-muted') + ' ' + ((dateFrame.getMonth() == date.getMonth()) ? '' : 'opacity-50')" [date]="dateFrame"
                [events]="eventsForDate(dateFrame)"
             >
             </app-calendar-date>

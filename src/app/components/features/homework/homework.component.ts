@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
-import { faExclamation, faExclamationCircle, faExclamationTriangle, faPlus } from '@fortawesome/pro-solid-svg-icons';
+import { faExclamationTriangle, faPlus } from '@fortawesome/pro-solid-svg-icons';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { HomeworkService } from '../../../services/components/features/homework/homework.service';
 import { ReadService } from '../../../services/model/read/read.service';

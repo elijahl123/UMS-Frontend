@@ -10,27 +10,27 @@
    </div>
    <div class="homework-info-body">
       <ui-card
+         (click)="goToCalendar(assignment.dueDate)"
+         [color]="assignment.course.color.toLowerCase()"
+         [leftIcon]="calendarIcon"
          head="{{ getAssignmentDueDate(assignment)|date:'EEEE, MMMM d' }}"
          sub="{{ getAssignmentDueDate(assignment)|date:'h:mm a' }}"
-         [leftIcon]="calendarIcon"
-         [color]="assignment.course.color.toLowerCase()"
-         (click)="goToCalendar(assignment.dueDate)"
       ></ui-card>
       <div [ngClass]="['homework-info-body-section flex-grow', assignment.course.color.toLowerCase()]">
          <div class="homework-info-body-section-title">Description</div>
          <div class="homework-info-body-section-content">{{ assignment.description || 'None' }}</div>
       </div>
       <ui-card
-         *ngIf="assignment.link"
-         head="Go to Link"
-         [rightIcon]="linkIcon"
-         [color]="assignment.course.color.toLowerCase()"
          (click)="openLink(assignment.link)"
+         *ngIf="assignment.link"
+         [color]="assignment.course.color.toLowerCase()"
+         [rightIcon]="linkIcon"
+         head="Go to Link"
       ></ui-card>
       <ui-card
-         head="Complete"
          [rightIcon]="checkIcon"
          color="success"
+         head="Complete"
       ></ui-card>
    </div>
 </div>

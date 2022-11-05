@@ -1,7 +1,7 @@
-<div class="w-full h-full overflow-hidden" [@isOpenState]="isOpen" #nav>
+<div #nav [@isOpenState]="isOpen" class="w-full h-full overflow-hidden">
    <div class="nav">
       <div class="nav-branding">
-         <img src="/assets/UMS%20Logo.svg" alt="UMS Logo" class="nav-branding-img">
+         <img alt="UMS Logo" class="nav-branding-img" src="/assets/UMS%20Logo.svg">
          <h2 class="nav-branding-text">Untitled Management Software</h2>
       </div>
       <div class="nav-links">
@@ -9,7 +9,7 @@
       </div>
       <div [ngClass]="['nav-next-class', nextClass]">
          <div class="nav-next-class-icon">
-            <fa-duotone-icon [icon]="schoolIcon" [swapOpacity]="true" [fixedWidth]="true"></fa-duotone-icon>
+            <fa-duotone-icon [fixedWidth]="true" [icon]="schoolIcon" [swapOpacity]="true"></fa-duotone-icon>
          </div>
          <div class="nav-next-class-content">
             <span class="nav-next-class-content-head">{{ nextClassHead }}</span>
@@ -17,30 +17,30 @@
          </div>
          <div class="nav-next-class-buttons">
             <button class="btn hover-enabled nav-next-class-button">
-               <fa-icon class="" [icon]="nextClassIcons.faLink"></fa-icon>
+               <fa-icon [icon]="nextClassIcons.faLink" class=""></fa-icon>
             </button>
             <button class="btn hover-enabled nav-next-class-button">
-               <fa-icon class="" [icon]="nextClassIcons.faLock"></fa-icon>
+               <fa-icon [icon]="nextClassIcons.faLock" class=""></fa-icon>
             </button>
             <button class="btn hover-enabled nav-next-class-button">
-               <fa-icon class="" [icon]="nextClassIcons.faFile"></fa-icon>
+               <fa-icon [icon]="nextClassIcons.faFile" class=""></fa-icon>
             </button>
             <button class="btn hover-enabled nav-next-class-button">
-               <fa-icon class="" [icon]="nextClassIcons.faInfo"></fa-icon>
+               <fa-icon [icon]="nextClassIcons.faInfo" class=""></fa-icon>
             </button>
          </div>
       </div>
       <div class="nav-account">
          <div class="nav-account-upper">
             <div class="nav-account-upper-icon">
-               <fa-icon [icon]="userIcon" [fixedWidth]="true"></fa-icon>
+               <fa-icon [fixedWidth]="true" [icon]="userIcon"></fa-icon>
             </div>
             <a [routerLink]="'/auth'" class="nav-account-upper-content">
                <span class="nav-account-upper-content-head">Elijah Lopez</span>
                <span class="nav-account-upper-content-sub">elijah.kane.1972@gmail.com</span>
             </a>
-            <button class="btn hover-enabled nav-account-upper-log-out" (click)="onLogout()">
-               <fa-icon class="" [icon]="logOutIcon" [fixedWidth]="true"></fa-icon>
+            <button (click)="onLogout()" class="btn hover-enabled nav-account-upper-log-out">
+               <fa-icon [fixedWidth]="true" [icon]="logOutIcon" class=""></fa-icon>
             </button>
          </div>
          <div class="nav-account-lower">

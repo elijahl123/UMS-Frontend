@@ -1,7 +1,7 @@
-<div [@isOpenState]="isOpen" class="w-full h-full overflow-hidden" #nav>
+<div #nav [@isOpenState]="isOpen" class="w-full h-full overflow-hidden">
    <div class="top-nav">
-      <div class="top-nav-branding" [routerLink]="'/'">
-         <img src="/assets/UMS%20Logo.svg" alt="UMS Logo" class="top-nav-branding-img">
+      <div [routerLink]="'/'" class="top-nav-branding">
+         <img alt="UMS Logo" class="top-nav-branding-img" src="/assets/UMS%20Logo.svg">
          <h2 class="top-nav-branding-text">Untitled Management Software</h2>
       </div>
       <div class="top-nav-actions">

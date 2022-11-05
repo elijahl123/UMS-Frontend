@@ -1,7 +1,7 @@
 <div (click)="onClick($event)"
      [ngClass]="['card-item hover-enabled', color, class, leftIcon ? '!pl-2.5' : '']" [ngStyle]="style ">
    <div
-      [ngClass]="['card-item-left-icon', color.endsWith('-muted') ? color : color.concat('-muted')]" *ngIf="leftIcon">
+      *ngIf="leftIcon" [ngClass]="['card-item-left-icon', color.endsWith('-muted') ? color : color.concat('-muted')]">
       <fa-icon [icon]="leftIcon"
                class="w-[1.25rem] h-[1.25rem] flex items-center justify-center">
       </fa-icon>
@@ -14,7 +14,7 @@
          {{ sub }}
       </div>
    </div>
-   <div class="card-item-right-icon" *ngIf="rightIcon">
+   <div *ngIf="rightIcon" class="card-item-right-icon">
       <fa-icon [icon]="rightIcon"></fa-icon>
    </div>
 </div>

@@ -1,5 +1,5 @@
-<a [routerLink]="routerLink" [routerLinkActive]="routerLinkActive" [ngClass]="['nav-item', class]">
-   <fa-duotone-icon class="nav-item-icon" [icon]="leftIcon"></fa-duotone-icon>
+<a [ngClass]="['nav-item', class]" [routerLinkActive]="routerLinkActive" [routerLink]="routerLink">
+   <fa-duotone-icon [icon]="leftIcon" class="nav-item-icon"></fa-duotone-icon>
    <span class="nav-item-text">{{ text }}</span>
    <div class="nav-item-content">
       <ng-content></ng-content>

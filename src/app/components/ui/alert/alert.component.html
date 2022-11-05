@@ -1,9 +1,9 @@
-<div [ngClass]="['alert', class]" [ngStyle]="style" #alert>
+<div #alert [ngClass]="['alert', class]" [ngStyle]="style">
    <div class="alert-icon-wrapper">
       <fa-icon [icon]="leftIcon"></fa-icon>
    </div>
    <span class="alert-message">{{ message }}</span>
-   <a class="close-button cursor-pointer" (click)="onCloseButtonClick()">
+   <a (click)="onCloseButtonClick()" class="close-button cursor-pointer">
       <fa-icon [icon]="closeIcon"></fa-icon>
    </a>
 </div>

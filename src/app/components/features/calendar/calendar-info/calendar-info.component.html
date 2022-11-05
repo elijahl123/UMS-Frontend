@@ -1,4 +1,4 @@
-<div [ngClass]="['calendar-info-container', selectedEvent !== null ? 'gap-4' : '']" *ngIf="date">
+<div *ngIf="date" [ngClass]="['calendar-info-container', selectedEvent !== null ? 'gap-4' : '']">
    <div class="calendar-info-content-container">
       <div class="calendar-info-header">
          <div class="calendar-info-header-title">
@@ -7,7 +7,7 @@
          <button class="calendar-info-header-button hover-enabled secondary-muted">
             <fa-icon [icon]="plusIcon" class="w-4 h-4 flex justify-center items-center"></fa-icon>
          </button>
-         <button class="calendar-info-header-button hover-enabled secondary-muted" (click)="closeMenu()">
+         <button (click)="closeMenu()" class="calendar-info-header-button hover-enabled secondary-muted">
             <fa-icon [icon]="closeIcon" class="w-4 h-4 flex justify-center items-center"></fa-icon>
          </button>
       </div>
@@ -37,8 +37,8 @@
             <div class="calendar-info-more-body-description">
                {{ selectedEvent.description ? selectedEvent.description : 'No description' }}
             </div>
-            <a [ngClass]="['calendar-info-more-body-link btn hover-enabled', getSelectedColor().concat('-muted')]"
-               *ngIf="selectedEvent.link" [href]="selectedEvent.link" target="_blank">
+            <a *ngIf="selectedEvent.link"
+               [href]="selectedEvent.link" [ngClass]="['calendar-info-more-body-link btn hover-enabled', getSelectedColor().concat('-muted')]" target="_blank">
                Go to Link
             </a>
          </div>

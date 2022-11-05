@@ -5,30 +5,30 @@
          <fa-icon [icon]="plusIcon"></fa-icon>
       </button>
    </div>
-   <div class="homework-body" [style.gap]="isRouterActive() ? '1rem' : '0'">
+   <div [style.gap]="isRouterActive() ? '1rem' : '0'" class="homework-body">
       <div class="homework-body-inner">
          <div *ngIf="getLateAssignments().length !== 0"
               class="homework-late-assignments danger-muted">
             <div class="homework-late-assignments-header">
-               <fa-icon [icon]="dangerIcon" [fixedWidth]="true"></fa-icon>
+               <fa-icon [fixedWidth]="true" [icon]="dangerIcon"></fa-icon>
                <h3 class="homework-late-assignments-header-title">Missing Assignments</h3>
             </div>
             <div class="homework-late-assignments-list">
                <app-homework-item
+                  (click)="selectAssignment(lateAssignment)"
                   *ngFor="let lateAssignment of getLateAssignments()"
                   [assignment]="lateAssignment"
-                  (click)="selectAssignment(lateAssignment)"
                ></app-homework-item>
             </div>
          </div>
          <div class="homework-content">
             <div *ngFor="let assignmentObj of getAssignments()" class="homework-content-dates">
                <div *ngIf="dateHasChanged(assignmentObj)" class="homework-content-date">
-                  {{ isDateToday(assignmentObj.dueDate) ? 'Today' : assignmentObj.dueDate | date:'EEEE, MMMM d' }}
+                  {{ isDateToday( assignmentObj.dueDate ) ? 'Today' : assignmentObj.dueDate | date:'EEEE, MMMM d' }}
                </div>
                <app-homework-item
-                  [assignment]="assignmentObj"
                   (click)="selectAssignment(assignmentObj)"
+                  [assignment]="assignmentObj"
                ></app-homework-item>
             </div>
          </div>

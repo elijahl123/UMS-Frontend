@@ -7,37 +7,6 @@
       </div>
    </div>
    <div class="notes-content">
-      <div class="notes-content-courses">
-         <div *ngFor="let course of getCourses()"
-              [ngClass]="['notes-content-course', course.color.toLowerCase().concat('-muted')]">
-            <div class="notes-content-course-header">
-               <div [ngClass]="['notes-content-course-header-left-icon', course.color.toLowerCase()]">
-                  <fa-icon [fixedWidth]="true" [icon]="schoolIcon"></fa-icon>
-               </div>
-               <div class="notes-content-course-header-text">{{course.name}}</div>
-               <div
-                  [ngClass]="['notes-content-course-header-add-button btn hover-enabled', course.color.toLowerCase()]">
-                  <fa-icon [icon]="plusIcon"></fa-icon>
-               </div>
-            </div>
-            <div *ngIf="getNotes(course).length > 0" class="notes-content-course-content">
-               <div *ngFor="let note of getNotes(course)"
-                    [ngClass]="['notes-content-course-content-note hover-enabled', course.color.toLowerCase()]">
-                  <div class="notes-content-course-content-note-text">{{ note.title }}</div>
-                  <div class="notes-content-course-content-note-description">
-                     {{ getNoteContent( note.content ) }}
-                  </div>
-                  <div [ngClass]="['notes-content-course-content-note-footer', course.color.toLowerCase().concat('-muted')]">
-                     <div class="notes-content-course-content-note-footer-modified">
-                        {{ note.modified | date: 'mediumDate' }}
-                     </div>
-                     <div class="notes-content-course-content-note-footer-edit-button btn">
-                        <fa-icon [fixedWidth]="true" [icon]="editIcon"></fa-icon>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+      <router-outlet></router-outlet>
    </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="accordion-item">
-   <div (click)="onToggle()" class="accordion-header" [ngClass]="getHeaderClassList()">
+   <div (click)="onToggle()" [ngClass]="getHeaderClassList()" class="accordion-header">
       <h1 class="text-lg">{{ heading }}</h1>
       <fa-icon [icon]="getIcon()"></fa-icon>
    </div>
