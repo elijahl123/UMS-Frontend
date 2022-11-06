@@ -3,7 +3,8 @@ ui-card {
 }
 
 .card-item {
-  @apply w-full flex flex-row gap-3 items-center px-4 py-2.5 rounded-lg transition-all duration-200 z-40 active:shadow-[0_0_0_4px] overflow-hidden;
+  @apply w-full flex flex-row gap-3 items-center px-4 py-2.5 rounded-lg transition-all duration-200 z-40
+    active:shadow-[0_0_0_4px] overflow-hidden;
 }
 
 .card-item-left-icon {
@@ -15,7 +16,7 @@ ui-card {
 }
 
 .card-item-head {
-  @apply text-[10pt];
+  @apply text-[10pt] whitespace-nowrap overflow-hidden text-ellipsis;
 }
 
 .card-item-sub {

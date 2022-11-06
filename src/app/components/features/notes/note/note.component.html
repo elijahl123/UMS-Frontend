@@ -1,16 +1,39 @@
-<div class="content grid grid-cols-4 h-full">
+<div class="content grid grid-cols-[300px_1fr_1fr_1fr] h-full overflow-auto">
   <div class="note-courses">
-    <div class="header">
-      <div class="header-text bg-utility-secondary-muted">
-        Courses
+    <div [ngClass]="['padded-container note-courses-container', course.color.toLowerCase().concat('-muted')]" *ngFor="let course of getCourses()">
+      <div class="note-courses-header header">
+        <div class="w-full px-2 truncated">
+          {{ course.name }}
+        </div>
+        <button class="hover:bg-brand-background header-button">
+          <fa-icon [icon]="plusIcon"></fa-icon>
+        </button>
       </div>
-    </div>
-    <div class="padded-container" *ngFor="let course of getCourses()">
-      <div class="note-content-header">
-        {{ course.name }}
+      <div class="overflow-auto gap-4 flex flex-col rounded-lg" *ngIf="getNotes(course).length > 0">
+        <ui-card
+          *ngFor="let note of getNotes(course)"
+          [color]="course.color.toLowerCase()"
+          [leftIcon]="noteIcon"
+          [head]="note.title"
+          sub="{{ note.modified | date: 'short' }}"
+          (click)="selectNote(note)"
+          [ngClass]="['rounded-lg transition-all duration-300 ease-in-out', selectedNote?.uid === note.uid ? 'p-[4px] bg-utility-'.concat(course.color.toLowerCase()).concat('-muted'): '']"
+        >
+        </ui-card>
       </div>
     </div>
   </div>
   <div class="note-content">
+    <div class="header">
+      <div class="header-text bg-white">
+        {{ selectedNote?.title }}
+      </div>
+      <button class="header-button secondary-muted">
+        <fa-icon [icon]="schoolIcon"></fa-icon>
+      </button>
+      <button class="header-button secondary">
+        <fa-icon [icon]="deleteIcon"></fa-icon>
+      </button>
+    </div>
   </div>
 </div>

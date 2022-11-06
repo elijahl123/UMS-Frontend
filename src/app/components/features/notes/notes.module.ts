@@ -5,8 +5,8 @@ import { NotesRoutingModule } from '../../../services/routing/components/feature
 import { NotesComponent } from './notes.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NoteComponent } from './note/note.component';
-import { NotesService } from '../../../services/components/features/notes/notes.service';
 import { NoteCoursesComponent } from './note-courses/note-courses.component';
+import { CardComponent } from '../../ui/card/card.component';
 
 
 @NgModule({
@@ -18,7 +18,8 @@ import { NoteCoursesComponent } from './note-courses/note-courses.component';
   imports: [
     CommonModule,
     NotesRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    CardComponent
   ]
 })
 export class NotesModule {

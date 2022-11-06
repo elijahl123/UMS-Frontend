@@ -3,9 +3,13 @@ app-note {
 }
 
 .note-courses {
-  @apply bg-brand-background col-start-1 col-span-1 rounded-lg p-4 flex flex-col gap-4;
+  @apply bg-brand-background col-start-1 col-span-1 rounded-lg p-4 flex flex-col gap-4 overflow-auto;
 }
 
 .note-content {
   @apply col-span-3 bg-brand-background rounded-lg p-4;
+}
+
+.note-courses-container {
+  @apply bg-white overflow-auto;
 }

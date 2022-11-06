@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
-import { faPlus } from '@fortawesome/pro-solid-svg-icons';
-import { Course, NotesService } from '../../../../services/components/features/notes/notes.service';
+import { faNote, faPlus, faSchool, faTrash } from '@fortawesome/pro-solid-svg-icons';
+import { Course, Note, NotesService } from '../../../../services/components/features/notes/notes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-note',
@@ -11,18 +12,18 @@ import { Course, NotesService } from '../../../../services/components/features/n
 })
 export class NoteComponent implements OnInit {
   plusIcon: IconDefinition = faPlus;
+  noteIcon: IconDefinition = faNote;
+  schoolIcon: IconDefinition = faSchool;
+  deleteIcon: IconDefinition = faTrash;
 
-  constructor(private notesService: NotesService) {
+  constructor(private notesService: NotesService, private router: Router) {
   }
 
   ngOnInit(): void {
-    // Check if the notes and courses have been initialized
-    if (this.notesService.notes.getValue().length === 0) {
-      this.notesService.initNotes();
-    }
-    if (this.notesService.courses.getValue().length === 0) {
-      this.notesService.initCourses();
-    }
+  }
+
+  get selectedNote(): Note | null {
+    return this.notesService.selectedNote.getValue();
   }
 
   getNotes(course: Course) {
@@ -31,5 +32,9 @@ export class NoteComponent implements OnInit {
 
   getCourses() {
     return this.notesService.courses.getValue();
+  }
+
+  async selectNote(note: Note) {
+    await this.router.navigate(['notes', 'note', note.uid]);
   }
 }

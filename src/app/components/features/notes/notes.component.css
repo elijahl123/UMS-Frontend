@@ -7,11 +7,11 @@
 }
 
 .notes-header-text {
-  @apply w-full px-4 py-2 text-lg bg-brand-background text-utility-secondary rounded-lg
+  @apply w-full px-4 py-2 text-lg bg-brand-background text-utility-secondary rounded-lg;
 }
 
 .notes-header-add-button {
-  @apply rounded-lg h-full;
+  @apply w-11 h-11 text-base hover:!bg-utility-secondary !bg-brand-background;
 }
 
 .notes-content {
