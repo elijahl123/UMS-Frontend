@@ -7,7 +7,7 @@
     </fa-icon>
   </div>
   <div class="card-item-text">
-    <div class="card-item-head">
+    <div [ngClass]="['card-item-head', sub ? '' : '!text-base !p-2']">
       {{ head }}
     </div>
     <div class="card-item-sub">

@@ -4,7 +4,7 @@ import { Apollo, gql } from 'apollo-angular';
 import { AuthService } from '../../components/features/auth/auth.service';
 import { ScheduleInfo } from '../../../components/features/schedule/schedule-info/schedule-info.component';
 
-class CalendarEventResponse {
+export class CalendarEventResponse {
   calendarEvents: {
     edges: {
       node: {
@@ -27,7 +27,7 @@ class CalendarEventResponse {
   }
 }
 
-class CalendarEventInfoResponse {
+export class CalendarEventInfoResponse {
   calendarEvents: {
     edges: {
       node: {
@@ -56,7 +56,7 @@ class CalendarEventInfoResponse {
   }
 }
 
-class GetHomeworkAssignmentsResponse {
+export class GetHomeworkAssignmentsResponse {
   homeworkAssignments: {
     edges: {
       node: {
@@ -74,7 +74,7 @@ class GetHomeworkAssignmentsResponse {
   }
 }
 
-class GetAssignmentsResponse {
+export class GetAssignmentsResponse {
   homeworkAssignments: {
     edges: {
       node: {
@@ -94,7 +94,7 @@ class GetAssignmentsResponse {
   }
 }
 
-class GetCourseTimesResponse {
+export class GetCourseTimesResponse {
   courseTimes: {
     edges: {
       node: {
@@ -111,7 +111,7 @@ class GetCourseTimesResponse {
   }
 }
 
-class GetCoursesResponse {
+export class GetCoursesResponse {
   courses: {
     edges: {
       node: {
@@ -123,7 +123,7 @@ class GetCoursesResponse {
   }
 }
 
-class GetNotesResponse {
+export class GetNotesResponse {
   notes: {
     edges: {
       node: {
@@ -401,6 +401,22 @@ export class ReadService {
     return this.performQuery<GetCoursesResponse>(gql`
       query {
         courses(token: "${this.authService.getToken()}") {
+          edges {
+            node {
+              uid
+              name
+              color
+            }
+          }
+        }
+      }
+    `);
+  }
+
+  async getCourse(uid:string) {
+    return this.performQuery<GetCoursesResponse>(gql`
+      query {
+        courses(uid: "${uid}", token: "${this.authService.getToken()}") {
           edges {
             node {
               uid

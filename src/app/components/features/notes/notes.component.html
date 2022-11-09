@@ -1,13 +1,12 @@
 <div class="notes">
   <div class="notes-header">
-    <div class="header-button notes-header-add-button secondary-muted hover-enabled" *ngIf="!isOnHomepage()" (click)="goHome()">
+    <div class="header-button brand-background w-11 h-11 secondary-muted hover-enabled" *ngIf="!isOnHomepage()" (click)="goHome()">
       <fa-icon [icon]="leftIcon"
       ></fa-icon>
     </div>
     <div class="notes-header-text">Notes</div>
-    <div class="header-button notes-header-add-button secondary-muted hover-enabled">
-      <fa-icon [icon]="plusIcon"
-      ></fa-icon>
+    <div class="header-button brand-background w-11 h-11 secondary-muted hover-enabled">
+      <fa-icon [icon]="plusIcon"></fa-icon>
     </div>
   </div>
   <div class="notes-content">
