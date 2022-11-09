@@ -1,0 +1,39 @@
+<div *ngIf="course" class="content">
+  <div class="header">
+    <div class="header-text !bg-white">{{ course.name }}</div>
+    <div class="header-button secondary">
+      <fa-icon [icon]="trashIcon"></fa-icon>
+    </div>
+  </div>
+  <div class="content">
+    <div class="course-section padded-container">
+      <div [ngClass]="['course-section-header padded-container', course.color.toLowerCase()]">
+        <fa-icon [icon]="infoIcon" class="px-1"></fa-icon>
+        <div class="course-section-header-text">
+          Course Info
+        </div>
+      </div>
+      <div class="content course-section-content">
+        <div class="course-section-col">
+
+        </div>
+      </div>
+    </div>
+    <div class="course-section padded-container">
+      <div [ngClass]="['course-section-header padded-container', course.color.toLowerCase()]">
+        <fa-icon [icon]="clockIcon" class="px-1"></fa-icon>
+        <div class="course-section-header-text">
+          Course Times
+        </div>
+      </div>
+    </div>
+    <div class="course-section padded-container">
+      <div [ngClass]="['course-section-header padded-container', course.color.toLowerCase()]">
+        <fa-icon [icon]="bookIcon" class="px-1"></fa-icon>
+        <div class="course-section-header-text">
+          Assignments
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

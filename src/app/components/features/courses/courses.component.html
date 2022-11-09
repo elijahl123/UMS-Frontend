@@ -1,0 +1,30 @@
+<div class="padded-container h-full">
+  <div class="header">
+    <div class="header-text">Courses</div>
+    <div class="header-button brand-background w-11 h-11 secondary-muted hover-enabled">
+      <fa-icon [icon]="plusIcon"></fa-icon>
+    </div>
+  </div>
+  <div class="sidebar-layout">
+    <div class="padded-container bg-brand-background">
+      <ui-card
+        *ngFor="let course of getCourses()"
+        [color]="course.color.toLowerCase()"
+        [head]="course.name"
+        [routerLink]="['/courses', 'course', course.uid]"
+        [routerLinkActive]="'ums-shadow'"
+        [ngClass]="['rounded-lg transition-enabled', course.color.toLowerCase()]"
+      >
+      </ui-card>
+    </div>
+    <div class="padded-container bg-brand-background col-span-3 gap-0">
+      <ui-empty-space
+        *ngIf="isOnHomepage()"
+        [icon]="courseIconDuo"
+        head="Please select a course"
+        sub="You can also create a new course by clicking the button above"
+      ></ui-empty-space>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

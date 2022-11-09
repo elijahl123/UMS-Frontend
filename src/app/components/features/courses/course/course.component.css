@@ -1,0 +1,18 @@
+.course-section {
+  @apply flex flex-row bg-white;
+}
+
+.course-section-header {
+  @apply justify-center gap-2 w-[135px];
+}
+
+.course-section-header-text {
+  @apply text-sm
+}
+
+.course-section-content {
+  @apply bg-brand-background;
+}
+.course-section-col {
+  @apply block;
+}
