@@ -154,7 +154,6 @@
 }
 
 @layer utilities {
-
   .truncated {
     @apply overflow-hidden text-ellipsis whitespace-nowrap;
   }
@@ -363,7 +362,7 @@
 
   .btn {
     @apply px-4 py-2 duration-200 transition-all focus:shadow-[0_0_0_4px]
-    grid gap-2 grid-flow-col auto-cols-max items-center justify-center;
+      grid gap-2 grid-flow-col auto-cols-max items-center justify-center;
   }
 
   .btn[disabled] {
@@ -374,8 +373,8 @@
 @layer components {
   .form-control {
     @apply w-full px-5 py-3 rounded-lg focus-visible:ring-4 focus-visible:ring-utility-info-muted
-    !outline-0 border-[3px] border-transparent focus-visible:border-utility-info text-brand-secondary transition-all
-    duration-200 ease-in-out;
+      !outline-0 border-[3px] border-transparent focus-visible:border-utility-info text-brand-secondary transition-all
+      duration-200 ease-in-out;
   }
 
   .form-control.ng-invalid.ng-touched {
@@ -383,9 +382,9 @@
   }
 
   .form-select {
-    @apply py-2 px-4 bg-white rounded-xl overflow-auto focus:!shadow-[0_0_0_4px] focus:!shadow-utility-info-muted !outline-0
-    border-[3px] border-transparent focus:border-utility-info text-brand-secondary w-full transition-all duration-100
-    text-brand-secondary;
+    @apply py-2 px-4 bg-white rounded-xl overflow-auto focus:!shadow-[0_0_0_4px] focus:!shadow-utility-info-muted
+      !outline-0 border-[3px] border-transparent focus:border-utility-info text-brand-secondary w-full transition-all
+      duration-100 text-brand-secondary;
   }
 
   .form-select:focus {
@@ -397,19 +396,21 @@
   }
 
   select:focus option:checked {
-    background: rgb(var(--color-brand-background) 1) linear-gradient(
-      0deg,
-      rgb(var(--color-brand-background) 1) 0%,
-      rgb(var(--color-brand-background) 1) 100%
-    );
+    background:
+      rgb(var(--color-brand-background) 1) linear-gradient(
+        0deg,
+        rgb(var(--color-brand-background) 1) 0%,
+        rgb(var(--color-brand-background) 1) 100%
+      );
   }
 
   select[multiple]:focus option:checked {
-    background: rgb(var(--color-utility-info) 1) linear-gradient(
-      0deg,
-      rgb(var(--color-utility-info) 1) 0%,
-      rgb(var(--color-utility-info) 1) 100%
-    );
+    background:
+      rgb(var(--color-utility-info) 1) linear-gradient(
+        0deg,
+        rgb(var(--color-utility-info) 1) 0%,
+        rgb(var(--color-utility-info) 1) 100%
+      );
   }
 
   select {

@@ -13,9 +13,32 @@
           Course Info
         </div>
       </div>
-      <div class="content course-section-content">
-        <div class="course-section-col">
-
+        <div
+          [ngClass]="['course-section-col padded-container', course.color.toLowerCase().concat('-muted')]">
+          <div class="course-section-sub">
+            Name
+          </div>
+          <div class="course-section-head">
+            {{ course.name }}
+          </div>
+        </div>
+        <div
+          [ngClass]="['course-section-col padded-container', course.color.toLowerCase().concat('-muted')]">
+          <div class="course-section-sub">
+            Title
+          </div>
+          <div class="course-section-head truncated">
+            {{ course.title }}
+          </div>
+        </div>
+        <div *ngIf="course.teacher"
+          [ngClass]="['course-section-col padded-container', course.color.toLowerCase().concat('-muted')]">
+          <div class="course-section-sub">
+            Teacher
+          </div>
+          <div class="course-section-head">
+            {{ course.teacher }}
+          </div>
         </div>
       </div>
     </div>
@@ -36,4 +59,3 @@
       </div>
     </div>
   </div>
-</div>

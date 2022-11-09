@@ -1,18 +1,23 @@
 .course-section {
-  @apply flex flex-row bg-white;
+  @apply grid grid-flow-col auto-cols-[135px_1fr_1fr_1fr_auto] bg-white;
 }
 
 .course-section-header {
-  @apply justify-center gap-2 w-[135px];
+  @apply justify-center gap-2;
 }
 
 .course-section-header-text {
-  @apply text-sm
+  @apply text-sm;
 }
 
-.course-section-content {
-  @apply bg-brand-background;
-}
 .course-section-col {
-  @apply block;
+  @apply gap-1 overflow-hidden;
+}
+
+.course-section-sub {
+  @apply text-xs;
+}
+
+.course-section-head {
+  @apply text-lg;
 }

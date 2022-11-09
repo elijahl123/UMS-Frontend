@@ -123,6 +123,20 @@ export class GetCoursesResponse {
   }
 }
 
+export class GetCourseResponse {
+  courses: {
+    edges: {
+      node: {
+        uid: string;
+        name: string;
+        title: string;
+        teacher: string;
+        color: string;
+      }
+    }[]
+  }
+}
+
 export class GetNotesResponse {
   notes: {
     edges: {
@@ -414,13 +428,15 @@ export class ReadService {
   }
 
   async getCourse(uid:string) {
-    return this.performQuery<GetCoursesResponse>(gql`
+    return this.performQuery<GetCourseResponse>(gql`
       query {
         courses(uid: "${uid}", token: "${this.authService.getToken()}") {
           edges {
             node {
               uid
               name
+              title
+              teacher
               color
             }
           }

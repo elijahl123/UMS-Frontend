@@ -1,10 +1,17 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Course } from '../../../../services/components/features/notes/notes.service';
-import { GetCoursesResponse, ReadService } from '../../../../services/model/read/read.service';
+import { GetCourseResponse, ReadService } from '../../../../services/model/read/read.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faBook, faClock, faInfoCircle, faTrash } from '@fortawesome/pro-solid-svg-icons';
+
+class Course {
+  uid: string
+  name: string
+  title: string
+  teacher: string
+  color: string
+}
 
 @Component({
   selector: 'app-course',
@@ -25,10 +32,10 @@ export class CourseComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.events.subscribe(() => {
-      this.uid = this.route.snapshot.params['uid'];
+      this.uid.next(this.route.snapshot.params['uid']);
     })
     this.uid.subscribe((uid) => {
-      this.read.getCourse(uid).then((data: GetCoursesResponse) => {
+      this.read.getCourse(uid).then((data: GetCourseResponse) => {
         this.course = data.courses.edges[0].node;
       })
     });
