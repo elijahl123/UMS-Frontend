@@ -1,61 +1,74 @@
-<div *ngIf="course" class="content">
+<div *ngIf="data" class="content">
   <div class="header">
-    <div class="header-text !bg-white">{{ course.name }}</div>
-    <div class="header-button secondary">
+    <div [ngClass]="['header-text !bg-white transition-enabled', data.course.color.toLowerCase().concat('-muted')]">
+      {{ data.course.name }}
+    </div>
+    <div [ngClass]="['header-button transition-enabled', data.course.color.toLowerCase()]">
       <fa-icon [icon]="trashIcon"></fa-icon>
     </div>
   </div>
   <div class="content">
     <div class="course-section padded-container">
-      <div [ngClass]="['course-section-header padded-container', course.color.toLowerCase()]">
+      <div [ngClass]="['course-section-header padded-container transition-enabled', data.course.color.toLowerCase()]">
         <fa-icon [icon]="infoIcon" class="px-1"></fa-icon>
-        <div class="course-section-header-text">
-          Course Info
+        <div class="course-section-header-text">Course Info</div>
+      </div>
+      <div class="course-section-body">
+        <div
+          [ngClass]="['course-section-col padded-container transition-enabled', data.course.color.toLowerCase().concat('-muted')]">
+          <div class="course-section-sub">Name</div>
+          <div class="course-section-head truncated">{{ data.course.name }}</div>
+        </div>
+        <div
+          [ngClass]="['course-section-col padded-container transition-enabled', data.course.color.toLowerCase().concat('-muted')]">
+          <div class="course-section-sub">Title</div>
+          <div class="course-section-head truncated">{{ data.course.title }}</div>
+        </div>
+        <div *ngIf="data.course.teacher"
+             [ngClass]="['course-section-col padded-container transition-enabled', data.course.color.toLowerCase().concat('-muted')]">
+          <div class="course-section-sub">Teacher</div>
+          <div class="course-section-head truncated">{{ data.course.teacher }}</div>
         </div>
       </div>
-        <div
-          [ngClass]="['course-section-col padded-container', course.color.toLowerCase().concat('-muted')]">
-          <div class="course-section-sub">
-            Name
-          </div>
-          <div class="course-section-head">
-            {{ course.name }}
-          </div>
-        </div>
-        <div
-          [ngClass]="['course-section-col padded-container', course.color.toLowerCase().concat('-muted')]">
-          <div class="course-section-sub">
-            Title
-          </div>
-          <div class="course-section-head truncated">
-            {{ course.title }}
-          </div>
-        </div>
-        <div *ngIf="course.teacher"
-          [ngClass]="['course-section-col padded-container', course.color.toLowerCase().concat('-muted')]">
-          <div class="course-section-sub">
-            Teacher
-          </div>
-          <div class="course-section-head">
-            {{ course.teacher }}
-          </div>
-        </div>
+      <div
+        [ngClass]="['course-section-button hover-enabled padded-container transition-enabled', data.course.color.toLowerCase()]">
+        <fa-icon [icon]="rightIcon"></fa-icon>
       </div>
     </div>
     <div class="course-section padded-container">
-      <div [ngClass]="['course-section-header padded-container', course.color.toLowerCase()]">
+      <div [ngClass]="['course-section-header padded-container transition-enabled', data.course.color.toLowerCase()]">
         <fa-icon [icon]="clockIcon" class="px-1"></fa-icon>
-        <div class="course-section-header-text">
-          Course Times
+        <div class="course-section-header-text">Course Times</div>
+      </div>
+      <div class="course-section-body">
+        <div *ngFor="let courseTime of getCourseTimes()"
+             [ngClass]="['course-section-col padded-container transition-enabled', data.course.color.toLowerCase().concat('-muted')]">
+          <div class="course-section-sub truncated">{{ courseTime.startTime | time }}
+            - {{ courseTime.endTime | time }}</div>
+          <div class="course-section-head truncated">{{ courseTime.weekday }}</div>
         </div>
+      </div>
+      <div
+        [ngClass]="['course-section-button hover-enabled padded-container transition-enabled', data.course.color.toLowerCase()]">
+        <fa-icon [icon]="rightIcon"></fa-icon>
       </div>
     </div>
     <div class="course-section padded-container">
-      <div [ngClass]="['course-section-header padded-container', course.color.toLowerCase()]">
+      <div [ngClass]="['course-section-header padded-container transition-enabled', data.course.color.toLowerCase()]">
         <fa-icon [icon]="bookIcon" class="px-1"></fa-icon>
-        <div class="course-section-header-text">
-          Assignments
+        <div class="course-section-header-text">Assignments</div>
+      </div>
+      <div class="course-section-body">
+        <div *ngFor="let assignment of getAssignments()"
+             [ngClass]="['course-section-col padded-container transition-enabled', data.course.color.toLowerCase().concat('-muted')]">
+          <div class="course-section-sub truncated">{{ assignment.name }}</div>
+          <div class="course-section-head truncated">{{ assignment.name }}</div>
         </div>
+      </div>
+      <div
+        [ngClass]="['course-section-button hover-enabled padded-container transition-enabled', data.course.color.toLowerCase()]">
+        <fa-icon [icon]="rightIcon"></fa-icon>
       </div>
     </div>
   </div>
+</div>

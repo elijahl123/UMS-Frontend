@@ -135,6 +135,39 @@ export class GetCourseResponse {
       }
     }[]
   }
+  courseTimes: {
+    edges: {
+      node: {
+        startTime: string;
+        endTime: string;
+        weekday: string;
+      }
+    }[]
+  }
+  homeworkAssignments: {
+    edges: {
+      node: {
+        name: string;
+        dueDate: string;
+        dueTime: string;
+      }
+    }[]
+  }
+  courseFiles: {
+    edges: {
+      node: {
+        title: string;
+      }
+    }[]
+  }
+  courseLinks: {
+    edges: {
+      node: {
+        title: string;
+        link: string;
+      }
+    }[]
+  }
 }
 
 export class GetNotesResponse {
@@ -438,6 +471,39 @@ export class ReadService {
               title
               teacher
               color
+            }
+          }
+        }
+        courseTimes(course_Uid:  "${uid}", token: "${this.authService.getToken()}") {
+          edges {
+            node {
+              startTime
+              endTime
+              weekday
+            }
+          }
+        }
+        homeworkAssignments(course_Uid: "${uid}", token: "${this.authService.getToken()}") {
+          edges {
+            node {
+              name
+              dueDate
+              dueTime
+            }
+          }
+        }
+        courseFiles(course_Uid: "${uid}", token: "${this.authService.getToken()}") {
+          edges {
+            node {
+              title
+            }
+          }
+        }
+        courseLinks(course_Uid: "${uid}", token: "${this.authService.getToken()}") {
+          edges {
+            node {
+              title
+              link
             }
           }
         }

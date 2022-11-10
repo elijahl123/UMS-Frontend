@@ -7,6 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CardComponent } from '../../ui/card/card.component';
 import { CourseComponent } from './course/course.component';
 import { EmptySpaceComponent } from '../../ui/empty-space/empty-space.component';
+import { TimeModule } from '../../pipes/time/time.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { EmptySpaceComponent } from '../../ui/empty-space/empty-space.component'
 		CoursesRoutingModule,
 		FontAwesomeModule,
 		CardComponent,
+    TimeModule,
 		EmptySpaceComponent
 	]
 })

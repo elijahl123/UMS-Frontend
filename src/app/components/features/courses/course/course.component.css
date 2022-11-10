@@ -1,9 +1,13 @@
 .course-section {
-  @apply grid grid-flow-col auto-cols-[135px_1fr_1fr_1fr_auto] bg-white;
+  @apply flex flex-row bg-white;
 }
 
 .course-section-header {
-  @apply justify-center gap-2;
+  @apply justify-center gap-2 w-[135px];
+}
+
+.course-section-body {
+@apply flex-grow grid grid-flow-col gap-4 auto-cols-fr;
 }
 
 .course-section-header-text {
@@ -20,4 +24,8 @@
 
 .course-section-head {
   @apply text-lg;
+}
+
+.course-section-button {
+  @apply flex justify-center items-center col-start-5;
 }

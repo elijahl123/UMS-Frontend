@@ -291,13 +291,13 @@ type PageInfo {
 
 type Query {
   calendarEvents(after: String, before: String, date: Date, description: String, first: Int, last: Int, offset: Int, time: Time, title: String, token: String, uid: UUID, user: ID): CalendarEventTypeConnection
-  courseFiles(after: String, before: String, course: ID, first: Int, last: Int, offset: Int, title: String, token: String, uid: UUID): CourseFileTypeConnection
-  courseLinks(after: String, before: String, course: ID, first: Int, last: Int, link: String, offset: Int, title: String, token: String, uid: UUID): CourseLinkTypeConnection
-  courseTimes(after: String, before: String, course: ID, endTime: Time, first: Int, last: Int, link: String, location: String, offset: Int, startTime: Time, token: String, uid: UUID, user: ID, weekday: String, zoomPassword: String): CourseTimeTypeConnection
+  courseFiles(after: String, before: String, course_Uid: UUID, first: Int, last: Int, offset: Int, title: String, token: String, uid: UUID): CourseFileTypeConnection
+  courseLinks(after: String, before: String, course_Uid: UUID, first: Int, last: Int, link: String, offset: Int, title: String, token: String, uid: UUID): CourseLinkTypeConnection
+  courseTimes(after: String, before: String, course_Uid: UUID, endTime: Time, first: Int, last: Int, link: String, location: String, offset: Int, startTime: Time, token: String, uid: UUID, user: ID, weekday: String, zoomPassword: String): CourseTimeTypeConnection
   courses(after: String, before: String, color: String, first: Int, last: Int, name: String, offset: Int, teacher: String, title: String, token: String, uid: UUID, user: ID): CourseTypeConnection
   getSchedule(date: Date, token: String): [CourseTimeType]
-  homeworkAssignments(after: String, before: String, completed: Boolean, course: ID, description: String, dueDate: Date, dueTime: Time, first: Int, last: Int, link: String, name: String, offset: Int, token: String, uid: UUID): HomeworkAssignmentTypeConnection
-  notes(after: String, before: String, content: String, course: ID, first: Int, last: Int, modified: Date, offset: Int, title: String, token: String, uid: UUID, uploaded: Date, user: ID): NoteTypeConnection
+  homeworkAssignments(after: String, before: String, completed: Boolean, course_Uid: UUID, description: String, dueDate: Date, dueTime: Time, first: Int, last: Int, link: String, name: String, offset: Int, token: String, uid: UUID): HomeworkAssignmentTypeConnection
+  notes(after: String, before: String, content: String, course_Uid: UUID, first: Int, last: Int, modified: Date, offset: Int, title: String, token: String, uid: UUID, uploaded: Date, user: ID): NoteTypeConnection
   user(token: String): AccountType
   users(after: String, before: String, classNotifications: Boolean, dateJoined: DateTime, email: String, exemptFromPayment: Boolean, first: Int, firstName: String, homeworkNotifications: Boolean, isActive: Boolean, isAdmin: Boolean, isStaff: Boolean, isSuperuser: Boolean, last: Int, lastLogin: DateTime, lastName: String, offset: Int, school: String, sendScheduledEmails: Boolean, showScheduleOnCalendar: Boolean, timezone: String, token: String, uid: UUID, username: String): AccountTypeConnection
 }
