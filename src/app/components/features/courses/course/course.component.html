@@ -61,7 +61,22 @@
       <div class="course-section-body">
         <div *ngFor="let assignment of getAssignments()"
              [ngClass]="['course-section-col padded-container transition-enabled', data.course.color.toLowerCase().concat('-muted')]">
-          <div class="course-section-sub truncated">{{ assignment.name }}</div>
+          <div class="course-section-sub truncated">{{ assignment.dueDate | date:'mediumDate' }}</div>
+          <div class="course-section-head truncated">{{ assignment.name }}</div>
+        </div>
+      </div>
+      <div
+        [ngClass]="['course-section-button hover-enabled padded-container transition-enabled', data.course.color.toLowerCase()]">
+        <fa-icon [icon]="rightIcon"></fa-icon>
+      </div>
+    </div>
+    <div class="course-section course-section-sm padded-container">
+      <div [ngClass]="['course-section-header padded-container transition-enabled', data.course.color.toLowerCase()]">
+        <fa-icon [icon]="bookIcon" class="px-1"></fa-icon>
+      </div>
+      <div class="course-section-body">
+        <div *ngFor="let assignment of getAssignments()"
+             [ngClass]="['course-section-col padded-container transition-enabled', data.course.color.toLowerCase().concat('-muted')]">
           <div class="course-section-head truncated">{{ assignment.name }}</div>
         </div>
       </div>

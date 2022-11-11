@@ -6,8 +6,16 @@
   @apply justify-center gap-2 w-[135px];
 }
 
+.course-section-sm .course-section-header {
+  @apply w-fit;
+}
+
+.course-section-sm .course-section-head {
+  @apply text-base;
+}
+
 .course-section-body {
-@apply flex-grow grid grid-flow-col gap-4 auto-cols-fr;
+  @apply flex-grow grid grid-flow-col gap-4 auto-cols-fr;
 }
 
 .course-section-header-text {
