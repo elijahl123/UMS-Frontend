@@ -422,4 +422,24 @@
   app-auth {
     @apply h-full overflow-auto;
   }
+
+  .modal {
+    @apply flex absolute bg-brand-secondary-muted inset-0 backdrop-blur-sm items-center justify-center transition-enabled;
+  }
+
+  .modal * {
+    @apply transition-enabled;
+  }
+
+  .modal-content {
+    @apply bg-white p-4 rounded-lg shadow shadow-brand-background grid grid-flow-row gap-6 max-w-xl w-full;
+  }
+
+  .modal-body {
+    @apply text-brand-secondary;
+  }
+
+  .modal-footer {
+    @apply grid grid-flow-col auto-cols-auto gap-4 justify-end;
+  }
 }

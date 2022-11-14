@@ -5,7 +5,6 @@ import { CardComponent } from './card/card.component';
 import { CollapseComponent } from './collapse/collapse.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { ListGroupComponent } from './list-group/list-group.component';
-import { ModalComponent } from './modal/modal.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ToastComponent } from './toast/toast.component';
 import { DropdownItemComponent } from './dropdown/dropdown-item/dropdown-item.component';
@@ -23,7 +22,6 @@ import { ListGroupItemComponent } from './list-group/list-group-item/list-group-
     DropdownItemComponent,
     ListGroupComponent,
     ListGroupItemComponent,
-    ModalComponent,
     SpinnerComponent,
     ToastComponent,
   ],
@@ -36,7 +34,6 @@ import { ListGroupItemComponent } from './list-group/list-group-item/list-group-
     DropdownItemComponent,
     ListGroupComponent,
     ListGroupItemComponent,
-    ModalComponent,
     SpinnerComponent,
     ToastComponent,
   ]

@@ -3,7 +3,15 @@ import { GetCourseResponse, ReadService } from '../../../../services/model/read/
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
-import { faBook, faChevronRight, faClock, faInfoCircle, faTrash } from '@fortawesome/pro-solid-svg-icons';
+import {
+  faBook,
+  faChevronRight,
+  faClock,
+  faFile,
+  faInfoCircle,
+  faLink,
+  faTrash
+} from '@fortawesome/pro-solid-svg-icons';
 
 class CourseData {
   course: {
@@ -46,6 +54,8 @@ export class CourseComponent implements OnInit {
   bookIcon: IconDefinition = faBook;
   clockIcon: IconDefinition = faClock;
   rightIcon: IconDefinition = faChevronRight;
+  fileIcon: IconDefinition = faFile;
+  linkIcon: IconDefinition = faLink;
 
   constructor(private read: ReadService, private router: Router, private route: ActivatedRoute) {
   }
@@ -59,7 +69,6 @@ export class CourseComponent implements OnInit {
     })
     this.uid.subscribe((uid) => {
       this.read.getCourse(uid).then((data: GetCourseResponse) => {
-        console.log(data);
         this.data = {
           course: {
             uid: data.courses.edges[0].node.uid,
@@ -97,5 +106,15 @@ export class CourseComponent implements OnInit {
   getAssignments() {
     // Return a homework assignment object for every homework assignment object. Only return the first three assignments.
     return this.data.homeworkAssignments.slice(0, 3);
+  }
+
+  getCourseFiles() {
+    // Return a course file object for every course file object. Only return the first three course files.
+    return this.data.courseFiles.slice(0, 3);
+  }
+
+  getCourseLinks() {
+    // Return a course link object for every course link object. Only return the first three course links.
+    return this.data.courseLinks.slice(0, 3);
   }
 }

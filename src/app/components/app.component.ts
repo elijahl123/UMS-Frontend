@@ -1,12 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { faBook, faCalendars, faClock, faFilePen, faObjectsColumn, faSchool } from '@fortawesome/pro-duotone-svg-icons';
-import { Apollo } from 'apollo-angular';
-import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  Event,
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router
+} from '@angular/router';
+import { ModalDirective } from './directives/ui/modal.directive';
+import { BehaviorSubject } from 'rxjs';
+import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
+import { faTimes } from '@fortawesome/pro-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  providers: [ModalDirective]
 })
 export class AppComponent implements OnInit {
   sideNavIcons = {
@@ -18,8 +30,9 @@ export class AppComponent implements OnInit {
     courses: faSchool,
   };
   loading: boolean;
+  closeIcon: IconDefinition = faTimes;
 
-  constructor(private router: Router, private apollo: Apollo) {
+  constructor(private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -43,6 +56,23 @@ export class AppComponent implements OnInit {
         }
       }
     });
+  }
+
+  isModalActivated() {
+    // Check if the modal router outlet is activated
+    let isOutLetActivated = false;
+    this.route.children.forEach(child => {
+      if (child.outlet === 'modal') {
+        isOutLetActivated = true;
+      } else {
+        isOutLetActivated = false;
+      }
+    });
+    return isOutLetActivated;
+  }
+
+  closeModal() {
+    this.router.navigate([{outlets: {modal: null}}]);
   }
 }
 

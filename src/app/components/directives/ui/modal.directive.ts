@@ -20,7 +20,7 @@ export class ModalDirective implements OnInit, OnDestroy {
 
   @HostListener('document:click', ['$event']) toggleOpen(event?: Event) {
     if (event) {
-      if (this.elRef.nativeElement.contains(event.target) && !this.elRef.nativeElement.lastChild.lastChild.contains(event.target)) {
+      if (this.elRef.nativeElement.contains(event.target) && !this.elRef.nativeElement.lastChild.contains(event.target)) {
         this.isOpen = !this.isOpen;
       }
     } else {

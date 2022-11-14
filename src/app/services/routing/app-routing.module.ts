@@ -35,6 +35,11 @@ const routes: Routes = [
     path: 'courses',
     loadChildren: () => import('../../components/features/courses/courses.module').then(m => m.CoursesModule)
   },
+  {
+    path: 'forms',
+    outlet: 'modal',
+    loadChildren: () => import('../../components/features/forms/forms.module').then(m => m.FormsModule)
+  }
 ];
 
 @NgModule({

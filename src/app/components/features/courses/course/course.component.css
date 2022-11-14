@@ -10,6 +10,14 @@
   @apply w-fit;
 }
 
+.course-section-sm .course-section-header, .course-section-sm .course-section-col, .course-section-sm .course-section-button  {
+  @apply p-3;
+}
+
+.course-section-sm .course-section-col {
+  @apply px-4;
+}
+
 .course-section-sm .course-section-head {
   @apply text-base;
 }
