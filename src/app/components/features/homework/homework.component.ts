@@ -4,21 +4,8 @@ import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faExclamationTriangle, faPlus } from '@fortawesome/pro-solid-svg-icons';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { HomeworkService } from '../../../services/components/features/homework/homework.service';
-import { ReadService } from '../../../services/model/read/read.service';
-
-export interface HomeworkAssignment {
-  completed: boolean,
-  course: {
-    name: string,
-    color: string
-  },
-  description: string,
-  dueDate: string,
-  dueTime: string,
-  link: string,
-  name: string,
-  uid: string
-}
+import { GetHomeworkAssignmentsGQL, HomeworkAssignmentType } from '../../../../generated/graphql';
+import { AuthService } from '../../../services/components/features/auth/auth.service';
 
 @Component({
   selector: 'app-homework',
@@ -28,17 +15,19 @@ export interface HomeworkAssignment {
   providers: [HomeworkService]
 })
 export class HomeworkComponent implements OnInit, OnDestroy {
-  assignments: BehaviorSubject<HomeworkAssignment[]> = new BehaviorSubject<HomeworkAssignment[]>([]);
+  assignments: BehaviorSubject<HomeworkAssignmentType[]> = new BehaviorSubject<HomeworkAssignmentType[]>([]);
   plusIcon: IconDefinition = faPlus;
   @ViewChild(RouterOutlet) outlet: RouterOutlet;
   dangerIcon: IconDefinition = faExclamationTriangle;
 
-  constructor(private homeworkService: HomeworkService, private read: ReadService, private router: Router, private route: ActivatedRoute) {
+  constructor(private homeworkService: HomeworkService, private getAssignmentsService: GetHomeworkAssignmentsGQL, private router: Router, private route: ActivatedRoute, private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.read.getAssignments().then(assignments => {
-      this.assignments.next(assignments.homeworkAssignments.edges.map(edge => edge.node));
+    this.getAssignmentsService.fetch({
+      token: this.authService.getToken()
+    }).toPromise().then(data => {
+      this.assignments.next(data?.data?.homeworkAssignments?.edges.map(edge => edge?.node) as HomeworkAssignmentType[]);
     });
   }
 
@@ -64,7 +53,7 @@ export class HomeworkComponent implements OnInit, OnDestroy {
     return this.assignments.getValue().filter(assignment => assignment.completed);
   }
 
-  selectAssignment(assignmentObj: HomeworkAssignment) {
+  selectAssignment(assignmentObj: HomeworkAssignmentType) {
     if (this.route.children[0]?.snapshot.paramMap.has('uid')) {
       if (this.route.children[0].snapshot.paramMap.get('uid') === assignmentObj.uid) {
         this.homeworkService.selectAssignment(null);
@@ -80,7 +69,7 @@ export class HomeworkComponent implements OnInit, OnDestroy {
     return this.homeworkService.getAssignments();
   }
 
-  dateHasChanged(assignmentObj: HomeworkAssignment) {
+  dateHasChanged(assignmentObj: HomeworkAssignmentType) {
     const assignments = this.getAssignments();
     const index = assignments.indexOf(assignmentObj);
     if (index === 0) {

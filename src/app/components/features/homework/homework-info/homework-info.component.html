@@ -1,6 +1,6 @@
-<div *ngIf="assignment" [ngClass]="['homework-info', assignment.course.color.toLowerCase().concat('-muted')]">
+<div *ngIf="assignment" [ngClass]="['homework-info', assignment.course?.color?.toLowerCase()?.concat('-muted')]">
   <div class="homework-info-header">
-    <div [ngClass]="['homework-info-header-icon', assignment.course.color.toLowerCase()]">
+    <div [ngClass]="['homework-info-header-icon', assignment.course?.color?.toLowerCase()]">
       <fa-icon [icon]="bookIcon"></fa-icon>
     </div>
     <div class="homework-info-header-title">{{ assignment.name }}</div>
@@ -11,19 +11,19 @@
   <div class="homework-info-body">
     <ui-card
       (click)="goToCalendar(assignment.dueDate)"
-      [color]="assignment.course.color.toLowerCase()"
+      [color]="assignment.course?.color?.toLowerCase() || 'primary'"
       [leftIcon]="calendarIcon"
       head="{{ getAssignmentDueDate(assignment)|date:'EEEE, MMMM d' }}"
       sub="{{ getAssignmentDueDate(assignment)|date:'h:mm a' }}"
     ></ui-card>
-    <div [ngClass]="['homework-info-body-section flex-grow', assignment.course.color.toLowerCase()]">
+    <div [ngClass]="['homework-info-body-section flex-grow', assignment.course?.color?.toLowerCase()]">
       <div class="homework-info-body-section-title">Description</div>
       <div class="homework-info-body-section-content">{{ assignment.description || 'None' }}</div>
     </div>
     <ui-card
       (click)="openLink(assignment.link)"
       *ngIf="assignment.link"
-      [color]="assignment.course.color.toLowerCase()"
+      [color]="assignment.course?.color?.toLowerCase() || 'primary'"
       [rightIcon]="linkIcon"
       head="Go to Link"
     ></ui-card>

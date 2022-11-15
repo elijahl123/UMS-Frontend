@@ -12,16 +12,14 @@ import {
   faVideo
 } from '@fortawesome/pro-solid-svg-icons';
 import { BehaviorSubject } from 'rxjs';
-import { ReadService } from '../../../../../services/model/read/read.service';
-
-interface Schedule {
-  course: { name: string, color: string, uid: string },
-  startTime: string,
-  endTime: string,
-  link: string,
-  zoomPassword: string
-  location: string,
-}
+import {
+  CourseLinkType,
+  CourseTimeType,
+  GetScheduleGQL,
+  HomeworkAssignmentType,
+  HomeworkAssignmentTypeConnection, HomeworkAssignmentTypeEdge, Maybe, Scalars
+} from '../../../../../../generated/graphql';
+import { AuthService } from '../../../../../services/components/features/auth/auth.service';
 
 function getCurrentDate() {
   const date = new Date();
@@ -40,50 +38,57 @@ export class ScheduleWidgetComponent implements OnInit, OnDestroy {
   chevronLeftIcon: IconDefinition = faChevronLeft;
   chevronRightIcon: IconDefinition = faChevronRight;
   date: BehaviorSubject<string>;
-  schedule: BehaviorSubject<Schedule[] | null | undefined> = new BehaviorSubject<Schedule[] | null | undefined>(null);
-  assignmentsDueSoon: BehaviorSubject<{ node: { name: string; dueDate: string; dueTime: string; course: { uid: string }; }; }[] | null> = new BehaviorSubject<{ node: { name: string; dueDate: string; dueTime: string; course: { uid: string }; }; }[] | null>(null);
+  schedule: BehaviorSubject<CourseTimeType[] | null | undefined> = new BehaviorSubject<CourseTimeType[] | null | undefined>(null);
+  assignmentsDueSoon: BehaviorSubject<HomeworkAssignmentTypeEdge[] | null> = new BehaviorSubject<HomeworkAssignmentTypeEdge[] | null>(null);
   schoolIcon: IconDefinition = faSchool;
   assignmentIcon: IconDefinition = faBook;
   linkIcon: IconDefinition = faSquareArrowUpRight;
 
-  openCourses: BehaviorSubject<Schedule[]>;
+  openCourses: BehaviorSubject<CourseTimeType[]>;
   videoIcon: IconDefinition = faVideo;
   mapIcon: IconDefinition = faMap;
 
-  courseLinks: BehaviorSubject<{ course: { uid: string }; link: string; title: string; }[]>;
+  courseLinks: BehaviorSubject<CourseLinkType[]>;
   externalLinkIcon: IconDefinition = faLink;
 
-  constructor(private read: ReadService) {
+  constructor(private getScheduleService: GetScheduleGQL, private authService: AuthService) {
   }
 
   ngOnInit(): void {
     // Every time the date changes, we want to update the schedule
     this.date = new BehaviorSubject<string>(getCurrentDate());
-    this.openCourses = new BehaviorSubject<Schedule[]>([]);
-    this.courseLinks = new BehaviorSubject<{ course: { uid: string }; link: string; title: string; }[]>([]);
+    this.openCourses = new BehaviorSubject<CourseTimeType[]>([]);
+    this.courseLinks = new BehaviorSubject<CourseLinkType[]>([]);
     this.date.subscribe((date) => {
       this.openCourses.next([]);
 
-      this.read.getSchedule(date).then((data) => {
-        data.getSchedule.length > 0 ? this.schedule.next(data.getSchedule) : this.schedule.next(null);
-        for (const course of data.getSchedule) {
-          this.isCourseCurrent(course);
-        }
-
-        let assignmentsDueSoon: { node: { name: string; dueDate: string; dueTime: string; course: { uid: string } }; }[] = [];
-        for (const assignment of data.homeworkAssignments.edges) {
-          // Check if the assignment is due within the next three days
-          const dueDateTime = new Date(assignment.node.dueDate + 'T' + assignment.node.dueTime);
-          const currentDate = new Date(date + 'T00:00:00');
-          const currentDatePlusThreeDays = new Date(date + 'T00:00:00');
-          currentDatePlusThreeDays.setDate(currentDatePlusThreeDays.getDate() + 3);
-          if (dueDateTime > currentDate && dueDateTime < currentDatePlusThreeDays) {
-            assignmentsDueSoon.push(assignment);
+      this.getScheduleService.fetch({
+        date: date,
+        token: this.authService.getToken()
+      }).toPromise().then((data) => {
+        if (data.data.getSchedule) {
+          data.data.getSchedule.length > 0 ? this.schedule.next(data.data.getSchedule as CourseTimeType[]) : this.schedule.next(null);
+          for (const course of data.data.getSchedule) {
+            this.isCourseCurrent(course as CourseTimeType);
           }
         }
-        this.assignmentsDueSoon.next(assignmentsDueSoon);
-
-        this.courseLinks.next(data.courseLinks.edges.map((edge) => edge.node));
+        if (data.data.homeworkAssignments) {
+          let assignmentsDueSoon: HomeworkAssignmentTypeEdge[] = [];
+          for (const assignment of data.data.homeworkAssignments.edges) {
+            // Check if the assignment is due within the next three days
+            const dueDateTime = new Date(assignment?.node?.dueDate + 'T' + assignment?.node?.dueTime);
+            const currentDate = new Date(date + 'T00:00:00');
+            const currentDatePlusThreeDays = new Date(date + 'T00:00:00');
+            currentDatePlusThreeDays.setDate(currentDatePlusThreeDays.getDate() + 3);
+            if (dueDateTime > currentDate && dueDateTime < currentDatePlusThreeDays) {
+              assignmentsDueSoon.push(assignment as HomeworkAssignmentTypeEdge);
+            }
+          }
+          this.assignmentsDueSoon.next(assignmentsDueSoon);
+        }
+        if (data.data.courseLinks) {
+          this.courseLinks.next(data.data.courseLinks.edges.map(edge => edge?.node) as CourseLinkType[]);
+        }
       })
     })
   }
@@ -106,7 +111,7 @@ export class ScheduleWidgetComponent implements OnInit, OnDestroy {
 
   getCourseTimeObjects(): NgIterable<any> | undefined | null {
     if (this.schedule.value) {
-      const courseTimeObjects: Schedule[] = [];
+      const courseTimeObjects: CourseTimeType[] = [];
       this.schedule.value.forEach((schedule) => {
         courseTimeObjects.push(schedule);
       });
@@ -127,7 +132,7 @@ export class ScheduleWidgetComponent implements OnInit, OnDestroy {
     return hours + ':' + minutes + ' ' + ampm;
   }
 
-  isCourseCurrent(course: Schedule): void {
+  isCourseCurrent(course: CourseTimeType): void {
     const selectedTime = new Date(this.date.value);
     const currentTime = new Date();
     // Get the start time and subtract 1 day
@@ -151,7 +156,7 @@ export class ScheduleWidgetComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleCourse(course: Schedule) {
+  toggleCourse(course: CourseTimeType) {
     if (this.openCourses.value.includes(course)) {
       this.openCourses.value.splice(this.openCourses.value.indexOf(course), 1);
     } else {
@@ -159,10 +164,10 @@ export class ScheduleWidgetComponent implements OnInit, OnDestroy {
     }
   }
 
-  courseContainsAssignments(course: Schedule): boolean {
+  courseContainsAssignments(course: CourseTimeType): boolean {
     if (this.assignmentsDueSoon.value) {
       for (const assignment of this.assignmentsDueSoon.value) {
-        if (assignment.node.course.uid === course.course.uid) {
+        if (assignment?.node?.course?.uid === course.course.uid) {
           return true;
         }
       }
@@ -170,7 +175,7 @@ export class ScheduleWidgetComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  courseContainsLinks(course: Schedule): boolean {
+  courseContainsLinks(course: CourseTimeType): boolean {
     if (this.courseLinks.value) {
       for (const link of this.courseLinks.value) {
         if (link.course.uid === course.course.uid) {
@@ -207,5 +212,13 @@ export class ScheduleWidgetComponent implements OnInit, OnDestroy {
 
   getAssignmentsDueSoon() {
     return this.assignmentsDueSoon.getValue();
+  }
+
+  getAssignmentDueDate(dueDate: string): string {
+    if (dueDate) {
+      return dueDate;
+    } else {
+      return 'No Due Date';
+    }
   }
 }

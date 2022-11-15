@@ -1,10 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarEvent } from '../calendar.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faCalendar, faClose, faPlus } from '@fortawesome/pro-solid-svg-icons';
-import { ReadService } from '../../../../services/model/read/read.service';
 import { BehaviorSubject } from 'rxjs';
+import { GetCalendarEventsInfoGQL } from '../../../../../generated/graphql';
+import { AuthService } from '../../../../services/components/features/auth/auth.service';
+
+interface CalendarEvent {
+  date: string
+  time: string
+  title: string,
+  description: string,
+  link: string,
+  course: {
+    name: string,
+    color: string
+  }
+}
+
 
 @Component({
   selector: 'app-calendar-info',
@@ -20,7 +33,7 @@ export class CalendarInfoComponent implements OnInit {
   selectedEvent: CalendarEvent | null = null;
   closeIcon: IconDefinition = faClose;
 
-  constructor(private route: ActivatedRoute, private router: Router, private read: ReadService) {
+  constructor(private route: ActivatedRoute, private router: Router, private getCalendarEventInfo: GetCalendarEventsInfoGQL, private authService: AuthService) {
   }
 
   get date() {
@@ -39,34 +52,27 @@ export class CalendarInfoComponent implements OnInit {
           month: '2-digit',
           day: '2-digit'
         }).replace(/\//g, '-');
-        this.read.getCalendarEventInfo(dateStr).then(data => {
+        this.getCalendarEventInfo.fetch({
+          date: dateStr,
+          token: this.authService.getToken()
+        }).toPromise().then(data => {
           // Add the calendar events
-          this.events = data.calendarEvents.edges.map(edge => {
-            return {
-              date: edge.node.date,
-              time: edge.node.time === '00:00:00' ? undefined : edge.node.time,
-              title: edge.node.title,
-              description: edge.node.description,
-              course: {
-                color: 'brand-main'
-              }
-            }
-          });
+          this.events = data?.data?.calendarEvents?.edges.map(edge => edge?.node) as CalendarEvent[];
 
           // Add the homework assignments
-          this.events = this.events.concat(data.homeworkAssignments.edges.map((edge) => {
+          this.events = this.events.concat(data?.data?.homeworkAssignments?.edges.map((edge) => {
             return {
-              date: edge.node.dueDate,
-              time: edge.node.dueTime === '00:00:00' ? undefined : edge.node.dueTime,
-              title: edge.node.name,
-              description: edge.node.description,
-              link: edge.node.link,
+              date: edge?.node?.dueDate,
+              time: edge?.node?.dueTime === '00:00:00' ? undefined : edge?.node?.dueTime,
+              title: edge?.node?.name,
+              description: edge?.node?.description,
+              link: edge?.node?.link,
               course: {
-                name: edge.node.course.name,
-                color: edge.node.course.color
+                name: edge?.node?.course?.name,
+                color: edge?.node?.course?.color
               }
             }
-          }));
+          }) as CalendarEvent[]);
         });
       }
     });

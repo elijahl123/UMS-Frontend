@@ -9,7 +9,7 @@
   <div class="class-schedule-content-manage-content-body">
     <ui-card *ngFor="let courseTime of courseTimes"
              [color]="courseTime.course.color.toLowerCase()"
-             [head]="courseTime.course.name"
+             [head]="courseTime.course.name ? courseTime.course.name : 'Untitled'"
              [leftIcon]="courseIcon"
              [rightIcon]="editIcon"
              sub="{{getWeekdayStr(courseTime)}} at {{ courseTime.startTime | time }}"

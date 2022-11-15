@@ -18,7 +18,7 @@ export class NotesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.notesService.init().then();
+    this.notesService.init();
   }
 
   isOnHomepage() {

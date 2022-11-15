@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HomeworkService } from '../../../../services/components/features/homework/homework.service';
-import { HomeworkAssignment } from '../homework.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faBook, faCalendar, faCheckCircle, faSquareArrowUpRight, faTimes } from '@fortawesome/pro-solid-svg-icons';
 import { filter } from 'rxjs/operators';
+import { HomeworkAssignmentType } from '../../../../../generated/graphql';
 
 @Component({
   selector: 'app-homework-info',
@@ -13,7 +13,7 @@ import { filter } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None
 })
 export class HomeworkInfoComponent implements OnInit {
-  assignment: HomeworkAssignment | null;
+  assignment: HomeworkAssignmentType | null;
   bookIcon: IconDefinition = faBook;
   closeIcon: IconDefinition = faTimes;
   linkIcon: IconDefinition = faSquareArrowUpRight;
@@ -37,7 +37,7 @@ export class HomeworkInfoComponent implements OnInit {
     this.router.navigate(['/homework']);
   }
 
-  getAssignmentDueDate(assignment: HomeworkAssignment) {
+  getAssignmentDueDate(assignment: HomeworkAssignmentType) {
     return new Date(assignment.dueDate + 'T' + assignment.dueTime);
   }
 

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { HomeworkAssignment } from '../homework.component';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faBook, faInfoCircle } from '@fortawesome/pro-solid-svg-icons';
+import { HomeworkAssignmentType } from '../../../../../generated/graphql';
 
 @Component({
   selector: 'app-homework-item',
@@ -10,7 +10,7 @@ import { faBook, faInfoCircle } from '@fortawesome/pro-solid-svg-icons';
   encapsulation: ViewEncapsulation.None
 })
 export class HomeworkItemComponent implements OnInit {
-  @Input() assignment: HomeworkAssignment;
+  @Input() assignment: HomeworkAssignmentType;
   @Input() transparent: boolean = false;
   assignmentIcon: IconDefinition = faBook;
   infoIcon: IconDefinition = faInfoCircle;

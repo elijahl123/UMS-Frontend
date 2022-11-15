@@ -2,7 +2,8 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation 
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faChevronLeft, faChevronRight, faPlus } from '@fortawesome/pro-solid-svg-icons';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { ReadService } from '../../../services/model/read/read.service';
+import { GetCalendarEventsGQL } from '../../../../generated/graphql';
+import { AuthService } from '../../../services/components/features/auth/auth.service';
 
 export interface CalendarEvent {
   uid?: string;
@@ -18,12 +19,12 @@ export interface CalendarEvent {
 }
 
 export interface CalendarEventMin {
-  title: string,
-  date: string,
+  title: string
+  date: string
   course?: {
-    name: string,
+    name: string
     color: string
-  },
+  }
 }
 
 @Component({
@@ -39,12 +40,12 @@ export class CalendarComponent implements OnInit, OnDestroy {
   currentDates: Date[] = [];
 
   date: Date;
-  events: CalendarEventMin[] = [];
+  events: CalendarEventMin[]= [];
 
   plusIcon: IconDefinition = faPlus;
   @ViewChild(RouterOutlet) outlet: RouterOutlet;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private read: ReadService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private getCalendarEventsService: GetCalendarEventsGQL, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -64,22 +65,25 @@ export class CalendarComponent implements OnInit, OnDestroy {
       this.currentDates = this.getDates();
     }
 
-    this.read.getCalendarEvents().then((data) => {
-      this.events = data.calendarEvents.edges.map(edge => {
+    this.getCalendarEventsService.fetch({
+      token: this.authService.getToken()
+    }).subscribe((data) => {
+      // Map the calendarEvents and homeworkAssignments to the CalendarEventMin interface
+      this.events = (data.data.calendarEvents?.edges.map((data) => {
         return {
-          title: edge.node.title,
-          date: edge.node.date,
+          title: data?.node?.title,
+          date: data?.node?.date
         }
-      }).concat(data.homeworkAssignments.edges.map(edge => {
+      }) as CalendarEventMin[]).concat((data.data.homeworkAssignments?.edges.map((data) => {
         return {
-          title: edge.node.name,
-          date: edge.node.dueDate,
+          title: data?.node?.name,
+          date: data?.node?.dueDate,
           course: {
-            name: edge.node.course.name,
-            color: edge.node.course.color,
+            name: data?.node?.course?.name,
+            color: data?.node?.course?.color
           }
         }
-      }));
+      }) as CalendarEventMin[]));
     })
   }
 

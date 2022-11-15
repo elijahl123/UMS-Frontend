@@ -10,7 +10,6 @@ import {
   Router
 } from '@angular/router';
 import { ModalDirective } from './directives/ui/modal.directive';
-import { BehaviorSubject } from 'rxjs';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faTimes } from '@fortawesome/pro-solid-svg-icons';
 

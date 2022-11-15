@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HomeworkAssignment } from '../../../../components/features/homework/homework.component';
 import { BehaviorSubject } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ReadService } from '../../../model/read/read.service';
+import { GetHomeworkAssignmentsGQL, HomeworkAssignmentType } from '../../../../../generated/graphql';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class HomeworkService {
-  assignments: BehaviorSubject<HomeworkAssignment[]> = new BehaviorSubject<HomeworkAssignment[]>([]);
-  selectedAssignment: BehaviorSubject<HomeworkAssignment | null> = new BehaviorSubject<HomeworkAssignment | null>(null);
+  assignments: BehaviorSubject<HomeworkAssignmentType[]> = new BehaviorSubject<HomeworkAssignmentType[]>([]);
+  selectedAssignment: BehaviorSubject<HomeworkAssignmentType | null> = new BehaviorSubject<HomeworkAssignmentType | null>(null);
 
-  constructor(private route: ActivatedRoute, private read: ReadService, private router: Router) {
-    this.read.getAssignments().then(data => {
-      this.assignments.next(data.homeworkAssignments.edges.map(edge => edge.node));
+  constructor(private route: ActivatedRoute, private getAssignmentsService: GetHomeworkAssignmentsGQL, private router: Router, private authService: AuthService) {
+    this.getAssignmentsService.fetch({
+      token: this.authService.getToken()
+    }).toPromise().then(data => {
+      this.assignments.next(data?.data?.homeworkAssignments?.edges.map(edge => edge?.node) as HomeworkAssignmentType[]);
     })
   }
 
@@ -30,7 +32,7 @@ export class HomeworkService {
     }
   }
 
-  selectAssignment(assignmentObj: HomeworkAssignment | null) {
+  selectAssignment(assignmentObj: HomeworkAssignmentType | null) {
     if (assignmentObj) {
       this.router.navigate(['/homework', 'assignment', assignmentObj.uid]);
       this.selectedAssignment.next(assignmentObj);

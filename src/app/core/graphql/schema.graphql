@@ -49,10 +49,52 @@ type AccountTypeEdge {
   node: AccountType
 }
 
+type AddCourseFileMutationPayload {
+  clientMutationId: String
+  courseFile: CourseFileType
+  data: CourseFileType
+  errors: [ErrorType]
+}
+
+type AddCourseLinkMutationPayload {
+  clientMutationId: String
+  courseLink: CourseLinkType
+  data: CourseLinkType
+  errors: [ErrorType]
+}
+
+type AddCourseMutationPayload {
+  clientMutationId: String
+  course: CourseType
+  data: CourseType
+  errors: [ErrorType]
+}
+
+type AddCourseTimeMutationPayload {
+  clientMutationId: String
+  courseTime: CourseTimeType
+  data: CourseTimeType
+  errors: [ErrorType]
+}
+
 type AddEmailMutationPayload {
   clientMutationId: String
   email: String!
   errors: [ErrorType]
+}
+
+type AddEventMutationPayload {
+  calendarEvent: CalendarEventType
+  clientMutationId: String
+  data: CalendarEventType
+  errors: [ErrorType]
+}
+
+type AddHomeworkAssignmentMutationPayload {
+  clientMutationId: String
+  data: HomeworkAssignmentType
+  errors: [ErrorType]
+  homeworkAssignment: HomeworkAssignmentType
 }
 
 type CalendarEventType implements Node {
@@ -231,7 +273,13 @@ type HomeworkAssignmentTypeEdge {
 }
 
 type Mutation {
+  addCalendarEvent(input: AddEventMutationInput!): AddEventMutationPayload
+  addCourse(input: AddCourseMutationInput!): AddCourseMutationPayload
+  addCourseFile(input: AddCourseFileMutationInput!): AddCourseFileMutationPayload
+  addCourseLink(input: AddCourseLinkMutationInput!): AddCourseLinkMutationPayload
+  addCourseTime(input: AddCourseTimeMutationInput!): AddCourseTimeMutationPayload
   addEmail(input: AddEmailMutationInput!): AddEmailMutationPayload
+  addHomeworkAssignment(input: AddHomeworkAssignmentMutationInput!): AddHomeworkAssignmentMutationPayload
   changePassword(input: ChangePasswordMutationInput!): ChangePasswordMutationPayload
   refreshToken(token: String): Refresh
   resetPassword(input: ResetPasswordMutationInput!): ResetPasswordMutationPayload
@@ -1589,9 +1637,77 @@ in fields, resolvers and input.
 """
 scalar UUID
 
+input AddCourseFileMutationInput {
+  clientMutationId: String
+  course: ID!
+  file: String!
+  id: ID
+  title: String!
+}
+
+input AddCourseLinkMutationInput {
+  clientMutationId: String
+  course: ID!
+  id: ID
+  link: String!
+  title: String!
+}
+
+input AddCourseMutationInput {
+  clientMutationId: String
+  "Color You Want This Class to Show Up as on Calendar and Schedule"
+  color: String!
+  id: ID
+  "Name of Class (CHEM 161, POLS 110, etc.)"
+  name: String!
+  "Not Required"
+  teacher: String
+  "Full Name of Class (General Chemistry I, etc.)"
+  title: String
+  user: ID
+}
+
+input AddCourseTimeMutationInput {
+  clientMutationId: String
+  course: ID!
+  endTime: Time!
+  id: ID
+  link: String
+  "Leave Blank if Class is Online"
+  location: String
+  startTime: Time!
+  user: ID
+  weekday: String!
+  zoomPassword: String
+}
+
 input AddEmailMutationInput {
   clientMutationId: String
   email: String!
+}
+
+input AddEventMutationInput {
+  clientMutationId: String
+  date: Date!
+  description: String
+  id: ID
+  "Leave Blank if Event is All Day"
+  time: Time
+  title: String!
+  user: ID!
+}
+
+input AddHomeworkAssignmentMutationInput {
+  alert: String!
+  clientMutationId: String
+  course: ID!
+  description: String
+  dueDate: Date!
+  dueTime: Time!
+  id: ID
+  link: String
+  name: String!
+  secondAlert: String!
 }
 
 input ChangePasswordMutationInput {

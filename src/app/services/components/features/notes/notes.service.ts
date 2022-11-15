@@ -1,48 +1,38 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ReadService } from '../../../model/read/read.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
-export class Note {
-  uid: string;
-  title: string;
-  content: string;
-  uploaded: string;
-  modified: string;
-  course: {
-    uid: string;
-  }
-}
-
-export class Course {
-  uid: string;
-  name: string;
-  color: string;
-}
+import { CourseType, GetCoursesGQL, GetNotesGQL, NoteType } from '../../../../../generated/graphql';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class NotesService {
-  courses = new BehaviorSubject<Course[]>([]);
-  notes = new BehaviorSubject<Note[]>([]);
-  selectedNote: BehaviorSubject<Note | null> = new BehaviorSubject<Note | null>(null);
+  courses = new BehaviorSubject<CourseType[]>([]);
+  notes = new BehaviorSubject<NoteType[]>([]);
+  selectedNote: BehaviorSubject<NoteType | null> = new BehaviorSubject<NoteType | null>(null);
 
-  constructor(private read: ReadService, private router: Router, private route: ActivatedRoute) {
+  constructor(private getCoursesService: GetCoursesGQL, private router: Router, private route: ActivatedRoute, private authService: AuthService, private getNotesService: GetNotesGQL) {
   }
 
-  async init() {
-    await this.initCourses();
-    await this.initNotes();
+  init() {
+    this.initCourses();
+    this.initNotes();
     this.initSelectedNote();
   }
 
-  async initCourses() {
-    const data = await this.read.getCourses();
-    this.courses.next(data.courses.edges.map(edge => edge.node));
+  initCourses() {
+    this.getCoursesService.fetch({
+      token: this.authService.getToken()
+    }).toPromise().then(data => {
+      this.courses.next(data?.data?.courses?.edges.map(edge => edge?.node) as CourseType[]);
+    })
   }
 
-  async initNotes() {
-    const data = await this.read.getNotes();
-    this.notes.next(data.notes.edges.map(edge => edge.node));
+  initNotes() {
+    const data = this.getNotesService.fetch({
+      token: this.authService.getToken()
+    }).toPromise().then(data => {
+      this.notes.next(data?.data?.notes?.edges.map(edge => edge?.node) as NoteType[]);
+    });
   }
 
   initSelectedNote() {

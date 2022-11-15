@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Course, Note, NotesService } from '../../../../services/components/features/notes/notes.service';
+import { NotesService } from '../../../../services/components/features/notes/notes.service';
 import { Router } from '@angular/router';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
-import { faEdit, faPlus, faSchool, faTrash } from '@fortawesome/pro-solid-svg-icons';
+import { faPlus, faSchool, faTrash } from '@fortawesome/pro-solid-svg-icons';
+import { CourseType, NoteType } from '../../../../../generated/graphql';
 
 @Component({
   selector: 'app-note-courses',
@@ -25,17 +26,17 @@ export class NoteCoursesComponent implements OnInit {
     return this.notesService.courses.getValue();
   }
 
-  getNotes(course: Course) {
-    return this.notesService.notes.getValue().filter(note => note.course.uid === course.uid);
+  getNotes(course: CourseType) {
+    return this.notesService.notes.getValue().filter(note => note?.course?.uid === course.uid);
   }
 
-  getNoteContent(content: string) {
+  getNoteContent(content: NoteType["content"]) {
     // Strip HTML tags and remove &nbsp;
     // If the content is longer than 100 characters, truncate it
     return content ? content.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, '') : 'None';
   }
 
-  selectNote(note: Note) {
+  selectNote(note: NoteType) {
     this.router.navigate(['/notes', 'note', note.uid]);
   }
 }

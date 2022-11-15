@@ -3,18 +3,8 @@ import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faCog, faPlus } from '@fortawesome/pro-solid-svg-icons';
 import { Subject } from 'rxjs';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { ReadService } from '../../../services/model/read/read.service';
-
-export interface Schedule {
-  uid: string;
-  course: {
-    name: string;
-    color: string;
-  }
-  startTime: string,
-  endTime: string,
-  weekday: string,
-}
+import { CourseTimeType, GetCourseTimesGQL } from '../../../../generated/graphql';
+import { AuthService } from '../../../services/components/features/auth/auth.service';
 
 @Component({
   selector: 'app-schedule',
@@ -25,18 +15,20 @@ export interface Schedule {
 export class ScheduleComponent implements OnInit, OnDestroy {
   plusIcon: IconDefinition = faPlus;
   cogIcon: IconDefinition = faCog;
-  courseTimes: Schedule[] = [];
-  selectedCourseTime: Subject<Schedule | null> = new Subject<Schedule | null>();
-  selectedCourseTimeValue: Schedule | null;
+  courseTimes: CourseTimeType[] = [];
+  selectedCourseTime: Subject<CourseTimeType | null> = new Subject<CourseTimeType | null>();
+  selectedCourseTimeValue: CourseTimeType | null;
   @ViewChildren(RouterOutlet) routerOutlets: QueryList<RouterOutlet>;
 
-  constructor(private read: ReadService, private router: Router, private route: ActivatedRoute) {
+  constructor(private getCourseTimes: GetCourseTimesGQL, private router: Router, private route: ActivatedRoute, private authService: AuthService) {
   }
 
   ngOnInit(): void {
     // Pull all the course times from the user
-    this.read.getCourseTimes().then(data => {
-      this.courseTimes = data.courseTimes.edges.map(edge => edge.node)
+    this.getCourseTimes.fetch({
+      token: this.authService.getToken()
+    }).toPromise().then(data => {
+      this.courseTimes = data.data.courseTimes?.edges.map(edge => edge?.node) as CourseTimeType[];
 
       // Check the activated route for a course time uid. The uid is in the router outlet named courseTimeInfo
       const courseTimeUid = this.route.snapshot.children[0]?.params.uid;
@@ -110,7 +102,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     return days;
   }
 
-  getStyle(courseTime: Schedule): { [key: string]: string } {
+  getStyle(courseTime: CourseTimeType): { [key: string]: string } {
     // For the given course time, calculate which row and column it should be in. For each time, round to the nearest 30 minutes
     let startTime = Number(courseTime.startTime.split(':')[0]) * 2;
     let endTime = Number(courseTime.endTime.split(':')[0]) * 2;
@@ -160,7 +152,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   getTotalCourseTimes() {
     // Create a Schedule object for each course time for each day of the week
-    const courseTimes: Schedule[] = [];
+    const courseTimes: CourseTimeType[] = [];
     this.courseTimes.forEach(courseTime => {
       const weekday = courseTime.weekday.substring(1, courseTime.weekday.length - 1).split(', ').map(weekday => weekday.substring(1, weekday.length - 1));
       for (let i = 0; i < weekday.length; i++) {
@@ -170,7 +162,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
           startTime: courseTime.startTime,
           endTime: courseTime.endTime,
           weekday: weekday[i],
-        });
+        } as CourseTimeType);
       }
     });
     return courseTimes;
@@ -182,7 +174,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectCourse(courseTime: Schedule) {
+  selectCourse(courseTime: CourseTimeType) {
     if (this.selectedCourseTimeValue) {
       if (this.selectedCourseTimeValue.uid === courseTime.uid) {
         this.selectedCourseTime.next(null);

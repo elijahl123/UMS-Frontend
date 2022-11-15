@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { GetCourseResponse, ReadService } from '../../../../services/model/read/read.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
@@ -12,33 +11,8 @@ import {
   faLink,
   faTrash
 } from '@fortawesome/pro-solid-svg-icons';
-
-class CourseData {
-  course: {
-    uid: string;
-    name: string;
-    title: string;
-    teacher: string;
-    color: string;
-  }
-  courseTimes: {
-    startTime: string;
-    endTime: string;
-    weekday: string;
-  }[]
-  homeworkAssignments: {
-    name: string;
-    dueDate: string;
-    dueTime: string;
-  }[]
-  courseFiles: {
-    title: string;
-  }[]
-  courseLinks: {
-    title: string;
-    link: string;
-  }[]
-}
+import { GetCourseGQL, GetCourseQuery } from '../../../../../generated/graphql';
+import { AuthService } from '../../../../services/components/features/auth/auth.service';
 
 @Component({
   selector: 'app-course',
@@ -47,7 +21,7 @@ class CourseData {
   encapsulation: ViewEncapsulation.None
 })
 export class CourseComponent implements OnInit {
-  data: CourseData;
+  data: GetCourseQuery;
   uid: BehaviorSubject<string> = new BehaviorSubject<string>(this.route.snapshot.params['uid']);
   trashIcon: IconDefinition = faTrash;
   infoIcon: IconDefinition = faInfoCircle;
@@ -57,7 +31,7 @@ export class CourseComponent implements OnInit {
   fileIcon: IconDefinition = faFile;
   linkIcon: IconDefinition = faLink;
 
-  constructor(private read: ReadService, private router: Router, private route: ActivatedRoute) {
+  constructor(private getCourseService: GetCourseGQL, private router: Router, private route: ActivatedRoute, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -68,20 +42,11 @@ export class CourseComponent implements OnInit {
       }
     })
     this.uid.subscribe((uid) => {
-      this.read.getCourse(uid).then((data: GetCourseResponse) => {
-        this.data = {
-          course: {
-            uid: data.courses.edges[0].node.uid,
-            name: data.courses.edges[0].node.name,
-            title: data.courses.edges[0].node.title,
-            teacher: data.courses.edges[0].node.teacher,
-            color: data.courses.edges[0].node.color
-          },
-          courseTimes: data.courseTimes.edges.map((edge) => edge.node),
-          homeworkAssignments: data.homeworkAssignments.edges.map((edge) => edge.node),
-          courseFiles: data.courseFiles.edges.map((edge) => edge.node),
-          courseLinks: data.courseLinks.edges.map((edge) => edge.node)
-        }
+      this.getCourseService.fetch({
+        token: this.authService.getToken(),
+        uid: uid
+      }).toPromise().then((data) => {
+        this.data = data.data as GetCourseQuery;
       })
     });
   }
@@ -89,14 +54,14 @@ export class CourseComponent implements OnInit {
   getCourseTimes() {
     // Return a course time object for every course time object as well as every weekday. Only return the first three course times.
     let courseTimes: {weekday: string, startTime: string, endTime: string}[] = [];
-    this.data.courseTimes.forEach((courseTime) => {
+    this.data.courseTimes?.edges.forEach((courseTime) => {
       // Convert the weekdays from the format "['Monday']" to a list of weekdays
-      let weekdays = courseTime.weekday.replace(/[\[\]']+/g, '').split(', ');
-      weekdays.forEach((weekday) => {
+      let weekdays = courseTime?.node?.weekday?.replace(/[\[\]']+/g, '').split(', ');
+      weekdays?.forEach((weekday) => {
         courseTimes.push({
           weekday: weekday,
-          startTime: courseTime.startTime,
-          endTime: courseTime.endTime
+          startTime: courseTime?.node?.startTime,
+          endTime: courseTime?.node?.endTime
         })
       });
     });
@@ -105,16 +70,16 @@ export class CourseComponent implements OnInit {
 
   getAssignments() {
     // Return a homework assignment object for every homework assignment object. Only return the first three assignments.
-    return this.data.homeworkAssignments.slice(0, 3);
+    return this.data.homeworkAssignments?.edges.slice(0, 3);
   }
 
   getCourseFiles() {
     // Return a course file object for every course file object. Only return the first three course files.
-    return this.data.courseFiles.slice(0, 3);
+    return this.data.courseFiles?.edges.slice(0, 3);
   }
 
   getCourseLinks() {
     // Return a course link object for every course link object. Only return the first three course links.
-    return this.data.courseLinks.slice(0, 3);
+    return this.data.courseLinks?.edges.slice(0, 3);
   }
 }

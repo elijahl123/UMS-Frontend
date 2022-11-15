@@ -10,7 +10,7 @@
       <ui-card
         *ngFor="let course of getCourses()"
         [color]="course.color.toLowerCase()"
-        [head]="course.name"
+        [head]="course.name!"
         [routerLink]="['/courses', 'course', course.uid]"
         [routerLinkActive]="'ums-shadow'"
         [ngClass]="['rounded-lg transition-enabled', course.color.toLowerCase()]"

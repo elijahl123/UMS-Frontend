@@ -3,21 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faMap, faPlus, faSchool, faSquareArrowUpRight, faTimes } from '@fortawesome/pro-solid-svg-icons';
 import { faFilePen } from '@fortawesome/pro-duotone-svg-icons';
-import { ReadService } from '../../../../services/model/read/read.service';
-import { BehaviorSubject } from 'rxjs';
-
-export interface ScheduleInfo {
-  uid: string;
-  course: {
-    name: string;
-    color: string;
-  };
-  startTime: string;
-  weekday: string;
-  location: string;
-  link: string;
-  zoomPassword: string;
-}
+import { BehaviorSubject, Observable } from 'rxjs';
+import { CourseTimeType, GetScheduleInfoGQL } from '../../../../../generated/graphql';
+import { AuthService } from '../../../../services/components/features/auth/auth.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-schedule-info',
@@ -25,7 +14,7 @@ export interface ScheduleInfo {
   styleUrls: ['./schedule-info.component.css']
 })
 export class ScheduleInfoComponent implements OnInit, OnDestroy {
-  courseTime: ScheduleInfo;
+  courseTime: CourseTimeType;
   uid: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   schoolIcon: IconDefinition = faSchool;
   linkIcon: IconDefinition = faSquareArrowUpRight;
@@ -34,7 +23,7 @@ export class ScheduleInfoComponent implements OnInit, OnDestroy {
   mapIcon: IconDefinition = faMap;
   closeIcon: IconDefinition = faTimes;
 
-  constructor(private route: ActivatedRoute, private router: Router, private read: ReadService) {
+  constructor(private route: ActivatedRoute, private router: Router, private getScheduleInfoService: GetScheduleInfoGQL, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -44,9 +33,12 @@ export class ScheduleInfoComponent implements OnInit, OnDestroy {
     });
     this.uid.subscribe(uid => {
       if (uid) {
-        this.read.getScheduleInfo(uid).then(data => {
-          this.courseTime = data.courseTimes.edges[0].node;
-        });
+        this.getScheduleInfoService.fetch({
+          uid: uid,
+          token: this.authService.getToken(),
+        }).toPromise().then((data) => {
+          this.courseTime = data.data.courseTimes?.edges[0]?.node as CourseTimeType;
+        })
       }
     });
   }

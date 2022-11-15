@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
-import { faPlus, faTrash } from '@fortawesome/pro-solid-svg-icons';
+import { faPlus } from '@fortawesome/pro-solid-svg-icons';
 import { faSchool } from '@fortawesome/pro-duotone-svg-icons';
-import { GetCoursesResponse, ReadService } from '../../../services/model/read/read.service';
-import { Course } from '../../../services/components/features/notes/notes.service';
 import { Router } from '@angular/router';
+import { CourseType, GetCoursesGQL } from '../../../../generated/graphql';
+import { AuthService } from '../../../services/components/features/auth/auth.service';
 
 @Component({
   selector: 'app-courses',
@@ -13,19 +13,21 @@ import { Router } from '@angular/router';
 })
 export class CoursesComponent implements OnInit {
   plusIcon: IconDefinition = faPlus;
-  courses: Course[];
+  courses: CourseType[];
   courseIconDuo: IconDefinition = faSchool;
 
-  constructor(private read: ReadService, private router: Router) {
+  constructor(private getCoursesService: GetCoursesGQL, private router: Router, private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.read.getCourses().then((data: GetCoursesResponse) => {
-      this.courses = data.courses.edges.map((edge) => edge.node);
+    this.getCoursesService.fetch({
+      token: this.authService.getToken()
+    }).toPromise().then((data) => {
+      this.courses = data.data.courses!.edges.map((edge) => edge!.node) as CourseType[];
     });
   }
 
-  getCourses(): Course[] {
+  getCourses(): CourseType[] {
     return this.courses;
   }
 

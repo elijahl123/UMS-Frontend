@@ -15,11 +15,11 @@ export class AuthService {
   constructor(private apollo: Apollo, private router: Router) {
   }
 
-  getToken() {
+  getToken(): string {
     if (localStorage.getItem('token') !== this.token) {
       this.setToken(localStorage.getItem('token'));
     }
-    return this.token;
+    return this.token || '';
   }
 
   setToken(token: string | null) {

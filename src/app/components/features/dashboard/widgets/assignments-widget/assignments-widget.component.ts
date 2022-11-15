@@ -2,7 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faMemoPad, faPlus, faSquareArrowUpRight } from '@fortawesome/pro-solid-svg-icons';
 import { BehaviorSubject } from 'rxjs';
-import { ReadService } from '../../../../../services/model/read/read.service';
+import { GetHomeworkAssignmentsGQL, HomeworkAssignmentType } from '../../../../../../generated/graphql';
+import { AuthService } from '../../../../../services/components/features/auth/auth.service';
 
 interface Assignment {
   uid: string
@@ -24,25 +25,27 @@ interface Assignment {
 })
 export class AssignmentsWidgetComponent implements OnInit {
   plusIcon: IconDefinition = faPlus;
-  upcomingAssignments: BehaviorSubject<Assignment[]> = new BehaviorSubject<Assignment[]>([]);
+  upcomingAssignments: BehaviorSubject<HomeworkAssignmentType[]> = new BehaviorSubject<HomeworkAssignmentType[]>([]);
   assignmentIcon: IconDefinition = faMemoPad;
   linkIcon: IconDefinition = faSquareArrowUpRight;
 
-  constructor(private read: ReadService) {
+  constructor(private getHomeworkAssignmentsService: GetHomeworkAssignmentsGQL, private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.read.getHomeworkAssignments().then((data) => {
+    this.getHomeworkAssignmentsService.fetch({
+      token: this.authService.getToken()
+    }).toPromise().then((data) => {
       // Check if the assignment is late, or it is due within the next 3 days
       const now = new Date();
       const threeDaysFromNow = new Date();
       threeDaysFromNow.setDate(threeDaysFromNow.getDate() + 3);
-      const upcomingAssignments = data.homeworkAssignments.edges.map((edge) => edge.node).filter((assignment) => {
-          const dueDate = new Date(assignment.dueDate);
+      const upcomingAssignments = data.data.homeworkAssignments?.edges.map((edge) => edge?.node).filter((assignment) => {
+          const dueDate = new Date(assignment?.dueDate);
           return dueDate < now || (dueDate >= now && dueDate <= threeDaysFromNow);
         }
       );
-      this.upcomingAssignments.next(upcomingAssignments);
+      this.upcomingAssignments.next(upcomingAssignments as HomeworkAssignmentType[]);
     });
   }
 
