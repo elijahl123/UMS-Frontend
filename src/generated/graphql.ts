@@ -1,7 +1,6 @@
-import * as Apollo from 'apollo-angular';
 import { gql } from 'apollo-angular';
 import { Injectable } from '@angular/core';
-
+import * as Apollo from 'apollo-angular';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -2115,9 +2114,7 @@ export type GetCourseQueryVariables = Exact<{
 }>;
 
 
-export type GetCourseQuery = {
-  __typename?: 'Query', courses?: { __typename?: 'CourseTypeConnection', edges: Array<{ __typename?: 'CourseTypeEdge', node?: { __typename?: 'CourseType', uid?: any | null, name?: string | null, title?: string | null, teacher?: string | null, color: CourseColor } | null } | null> } | null, courseTimes?: { __typename?: 'CourseTimeTypeConnection', edges: Array<{ __typename?: 'CourseTimeTypeEdge', node?: { __typename?: 'CourseTimeType', startTime?: any | null, endTime?: any | null, weekday: string } | null } | null> } | null, homeworkAssignments?: { __typename?: 'HomeworkAssignmentTypeConnection', edges: Array<{ __typename?: 'HomeworkAssignmentTypeEdge', node?: { __typename?: 'HomeworkAssignmentType', name?: string | null, dueDate?: any | null, dueTime: any } | null } | null> } | null, courseFiles?: { __typename?: 'CourseFileTypeConnection', edges: Array<{ __typename?: 'CourseFileTypeEdge', node?: { __typename?: 'CourseFileType', title?: string | null } | null } | null> } | null, courseLinks?: { __typename?: 'CourseLinkTypeConnection', edges: Array<{ __typename?: 'CourseLinkTypeEdge', node?: { __typename?: 'CourseLinkType', title?: string | null, link?: string | null } | null } | null> } | null
-};
+export type GetCourseQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseTypeConnection', edges: Array<{ __typename?: 'CourseTypeEdge', node?: { __typename?: 'CourseType', uid?: any | null, name?: string | null, title?: string | null, teacher?: string | null, color: CourseColor } | null } | null> } | null, courseTimes?: { __typename?: 'CourseTimeTypeConnection', edges: Array<{ __typename?: 'CourseTimeTypeEdge', node?: { __typename?: 'CourseTimeType', startTime?: any | null, endTime?: any | null, weekday: string } | null } | null> } | null, homeworkAssignments?: { __typename?: 'HomeworkAssignmentTypeConnection', edges: Array<{ __typename?: 'HomeworkAssignmentTypeEdge', node?: { __typename?: 'HomeworkAssignmentType', name?: string | null, dueDate?: any | null, dueTime: any } | null } | null> } | null, courseFiles?: { __typename?: 'CourseFileTypeConnection', edges: Array<{ __typename?: 'CourseFileTypeEdge', node?: { __typename?: 'CourseFileType', title?: string | null } | null } | null> } | null, courseLinks?: { __typename?: 'CourseLinkTypeConnection', edges: Array<{ __typename?: 'CourseLinkTypeEdge', node?: { __typename?: 'CourseLinkType', title?: string | null, link?: string | null } | null } | null> } | null };
 
 export type GetNotesQueryVariables = Exact<{
   token: Scalars['String'];
@@ -2127,476 +2124,462 @@ export type GetNotesQueryVariables = Exact<{
 export type GetNotesQuery = { __typename?: 'Query', notes?: { __typename?: 'NoteTypeConnection', edges: Array<{ __typename?: 'NoteTypeEdge', node?: { __typename?: 'NoteType', uid?: any | null, title: string, content?: string | null, uploaded: any, modified: any, course?: { __typename?: 'CourseType', uid?: any | null } | null } | null } | null> } | null };
 
 
-export interface PossibleTypesResultData {
-  possibleTypes: {
-    [key: string]: string[]
-  }
-}
-
-const result: PossibleTypesResultData = {
-  'possibleTypes': {
-    'Node': [
-      'AccountType',
-      'CalendarEventType',
-      'CourseFileType',
-      'CourseLinkType',
-      'CourseTimeType',
-      'CourseType',
-      'HomeworkAssignmentType',
-      'NoteType'
+      export interface PossibleTypesResultData {
+        possibleTypes: {
+          [key: string]: string[]
+        }
+      }
+      const result: PossibleTypesResultData = {
+  "possibleTypes": {
+    "Node": [
+      "AccountType",
+      "CalendarEventType",
+      "CourseFileType",
+      "CourseLinkType",
+      "CourseTimeType",
+      "CourseType",
+      "HomeworkAssignmentType",
+      "NoteType"
     ]
   }
 };
-export default result;
-
+      export default result;
+    
 export const TokenAuthDocument = gql`
-  mutation TokenAuth($email: String!, $password: String!) {
-    tokenAuth(email: $email, password: $password) {
-      token
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class TokenAuthGQL extends Apollo.Mutation<TokenAuthMutation, TokenAuthMutationVariables> {
-  document = TokenAuthDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    mutation TokenAuth($email: String!, $password: String!) {
+  tokenAuth(email: $email, password: $password) {
+    token
   }
 }
+    `;
 
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class TokenAuthGQL extends Apollo.Mutation<TokenAuthMutation, TokenAuthMutationVariables> {
+    document = TokenAuthDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const VerifyTokenDocument = gql`
-  mutation VerifyToken($token: String!) {
-    verifyToken(token: $token) {
-      payload
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class VerifyTokenGQL extends Apollo.Mutation<VerifyTokenMutation, VerifyTokenMutationVariables> {
-  document = VerifyTokenDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    mutation VerifyToken($token: String!) {
+  verifyToken(token: $token) {
+    payload
   }
 }
+    `;
 
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class VerifyTokenGQL extends Apollo.Mutation<VerifyTokenMutation, VerifyTokenMutationVariables> {
+    document = VerifyTokenDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const RefreshTokenDocument = gql`
-  mutation RefreshToken($token: String!) {
-    refreshToken(token: $token) {
-      token
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class RefreshTokenGQL extends Apollo.Mutation<RefreshTokenMutation, RefreshTokenMutationVariables> {
-  document = RefreshTokenDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    mutation RefreshToken($token: String!) {
+  refreshToken(token: $token) {
+    token
   }
 }
+    `;
 
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RefreshTokenGQL extends Apollo.Mutation<RefreshTokenMutation, RefreshTokenMutationVariables> {
+    document = RefreshTokenDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const SignupDocument = gql`
-  mutation Signup($firstName: String!, $lastName: String!, $email: String!, $username: String!, $password1: String!, $password2: String!) {
-    signup(
-      input: {firstName: $firstName, lastName: $lastName, email: $email, username: $username, password1: $password1, password2: $password2}
-    ) {
-      token
-      errors {
-        field
-        messages
-      }
+    mutation Signup($firstName: String!, $lastName: String!, $email: String!, $username: String!, $password1: String!, $password2: String!) {
+  signup(
+    input: {firstName: $firstName, lastName: $lastName, email: $email, username: $username, password1: $password1, password2: $password2}
+  ) {
+    token
+    errors {
+      field
+      messages
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class SignupGQL extends Apollo.Mutation<SignupMutation, SignupMutationVariables> {
-  document = SignupDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
 }
+    `;
 
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class SignupGQL extends Apollo.Mutation<SignupMutation, SignupMutationVariables> {
+    document = SignupDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetCalendarEventsDocument = gql`
-  query getCalendarEvents($token: String!) {
-    calendarEvents(token: $token) {
-      edges {
-        node {
-          date
-          title
-        }
-      }
-    }
-    homeworkAssignments(token: $token) {
-      edges {
-        node {
-          dueDate
-          name
-          course {
-            name
-            color
-          }
-        }
+    query getCalendarEvents($token: String!) {
+  calendarEvents(token: $token) {
+    edges {
+      node {
+        date
+        title
       }
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetCalendarEventsGQL extends Apollo.Query<GetCalendarEventsQuery, GetCalendarEventsQueryVariables> {
-  document = GetCalendarEventsDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+  homeworkAssignments(token: $token) {
+    edges {
+      node {
+        dueDate
+        name
+        course {
+          name
+          color
+        }
+      }
+    }
   }
 }
+    `;
 
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetCalendarEventsGQL extends Apollo.Query<GetCalendarEventsQuery, GetCalendarEventsQueryVariables> {
+    document = GetCalendarEventsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetCalendarEventsInfoDocument = gql`
-  query getCalendarEventsInfo($date: Date!, $token: String!) {
-    calendarEvents(date: $date, token: $token) {
-      edges {
-        node {
-          date
-          time
-          title
-          description
-        }
-      }
-    }
-    homeworkAssignments(dueDate: $date, token: $token) {
-      edges {
-        node {
-          completed
-          dueDate
-          dueTime
-          name
-          description
-          link
-          course {
-            name
-            color
-          }
-        }
+    query getCalendarEventsInfo($date: Date!, $token: String!) {
+  calendarEvents(date: $date, token: $token) {
+    edges {
+      node {
+        date
+        time
+        title
+        description
       }
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetCalendarEventsInfoGQL extends Apollo.Query<GetCalendarEventsInfoQuery, GetCalendarEventsInfoQueryVariables> {
-  document = GetCalendarEventsInfoDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+  homeworkAssignments(dueDate: $date, token: $token) {
+    edges {
+      node {
+        completed
+        dueDate
+        dueTime
+        name
+        description
+        link
+        course {
+          name
+          color
+        }
+      }
+    }
   }
 }
+    `;
 
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetCalendarEventsInfoGQL extends Apollo.Query<GetCalendarEventsInfoQuery, GetCalendarEventsInfoQueryVariables> {
+    document = GetCalendarEventsInfoDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetScheduleDocument = gql`
-  query getSchedule($token: String!, $date: Date!) {
-    getSchedule(date: $date, token: $token) {
-      course {
+    query getSchedule($token: String!, $date: Date!) {
+  getSchedule(date: $date, token: $token) {
+    course {
+      uid
+      name
+      color
+    }
+    startTime
+    endTime
+    link
+    zoomPassword
+    location
+  }
+  homeworkAssignments(completed: false, token: $token) {
+    edges {
+      node {
+        name
+        dueDate
+        dueTime
+        course {
+          uid
+        }
+      }
+    }
+  }
+  courseLinks(token: $token) {
+    edges {
+      node {
+        course {
+          uid
+        }
+        link
+        title
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetScheduleGQL extends Apollo.Query<GetScheduleQuery, GetScheduleQueryVariables> {
+    document = GetScheduleDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetScheduleInfoDocument = gql`
+    query getScheduleInfo($uid: UUID!, $token: String!) {
+  courseTimes(uid: $uid, token: $token) {
+    edges {
+      node {
+        uid
+        course {
+          name
+          color
+        }
+        startTime
+        weekday
+        location
+        link
+        zoomPassword
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetScheduleInfoGQL extends Apollo.Query<GetScheduleInfoQuery, GetScheduleInfoQueryVariables> {
+    document = GetScheduleInfoDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetHomeworkAssignmentsDocument = gql`
+    query getHomeworkAssignments($token: String!) {
+  homeworkAssignments(completed: false, token: $token) {
+    edges {
+      node {
+        uid
+        name
+        dueDate
+        dueTime
+        course {
+          uid
+          name
+          color
+        }
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetHomeworkAssignmentsGQL extends Apollo.Query<GetHomeworkAssignmentsQuery, GetHomeworkAssignmentsQueryVariables> {
+    document = GetHomeworkAssignmentsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetHomeworkAssignmentsInfoDocument = gql`
+    query getHomeworkAssignmentsInfo($token: String!) {
+  homeworkAssignments(token: $token) {
+    edges {
+      node {
+        completed
+        course {
+          name
+          color
+        }
+        description
+        dueDate
+        dueTime
+        link
+        name
+        uid
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetHomeworkAssignmentsInfoGQL extends Apollo.Query<GetHomeworkAssignmentsInfoQuery, GetHomeworkAssignmentsInfoQueryVariables> {
+    document = GetHomeworkAssignmentsInfoDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetCourseTimesDocument = gql`
+    query getCourseTimes($token: String!) {
+  courseTimes(token: $token) {
+    edges {
+      node {
+        uid
+        course {
+          name
+          color
+        }
+        startTime
+        endTime
+        weekday
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetCourseTimesGQL extends Apollo.Query<GetCourseTimesQuery, GetCourseTimesQueryVariables> {
+    document = GetCourseTimesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetCoursesDocument = gql`
+    query getCourses($token: String!) {
+  courses(token: $token) {
+    edges {
+      node {
         uid
         name
         color
       }
-      startTime
-      endTime
-      link
-      zoomPassword
-      location
     }
-    homeworkAssignments(completed: false, token: $token) {
-      edges {
-        node {
-          name
-          dueDate
-          dueTime
-          course {
-            uid
-          }
-        }
-      }
-    }
-    courseLinks(token: $token) {
-      edges {
-        node {
-          course {
-            uid
-          }
-          link
-          title
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetScheduleGQL extends Apollo.Query<GetScheduleQuery, GetScheduleQueryVariables> {
-  document = GetScheduleDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
   }
 }
+    `;
 
-export const GetScheduleInfoDocument = gql`
-  query getScheduleInfo($uid: UUID!, $token: String!) {
-    courseTimes(uid: $uid, token: $token) {
-      edges {
-        node {
-          uid
-          course {
-            name
-            color
-          }
-          startTime
-          weekday
-          location
-          link
-          zoomPassword
-        }
-      }
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetCoursesGQL extends Apollo.Query<GetCoursesQuery, GetCoursesQueryVariables> {
+    document = GetCoursesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetScheduleInfoGQL extends Apollo.Query<GetScheduleInfoQuery, GetScheduleInfoQueryVariables> {
-  document = GetScheduleInfoDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-
-export const GetHomeworkAssignmentsDocument = gql`
-  query getHomeworkAssignments($token: String!) {
-    homeworkAssignments(completed: false, token: $token) {
-      edges {
-        node {
-          uid
-          name
-          dueDate
-          dueTime
-          course {
-            uid
-            name
-            color
-          }
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetHomeworkAssignmentsGQL extends Apollo.Query<GetHomeworkAssignmentsQuery, GetHomeworkAssignmentsQueryVariables> {
-  document = GetHomeworkAssignmentsDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-
-export const GetHomeworkAssignmentsInfoDocument = gql`
-  query getHomeworkAssignmentsInfo($token: String!) {
-    homeworkAssignments(token: $token) {
-      edges {
-        node {
-          completed
-          course {
-            name
-            color
-          }
-          description
-          dueDate
-          dueTime
-          link
-          name
-          uid
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetHomeworkAssignmentsInfoGQL extends Apollo.Query<GetHomeworkAssignmentsInfoQuery, GetHomeworkAssignmentsInfoQueryVariables> {
-  document = GetHomeworkAssignmentsInfoDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-
-export const GetCourseTimesDocument = gql`
-  query getCourseTimes($token: String!) {
-    courseTimes(token: $token) {
-      edges {
-        node {
-          uid
-          course {
-            name
-            color
-          }
-          startTime
-          endTime
-          weekday
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetCourseTimesGQL extends Apollo.Query<GetCourseTimesQuery, GetCourseTimesQueryVariables> {
-  document = GetCourseTimesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-
-export const GetCoursesDocument = gql`
-  query getCourses($token: String!) {
-    courses(token: $token) {
-      edges {
-        node {
-          uid
-          name
-          color
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetCoursesGQL extends Apollo.Query<GetCoursesQuery, GetCoursesQueryVariables> {
-  document = GetCoursesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-
 export const GetCourseDocument = gql`
-  query getCourse($uid: UUID!, $token: String!) {
-    courses(uid: $uid, token: $token) {
-      edges {
-        node {
-          uid
-          name
-          title
-          teacher
-          color
-        }
-      }
-    }
-    courseTimes(course_Uid: $uid, token: $token) {
-      edges {
-        node {
-          startTime
-          endTime
-          weekday
-        }
-      }
-    }
-    homeworkAssignments(course_Uid: $uid, token: $token) {
-      edges {
-        node {
-          name
-          dueDate
-          dueTime
-        }
-      }
-    }
-    courseFiles(course_Uid: $uid, token: $token) {
-      edges {
-        node {
-          title
-        }
-      }
-    }
-    courseLinks(course_Uid: $uid, token: $token) {
-      edges {
-        node {
-          title
-          link
-        }
+    query getCourse($uid: UUID!, $token: String!) {
+  courses(uid: $uid, token: $token) {
+    edges {
+      node {
+        uid
+        name
+        title
+        teacher
+        color
       }
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetCourseGQL extends Apollo.Query<GetCourseQuery, GetCourseQueryVariables> {
-  document = GetCourseDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+  courseTimes(course_Uid: $uid, token: $token) {
+    edges {
+      node {
+        startTime
+        endTime
+        weekday
+      }
+    }
+  }
+  homeworkAssignments(course_Uid: $uid, token: $token) {
+    edges {
+      node {
+        name
+        dueDate
+        dueTime
+      }
+    }
+  }
+  courseFiles(course_Uid: $uid, token: $token) {
+    edges {
+      node {
+        title
+      }
+    }
+  }
+  courseLinks(course_Uid: $uid, token: $token) {
+    edges {
+      node {
+        title
+        link
+      }
+    }
   }
 }
+    `;
 
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetCourseGQL extends Apollo.Query<GetCourseQuery, GetCourseQueryVariables> {
+    document = GetCourseDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetNotesDocument = gql`
-  query getNotes($token: String!) {
-    notes(token: $token) {
-      edges {
-        node {
+    query getNotes($token: String!) {
+  notes(token: $token) {
+    edges {
+      node {
+        uid
+        title
+        content
+        uploaded
+        modified
+        course {
           uid
-          title
-          content
-          uploaded
-          modified
-          course {
-            uid
-          }
         }
       }
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetNotesGQL extends Apollo.Query<GetNotesQuery, GetNotesQueryVariables> {
-  document = GetNotesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetNotesGQL extends Apollo.Query<GetNotesQuery, GetNotesQueryVariables> {
+    document = GetNotesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
