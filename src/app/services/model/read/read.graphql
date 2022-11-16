@@ -1,0 +1,239 @@
+query getCalendarEvents($token: String!) {
+  calendarEvents(token: $token) {
+    edges {
+      node {
+        date
+        title
+      }
+    }
+  }
+  homeworkAssignments(token: $token) {
+    edges {
+      node {
+        dueDate
+        name
+        course {
+          name
+          color
+        }
+      }
+    }
+  }
+}
+
+query getCalendarEventsInfo($date: Date!, $token: String!) {
+  calendarEvents(date: $date, token: $token) {
+    edges {
+      node {
+        date
+        time
+        title
+        description
+      }
+    }
+  }
+  homeworkAssignments(dueDate: $date, token: $token) {
+    edges {
+      node {
+        completed
+        dueDate
+        dueTime
+        name
+        description
+        link
+        course {
+          name
+          color
+        }
+      }
+    }
+  }
+}
+
+query getSchedule($token: String!, $date: Date!) {
+  getSchedule(date: $date, token: $token) {
+    course {
+      uid
+      name
+      color
+    }
+    startTime
+    endTime
+    link
+    zoomPassword
+    location
+  }
+  homeworkAssignments(completed: false, token: $token) {
+    edges {
+      node {
+        name
+        dueDate
+        dueTime
+        course {
+          uid
+        }
+      }
+    }
+  }
+  courseLinks(token: $token) {
+    edges {
+      node {
+        course {
+          uid
+        }
+        link
+        title
+      }
+    }
+  }
+}
+
+query getScheduleInfo($uid: UUID!, $token: String!) {
+  courseTimes(uid: $uid, token: $token) {
+    edges {
+      node {
+        uid
+        course {
+          name
+          color
+        }
+        startTime
+        weekday
+        location
+        link
+        zoomPassword
+      }
+    }
+  }
+}
+
+query getHomeworkAssignments($token: String!) {
+  homeworkAssignments(completed: false, token: $token) {
+    edges {
+      node {
+        uid
+        name
+        dueDate
+        dueTime
+        course {
+          uid
+          name
+          color
+        }
+      }
+    }
+  }
+}
+
+query getHomeworkAssignmentsInfo($token: String!) {
+  homeworkAssignments(token: $token) {
+    edges {
+      node {
+        completed
+        course {
+          name
+          color
+        }
+        description
+        dueDate
+        dueTime
+        link
+        name
+        uid
+      }
+    }
+  }
+}
+
+query getCourseTimes($token: String!) {
+  courseTimes(token: $token) {
+    edges {
+      node {
+        uid
+        course {
+          name
+          color
+        }
+        startTime
+        endTime
+        weekday
+      }
+    }
+  }
+}
+
+query getCourses($token: String!) {
+  courses(token: $token) {
+    edges {
+      node {
+        uid
+        name
+        color
+      }
+    }
+  }
+}
+
+query getCourse($uid: UUID!, $token: String!) {
+  courses(uid: $uid, token: $token) {
+    edges {
+      node {
+        uid
+        name
+        title
+        teacher
+        color
+      }
+    }
+  }
+  courseTimes(course_Uid: $uid, token: $token) {
+    edges {
+      node {
+        startTime
+        endTime
+        weekday
+      }
+    }
+  }
+  homeworkAssignments(course_Uid: $uid, token: $token) {
+    edges {
+      node {
+        name
+        dueDate
+        dueTime
+      }
+    }
+  }
+  courseFiles(course_Uid: $uid, token: $token) {
+    edges {
+      node {
+        title
+      }
+    }
+  }
+  courseLinks(course_Uid: $uid, token: $token) {
+    edges {
+      node {
+        title
+        link
+      }
+    }
+  }
+}
+
+query getNotes($token: String!) {
+  notes(token: $token) {
+    edges {
+      node {
+        uid
+        title
+        content
+        uploaded
+        modified
+        course {
+          uid
+        }
+      }
+    }
+  }
+}
