@@ -24,7 +24,7 @@
   }
 
   :root {
-    --ums-thumb-color: rgb(var(--color-brand-secondary) 1);
+    --ums-thumb-color: rgba(var(--color-brand-secondary), 1);
     --color-white: 255, 255, 255;
     --color-black: 0, 0, 0;
     --color-brand-main: 248, 173, 157;
@@ -424,19 +424,23 @@
   }
 
   .modal {
-    @apply flex absolute bg-brand-secondary-muted inset-0 backdrop-blur-sm items-center justify-center transition-enabled;
+    @apply flex absolute inset-0 bg-brand-secondary-muted backdrop-blur-sm items-center justify-center transition-enabled p-6 overflow-auto;
   }
 
   .modal * {
     @apply transition-enabled;
   }
 
+  .modal app-forms {
+    @apply overflow-auto h-full;
+  }
+
   .modal-content {
-    @apply bg-white p-4 rounded-lg shadow shadow-brand-background grid grid-flow-row gap-6 max-w-xl w-full;
+    @apply bg-white p-4 rounded-lg shadow shadow-brand-background grid grid-flow-row gap-6 max-w-xl w-full max-h-full overflow-auto;
   }
 
   .modal-body {
-    @apply text-brand-secondary;
+    @apply text-brand-secondary overflow-auto;
   }
 
   .modal-footer {

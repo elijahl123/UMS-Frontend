@@ -21,7 +21,9 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
 
   return {
     link,
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      dataIdFromObject: (object: any) => object.uid || null
+    }),
   };
 }
 

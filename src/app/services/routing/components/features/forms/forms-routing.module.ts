@@ -4,11 +4,11 @@ import { FormsComponent } from '../../../../../components/features/forms/forms.c
 
 const routes: Routes = [
   {
-    path: 'add/:mutation',
+    path: 'add/:model',
     component: FormsComponent,
   },
   {
-    path: 'edit/:mutation/:uid',
+    path: 'edit/:model/:uid',
     component: FormsComponent,
   }
 ];

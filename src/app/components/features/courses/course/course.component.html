@@ -47,6 +47,12 @@
             - {{ courseTime.endTime | time }}</div>
           <div class="course-section-head truncated">{{ courseTime.weekday }}</div>
         </div>
+        <ui-empty-space
+          *ngIf="getCourseTimes()!.length === 0"
+          [class]="data.courses!.edges[0]!.node!.color!.toLowerCase().concat('-muted')"
+          head="No Course Times!"
+          size="lg"
+        ></ui-empty-space>
       </div>
       <div
         [ngClass]="['course-section-button hover-enabled padded-container transition-enabled', data.courses!.edges[0]!.node!.color!.toLowerCase()]">
@@ -64,6 +70,12 @@
           <div class="course-section-sub truncated">{{ assignment!.node!.dueDate | date:'mediumDate' }}</div>
           <div class="course-section-head truncated">{{ assignment!.node!.name }}</div>
         </div>
+        <ui-empty-space
+          *ngIf="getAssignments()!.length === 0"
+          [class]="data.courses!.edges[0]!.node!.color!.toLowerCase().concat('-muted')"
+          head="No Assignments!"
+          size="lg"
+        ></ui-empty-space>
       </div>
       <div
         [ngClass]="['course-section-button hover-enabled padded-container transition-enabled', data.courses!.edges[0]!.node!.color!.toLowerCase()]">

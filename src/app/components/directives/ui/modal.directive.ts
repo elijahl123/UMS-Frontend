@@ -1,5 +1,6 @@
 import { Directive, ElementRef, HostBinding, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Directive({
   selector: '[uiModal]',
@@ -9,7 +10,7 @@ export class ModalDirective implements OnInit, OnDestroy {
   @HostBinding('class.open') isOpen = false
   @Input() open: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private elRef: ElementRef) {
+  constructor(private elRef: ElementRef, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -20,7 +21,8 @@ export class ModalDirective implements OnInit, OnDestroy {
 
   @HostListener('document:click', ['$event']) toggleOpen(event?: Event) {
     if (event) {
-      if (this.elRef.nativeElement.contains(event.target) && !this.elRef.nativeElement.lastChild.contains(event.target)) {
+      if (event.target === this.elRef.nativeElement) {
+        this.router.navigate([{outlets: {modal: null}}]);
         this.isOpen = !this.isOpen;
       }
     } else {

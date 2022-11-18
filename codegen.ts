@@ -9,7 +9,7 @@ const config: CodegenConfig = {
     "src/generated/graphql.ts": {
       plugins: ["typescript", "typescript-operations", "fragment-matcher", "typescript-apollo-angular"]
     },
-    "./graphql.schema.json": {
+    "src/generated/graphql.schema.json": {
       plugins: ["introspection"]
     }
   }
