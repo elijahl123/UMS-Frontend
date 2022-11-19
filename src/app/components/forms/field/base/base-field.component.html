@@ -5,17 +5,7 @@
     </label>
     <span *ngIf="subLabel" class="form-field-label-sub">{{ subLabel }}</span>
   </div>
-  <ng-content></ng-content>
-</div>
-<div class="col-sm-2 form-group">
-  <label for="amount">Amount</label>
-  <input
-    class="form-control"
-    id="amount"
-    name="amount"
-    ngModel
-    pattern="^[1-9]+[0-9]*$"
-    required
-    type="number"
-  >
+  <div class="p-[3px]">
+    <ng-content></ng-content>
+  </div>
 </div>

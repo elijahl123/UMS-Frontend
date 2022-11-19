@@ -1,1 +1,11 @@
-<input type="text" *ngFor="let field of fields" [placeholder]="field.name">
+<form-field label="This is a label" subLabel="This is a sub label">
+  <input
+    [id]="'id'"
+    [name]="'name'"
+    [placeholder]="'placeholder'"
+    [required]="true"
+    type="text"
+    class="form-control"
+    ngModel
+  >
+</form-field>

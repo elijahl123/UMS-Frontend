@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import schema from '../../../../generated/graphql.schema.json';
 import { Observable, Subject } from 'rxjs';
 import { IntrospectionInputValue } from 'graphql/utilities';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export interface FormType {
   name: string;
@@ -21,7 +22,7 @@ export interface FormType {
   styleUrls: ['./forms.component.css']
 })
 export class FormsComponent implements OnInit {
-  fields: IntrospectionInputValue[];
+  form: FormGroup;
 
   constructor(private route: ActivatedRoute) {
   }
@@ -37,9 +38,13 @@ export class FormsComponent implements OnInit {
       } else {
         modelName = 'Add' + modelName;
       }
-      this.fields = schema.__schema.types.find(type => type.name === modelName)!.inputFields!.filter(val => {
+      const fields = schema.__schema.types.find(type => type.name === modelName)!.inputFields!.filter(val => {
         return (val.name !== 'clientMutationId') && (val.name !== 'id');
       }) as IntrospectionInputValue[];
+      this.form = new FormGroup(fields.map(field => {
+        return new FormControl('', field.type.kind === 'NON_NULL' ? Validators.required : null);
+      }));
+      console.log(this.form);
     });
   }
 

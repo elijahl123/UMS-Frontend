@@ -11,9 +11,9 @@
 }
 
 .form-field-label {
-  @apply text-brand-secondary font-bold;
+  @apply text-brand-secondary text-lg;
 }
 
 .form-field-label-sub {
-  @apply text-brand-secondary text-sm;
+  @apply text-brand-secondary text-xs;
 }

@@ -24,7 +24,7 @@
   }
 
   :root {
-    --ums-thumb-color: rgba(var(--color-brand-secondary), 1);
+    --ums-thumb-color: rgb(var(--color-brand-secondary) 1);
     --color-white: 255, 255, 255;
     --color-black: 0, 0, 0;
     --color-brand-main: 248, 173, 157;
@@ -373,7 +373,7 @@
 @layer components {
   .form-control {
     @apply w-full px-5 py-3 rounded-lg focus-visible:ring-4 focus-visible:ring-utility-info-muted
-      !outline-0 border-[3px] border-transparent focus-visible:border-utility-info text-brand-secondary transition-all
+      !outline-0 border-[3px] border-utility-secondary-muted focus-visible:border-utility-info text-brand-secondary transition-all
       duration-200 ease-in-out;
   }
 
