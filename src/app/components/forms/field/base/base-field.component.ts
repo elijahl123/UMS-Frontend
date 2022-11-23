@@ -16,7 +16,7 @@ import { FieldFormsComponent } from '../../../../core/components/forms/field.for
 export class BaseFieldComponent extends FieldFormsComponent implements OnInit {
   @Input() horizontal: boolean = false;
   @Input() label: string = 'Label';
-  @Input() subLabel: string;
+  @Input() subLabel?: string;
 
   constructor() {
     super();

@@ -1339,6 +1339,7 @@ export type AddCourseTimeMutationInput = {
   location?: InputMaybe<Scalars['String']>;
   startTime: Scalars['Time'];
   user?: InputMaybe<Scalars['ID']>;
+  /** Hold CTRL or CMD to Select Multiple Days */
   weekday: Scalars['String'];
   zoomPassword?: InputMaybe<Scalars['String']>;
 };
@@ -1530,6 +1531,7 @@ export type CourseTimeType = Node & {
   startTime?: Maybe<Scalars['Time']>;
   uid?: Maybe<Scalars['UUID']>;
   user?: Maybe<AccountType>;
+  /** Hold CTRL or CMD to Select Multiple Days */
   weekday: Scalars['String'];
   zoomPassword?: Maybe<Scalars['String']>;
 };
@@ -2049,6 +2051,13 @@ export type SignupMutationVariables = Exact<{
 
 export type SignupMutation = { __typename?: 'Mutation', signup?: { __typename?: 'SignupMutationPayload', token?: string | null, errors?: Array<{ __typename?: 'ErrorType', field: string, messages: Array<string> } | null> | null } | null };
 
+export type AddCourseMutationVariables = Exact<{
+  input: AddCourseMutationInput;
+}>;
+
+
+export type AddCourseMutation = { __typename?: 'Mutation', addCourse?: { __typename?: 'AddCourseMutationPayload', course?: { __typename?: 'CourseType', uid?: any | null, name?: string | null } | null } | null };
+
 export type GetCalendarEventsQueryVariables = Exact<{
   token: Scalars['String'];
 }>;
@@ -2218,6 +2227,27 @@ export const SignupDocument = gql`
   })
   export class SignupGQL extends Apollo.Mutation<SignupMutation, SignupMutationVariables> {
     document = SignupDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AddCourseDocument = gql`
+    mutation addCourse($input: AddCourseMutationInput!) {
+  addCourse(input: $input) {
+    course {
+      uid
+      name
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AddCourseGQL extends Apollo.Mutation<AddCourseMutation, AddCourseMutationVariables> {
+    document = AddCourseDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

@@ -5,10 +5,12 @@ import { FormsComponent } from '../../../../../components/features/forms/forms.c
 const routes: Routes = [
   {
     path: 'add/:model',
+    title: 'Add',
     component: FormsComponent,
   },
   {
     path: 'edit/:model/:uid',
+    title: 'Edit',
     component: FormsComponent,
   }
 ];

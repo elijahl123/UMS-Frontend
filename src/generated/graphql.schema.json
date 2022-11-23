@@ -4538,7 +4538,7 @@
           },
           {
             "name": "weekday",
-            "description": "",
+            "description": "Hold CTRL or CMD to Select Multiple Days",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -5961,7 +5961,7 @@
           },
           {
             "name": "weekday",
-            "description": "",
+            "description": "Hold CTRL or CMD to Select Multiple Days",
             "args": [],
             "type": {
               "kind": "NON_NULL",

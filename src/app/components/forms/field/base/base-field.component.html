@@ -1,7 +1,7 @@
 <div [ngClass]="['form-field', getFormFieldClass()]">
   <div class="form-field-label-wrapper">
     <label [for]="id" class="form-field-label">
-      {{ label }} <span *ngIf="required" class="text-utility-danger">*</span>
+      {{ label }} <span *ngIf="required === 'true'" class="text-utility-danger">*</span>
     </label>
     <span *ngIf="subLabel" class="form-field-label-sub">{{ subLabel }}</span>
   </div>

@@ -7,7 +7,7 @@
 }
 
 .form-field-label-wrapper {
-  @apply grid gap-1;
+  @apply grid gap-1 pl-2;
 }
 
 .form-field-label {

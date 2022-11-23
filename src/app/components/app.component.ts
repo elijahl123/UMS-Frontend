@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faBook, faCalendars, faClock, faFilePen, faObjectsColumn, faSchool } from '@fortawesome/pro-duotone-svg-icons';
 import {
-  ActivatedRoute,
+  ActivatedRoute, Data,
   Event,
   NavigationCancel,
   NavigationEnd,
@@ -72,6 +72,23 @@ export class AppComponent implements OnInit {
 
   closeModal() {
     this.router.navigate([{outlets: {modal: null}}]);
+  }
+
+  getModalTitle() {
+    // Parse the modal title from the route data
+    let title = '';
+    this.route.children.forEach(child => {
+      if (child.outlet === 'modal') {
+        const model = child.firstChild!.snapshot.params['model'].replace(/-/g, ' ');
+        const uid = child.firstChild!.snapshot.paramMap.get('uid');
+        if (uid) {
+          title = 'Edit ' + model;
+        } else {
+          title = 'Add ' + model;
+        }
+      }
+    });
+    return title || 'Untitled Management Software';
   }
 }
 

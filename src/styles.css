@@ -24,7 +24,7 @@
   }
 
   :root {
-    --ums-thumb-color: rgb(var(--color-brand-secondary) 1);
+    --ums-thumb-color: rgba(var(--color-utility-secondary-muted));
     --color-white: 255, 255, 255;
     --color-black: 0, 0, 0;
     --color-brand-main: 248, 173, 157;
@@ -382,9 +382,13 @@
   }
 
   .form-select {
-    @apply py-2 px-4 bg-white rounded-xl overflow-auto focus:!shadow-[0_0_0_4px] focus:!shadow-utility-info-muted
-      !outline-0 border-[3px] border-transparent focus:border-utility-info text-brand-secondary w-full transition-all
+    @apply px-5 py-3 bg-white rounded-lg overflow-auto focus:!shadow-[0_0_0_4px] focus:!shadow-utility-info-muted
+      !outline-0 border-[3px] border-utility-secondary-muted focus:border-utility-info text-brand-secondary w-full transition-all
       duration-100 text-brand-secondary;
+  }
+
+  .form-select[multiple] {
+    @apply !p-3;
   }
 
   .form-select:focus {

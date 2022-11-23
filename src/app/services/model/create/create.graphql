@@ -1,1 +1,8 @@
-
+mutation addCourse($input: AddCourseMutationInput!) {
+  addCourse(input: $input) {
+    course {
+      uid
+      name
+    }
+  }
+}

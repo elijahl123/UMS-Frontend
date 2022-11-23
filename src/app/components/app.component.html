@@ -1,19 +1,16 @@
-<div class="modal" uiModal *ngIf="isModalActivated()">
+<div *ngIf="isModalActivated()" class="modal" uiModal>
   <div class="modal-content">
     <div class="header">
-      <h3 [title]="'Test'" class="header-text">
-        Test
+      <h3 [title]="getModalTitle() | titlecase" class="header-text">
+        {{ getModalTitle() | titlecase }}
       </h3>
-      <div class="btn hover-enabled brand-background rounded-lg text-sm aspect-square" (click)="closeModal()">
+      <div (click)="closeModal()" class="btn hover-enabled brand-background rounded-lg text-sm aspect-square">
         <fa-icon [icon]="closeIcon"></fa-icon>
       </div>
     </div>
     <div class="modal-body">
-      <router-outlet name="modal" *ngIf="!loading"></router-outlet>
+      <router-outlet *ngIf="!loading" name="modal"></router-outlet>
       <ui-spinner *ngIf="loading" class="w-full h-full" lineColor="brand-main"></ui-spinner>
-    </div>
-    <div class="modal-footer">
-      <div class="btn hover-enabled brand-background rounded-lg" (click)="closeModal()">Close</div>
     </div>
   </div>
 </div>

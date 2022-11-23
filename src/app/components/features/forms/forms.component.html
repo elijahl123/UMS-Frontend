@@ -1,11 +1,100 @@
-<form-field label="This is a label" subLabel="This is a sub label">
-  <input
-    [id]="'id'"
-    [name]="'name'"
-    [placeholder]="'placeholder'"
-    [required]="true"
-    type="text"
-    class="form-control"
-    ngModel
+<form (ngSubmit)="onSubmit(form)" [formGroup]="form" class="flex flex-col gap-4">
+  <ng-container
+    *ngFor="let field of fields"
+    [ngSwitch]="field.type.kind"
   >
-</form-field>
+    <form-field
+      *ngSwitchCase="'SCALAR'"
+      [ngSwitch]="field.type.name"
+      [attr.for]="'id_' + field.name"
+      [label]="camelCaseToTitle(field.name)"
+      [required]="field.type.kind === 'NON_NULL' ? 'true' : 'false'"
+      [subLabel]="field.description || undefined"
+    >
+      <input
+        *ngSwitchCase="'String'"
+        [formControlName]="field.name"
+        [id]="'id_' + field.name"
+        [name]="field"
+        [required]="field.type.kind === 'NON_NULL'"
+        class="form-control"
+        type="text"
+      >
+      <input
+        *ngSwitchCase="'Date'"
+        [formControlName]="field.name"
+        [id]="'id_' + field.name"
+        [name]="field"
+        [required]="field.type.kind === 'NON_NULL'"
+        class="form-control"
+        type="date"
+      >
+    </form-field>
+    <form-field
+      *ngSwitchCase="'NON_NULL'"
+      [attr.for]="'id_' + field.name"
+      [label]="field.name | titlecase"
+      [ngSwitch]="field.type.ofType?.kind"
+      [subLabel]="field.description || undefined"
+    >
+      <select
+        *ngSwitchCase="'ENUM'"
+        [formControlName]="field.name"
+        [id]="'id_' + field.name"
+        [name]="field"
+        [required]="field.type.kind === 'NON_NULL'"
+        class="form-select"
+        type="text"
+      >
+        <option *ngFor="let option of getEnumValues(field.type.ofType?.name)" [value]="option.name | lowercase">
+          {{ option.name | titlecase }}
+        </option>
+      </select>
+      <select
+        *ngSwitchCase="'OBJECT'"
+        [formControlName]="field.name"
+        [id]="'id_' + field.name"
+        [name]="field"
+        [required]="field.type.kind === 'NON_NULL'"
+        class="form-select"
+        type="text"
+      >
+        <option *ngFor="let option of getObjectValues(field.type.ofType?.name)" [value]="option.uid">
+          {{ option.name }}
+        </option>
+      </select>
+      <ng-container
+        *ngSwitchDefault
+        [ngSwitch]="field.type.ofType?.name">
+        <input
+          *ngSwitchCase="'Time'"
+          [formControlName]="field.name"
+          [id]="'id_' + field.name"
+          [name]="field"
+          [required]="field.type.kind === 'NON_NULL'"
+          class="form-control"
+          type="time"
+        >
+        <select
+          *ngSwitchDefault
+          [formControlName]="field.name"
+          [id]="'id_' + field.name"
+          [name]="field"
+          [required]="field.type.kind === 'NON_NULL'"
+          class="form-select"
+          type="text"
+          multiple
+        >
+          <option *ngFor="let option of getDaysOfWeek()" [value]="option | lowercase">
+            {{ option | titlecase }}
+          </option>
+        </select>
+      </ng-container>
+    </form-field>
+  </ng-container>
+  <div class="modal-footer">
+    <div (click)="appComponent.closeModal()" class="btn hover-enabled brand-background rounded-lg">Close</div>
+    <button class="btn hover-enabled success rounded-lg" type="submit">Submit</button>
+  </div>
+</form>
+
