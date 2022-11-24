@@ -1,9 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import schema from '../../../../generated/graphql.schema.json';
+import types from '../../../../generated/types.json';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AppComponent } from '../../app.component';
-import { CourseType, GetCoursesGQL } from '../../../../generated/graphql';
+import {
+  AddCourseGQL,
+  AddCourseMutationInput, AddCourseTimeGQL, AddCourseTimeMutationInput,
+  CourseType,
+  GetCoursesGQL,
+  GetUserGQL,
+  GetUserQuery
+} from '../../../../generated/graphql';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../../../services/components/features/auth/auth.service';
 
@@ -30,14 +38,19 @@ export interface IntrospectionInputValue {
 export class FormsComponent implements OnInit {
   form: FormGroup;
   fields: IntrospectionInputValue[];
-  courses: CourseType[];
+  formType: string;
+  courses: { name: string, id: string }[];
+  private user: GetUserQuery['user'];
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
     public appComponent: AppComponent,
     private authService: AuthService,
-    private getCourses: GetCoursesGQL
+    private getCourses: GetCoursesGQL,
+    private getUser: GetUserGQL,
+    private addCourse: AddCourseGQL,
+    private addCourseTime: AddCourseTimeGQL,
   )
   {
   }
@@ -48,8 +61,17 @@ export class FormsComponent implements OnInit {
     }).pipe(
       map(result => result.data.courses?.edges?.map(edge => edge?.node))
     ).subscribe(courses => {
-      this.courses = courses as CourseType[];
+      this.courses = courses as { name: string, id: string }[];
     })
+
+    this.getUser.fetch({
+      token: this.authService.getToken()
+    }).pipe(
+      map(result => result.data.user)
+    ).subscribe(user => {
+      this.user = user;
+    })
+
     // First, we need to determine if we are adding or editing a record.
     this.route.params.subscribe(async params => {
       let model = params.model.charAt(0).toUpperCase() + params.model.replace(/-([a-z])/g, function (g: string) {
@@ -62,10 +84,11 @@ export class FormsComponent implements OnInit {
         modelName = 'Add' + modelName;
       }
       let formType = model.concat('Type');
+      this.formType = formType;
       const fields = (schema.__schema.types.find(type => type.name === modelName)!.inputFields as { name: string }[]).filter(field => {
         return field.name !== 'clientMutationId' && field.name !== 'id' && field.name !== 'user';
       });
-      let formFields = (schema.__schema.types.find(type => type.name === formType)!.fields as unknown as IntrospectionInputValue[]).filter(field => {
+      let formFields = (types.types.find(type => type.name === formType)!.fields as unknown as IntrospectionInputValue[]).filter(field => {
         return fields.find(f => f.name === field.name);
       });
       this.fields = formFields;
@@ -120,6 +143,28 @@ export class FormsComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    console.log(form.value);
+    let data;
+    if (form.valid) {
+      switch (this.formType) {
+        case 'CourseType':
+          data = form.value as AddCourseMutationInput;
+          data.user = this.user?.id;
+          this.addCourse.mutate({
+            input: data
+          }).subscribe(result => {
+            console.log(result);
+          })
+          break;
+        case 'CourseTimeType':
+          data = form.value as AddCourseTimeMutationInput;
+          data.user = this.user?.id;
+          console.log(data);
+          this.addCourseTime.mutate({
+            input: data
+          }).subscribe(result => {
+            console.log(result);
+          })
+      }
+    }
   }
 }

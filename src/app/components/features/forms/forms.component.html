@@ -15,7 +15,7 @@
         *ngSwitchCase="'String'"
         [formControlName]="field.name"
         [id]="'id_' + field.name"
-        [name]="field"
+        [name]="field.name"
         [required]="field.type.kind === 'NON_NULL'"
         class="form-control"
         type="text"
@@ -24,16 +24,26 @@
         *ngSwitchCase="'Date'"
         [formControlName]="field.name"
         [id]="'id_' + field.name"
-        [name]="field"
+        [name]="field.name"
         [required]="field.type.kind === 'NON_NULL'"
         class="form-control"
         type="date"
+      >
+      <input
+        *ngSwitchCase="'Time'"
+        [formControlName]="field.name"
+        [id]="'id_' + field.name"
+        [name]="field.name"
+        [required]="field.type.kind === 'NON_NULL'"
+        class="form-control"
+        type="time"
       >
     </form-field>
     <form-field
       *ngSwitchCase="'NON_NULL'"
       [attr.for]="'id_' + field.name"
-      [label]="field.name | titlecase"
+      [label]="camelCaseToTitle(field.name)"
+      [required]="field.type.kind === 'NON_NULL' ? 'true' : 'false'"
       [ngSwitch]="field.type.ofType?.kind"
       [subLabel]="field.description || undefined"
     >
@@ -41,10 +51,9 @@
         *ngSwitchCase="'ENUM'"
         [formControlName]="field.name"
         [id]="'id_' + field.name"
-        [name]="field"
+        [name]="field.name"
         [required]="field.type.kind === 'NON_NULL'"
         class="form-select"
-        type="text"
       >
         <option *ngFor="let option of getEnumValues(field.type.ofType?.name)" [value]="option.name | lowercase">
           {{ option.name | titlecase }}
@@ -54,47 +63,62 @@
         *ngSwitchCase="'OBJECT'"
         [formControlName]="field.name"
         [id]="'id_' + field.name"
-        [name]="field"
+        [name]="field.name"
         [required]="field.type.kind === 'NON_NULL'"
         class="form-select"
-        type="text"
       >
-        <option *ngFor="let option of getObjectValues(field.type.ofType?.name)" [value]="option.uid">
+        <option *ngFor="let option of getObjectValues(field.type.ofType?.name)" [value]="option.id">
           {{ option.name }}
         </option>
       </select>
-      <ng-container
-        *ngSwitchDefault
-        [ngSwitch]="field.type.ofType?.name">
-        <input
-          *ngSwitchCase="'Time'"
-          [formControlName]="field.name"
-          [id]="'id_' + field.name"
-          [name]="field"
-          [required]="field.type.kind === 'NON_NULL'"
-          class="form-control"
-          type="time"
-        >
-        <select
-          *ngSwitchDefault
-          [formControlName]="field.name"
-          [id]="'id_' + field.name"
-          [name]="field"
-          [required]="field.type.kind === 'NON_NULL'"
-          class="form-select"
-          type="text"
-          multiple
-        >
-          <option *ngFor="let option of getDaysOfWeek()" [value]="option | lowercase">
-            {{ option | titlecase }}
-          </option>
-        </select>
-      </ng-container>
+      <input
+        *ngIf="field.type.ofType?.name === 'Time'"
+        [formControlName]="field.name"
+        [id]="'id_' + field.name"
+        [name]="field.name"
+        [required]="field.type.kind === 'NON_NULL'"
+        class="form-control"
+        type="time"
+      >
+      <input
+        *ngIf="field.type.ofType?.name === 'Date'"
+        [formControlName]="field.name"
+        [id]="'id_' + field.name"
+        [name]="field.name"
+        [required]="field.type.kind === 'NON_NULL'"
+        class="form-control"
+        type="date"
+      >
+      <input
+        *ngIf="field.type.ofType?.name === 'String' && field.name !== 'weekday'"
+        [formControlName]="field.name"
+        [id]="'id_' + field.name"
+        [name]="field.name"
+        [required]="field.type.kind === 'NON_NULL'"
+        class="form-control"
+        type="text"
+      >
+      <select
+        *ngIf="field.type.ofType?.name === 'String' && field.name === 'weekday'"
+        [formControlName]="field.name"
+        [id]="'id_' + field.name"
+        [name]="field.name"
+        [required]="field.type.kind === 'NON_NULL'"
+        class="form-select"
+        type="text"
+        multiple
+      >
+        <option *ngFor="let option of getDaysOfWeek()" [value]="option">
+          {{ option | titlecase }}
+        </option>
+      </select>
     </form-field>
   </ng-container>
   <div class="modal-footer">
-    <div (click)="appComponent.closeModal()" class="btn hover-enabled brand-background rounded-lg">Close</div>
-    <button class="btn hover-enabled success rounded-lg" type="submit">Submit</button>
+    <div (click)="appComponent.closeModal()" class="btn hover-enabled brand-background rounded-lg m-[3px]">Close</div>
+    <button class="btn hover-enabled success rounded-lg m-[3px] !outline-0" type="submit" [disabled]="form.invalid">
+      Submit
+    </button>
   </div>
 </form>
 

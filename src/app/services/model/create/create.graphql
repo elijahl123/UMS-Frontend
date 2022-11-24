@@ -2,7 +2,30 @@ mutation addCourse($input: AddCourseMutationInput!) {
   addCourse(input: $input) {
     course {
       uid
-      name
+    }
+  }
+}
+
+mutation addCourseTime($input: AddCourseTimeMutationInput!) {
+  addCourseTime(input: $input) {
+    courseTime {
+      uid
+    }
+  }
+}
+
+mutation addCalendarEvent($input: AddCalendarEventMutationInput!) {
+  addCalendarEvent(input: $input) {
+    calendarEvent {
+      uid
+    }
+  }
+}
+
+mutation addHomeworkAssignment($input: AddHomeworkAssignmentMutationInput!) {
+  addHomeworkAssignment(input: $input) {
+    homeworkAssignment {
+      uid
     }
   }
 }

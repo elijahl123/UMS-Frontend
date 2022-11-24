@@ -1242,7 +1242,6 @@ export type AccountType = Node & {
   exemptFromPayment: Scalars['Boolean'];
   firstName?: Maybe<Scalars['String']>;
   homeworkNotifications: Scalars['Boolean'];
-  /** The ID of the object. */
   id: Scalars['ID'];
   isActive: Scalars['Boolean'];
   isAdmin: Scalars['Boolean'];
@@ -1273,6 +1272,25 @@ export type AccountTypeEdge = {
   cursor: Scalars['String'];
   /** The item at the end of the edge */
   node?: Maybe<AccountType>;
+};
+
+export type AddCalendarEventMutationInput = {
+  clientMutationId?: InputMaybe<Scalars['String']>;
+  date: Scalars['Date'];
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** Leave Blank if Event is All Day */
+  time?: InputMaybe<Scalars['Time']>;
+  title: Scalars['String'];
+  user: Scalars['ID'];
+};
+
+export type AddCalendarEventMutationPayload = {
+  __typename?: 'AddCalendarEventMutationPayload';
+  calendarEvent?: Maybe<CalendarEventType>;
+  clientMutationId?: Maybe<Scalars['String']>;
+  data?: Maybe<CalendarEventType>;
+  errors?: Maybe<Array<Maybe<ErrorType>>>;
 };
 
 export type AddCourseFileMutationInput = {
@@ -1361,25 +1379,6 @@ export type AddEmailMutationPayload = {
   __typename?: 'AddEmailMutationPayload';
   clientMutationId?: Maybe<Scalars['String']>;
   email: Scalars['String'];
-  errors?: Maybe<Array<Maybe<ErrorType>>>;
-};
-
-export type AddEventMutationInput = {
-  clientMutationId?: InputMaybe<Scalars['String']>;
-  date: Scalars['Date'];
-  description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
-  /** Leave Blank if Event is All Day */
-  time?: InputMaybe<Scalars['Time']>;
-  title: Scalars['String'];
-  user: Scalars['ID'];
-};
-
-export type AddEventMutationPayload = {
-  __typename?: 'AddEventMutationPayload';
-  calendarEvent?: Maybe<CalendarEventType>;
-  clientMutationId?: Maybe<Scalars['String']>;
-  data?: Maybe<CalendarEventType>;
   errors?: Maybe<Array<Maybe<ErrorType>>>;
 };
 
@@ -1557,7 +1556,6 @@ export type CourseType = Node & {
   __typename?: 'CourseType';
   /** Color You Want This Class to Show Up as on Calendar and Schedule */
   color: CourseColor;
-  /** The ID of the object. */
   id: Scalars['ID'];
   /** Name of Class (CHEM 161, POLS 110, etc.) */
   name?: Maybe<Scalars['String']>;
@@ -1625,7 +1623,7 @@ export type HomeworkAssignmentTypeEdge = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addCalendarEvent?: Maybe<AddEventMutationPayload>;
+  addCalendarEvent?: Maybe<AddCalendarEventMutationPayload>;
   addCourse?: Maybe<AddCourseMutationPayload>;
   addCourseFile?: Maybe<AddCourseFileMutationPayload>;
   addCourseLink?: Maybe<AddCourseLinkMutationPayload>;
@@ -1645,7 +1643,7 @@ export type Mutation = {
 
 
 export type MutationAddCalendarEventArgs = {
-  input: AddEventMutationInput;
+  input: AddCalendarEventMutationInput;
 };
 
 
@@ -2056,7 +2054,28 @@ export type AddCourseMutationVariables = Exact<{
 }>;
 
 
-export type AddCourseMutation = { __typename?: 'Mutation', addCourse?: { __typename?: 'AddCourseMutationPayload', course?: { __typename?: 'CourseType', uid?: any | null, name?: string | null } | null } | null };
+export type AddCourseMutation = { __typename?: 'Mutation', addCourse?: { __typename?: 'AddCourseMutationPayload', course?: { __typename?: 'CourseType', uid?: any | null } | null } | null };
+
+export type AddCourseTimeMutationVariables = Exact<{
+  input: AddCourseTimeMutationInput;
+}>;
+
+
+export type AddCourseTimeMutation = { __typename?: 'Mutation', addCourseTime?: { __typename?: 'AddCourseTimeMutationPayload', courseTime?: { __typename?: 'CourseTimeType', uid?: any | null } | null } | null };
+
+export type AddCalendarEventMutationVariables = Exact<{
+  input: AddCalendarEventMutationInput;
+}>;
+
+
+export type AddCalendarEventMutation = { __typename?: 'Mutation', addCalendarEvent?: { __typename?: 'AddCalendarEventMutationPayload', calendarEvent?: { __typename?: 'CalendarEventType', uid?: any | null } | null } | null };
+
+export type AddHomeworkAssignmentMutationVariables = Exact<{
+  input: AddHomeworkAssignmentMutationInput;
+}>;
+
+
+export type AddHomeworkAssignmentMutation = { __typename?: 'Mutation', addHomeworkAssignment?: { __typename?: 'AddHomeworkAssignmentMutationPayload', homeworkAssignment?: { __typename?: 'HomeworkAssignmentType', uid?: any | null } | null } | null };
 
 export type GetCalendarEventsQueryVariables = Exact<{
   token: Scalars['String'];
@@ -2115,7 +2134,7 @@ export type GetCoursesQueryVariables = Exact<{
 }>;
 
 
-export type GetCoursesQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseTypeConnection', edges: Array<{ __typename?: 'CourseTypeEdge', node?: { __typename?: 'CourseType', uid?: any | null, name?: string | null, color: CourseColor } | null } | null> } | null };
+export type GetCoursesQuery = { __typename?: 'Query', courses?: { __typename?: 'CourseTypeConnection', edges: Array<{ __typename?: 'CourseTypeEdge', node?: { __typename?: 'CourseType', uid?: any | null, id: string, name?: string | null, color: CourseColor } | null } | null> } | null };
 
 export type GetCourseQueryVariables = Exact<{
   uid: Scalars['UUID'];
@@ -2131,6 +2150,13 @@ export type GetNotesQueryVariables = Exact<{
 
 
 export type GetNotesQuery = { __typename?: 'Query', notes?: { __typename?: 'NoteTypeConnection', edges: Array<{ __typename?: 'NoteTypeEdge', node?: { __typename?: 'NoteType', uid?: any | null, title: string, content?: string | null, uploaded: any, modified: any, course?: { __typename?: 'CourseType', uid?: any | null } | null } | null } | null> } | null };
+
+export type GetUserQueryVariables = Exact<{
+  token: Scalars['String'];
+}>;
+
+
+export type GetUserQuery = { __typename?: 'Query', user?: { __typename?: 'AccountType', uid?: any | null, id: string } | null };
 
 
       export interface PossibleTypesResultData {
@@ -2237,7 +2263,6 @@ export const AddCourseDocument = gql`
   addCourse(input: $input) {
     course {
       uid
-      name
     }
   }
 }
@@ -2248,6 +2273,66 @@ export const AddCourseDocument = gql`
   })
   export class AddCourseGQL extends Apollo.Mutation<AddCourseMutation, AddCourseMutationVariables> {
     document = AddCourseDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AddCourseTimeDocument = gql`
+    mutation addCourseTime($input: AddCourseTimeMutationInput!) {
+  addCourseTime(input: $input) {
+    courseTime {
+      uid
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AddCourseTimeGQL extends Apollo.Mutation<AddCourseTimeMutation, AddCourseTimeMutationVariables> {
+    document = AddCourseTimeDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AddCalendarEventDocument = gql`
+    mutation addCalendarEvent($input: AddCalendarEventMutationInput!) {
+  addCalendarEvent(input: $input) {
+    calendarEvent {
+      uid
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AddCalendarEventGQL extends Apollo.Mutation<AddCalendarEventMutation, AddCalendarEventMutationVariables> {
+    document = AddCalendarEventDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AddHomeworkAssignmentDocument = gql`
+    mutation addHomeworkAssignment($input: AddHomeworkAssignmentMutationInput!) {
+  addHomeworkAssignment(input: $input) {
+    homeworkAssignment {
+      uid
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AddHomeworkAssignmentGQL extends Apollo.Mutation<AddHomeworkAssignmentMutation, AddHomeworkAssignmentMutationVariables> {
+    document = AddHomeworkAssignmentDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -2507,6 +2592,7 @@ export const GetCoursesDocument = gql`
     edges {
       node {
         uid
+        id
         name
         color
       }
@@ -2608,6 +2694,25 @@ export const GetNotesDocument = gql`
   })
   export class GetNotesGQL extends Apollo.Query<GetNotesQuery, GetNotesQueryVariables> {
     document = GetNotesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetUserDocument = gql`
+    query getUser($token: String!) {
+  user(token: $token) {
+    uid
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetUserGQL extends Apollo.Query<GetUserQuery, GetUserQueryVariables> {
+    document = GetUserDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

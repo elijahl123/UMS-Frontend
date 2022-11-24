@@ -121,4 +121,8 @@ export class AuthService {
     // Refresh the page to clear the cache
     this.router.navigate(['/auth', 'login'], { queryParams: { refresh: true } });
   }
+
+  getUser() {
+    return undefined;
+  }
 }

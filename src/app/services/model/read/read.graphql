@@ -167,6 +167,7 @@ query getCourses($token: String!) {
     edges {
       node {
         uid
+        id
         name
         color
       }
@@ -235,5 +236,12 @@ query getNotes($token: String!) {
         }
       }
     }
+  }
+}
+
+query getUser($token: String!) {
+  user(token: $token) {
+    uid
+    id
   }
 }
