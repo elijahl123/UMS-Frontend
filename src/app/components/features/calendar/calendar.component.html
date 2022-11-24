@@ -14,7 +14,7 @@
     <button (click)="setDateToToday()" class="btn secondary rounded-lg">Today</button>
     <input #changeDateInput (change)="onDateChange($event)"
            [value]="getDateStr()" class="calendar-tasks-date hover-enabled secondary-muted" type="date">
-    <button class="btn secondary rounded-lg">
+    <button class="btn secondary rounded-lg" [routerLink]="['../', {outlets: {modal: ['forms', 'add', 'calendar-event']}}]">
       <fa-icon [icon]="plusIcon"></fa-icon>
     </button>
   </div>

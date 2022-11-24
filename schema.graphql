@@ -244,6 +244,7 @@ type ErrorType {
 }
 
 type HomeworkAssignmentType implements Node {
+  alert: HomeworkAssignmentAlert!
   completed: Boolean!
   course: CourseType
   description: String
@@ -253,6 +254,7 @@ type HomeworkAssignmentType implements Node {
   id: ID!
   link: String
   name: String
+  secondAlert: HomeworkAssignmentSecondAlert!
   uid: UUID
 }
 
@@ -343,7 +345,7 @@ type Query {
   courseTimes(after: String, before: String, course_Uid: UUID, endTime: Time, first: Int, last: Int, link: String, location: String, offset: Int, startTime: Time, token: String, uid: UUID, user: ID, weekday: String, zoomPassword: String): CourseTimeTypeConnection
   courses(after: String, before: String, color: String, first: Int, last: Int, name: String, offset: Int, teacher: String, title: String, token: String, uid: UUID, user: ID): CourseTypeConnection
   getSchedule(date: Date, token: String): [CourseTimeType]
-  homeworkAssignments(after: String, before: String, completed: Boolean, course_Uid: UUID, description: String, dueDate: Date, dueTime: Time, first: Int, last: Int, link: String, name: String, offset: Int, token: String, uid: UUID): HomeworkAssignmentTypeConnection
+  homeworkAssignments(after: String, alert: String, before: String, completed: Boolean, course_Uid: UUID, description: String, dueDate: Date, dueTime: Time, first: Int, last: Int, link: String, name: String, offset: Int, secondAlert: String, token: String, uid: UUID): HomeworkAssignmentTypeConnection
   notes(after: String, before: String, content: String, course_Uid: UUID, first: Int, last: Int, modified: Date, offset: Int, title: String, token: String, uid: UUID, uploaded: Date, user: ID): NoteTypeConnection
   user(token: String): AccountType
   users(after: String, before: String, classNotifications: Boolean, dateJoined: DateTime, email: String, exemptFromPayment: Boolean, first: Int, firstName: String, homeworkNotifications: Boolean, isActive: Boolean, isAdmin: Boolean, isStaff: Boolean, isSuperuser: Boolean, last: Int, lastLogin: DateTime, lastName: String, offset: Int, school: String, sendScheduledEmails: Boolean, showScheduleOnCalendar: Boolean, timezone: String, token: String, uid: UUID, username: String): AccountTypeConnection
@@ -1595,6 +1597,58 @@ enum CourseColor {
   SUCCESS
   "Yellow"
   WARNING
+}
+
+"An enumeration."
+enum HomeworkAssignmentAlert {
+  "At time of event"
+  A_0
+  "10 minutes Before"
+  A_10
+  "1 week Before"
+  A_10080
+  "2 hours Before"
+  A_120
+  "1 day Before"
+  A_1440
+  "15 minutes Before"
+  A_15
+  "2 days Before"
+  A_2880
+  "30 minutes Before"
+  A_30
+  "5 minutes Before"
+  A_5
+  "1 hour Before"
+  A_60
+  "None"
+  _1
+}
+
+"An enumeration."
+enum HomeworkAssignmentSecondAlert {
+  "At time of event"
+  A_0
+  "10 minutes Before"
+  A_10
+  "1 week Before"
+  A_10080
+  "2 hours Before"
+  A_120
+  "1 day Before"
+  A_1440
+  "15 minutes Before"
+  A_15
+  "2 days Before"
+  A_2880
+  "30 minutes Before"
+  A_30
+  "5 minutes Before"
+  A_5
+  "1 hour Before"
+  A_60
+  "None"
+  _1
 }
 
 """

@@ -5,18 +5,6 @@ import { BehaviorSubject } from 'rxjs';
 import { GetHomeworkAssignmentsGQL, HomeworkAssignmentType } from '../../../../../../generated/graphql';
 import { AuthService } from '../../../../../services/components/features/auth/auth.service';
 
-interface Assignment {
-  uid: string
-  name: string
-  dueDate: string
-  dueTime: string
-  course: {
-    uid: string
-    name: string
-    color: string
-  }
-}
-
 @Component({
   selector: 'app-assignments-widget',
   templateUrl: './assignments-widget.component.html',

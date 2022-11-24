@@ -3,6 +3,10 @@ mutation addCourse($input: AddCourseMutationInput!) {
     course {
       uid
     }
+    errors {
+      field
+      messages
+    }
   }
 }
 
@@ -10,6 +14,10 @@ mutation addCourseTime($input: AddCourseTimeMutationInput!) {
   addCourseTime(input: $input) {
     courseTime {
       uid
+    }
+    errors {
+      field
+      messages
     }
   }
 }
@@ -19,6 +27,10 @@ mutation addCalendarEvent($input: AddCalendarEventMutationInput!) {
     calendarEvent {
       uid
     }
+    errors {
+      field
+      messages
+    }
   }
 }
 
@@ -26,6 +38,10 @@ mutation addHomeworkAssignment($input: AddHomeworkAssignmentMutationInput!) {
   addHomeworkAssignment(input: $input) {
     homeworkAssignment {
       uid
+    }
+    errors {
+      field
+      messages
     }
   }
 }

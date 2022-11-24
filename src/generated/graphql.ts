@@ -1590,8 +1590,61 @@ export type ErrorType = {
   messages: Array<Scalars['String']>;
 };
 
+/** An enumeration. */
+export enum HomeworkAssignmentAlert {
+  /** At time of event */
+  A_0 = 'A_0',
+  /** 5 minutes Before */
+  A_5 = 'A_5',
+  /** 10 minutes Before */
+  A_10 = 'A_10',
+  /** 15 minutes Before */
+  A_15 = 'A_15',
+  /** 30 minutes Before */
+  A_30 = 'A_30',
+  /** 1 hour Before */
+  A_60 = 'A_60',
+  /** 2 hours Before */
+  A_120 = 'A_120',
+  /** 1 day Before */
+  A_1440 = 'A_1440',
+  /** 2 days Before */
+  A_2880 = 'A_2880',
+  /** 1 week Before */
+  A_10080 = 'A_10080',
+  /** None */
+  '_1' = '_1'
+}
+
+/** An enumeration. */
+export enum HomeworkAssignmentSecondAlert {
+  /** At time of event */
+  A_0 = 'A_0',
+  /** 5 minutes Before */
+  A_5 = 'A_5',
+  /** 10 minutes Before */
+  A_10 = 'A_10',
+  /** 15 minutes Before */
+  A_15 = 'A_15',
+  /** 30 minutes Before */
+  A_30 = 'A_30',
+  /** 1 hour Before */
+  A_60 = 'A_60',
+  /** 2 hours Before */
+  A_120 = 'A_120',
+  /** 1 day Before */
+  A_1440 = 'A_1440',
+  /** 2 days Before */
+  A_2880 = 'A_2880',
+  /** 1 week Before */
+  A_10080 = 'A_10080',
+  /** None */
+  '_1' = '_1'
+}
+
 export type HomeworkAssignmentType = Node & {
   __typename?: 'HomeworkAssignmentType';
+  alert: HomeworkAssignmentAlert;
   completed: Scalars['Boolean'];
   course?: Maybe<CourseType>;
   description?: Maybe<Scalars['String']>;
@@ -1601,6 +1654,7 @@ export type HomeworkAssignmentType = Node & {
   id: Scalars['ID'];
   link?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
+  secondAlert: HomeworkAssignmentSecondAlert;
   uid?: Maybe<Scalars['UUID']>;
 };
 
@@ -1875,6 +1929,7 @@ export type QueryGetScheduleArgs = {
 
 export type QueryHomeworkAssignmentsArgs = {
   after?: InputMaybe<Scalars['String']>;
+  alert?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   completed?: InputMaybe<Scalars['Boolean']>;
   course_Uid?: InputMaybe<Scalars['UUID']>;
@@ -1886,6 +1941,7 @@ export type QueryHomeworkAssignmentsArgs = {
   link?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
   offset?: InputMaybe<Scalars['Int']>;
+  secondAlert?: InputMaybe<Scalars['String']>;
   token?: InputMaybe<Scalars['String']>;
   uid?: InputMaybe<Scalars['UUID']>;
 };
@@ -2054,28 +2110,28 @@ export type AddCourseMutationVariables = Exact<{
 }>;
 
 
-export type AddCourseMutation = { __typename?: 'Mutation', addCourse?: { __typename?: 'AddCourseMutationPayload', course?: { __typename?: 'CourseType', uid?: any | null } | null } | null };
+export type AddCourseMutation = { __typename?: 'Mutation', addCourse?: { __typename?: 'AddCourseMutationPayload', course?: { __typename?: 'CourseType', uid?: any | null } | null, errors?: Array<{ __typename?: 'ErrorType', field: string, messages: Array<string> } | null> | null } | null };
 
 export type AddCourseTimeMutationVariables = Exact<{
   input: AddCourseTimeMutationInput;
 }>;
 
 
-export type AddCourseTimeMutation = { __typename?: 'Mutation', addCourseTime?: { __typename?: 'AddCourseTimeMutationPayload', courseTime?: { __typename?: 'CourseTimeType', uid?: any | null } | null } | null };
+export type AddCourseTimeMutation = { __typename?: 'Mutation', addCourseTime?: { __typename?: 'AddCourseTimeMutationPayload', courseTime?: { __typename?: 'CourseTimeType', uid?: any | null } | null, errors?: Array<{ __typename?: 'ErrorType', field: string, messages: Array<string> } | null> | null } | null };
 
 export type AddCalendarEventMutationVariables = Exact<{
   input: AddCalendarEventMutationInput;
 }>;
 
 
-export type AddCalendarEventMutation = { __typename?: 'Mutation', addCalendarEvent?: { __typename?: 'AddCalendarEventMutationPayload', calendarEvent?: { __typename?: 'CalendarEventType', uid?: any | null } | null } | null };
+export type AddCalendarEventMutation = { __typename?: 'Mutation', addCalendarEvent?: { __typename?: 'AddCalendarEventMutationPayload', calendarEvent?: { __typename?: 'CalendarEventType', uid?: any | null } | null, errors?: Array<{ __typename?: 'ErrorType', field: string, messages: Array<string> } | null> | null } | null };
 
 export type AddHomeworkAssignmentMutationVariables = Exact<{
   input: AddHomeworkAssignmentMutationInput;
 }>;
 
 
-export type AddHomeworkAssignmentMutation = { __typename?: 'Mutation', addHomeworkAssignment?: { __typename?: 'AddHomeworkAssignmentMutationPayload', homeworkAssignment?: { __typename?: 'HomeworkAssignmentType', uid?: any | null } | null } | null };
+export type AddHomeworkAssignmentMutation = { __typename?: 'Mutation', addHomeworkAssignment?: { __typename?: 'AddHomeworkAssignmentMutationPayload', homeworkAssignment?: { __typename?: 'HomeworkAssignmentType', uid?: any | null } | null, errors?: Array<{ __typename?: 'ErrorType', field: string, messages: Array<string> } | null> | null } | null };
 
 export type GetCalendarEventsQueryVariables = Exact<{
   token: Scalars['String'];
@@ -2179,7 +2235,7 @@ export type GetUserQuery = { __typename?: 'Query', user?: { __typename?: 'Accoun
   }
 };
       export default result;
-    
+
 export const TokenAuthDocument = gql`
     mutation TokenAuth($email: String!, $password: String!) {
   tokenAuth(email: $email, password: $password) {
@@ -2193,7 +2249,7 @@ export const TokenAuthDocument = gql`
   })
   export class TokenAuthGQL extends Apollo.Mutation<TokenAuthMutation, TokenAuthMutationVariables> {
     document = TokenAuthDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2211,7 +2267,7 @@ export const VerifyTokenDocument = gql`
   })
   export class VerifyTokenGQL extends Apollo.Mutation<VerifyTokenMutation, VerifyTokenMutationVariables> {
     document = VerifyTokenDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2229,7 +2285,7 @@ export const RefreshTokenDocument = gql`
   })
   export class RefreshTokenGQL extends Apollo.Mutation<RefreshTokenMutation, RefreshTokenMutationVariables> {
     document = RefreshTokenDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2253,7 +2309,7 @@ export const SignupDocument = gql`
   })
   export class SignupGQL extends Apollo.Mutation<SignupMutation, SignupMutationVariables> {
     document = SignupDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2264,6 +2320,10 @@ export const AddCourseDocument = gql`
     course {
       uid
     }
+    errors {
+      field
+      messages
+    }
   }
 }
     `;
@@ -2273,7 +2333,7 @@ export const AddCourseDocument = gql`
   })
   export class AddCourseGQL extends Apollo.Mutation<AddCourseMutation, AddCourseMutationVariables> {
     document = AddCourseDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2284,6 +2344,10 @@ export const AddCourseTimeDocument = gql`
     courseTime {
       uid
     }
+    errors {
+      field
+      messages
+    }
   }
 }
     `;
@@ -2293,7 +2357,7 @@ export const AddCourseTimeDocument = gql`
   })
   export class AddCourseTimeGQL extends Apollo.Mutation<AddCourseTimeMutation, AddCourseTimeMutationVariables> {
     document = AddCourseTimeDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2304,6 +2368,10 @@ export const AddCalendarEventDocument = gql`
     calendarEvent {
       uid
     }
+    errors {
+      field
+      messages
+    }
   }
 }
     `;
@@ -2313,7 +2381,7 @@ export const AddCalendarEventDocument = gql`
   })
   export class AddCalendarEventGQL extends Apollo.Mutation<AddCalendarEventMutation, AddCalendarEventMutationVariables> {
     document = AddCalendarEventDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2324,6 +2392,10 @@ export const AddHomeworkAssignmentDocument = gql`
     homeworkAssignment {
       uid
     }
+    errors {
+      field
+      messages
+    }
   }
 }
     `;
@@ -2333,7 +2405,7 @@ export const AddHomeworkAssignmentDocument = gql`
   })
   export class AddHomeworkAssignmentGQL extends Apollo.Mutation<AddHomeworkAssignmentMutation, AddHomeworkAssignmentMutationVariables> {
     document = AddHomeworkAssignmentDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2368,7 +2440,7 @@ export const GetCalendarEventsDocument = gql`
   })
   export class GetCalendarEventsGQL extends Apollo.Query<GetCalendarEventsQuery, GetCalendarEventsQueryVariables> {
     document = GetCalendarEventsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2409,7 +2481,7 @@ export const GetCalendarEventsInfoDocument = gql`
   })
   export class GetCalendarEventsInfoGQL extends Apollo.Query<GetCalendarEventsInfoQuery, GetCalendarEventsInfoQueryVariables> {
     document = GetCalendarEventsInfoDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2459,7 +2531,7 @@ export const GetScheduleDocument = gql`
   })
   export class GetScheduleGQL extends Apollo.Query<GetScheduleQuery, GetScheduleQueryVariables> {
     document = GetScheduleDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2490,7 +2562,7 @@ export const GetScheduleInfoDocument = gql`
   })
   export class GetScheduleInfoGQL extends Apollo.Query<GetScheduleInfoQuery, GetScheduleInfoQueryVariables> {
     document = GetScheduleInfoDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2520,7 +2592,7 @@ export const GetHomeworkAssignmentsDocument = gql`
   })
   export class GetHomeworkAssignmentsGQL extends Apollo.Query<GetHomeworkAssignmentsQuery, GetHomeworkAssignmentsQueryVariables> {
     document = GetHomeworkAssignmentsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2552,7 +2624,7 @@ export const GetHomeworkAssignmentsInfoDocument = gql`
   })
   export class GetHomeworkAssignmentsInfoGQL extends Apollo.Query<GetHomeworkAssignmentsInfoQuery, GetHomeworkAssignmentsInfoQueryVariables> {
     document = GetHomeworkAssignmentsInfoDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2581,7 +2653,7 @@ export const GetCourseTimesDocument = gql`
   })
   export class GetCourseTimesGQL extends Apollo.Query<GetCourseTimesQuery, GetCourseTimesQueryVariables> {
     document = GetCourseTimesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2606,7 +2678,7 @@ export const GetCoursesDocument = gql`
   })
   export class GetCoursesGQL extends Apollo.Query<GetCoursesQuery, GetCoursesQueryVariables> {
     document = GetCoursesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2665,7 +2737,7 @@ export const GetCourseDocument = gql`
   })
   export class GetCourseGQL extends Apollo.Query<GetCourseQuery, GetCourseQueryVariables> {
     document = GetCourseDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2694,7 +2766,7 @@ export const GetNotesDocument = gql`
   })
   export class GetNotesGQL extends Apollo.Query<GetNotesQuery, GetNotesQueryVariables> {
     document = GetNotesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -2713,7 +2785,7 @@ export const GetUserDocument = gql`
   })
   export class GetUserGQL extends Apollo.Query<GetUserQuery, GetUserQueryVariables> {
     document = GetUserDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }

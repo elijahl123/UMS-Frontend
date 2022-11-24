@@ -1,7 +1,7 @@
 <div class="homework">
   <div class="homework-header">
     <h2 class="homework-header-title">Homework</h2>
-    <button class="homework-header-add-button btn secondary-muted hover-enabled">
+    <button class="homework-header-add-button btn secondary-muted hover-enabled" [routerLink]="['../', {outlets: {modal: ['forms', 'add', 'homework-assignment']}}]">
       <fa-icon [icon]="plusIcon"></fa-icon>
     </button>
   </div>

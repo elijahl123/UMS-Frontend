@@ -55,8 +55,8 @@
         [required]="field.type.kind === 'NON_NULL'"
         class="form-select"
       >
-        <option *ngFor="let option of getEnumValues(field.type.ofType?.name)" [value]="option.name | lowercase">
-          {{ option.name | titlecase }}
+        <option *ngFor="let option of getEnumValues(field.type.ofType?.name)" [value]="parseEnumVal(option.name)">
+          {{ option.description | titlecase }}
         </option>
       </select>
       <select
@@ -110,6 +110,27 @@
       >
         <option *ngFor="let option of getDaysOfWeek()" [value]="option">
           {{ option | titlecase }}
+        </option>
+      </select>
+    </form-field>
+    <form-field
+      *ngSwitchCase="'OBJECT'"
+      [attr.for]="'id_' + field.name"
+      [label]="camelCaseToTitle(field.name)"
+      [required]="'true'"
+      [ngSwitch]="field.type.name"
+      [subLabel]="field.description || undefined"
+    >
+      <select
+        *ngSwitchCase="'CourseType'"
+        [formControlName]="field.name"
+        [id]="'id_' + field.name"
+        [name]="field.name"
+        [required]="field.type.kind === 'NON_NULL'"
+        class="form-select"
+      >
+        <option *ngFor="let option of getObjectValues(field.type.name)" [value]="option.id">
+          {{ option.name }}
         </option>
       </select>
     </form-field>

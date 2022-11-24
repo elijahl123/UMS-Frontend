@@ -428,7 +428,7 @@
   }
 
   .modal {
-    @apply flex absolute inset-0 bg-brand-secondary-muted backdrop-blur-sm items-center justify-center transition-enabled p-6 overflow-auto;
+    @apply flex absolute inset-0 bg-brand-secondary-muted backdrop-blur-sm items-center justify-center transition-enabled p-6 overflow-auto z-50;
   }
 
   .modal * {

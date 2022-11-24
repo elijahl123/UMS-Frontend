@@ -1,7 +1,7 @@
 <div class="calendar-widget">
   <div class="calendar-widget-header">
     <h2 class="calendar-widget-title">Calendar</h2>
-    <div class="calendar-widget-header-action btn secondary-muted hover-enabled">
+    <div class="calendar-widget-header-action btn secondary-muted hover-enabled m-[3px]" [routerLink]="['../', {outlets: {modal: ['forms', 'add', 'calendar-event']}}]">
       <fa-icon [icon]="plusIcon"></fa-icon>
     </div>
   </div>

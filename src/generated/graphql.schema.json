@@ -6362,10 +6362,180 @@
         "possibleTypes": null
       },
       {
+        "kind": "ENUM",
+        "name": "HomeworkAssignmentAlert",
+        "description": "An enumeration.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "A_0",
+            "description": "At time of event",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_5",
+            "description": "5 minutes Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_10",
+            "description": "10 minutes Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_15",
+            "description": "15 minutes Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_30",
+            "description": "30 minutes Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_60",
+            "description": "1 hour Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_120",
+            "description": "2 hours Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_1440",
+            "description": "1 day Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_2880",
+            "description": "2 days Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_10080",
+            "description": "1 week Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_1",
+            "description": "None",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "HomeworkAssignmentSecondAlert",
+        "description": "An enumeration.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "A_0",
+            "description": "At time of event",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_5",
+            "description": "5 minutes Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_10",
+            "description": "10 minutes Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_15",
+            "description": "15 minutes Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_30",
+            "description": "30 minutes Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_60",
+            "description": "1 hour Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_120",
+            "description": "2 hours Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_1440",
+            "description": "1 day Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_2880",
+            "description": "2 days Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "A_10080",
+            "description": "1 week Before",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_1",
+            "description": "None",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "HomeworkAssignmentType",
         "description": null,
         "fields": [
+          {
+            "name": "alert",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "HomeworkAssignmentAlert",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "completed",
             "description": "",
@@ -6470,6 +6640,22 @@
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "secondAlert",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "HomeworkAssignmentSecondAlert",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -8291,6 +8477,18 @@
                 "deprecationReason": null
               },
               {
+                "name": "alert",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
                 "name": "before",
                 "description": null,
                 "type": {
@@ -8416,6 +8614,18 @@
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "secondAlert",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null,

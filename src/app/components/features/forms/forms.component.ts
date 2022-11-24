@@ -5,8 +5,14 @@ import types from '../../../../generated/types.json';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AppComponent } from '../../app.component';
 import {
+  AddCalendarEventGQL,
+  AddCalendarEventMutationInput,
   AddCourseGQL,
-  AddCourseMutationInput, AddCourseTimeGQL, AddCourseTimeMutationInput,
+  AddCourseMutationInput,
+  AddCourseTimeGQL,
+  AddCourseTimeMutationInput,
+  AddHomeworkAssignmentGQL,
+  AddHomeworkAssignmentMutationInput,
   CourseType,
   GetCoursesGQL,
   GetUserGQL,
@@ -39,7 +45,7 @@ export class FormsComponent implements OnInit {
   form: FormGroup;
   fields: IntrospectionInputValue[];
   formType: string;
-  courses: { name: string, id: string }[];
+  courses: { name: string, id: string, uid: string }[];
   private user: GetUserQuery['user'];
 
   constructor(
@@ -51,6 +57,8 @@ export class FormsComponent implements OnInit {
     private getUser: GetUserGQL,
     private addCourse: AddCourseGQL,
     private addCourseTime: AddCourseTimeGQL,
+    private addHomeworkAssignment: AddHomeworkAssignmentGQL,
+    private addCalendarEvent: AddCalendarEventGQL
   )
   {
   }
@@ -61,7 +69,7 @@ export class FormsComponent implements OnInit {
     }).pipe(
       map(result => result.data.courses?.edges?.map(edge => edge?.node))
     ).subscribe(courses => {
-      this.courses = courses as { name: string, id: string }[];
+      this.courses = courses as { name: string, id: string, uid: string }[];
     })
 
     this.getUser.fetch({
@@ -92,6 +100,7 @@ export class FormsComponent implements OnInit {
         return fields.find(f => f.name === field.name);
       });
       this.fields = formFields;
+      console.log(formFields);
       this.form = this.toFormGroup(formFields);
     });
   }
@@ -126,7 +135,6 @@ export class FormsComponent implements OnInit {
     switch (type!.name) {
       case 'CourseType':
         return this.courses;
-        break;
       default:
         return [];
     }
@@ -164,7 +172,36 @@ export class FormsComponent implements OnInit {
           }).subscribe(result => {
             console.log(result);
           })
+          break;
+        case 'HomeworkAssignmentType':
+          data = form.value as AddHomeworkAssignmentMutationInput;
+          this.addHomeworkAssignment.mutate({
+            input: data
+          }).subscribe(result => {
+            console.log(result);
+          })
+          break;
+        case 'CalendarEventType':
+          data = form.value as AddCalendarEventMutationInput;
+          data.user = this.user?.id || '';
+          this.addCalendarEvent.mutate({
+            input: data
+          }).subscribe(result => {
+            console.log(result);
+          });
+          break;
       }
     }
+  }
+
+  parseEnumVal(name: string) {
+    // If the name starts with 'A_', then we need to remove the 'A_'. If the name starts with just an underscore, replace it with '-'
+    if (name.startsWith('A_')) {
+      return name.replace('A_', '');
+    }
+    if (name.startsWith('_')) {
+      return name.replace('_', '-');
+    }
+    return name.toLowerCase();
   }
 }

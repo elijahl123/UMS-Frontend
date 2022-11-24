@@ -199,7 +199,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   }
 
   isRouterOnHomepage() {
-    return this.router.url === '/schedule';
+    return this.router.url === '/schedule' || this.route.parent!.parent!.children.length > 1;
   }
 
   getBodyContainerWrapperStyle() {

@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faChevronLeft, faChevronRight, faPlus } from '@fortawesome/pro-solid-svg-icons';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GetCalendarEventsGQL } from '../../../../generated/graphql';
 import { AuthService } from '../../../services/components/features/auth/auth.service';
 
@@ -33,17 +33,16 @@ export interface CalendarEventMin {
   styleUrls: ['./calendar.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class CalendarComponent implements OnInit, OnDestroy {
+export class CalendarComponent implements OnInit {
   @ViewChild('changeDateInput') changeDateInput: ElementRef;
   chevronLeftIcon: IconDefinition = faChevronLeft;
   chevronRightIcon: IconDefinition = faChevronRight;
   currentDates: Date[] = [];
 
   date: Date;
-  events: CalendarEventMin[]= [];
+  events: CalendarEventMin[] = [];
 
   plusIcon: IconDefinition = faPlus;
-  @ViewChild(RouterOutlet) outlet: RouterOutlet;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private getCalendarEventsService: GetCalendarEventsGQL, private authService: AuthService) {
   }
@@ -147,7 +146,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   }
 
   isInfoShowing() {
-    return this.router.url !== '/calendar';
+    return this.activatedRoute.parent!.parent!.children.length <= 1 && this.router.url !== '/calendar';
   }
 
   onDateChange(event: Event) {
@@ -181,9 +180,5 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   setDateToToday() {
     this.selectDate(new Date());
-  }
-
-  ngOnDestroy() {
-    this.outlet.deactivate();
   }
 }

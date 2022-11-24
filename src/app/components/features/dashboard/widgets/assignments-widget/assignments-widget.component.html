@@ -1,7 +1,8 @@
 <div class="assignments-widget">
   <div class="assignments-widget-header">
     <h2 class="assignments-widget-title">Upcoming Assignments</h2>
-    <div class="assignments-widget-header-action btn secondary-muted hover-enabled">
+    <div class="assignments-widget-header-action btn secondary-muted hover-enabled m-[3px]"
+         [routerLink]="['../', {outlets: {modal: ['forms', 'add', 'homework-assignment']}}]">
       <fa-icon [icon]="plusIcon"></fa-icon>
     </div>
   </div>

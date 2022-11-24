@@ -767,18 +767,6 @@
       "description": null,
       "fields": [
         {
-          "name": "course",
-          "description": "",
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "CourseType",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
           "name": "name",
           "description": "",
           "type": {
@@ -801,6 +789,18 @@
           "type": {
             "kind": "SCALAR",
             "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "course",
+          "description": "",
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "CourseType",
             "ofType": null
           },
           "isDeprecated": false,
@@ -862,6 +862,38 @@
             "kind": "SCALAR",
             "name": "String",
             "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "alert",
+          "description": "",
+          "args": [],
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "ENUM",
+              "name": "HomeworkAssignmentAlert",
+              "ofType": null
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "secondAlert",
+          "description": "",
+          "args": [],
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "ENUM",
+              "name": "HomeworkAssignmentSecondAlert",
+              "ofType": null
+            }
           },
           "isDeprecated": false,
           "deprecationReason": null
