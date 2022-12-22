@@ -19,7 +19,7 @@
 }
 
 .class-schedule-content-info-content-body {
-  @apply flex-grow flex flex-col gap-4;
+  @apply flex-grow flex flex-col gap-4 rounded-lg;
 }
 
 .class-schedule-content-info-content-body-course-time {
@@ -55,5 +55,5 @@
 }
 
 .class-schedule-content-info-content-body-course-time-content-button {
-  @apply flex flex-col gap-2 items-center justify-center flex-grow bg-white rounded-lg p-4 text-lg;
+  @apply flex flex-col w-full text-center gap-2 items-center justify-center flex-grow bg-white rounded-lg p-2 text-sm;
 }

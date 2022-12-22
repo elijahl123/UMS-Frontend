@@ -16,8 +16,7 @@ import {
   CourseLinkType,
   CourseTimeType,
   GetScheduleGQL,
-  HomeworkAssignmentType,
-  HomeworkAssignmentTypeConnection, HomeworkAssignmentTypeEdge, Maybe, Scalars
+  HomeworkAssignmentTypeEdge
 } from '../../../../../../generated/graphql';
 import { AuthService } from '../../../../../services/components/features/auth/auth.service';
 

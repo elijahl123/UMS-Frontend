@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
-import { faMap, faPlus, faSchool, faSquareArrowUpRight, faTimes } from '@fortawesome/pro-solid-svg-icons';
-import { faFilePen } from '@fortawesome/pro-duotone-svg-icons';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { faMap, faSchool, faSquareArrowUpRight, faTimes } from '@fortawesome/pro-solid-svg-icons';
+import { faEdit, faFilePen } from '@fortawesome/pro-duotone-svg-icons';
+import { BehaviorSubject } from 'rxjs';
 import { CourseTimeType, GetScheduleInfoGQL } from '../../../../../generated/graphql';
 import { AuthService } from '../../../../services/components/features/auth/auth.service';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-schedule-info',
@@ -19,7 +18,7 @@ export class ScheduleInfoComponent implements OnInit, OnDestroy {
   schoolIcon: IconDefinition = faSchool;
   linkIcon: IconDefinition = faSquareArrowUpRight;
   openNotesIcon: IconDefinition = faFilePen;
-  addIcon: IconDefinition = faPlus;
+  editIcon: IconDefinition = faEdit;
   mapIcon: IconDefinition = faMap;
   closeIcon: IconDefinition = faTimes;
 

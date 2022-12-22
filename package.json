@@ -30,6 +30,7 @@
     "@fortawesome/pro-regular-svg-icons": "^6.1.1",
     "@fortawesome/pro-solid-svg-icons": "^6.1.1",
     "@ngrx/store": "^14.0.2",
+    "@tinymce/tinymce-angular": "^7.0.0",
     "apollo-angular": "^4.0.1",
     "crypto-hash": "^2.0.1",
     "graphql": "^16.6.0",

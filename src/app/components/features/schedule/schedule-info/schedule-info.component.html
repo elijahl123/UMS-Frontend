@@ -12,7 +12,7 @@
       <fa-icon [icon]="closeIcon" class="w-4 h-4 flex justify-center items-center"></fa-icon>
     </button>
   </div>
-  <div class="class-schedule-content-info-content-body">
+  <div class="class-schedule-content-info-content-body content">
     <div *ngFor="let weekday of getWeekdays()"
          [ngClass]="['class-schedule-content-info-content-body-course-time',
          courseTime.course.color.toLowerCase()]"
@@ -29,13 +29,13 @@
       <div class="class-schedule-content-info-content-body-course-time-content">
         <div
           [ngClass]="['class-schedule-content-info-content-body-course-time-content-button btn hover-enabled', courseTime.course.color.toLowerCase().concat('-muted')]"
-          title="Open Notes">
-          <fa-icon [icon]="openNotesIcon"></fa-icon>
+          title="Notes">
+          <fa-icon [icon]="openNotesIcon" size="lg"></fa-icon> Notes
         </div>
         <div
           [ngClass]="['class-schedule-content-info-content-body-course-time-content-button btn hover-enabled', courseTime.course.color.toLowerCase().concat('-muted')]"
           title="Add">
-          <fa-icon [icon]="addIcon"></fa-icon>
+          <fa-icon [icon]="editIcon" size="lg"></fa-icon> Edit
         </div>
       </div>
       <div *ngIf="courseTime.link" class="class-schedule-content-info-content-body-course-time-link">

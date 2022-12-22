@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faBook, faCalendars, faClock, faFilePen, faObjectsColumn, faSchool } from '@fortawesome/pro-duotone-svg-icons';
 import {
-  ActivatedRoute, Data,
+  ActivatedRoute,
   Event,
   NavigationCancel,
   NavigationEnd,

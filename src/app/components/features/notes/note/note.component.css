@@ -7,9 +7,13 @@ app-note {
 }
 
 .note-content {
-  @apply col-span-3 bg-brand-background rounded-lg p-4;
+  @apply col-span-3 bg-brand-background rounded-lg p-4 flex flex-col gap-4;
 }
 
 .note-courses-container {
   @apply bg-white overflow-auto;
+}
+
+.tox-tinymce {
+  @apply !flex-grow;
 }

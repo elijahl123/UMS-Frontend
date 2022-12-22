@@ -1,6 +1,7 @@
 <div class="content grid grid-cols-[300px_1fr_1fr_1fr] h-full overflow-auto">
   <div class="note-courses">
-    <div [ngClass]="['padded-container note-courses-container', course.color.toLowerCase().concat('-muted')]" *ngFor="let course of getCourses()">
+    <div *ngFor="let course of courses"
+         [ngClass]="['padded-container note-courses-container', course.color.toLowerCase().concat('-muted')]">
       <div class="note-courses-header header">
         <div class="w-full px-2 truncated">
           {{ course.name }}
@@ -9,15 +10,15 @@
           <fa-icon [icon]="plusIcon"></fa-icon>
         </button>
       </div>
-      <div class="overflow-auto gap-4 flex flex-col rounded-lg" *ngIf="getNotes(course).length > 0">
+      <div *ngIf="getNotes(course).length > 0" class="overflow-auto gap-4 flex flex-col rounded-lg">
         <ui-card
+          (click)="selectNote(note)"
           *ngFor="let note of getNotes(course)"
           [color]="course.color.toLowerCase()"
-          [leftIcon]="noteIcon"
           [head]="note.title"
-          sub="{{ note.modified | date: 'short' }}"
-          (click)="selectNote(note)"
+          [leftIcon]="noteIcon"
           [ngClass]="['rounded-lg transition-all duration-300 ease-in-out', selectedNote?.uid === note.uid ? 'p-[4px] bg-utility-'.concat(course.color.toLowerCase()).concat('-muted'): '']"
+          sub="{{ note.modified | date: 'short' }}"
         >
         </ui-card>
       </div>
@@ -26,7 +27,7 @@
   <div class="note-content">
     <div class="header">
       <div class="header-text bg-white">
-        {{ selectedNote?.title }}
+        {{ getNoteTitle() }}
       </div>
       <button class="header-button secondary-muted">
         <fa-icon [icon]="schoolIcon"></fa-icon>
@@ -35,5 +36,26 @@
         <fa-icon [icon]="deleteIcon"></fa-icon>
       </button>
     </div>
+    <div *ngIf="selectedNote; else noNoteContent" class="content flex-grow">
+      <editor
+        [(ngModel)]="content"
+        [init]="{
+            plugins: 'autoresize advlist autolink lists link image charmap preview anchor table fullscreen wordcount searchreplace',
+            toolbar_mode: 'floating',
+            resize: false,
+            toolbar: 'undo redo | styleselect | bold italic | bullist numlist | link image | table | fullscreen'
+        }"
+        [ngClass]="['flex-grow !flex flex-col']"
+        apiKey="zwpvfpyg7pieiovtky18aqxvmme3a2di6f153rl1xv5mxo4z"
+      >
+      </editor>
+    </div>
+    <ng-template #noNoteContent>
+      <ui-empty-space
+        [icon]="noteIconDuo"
+        head="Please select a note"
+        sub="You can also create a new note by clicking the button in the top right corner."
+      ></ui-empty-space>
+    </ng-template>
   </div>
 </div>

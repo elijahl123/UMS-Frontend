@@ -6,6 +6,7 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { HomeworkService } from '../../../services/components/features/homework/homework.service';
 import { GetHomeworkAssignmentsGQL, HomeworkAssignmentType } from '../../../../generated/graphql';
 import { AuthService } from '../../../services/components/features/auth/auth.service';
+import { faBook } from '@fortawesome/pro-duotone-svg-icons';
 
 @Component({
   selector: 'app-homework',
@@ -19,8 +20,9 @@ export class HomeworkComponent implements OnInit, OnDestroy {
   plusIcon: IconDefinition = faPlus;
   @ViewChild(RouterOutlet) outlet: RouterOutlet;
   dangerIcon: IconDefinition = faExclamationTriangle;
+  assignmentIconDuo: IconDefinition = faBook;
 
-  constructor(private homeworkService: HomeworkService, private getAssignmentsService: GetHomeworkAssignmentsGQL, private router: Router, private route: ActivatedRoute, private authService: AuthService) {
+  constructor(private homeworkService: HomeworkService, private getAssignmentsService: GetHomeworkAssignmentsGQL, private router: Router, private route: ActivatedRoute, private authService: AuthService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -80,7 +82,7 @@ export class HomeworkComponent implements OnInit, OnDestroy {
   }
 
   isRouterActive() {
-    return this.router.url !== '/homework';
+    return this.activatedRoute.parent!.parent!.children.length <= 1 && this.router.url !== '/homework'
   }
 
   ngOnDestroy(): void {

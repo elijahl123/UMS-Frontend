@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { IconDefinition } from '@fortawesome/pro-regular-svg-icons';
 import { faNote, faPlus, faSchool, faTrash } from '@fortawesome/pro-solid-svg-icons';
-import { NotesService } from '../../../../services/components/features/notes/notes.service';
-import { Router } from '@angular/router';
-import { CourseType, NoteType } from '../../../../../generated/graphql';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CourseType, GetCoursesGQL, GetNotesGQL, NoteType } from '../../../../../generated/graphql';
+import { faFilePen } from '@fortawesome/pro-duotone-svg-icons';
+import { BehaviorSubject } from 'rxjs';
+import { AuthService } from '../../../../services/components/features/auth/auth.service';
 
 @Component({
   selector: 'app-note',
@@ -16,26 +18,56 @@ export class NoteComponent implements OnInit {
   noteIcon: IconDefinition = faNote;
   schoolIcon: IconDefinition = faSchool;
   deleteIcon: IconDefinition = faTrash;
+  content: string = '';
+  noteIconDuo: IconDefinition = faFilePen;
+  courses: CourseType[] = [];
+  notes: NoteType[] = [];
+  selectedNoteObj: BehaviorSubject<NoteType | null> = new BehaviorSubject<NoteType | null>(null);
 
-  constructor(private notesService: NotesService, private router: Router) {
+  constructor(private getCoursesService: GetCoursesGQL, private router: Router, private route: ActivatedRoute, private authService: AuthService, private getNotesService: GetNotesGQL) {
   }
 
-  ngOnInit(): void {
+  get selectedNote() {
+    return this.selectedNoteObj.getValue();
   }
 
-  get selectedNote(): NoteType | null {
-    return this.notesService.selectedNote.getValue();
+  async ngOnInit() {
+    this.courses = (await this.getCoursesService.fetch({
+      token: this.authService.getToken()
+    }).toPromise()).data.courses?.edges?.map(edge => edge?.node) as CourseType[];
+
+    this.notes = (await this.getNotesService.fetch({
+      token: this.authService.getToken()
+    }).toPromise()).data.notes?.edges?.map(edge => edge?.node) as NoteType[];
+
+    this.route.paramMap.subscribe((paramMap) => {
+      // Get the note UID from the route
+      const uid = paramMap.get('uid');
+
+      // If the note UID is not null, set the selected note
+      if (uid) {
+        this.selectedNoteObj.next(this.getNote(uid) || null);
+      }
+    });
+
+    this.selectedNoteObj.subscribe(note => {
+      this.content = note?.content || '';
+    })
   }
 
   getNotes(course: CourseType) {
-    return this.notesService.notes.getValue().filter(note => note?.course?.uid === course.uid);
+    return this.notes.filter(note => note?.course?.uid === course.uid);
   }
 
-  getCourses() {
-    return this.notesService.courses.getValue();
+  getNote(uid: string) {
+    return this.notes.find(note => note.uid === uid);
   }
 
   async selectNote(note: NoteType) {
     await this.router.navigate(['notes', 'note', note.uid]);
+  }
+
+  getNoteTitle() {
+    return this.selectedNote?.title || 'No note selected';
   }
 }

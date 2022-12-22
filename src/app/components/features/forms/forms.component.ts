@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import schema from '../../../../generated/graphql.schema.json';
 import types from '../../../../generated/types.json';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
@@ -14,6 +14,7 @@ import {
   AddHomeworkAssignmentGQL,
   AddHomeworkAssignmentMutationInput,
   CourseType,
+  ErrorType,
   GetCoursesGQL,
   GetUserGQL,
   GetUserQuery
@@ -36,6 +37,8 @@ export interface IntrospectionInputValue {
   defaultValue: any;
 }
 
+interface DataPayload { errors?: ErrorType[], }
+
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
@@ -50,6 +53,7 @@ export class FormsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder,
     public appComponent: AppComponent,
     private authService: AuthService,
@@ -160,17 +164,16 @@ export class FormsComponent implements OnInit {
           this.addCourse.mutate({
             input: data
           }).subscribe(result => {
-            console.log(result);
+            this.parseResult(result.data!.addCourse as DataPayload);
           })
           break;
         case 'CourseTimeType':
           data = form.value as AddCourseTimeMutationInput;
           data.user = this.user?.id;
-          console.log(data);
           this.addCourseTime.mutate({
             input: data
           }).subscribe(result => {
-            console.log(result);
+            this.parseResult(result.data!.addCourseTime as DataPayload);
           })
           break;
         case 'HomeworkAssignmentType':
@@ -178,7 +181,7 @@ export class FormsComponent implements OnInit {
           this.addHomeworkAssignment.mutate({
             input: data
           }).subscribe(result => {
-            console.log(result);
+            this.parseResult(result.data!.addHomeworkAssignment as DataPayload);
           })
           break;
         case 'CalendarEventType':
@@ -187,12 +190,24 @@ export class FormsComponent implements OnInit {
           this.addCalendarEvent.mutate({
             input: data
           }).subscribe(result => {
-            console.log(result);
+            this.parseResult(result.data!.addCalendarEvent as DataPayload);
           });
           break;
       }
     }
   }
+
+  parseResult(result: DataPayload) {
+    if (result.errors!.length > 0) {
+      console.log(result.errors);
+    } else {
+      this.appComponent.closeModal();
+      // Force reload of the page.
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([this.router.url]);
+      });
+      }
+    }
 
   parseEnumVal(name: string) {
     // If the name starts with 'A_', then we need to remove the 'A_'. If the name starts with just an underscore, replace it with '-'

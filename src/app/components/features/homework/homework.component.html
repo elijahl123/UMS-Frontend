@@ -31,6 +31,12 @@
             [assignment]="assignmentObj"
           ></app-homework-item>
         </div>
+        <ui-empty-space
+          *ngIf="getAssignments()!.length === 0"
+          [icon]="assignmentIconDuo"
+          head="No Assignments"
+          sub="You can create a new assignment by clicking the plus button in the top left corner."
+        ></ui-empty-space>
       </div>
     </div>
     <div [ngClass]="['homework-body-router', isRouterActive() ? 'w-full' : 'w-0']">

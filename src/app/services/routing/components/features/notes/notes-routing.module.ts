@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotesComponent } from '../../../../../components/features/notes/notes.component';
 import { NoteComponent } from '../../../../../components/features/notes/note/note.component';
-import { NoteCoursesComponent } from '../../../../../components/features/notes/note-courses/note-courses.component';
 
 const routes: Routes = [
   {
@@ -11,7 +10,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: NoteCoursesComponent,
+        component: NoteComponent,
         pathMatch: 'full'
       },
       {
